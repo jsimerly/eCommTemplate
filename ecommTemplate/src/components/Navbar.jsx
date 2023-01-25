@@ -1,6 +1,7 @@
 import {useState, useEffect, useRef} from 'react';
 import whiteLeaf from '/src/assets/images/whiteleafv1.png'
 import Sidebar from './Sidebar'
+import Searchbar from './Searchbar';
 
 let useClickOutside = (handler) => {
     let domNode = useRef();
@@ -37,23 +38,27 @@ const Navbar = () => {
             className='w-[48px] h-[48px]'
         />
 
+        <div className='hidden'>
+            <Searchbar/>
+        </div>
+
         <ul className='list-none sm:flex hidden justify-end items-center flex-1'>
-            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px] text-white mr-6'>
                 Products
             </li>
-            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px] text-white mr-6'>
                 How It Works
             </li>
-            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px] text-white mr-6'>
                 Support
             </li>
-            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px] text-white mr-6'>
                 About Us
             </li>
             <li>
                 <button
                     type='button'
-                    className='text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 font-medium font-poppins border border-bg-seconday'
+                    className='text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 text-[14px] font-medium font-poppins border border-bg-seconday'
                 > Sign-In </button>
             </li>
         </ul>
