@@ -1,28 +1,36 @@
 import {useState, useEffect, useRef} from 'react'
 import Sidebar from './Sidebar'
 
-const Navbar = () => {
-    const [menuToggle, setMenuToggle] = useState(false);
-
-    let sidebarRef = useRef()
-
+let useClickOutside = (handler) => {
+    let domNode = useRef();
 
     useEffect(() => {
-
-        let handler = (e) => {
-            if (!sidebarRef.current.contains(e.target)){
-                setMenuToggle(false)
+        let domHandler = (e) => {
+            if (!domNode.current.contains(e.target)){
+                handler(false);
             }
         }
 
-        document.addEventListener('mousedown', handler)
-        
-        // return (
-        //     document.removeEventListener('mousedown', handler)
-        // )
+        document.addEventListener('mousedown', domHandler)
+
+        return () => (
+            document.removeEventListener('mousedown', domHandler)
+        )
     })
 
+    return domNode
+}
+
+const Navbar = () => {
+    const [menuToggle, setMenuToggle] = useState(false);
+
+    let domNode = useClickOutside(() => {
+        setMenuToggle(false);
+    })
     
+
+
+
   return (
     <nav className='w-full flex py-6 justify-between items-center'>
         <div className='text-white'> IMG HERE </div>
@@ -48,7 +56,7 @@ const Navbar = () => {
             </li>
         </ul>
         
-        <div ref={sidebarRef}>
+        <div ref={domNode}>
             <div className='text-white sm:hidden flex flex-1 justify-end items-center'> 
                 <button
                     onClick={()=>  setMenuToggle((menuToggle) => !menuToggle)}
@@ -68,7 +76,7 @@ const Navbar = () => {
                 </button>
             </div>
             <div
-                className={`flex absolute min-w-[140px] h-full top-[72px] right-0 tranform ${menuToggle? '' : 'translate-x-full'} transition duration-200 ease-in-out`}
+                className={`flex fixed min-w-[140px] h-full top-[72px] right-0 tranform ${menuToggle? '' : 'translate-x-full'} transition duration-200 ease-in-out`}
             >
                 <Sidebar/>
             </div>
