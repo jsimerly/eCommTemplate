@@ -56,8 +56,8 @@ const Navbar = () => {
             </li>
         </ul>
         
-        <div ref={domNode}>
-            <div className='text-white sm:hidden flex flex-1 justify-end items-center'> 
+        <div className='sm:hidden' ref={domNode}>
+            <div className='text-white  flex flex-1 justify-end items-center'> 
                 <button
                     onClick={()=>  setMenuToggle((menuToggle) => !menuToggle)}
                 >   
