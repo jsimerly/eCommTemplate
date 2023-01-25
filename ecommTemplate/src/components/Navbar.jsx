@@ -10,22 +10,13 @@ const Navbar = () => {
     useEffect(() => {
 
         let handler = (e) => {
-            // console.log(!sidebarRef.current.contains(e.target))
             if (!sidebarRef.current.contains(e.target)){
                 setMenuToggle(false)
             }
         }
 
         document.addEventListener('mousedown', handler)
-        // let handler = (event) => {
-    
-        //     if (!sidebarRef.current.contains(event.target)) {
-        //         setMenuToggle(false);
-        //     }
-        // }
         
-        // document.addEventListener('mousedown', handler)
-
         // return (
         //     document.removeEventListener('mousedown', handler)
         // )
