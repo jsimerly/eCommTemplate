@@ -1,4 +1,5 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef} from 'react';
+import whiteLeaf from '/src/assets/images/whiteleafv1.png'
 import Sidebar from './Sidebar'
 
 let useClickOutside = (handler) => {
@@ -29,29 +30,30 @@ const Navbar = () => {
     })
     
 
-
-
   return (
-    <nav className='w-full flex py-6 justify-between items-center'>
-        <div className='text-white'> IMG HERE </div>
+    <nav className='w-full flex p-3 justify-between items-center'>
+        <img
+            src={whiteLeaf}
+            className='w-[48px] h-[48px]'
+        />
 
         <ul className='list-none sm:flex hidden justify-end items-center flex-1'>
-            <li className='font-poppins font-normal cursor-pointer text-[16px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
                 Products
             </li>
-            <li className='font-poppins font-normal cursor-pointer text-[16px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
                 How It Works
             </li>
-            <li className='font-poppins font-normal cursor-pointer text-[16px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
                 Support
             </li>
-            <li className='font-poppins font-normal cursor-pointer text-[16px]$ text-white mr-10'>
+            <li className='font-poppins font-normal cursor-pointer text-[14px]$ text-white mr-10'>
                 About Us
             </li>
             <li>
                 <button
                     type='button'
-                    className='text-white bg-primary hover:bg-secondary focus:ring-4 focus:ring-blue-300 rounded-lg px-5 py-2.5 font-medium font-poppins border border-bg-seconday'
+                    className='text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 font-medium font-poppins border border-bg-seconday'
                 > Sign-In </button>
             </li>
         </ul>
