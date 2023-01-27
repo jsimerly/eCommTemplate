@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className={`bg-primary w-full flex p-3 justify-center items-center`}>
-        <div class={`${styles.boxWidth} flex justify-between items-center`}>
+        <div className={`${styles.boxWidth} flex justify-between items-center`}>
             <img
                 src={whiteLeaf}
                 className='w-[48px] h-[48px] mr-6 cursor-pointer'
@@ -24,7 +24,7 @@ const Navbar = () => {
             <div className='sm:flex hidden justify-end items-center divide-x'>
                 <div className='flex p-2 m-2 text-white justify-between items-center cursor-pointer'>
                     <svg 
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
@@ -33,7 +33,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className='pl-4 pt-2 pb-2 pr-2 text-white cursor-pointer'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" strokeLinecap="round" strokeLinejoin="round" >
                         <circle cx="9" cy="21" r="1"></circle>
                         <circle cx="20" cy="21" r="1"></circle>
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
