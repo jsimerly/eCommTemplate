@@ -1,6 +1,16 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useRef } from 'react';
 import DatePicker from 'react-datepicker'
+import useClickOutside from '../hooks/useClickOutside';
 import 'react-datepicker/dist/react-datepicker.css';
+
+const dests = [
+    {city:'Virgina Beach, VA', text:'Virgina Beach, VA'},
+    {city:'Myrtle Beach, SC', text:'Myrtle Beach, SC'},
+    {city:'St. Augustine, FL', text:'St. Augustine, FL'},
+    {city:'Daytona Beach, FL', text:'Daytona Beach, FL'},
+    {city:'Outer Banks, NC', text:'Outer Banks, NC'},
+    {city:'Hilton Head Island, SC', text:'Hilton Head Island, SC'},
+]
 
 const Searchbar = () => {
 
@@ -8,6 +18,10 @@ const Searchbar = () => {
     const [endDate, setEndDate] = useState();
     const [destination, setDestination] = useState();
     const [openDest, setOpenDest] = useState(false)
+
+    let domNode = useClickOutside(() => {
+        setOpenDest(false);
+    })
 
     const StartDateInput = forwardRef(({ value, onClick }, ref) => (
         <label className={`cursor-pointer relative ${value == '' ? 'text-tertiaryTone-300' : 'text-tertiary'} flex items-center`}>
@@ -44,7 +58,7 @@ const Searchbar = () => {
         <div 
         className='flex-1 sm:flex'
         >
-            <div className='relative flex flex-1 flex-col'>
+            <div className='relative flex flex-1 flex-col' ref={domNode}>
                 <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
                     <svg 
                     onClick={(openDest)=>{setOpenDest(!openDest)}}
@@ -61,12 +75,16 @@ const Searchbar = () => {
                 </label>
                 <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md shadow p-2 transition-all ease-in-out duration-150 ${openDest ? 'opacity-100' : 'opacity-0'}`}>
                     <ul>
-                        <li>Virgina Beach, VA</li>
-                        <li>Myrtle Beach, SC</li>
-                        <li>St. Augustine, FL</li>
-                        <li>Daytona Beach, FL</li>
-                        <li>Outer Banks, NC</li>
-                        <li>Hilton Head Island, SC</li>
+                        {dests.map((value, i) => (
+                        <li 
+                        onClick={() => {
+                            setDestination(value.text); setOpenDest(false)
+                        }}
+                        key={i}
+                        >
+                            {value.text}
+                        </li>
+                        ))}
                     </ul>
                 </div>
             </div>
