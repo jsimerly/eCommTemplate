@@ -73,7 +73,7 @@ const Searchbar = () => {
                     </div>
                     
                 </label>
-                <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md shadow p-2 transition-all ease-in-out duration-150 ${openDest ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md shadow p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'}`}>
                     <ul>
                         {dests.map((value, i) => (
                         <li 
