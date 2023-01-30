@@ -54,9 +54,9 @@ const Searchbar = () => {
     ));
    
   return (
-    <div className='flex-1 justify-start items-center max-w-3xl'>
+    
         <div 
-        className='flex-1 sm:flex'
+        className='flex-1 flex flex-col sm:flex-row font-poppins'
         >
             <div className='relative flex flex-1 flex-col' ref={domNode}>
                 <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
@@ -77,6 +77,7 @@ const Searchbar = () => {
                     <ul>
                         {dests.map((value, i) => (
                         <li 
+                        className='text-tertiary'
                         onClick={() => {
                             setDestination(value.text); setOpenDest(false)
                         }}
@@ -126,7 +127,6 @@ const Searchbar = () => {
                 </svg>
             </button>
         </div>
-    </div>
   )
 }
 

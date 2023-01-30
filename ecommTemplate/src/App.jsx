@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './styles'
 import Navbar from './components/Navbar'
-import SearchHero from './components/SearchHero'
+import Hero from './components/Hero'
 
 function App() {
   const [startdate, setStartDate] = useState(null)
@@ -10,10 +10,10 @@ function App() {
 
       <div className='w-full overflow-hidden'>
         <Navbar/>
+        <Hero/>
         <div className={`${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
-            <div className='flex justify-center border'>
-              <div className='min-h-[500px] border'></div>
+            <div className='flex justify-center'>
             </div>
           </div>
         </div>

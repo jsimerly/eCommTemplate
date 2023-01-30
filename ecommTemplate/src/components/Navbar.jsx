@@ -16,19 +16,25 @@ const Navbar = () => {
   return (
     <nav className={`bg-primary w-full flex p-3 justify-center items-center`}>
         <div className={`${styles.boxWidth} flex justify-between items-center`}>
-            <img
-                src={whiteLeaf}
-                className='w-[48px] h-[48px] mr-6 cursor-pointer'
-            />
-            <Searchbar/>
-            <div className='sm:flex hidden justify-end items-center divide-x'>
+            <div className='flex justify-start items-center text-white font-poppins text-[34px]'>
+                <img
+                    src={whiteLeaf}
+                    className='w-[48px] h-[48px] mr-2 cursor-pointer'
+                />
+                Elfy
+            </div>
+            
+            <div className='flex-1 justify-start items-center max-w-3xl hidden sm:block'>
+                <Searchbar/>
+            </div>
+            <div className='flex justify-end items-center divide-x'>
                 <div className='flex p-2 m-2 text-white justify-between items-center cursor-pointer'>
                     <svg 
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" >
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <div className='ml-2 hover:underline'>
+                    <div className='ml-2 hover:underline hidden sm:flex font-poppins'>
                         Sign-In
                     </div>
                 </div>
@@ -41,7 +47,7 @@ const Navbar = () => {
                 </div>
             </div>
             
-            <div className='sm:hidden' ref={domNode}>
+            {/* <div className='sm:hidden' ref={domNode}>
                 <div className='text-white  flex flex-1 justify-end items-center'> 
                     <button
                         onClick={()=>  setMenuToggle((menuToggle) => !menuToggle)}
@@ -63,9 +69,8 @@ const Navbar = () => {
                 <div
                     className={`flex fixed min-w-[140px] h-full top-[72px] right-0 tranform ${menuToggle? '' : 'translate-x-full'} transition duration-200 ease-in-out`}
                 >
-                    <Sidebar/>
                 </div>
-            </div>
+            </div> */}
         </div>
     </nav>
   )
