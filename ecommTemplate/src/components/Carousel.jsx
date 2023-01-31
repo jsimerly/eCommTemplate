@@ -1,6 +1,13 @@
 import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/swiper.min.css'
-import ProductCard from './ProductCard'
+import Category from './CategoryTile'
+
+import leisure from '../assets/images/leisure.jpg'
+import games from '../assets/images/games.jpg'
+import kids from '../assets/images/kids.jpg'
+import home from '../assets/images/home.jpg'
+import water from '../assets/images/water.jpg'
+import packages from '../assets/images/package.jpg'
 
 const Carousel = () => {
   return (
@@ -11,24 +18,23 @@ const Carousel = () => {
                 width: 640,
                 slidesPerView: 1,
             },
-            768:{
+            741:{
                 width: 768,
                 slidesPerView: 4,
             }
         }
         }
         spaceBetween={30}
-        slidesPerView={5}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
 
     >
-      <SwiperSlide><ProductCard lol='slide 1'/></SwiperSlide>
-      <SwiperSlide className='border'>Slide 2</SwiperSlide>
-      <SwiperSlide><div className='min-w-[200px] border'> test</div></SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      <SwiperSlide>Slide 5</SwiperSlide>
-      <SwiperSlide>Slide 6</SwiperSlide>
+      <SwiperSlide><Category image={packages}/></SwiperSlide>
+      <SwiperSlide><Category image={leisure}/></SwiperSlide>
+      <SwiperSlide><Category image={games}/></SwiperSlide>
+      <SwiperSlide><Category image={kids}/></SwiperSlide>
+      <SwiperSlide><Category image={home}/></SwiperSlide>
+      <SwiperSlide><Category image={water}/></SwiperSlide>
     </Swiper>
     </div>
   )
