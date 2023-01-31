@@ -12,6 +12,8 @@ const dests = [
     {city:'Hilton Head Island, SC', text:'Hilton Head Island, SC'},
 ]
 
+var today = new Date()
+
 const Searchbar = () => {
 
     const [startDate, setStartDate] = useState();
@@ -101,6 +103,7 @@ const Searchbar = () => {
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 customInput={<StartDateInput/>}
+                minDate={today}
                 />
             </label>
             
@@ -116,6 +119,7 @@ const Searchbar = () => {
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 customInput={<EndDateInput/>}
+                minDate={startDate}
                 />
                 
             </label>
