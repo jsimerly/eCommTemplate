@@ -15,10 +15,10 @@ const Hero = () => {
             Rent products to be dropped off and picked up on your next vacation. Need a hammock, canopy, and surfboard for your getaway? <br/> We've got you covered.
           </div>
           <div className="text-white font-semibold flex justify-center sm:justify-start">
-            <button className="bg-primary p-3 rounded-md mr-3 shadow">
+            <button className="bg-primary p-3 rounded-md mr-3 shadow-md">
               Shop Now
             </button>
-            <button className="bg-primary p-3 rounded-md shadow">
+            <button className="bg-primary p-3 rounded-md shadow-md">
               Learn More
             </button>
           </div>

@@ -4,6 +4,7 @@ import games from '../assets/images/games.jpg'
 import kids from '../assets/images/kids.jpg'
 import water from '../assets/images/water.jpg'
 import packages from '../assets/images/package.jpg'
+import all from '../assets/images/all.jpg'
 
 const category_info = [
   {
@@ -18,7 +19,7 @@ const category_info = [
   },
   {
     image: games,
-    title: 'Games',
+    title: 'Fun',
     text: ''
   },
   {
@@ -32,8 +33,8 @@ const category_info = [
     text: ''
   },
   {
-    image: packages,
-    title: 'Packages',
+    image: all,
+    title: 'All Categories',
     text: ''
   },
 ]
