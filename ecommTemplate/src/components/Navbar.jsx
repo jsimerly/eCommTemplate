@@ -16,12 +16,14 @@ const Navbar = () => {
   return (
     <nav className={`bg-primary w-full flex p-3 justify-center items-center`}>
         <div className={`${styles.boxWidth} flex justify-between items-center`}>
-            <div className='flex justify-start items-center text-white font-poppins text-[34px]'>
+            <div className='flex justify-start items-center text-white font-poppins text-[34px] mr-5'>
                 <img
                     src={whiteLeaf}
-                    className='w-[48px] h-[48px] mr-2 cursor-pointer'
+                    className='w-[48px] h-[48px] mr-2 cursor-pointer '
                 />
-                Elfy
+                <div className='sm:hidden md:block'>
+                    Elfy
+                </div>
             </div>
             
             <div className='flex-1 justify-start items-center max-w-3xl hidden sm:block'>
@@ -34,7 +36,7 @@ const Navbar = () => {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    <div className='ml-2 hover:underline hidden sm:flex font-poppins'>
+                    <div className='ml-2 hover:underline hidden md:flex font-poppins'>
                         Sign-In
                     </div>
                 </div>
