@@ -5,7 +5,7 @@ const CategoryTile = (props) => {
     <div className={`flex flex-col cursor-pointer rounded-md m-2 bg-white shadow-md`}>
         <div className="flex relative">
           <img className='flex rounded-md object-fill w-full' src={props.image}/>
-          <div className='absolute bottom-0 text-white font-bold mx-4 black-text-outline sm:text-[30px]'>
+          <div className='absolute bottom-0 text-white font-bold mx-4 sm:text-[30px]'>
             {props.title}
           </div>
         </div>

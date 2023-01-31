@@ -1,10 +1,11 @@
 import CategoryTile from "./CategoryTile"
-import leisure from '../assets/images/leisure.jpg'
-import games from '../assets/images/games.jpg'
-import kids from '../assets/images/kids.jpg'
-import water from '../assets/images/water.jpg'
-import packages from '../assets/images/package.jpg'
-import all from '../assets/images/all.jpg'
+import leisure from '../assets/images/leisure-shadow.jpg'
+import games from '../assets/images/games-shadow.jpg'
+import kids from '../assets/images/kids-shadow.jpg'
+import water from '../assets/images/water-shadow.jpg'
+import packages from '../assets/images/package-shadow.jpg'
+import all from '../assets/images/all-shadow.jpg'
+
 
 const category_info = [
   {

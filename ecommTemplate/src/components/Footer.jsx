@@ -21,7 +21,7 @@ const Footer = () => {
             <div className='bg-white rounded-md shadow-md p-10'>
                 <div className='font-semibold mb-2'> Subscribe </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
-                    <input placeholder='email' className='my-2 rounded-md p-2 bg-tertiaryTone-100'/>
+                    <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100'/>
                     <div className="ml-1 bg-secondary rounded p-2">
                         <svg 
                         className='min-w-[22px] min-h-[22px]'
@@ -30,7 +30,7 @@ const Footer = () => {
                         </svg>
                     </div>
                 </div>
-                <div className='text-[12px] max-w-[240px]'>
+                <div className='text-[12px] max-w-[250px]'>
                     The Elfy's news letter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities. 
                 </div>
 
