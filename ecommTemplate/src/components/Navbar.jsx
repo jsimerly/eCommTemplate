@@ -21,7 +21,7 @@ const Navbar = () => {
                     src={whiteLeaf}
                     className='w-[48px] h-[48px] mr-2 cursor-pointer '
                 />
-                <div className='sm:hidden md:block'>
+                <div className='font-londrina sm:hidden md:block'>
                     Elfy
                 </div>
             </div>

@@ -3,6 +3,7 @@ import styles from './styles'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import CategoryHero from './components/CategoryHero'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
             <CategoryHero/>
 
           </div>
+        </div>
+        <div className='flex justify-center'>
+          <Footer/>
         </div>
       </div>
   )

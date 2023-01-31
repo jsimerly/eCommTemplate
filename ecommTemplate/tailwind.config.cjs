@@ -42,8 +42,7 @@ module.exports = {
         },
         fontFamily: {
           poppins: ["Poppins", "sans-serif"],
-          sans: ['Graphik', 'sans-serif'],
-          serif: ['Merriweather', 'serif'],
+          londrina: ['Londrina Solid', 'sans-serif']
         },
       },
       screens: {
