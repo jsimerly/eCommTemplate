@@ -44,7 +44,7 @@ const CategoryHero = () => {
     <div className="my-6">
         <div className="grid grid-cols-2 sm:grid-cols-3">
           {category_info.map((cat, index) => (
-            <CategoryTile image={cat.image} title={cat.title} text={cat.text}/>
+            <CategoryTile image={cat.image} title={cat.title} text={cat.text} key={index}/>
           ))}
 
         </div>
