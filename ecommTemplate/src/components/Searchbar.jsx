@@ -1,7 +1,11 @@
 import { useState, forwardRef, useRef } from 'react';
 import DatePicker from 'react-datepicker'
+import {DateRange} from 'react-date-range';
 import useClickOutside from '../hooks/useClickOutside';
+
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -20,41 +24,42 @@ var today = new Date()
 
 const Searchbar = () => {
 
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [selectRange, setSelectRange ]= useState(
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection'
+        }
+    )
+
+    function handleDateSelection(ranges){
+        const { selection } = ranges;
+        setSelectRange(selection)
+    }
+
+    function handleSearch(){
+        console.log(selectRange)
+    }
+
     const [destination, setDestination] = useState();
     const [openDest, setOpenDest] = useState(false)
+    const [openCalendar, setOpenCalendar] = useState(false);
 
-    let domNode = useClickOutside(() => {
+    let destNode = useClickOutside(() => {
         setOpenDest(false);
     })
 
-    const StartDateInput = forwardRef(({ value, onClick }, ref) => (
-        <label className={`cursor-pointer relative ${value == '' ? 'text-tertiaryTone-300' : 'text-tertiary'} flex items-center`}>
-            <CalendarMonthIcon className='w-8 h-8 absolute transform scale-125 ml-2'/>
-        <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[140px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 ${value == "" ? 'text-tertiaryTone-300': 'text-tertiary'} pl-10 p-2`} onClick={onClick} ref={ref} >
-            {ref()}
-            {value == '' ? 'From' : value}
-        </div>
-        </label>
-    ));
+    let calNode = useClickOutside(() => {
+        setOpenCalendar(false);
+    })
 
-    const EndDateInput = forwardRef(({ value, onClick }, ref) => (
-        <label className={`cursor-pointer relative ${value == '' ? 'text-tertiaryTone-300' : 'text-tertiary'} flex items-center`}>
-            <CalendarMonthIcon className='w-8 h-8 absolute transform scale-125 ml-2'/>
-            <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[140px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 ${value == "" ? 'text-tertiaryTone-300': 'text-tertiary'} pl-10 p-2`} onClick={onClick} ref={ref} >
-                {ref()}
-                {value == '' ? 'to' : value}
-            </div>
-        </label>
-    ));
    
   return (
     
         <div 
         className='flex-1 flex flex-col sm:flex-row font-poppins'
         >
-            <div className='relative flex flex-1 flex-col' ref={domNode}>
+            <div className='relative flex flex-1 flex-col' ref={destNode}>
                 <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
                     <LocationOnIcon className={`w-8 h-8 absolute scale-125 ml-2 transform ${destination == null ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
                     onClick={(openDest)=>{setOpenDest(!openDest)}}
@@ -82,28 +87,30 @@ const Searchbar = () => {
                     </ul>
                 </div>
             </div>
-            
-            <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center">
-                <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                customInput={<StartDateInput/>}
-                minDate={today}
+            <div ref={calNode}>
+                <label className={`cursor-pointer relative flex items-center justify-start`}>
+                    <CalendarMonthIcon className={`w-8 h-8 absolute transform scale-125 ml-2 ${false ? 'text-tertiary' : 'text-tertiaryTone-300'}`}/>
+                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-12 p-2] ${false ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center`}
+                    onClick={()=>setOpenCalendar(!openCalendar)}
+                    >
+                        When
+                    </div>
+                </label>
+                <DateRange
+                    ranges={[selectRange]}
+                    onChange={handleDateSelection}
+                    minDate={today}
+                    direction='horizontal'
+                    className={`${openCalendar ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border shadow-md`}
+                    
                 />
-            </label>
+            </div>
             
+            <button 
+            className='rounded-md bg-primaryLight p-2 min-h-[40px] min-w-[40px] text-tertiary'
+            onClick={handleSearch}
             
-            <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center">
-                <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-                customInput={<EndDateInput/>}
-                minDate={startDate}
-                />
-                
-            </label>
-            
-            <button className='rounded-md bg-primaryLight p-2 min-h-[40px] min-w-[40px] text-tertiary'>
+            >
                 <SearchIcon className='scale-125'/>
             </button>
         </div>
