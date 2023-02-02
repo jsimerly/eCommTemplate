@@ -1,5 +1,4 @@
 // Copy
-import whiteleafv1 from '../assets/images/whiteleafv1.png'
 
 export const howToInfo = {
     title: "Here's How We Make Your Vacation Easy",
@@ -7,22 +6,22 @@ export const howToInfo = {
         {
             title: "Tell Us Where",
             paragraph: "Lorem ipsum dolor sit amet. Aut iste ipsa et repellat optio ut aliquam rerum ea reprehenderit reprehenderit sed perspiciatis fugit est debitis natus.",
-            logo: whiteleafv1,
+            logo: 'location',
         },
         {
             title: "Tell Us When",
             paragraph: "Lorem ipsum dolor sit amet. Aut iste ipsa et repellat optio ut aliquam rerum ea reprehenderit reprehenderit sed perspiciatis fugit est debitis natus.",
-            logo: whiteleafv1,
+            logo: 'calendar',
         },
         {
             title: "Tell Us What",
             paragraph: "Lorem ipsum dolor sit amet. Aut iste ipsa et repellat optio ut aliquam rerum ea reprehenderit reprehenderit sed perspiciatis fugit est debitis natus.",
-            logo: whiteleafv1,
+            logo: 'cart',
         },
         {
             title: "Enjoy",
             paragraph: "Lorem ipsum dolor sit amet. Aut iste ipsa et repellat optio ut aliquam rerum ea reprehenderit reprehenderit sed perspiciatis fugit est debitis natus.",
-            logo: whiteleafv1,
+            logo: 'kite',
         }
     ]
 }

@@ -11,7 +11,7 @@ const Hero = () => {
           <div className="font-bold text-[26px] sm:text-[30px] mb-3 flex justify-center sm:justify-start">
             Tailored Vacations. <br/> Timeless Memories.
           </div>
-          <div className="text-[14px] sm:text-[18px] font-nobold mb-5">
+          <div className="text-[14px] sm:text-[18px] font-nobold mb-5 leading-relaxed">
             Rent products to be dropped off and picked up on your next vacation. Need a hammock, canopy, and surfboard for your getaway? <br/> We've got you covered.
           </div>
           <div className="text-white font-semibold flex justify-center sm:justify-start">

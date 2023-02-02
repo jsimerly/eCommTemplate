@@ -4,6 +4,8 @@ import Sidebar from './Sidebar'
 import Searchbar from './Searchbar';
 import useClickOutside from '../hooks/useClickOutside';
 import styles from '../styles';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonIcon from '@mui/icons-material/Person';
 
 const Navbar = () => {
     const [menuToggle, setMenuToggle] = useState(false);
@@ -31,21 +33,13 @@ const Navbar = () => {
             </div>
             <div className='flex justify-end items-center divide-x'>
                 <div className='flex p-2 m-2 text-white justify-between items-center cursor-pointer'>
-                    <svg 
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
+                    <PersonIcon className='scale-125'/>
                     <div className='ml-2 hover:underline hidden md:flex font-poppins'>
                         Sign-In
                     </div>
                 </div>
                 <div className='pl-4 pt-2 pb-2 pr-2 text-white cursor-pointer'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" >
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
+                    <ShoppingCartIcon className='scale-125'/>
                 </div>
             </div>
             
