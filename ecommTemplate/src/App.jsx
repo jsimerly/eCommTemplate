@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import CategoryHero from './components/CategoryHero'
 import Footer from './components/Footer'
+import HowItWorks from './components/HowItWorks'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div className={`${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <CategoryHero/>
+            <HowItWorks/>
 
           </div>
         </div>

@@ -124,7 +124,7 @@ const Searchbar = () => {
                 
             </label>
             
-            <button className='rounded-md bg-secondary p-2 min-h-[40px] min-w-[40px] text-tertiary'>
+            <button className='rounded-md bg-primaryLight p-2 min-h-[40px] min-w-[40px] text-tertiary'>
                 <svg 
                 fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
