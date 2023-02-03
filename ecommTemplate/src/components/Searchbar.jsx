@@ -1,11 +1,11 @@
-import { useState, forwardRef, useRef } from 'react';
-import DatePicker from 'react-datepicker'
+import { useState} from 'react';
 import {DateRange} from 'react-date-range';
 import useClickOutside from '../hooks/useClickOutside';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { format } from 'https://esm.run/date-fns'
 
 import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -26,18 +26,21 @@ const Searchbar = () => {
 
     const [selectRange, setSelectRange ]= useState(
         {
-            startDate: new Date(),
+            startDate: null,
             endDate: new Date(),
-            key: 'selection'
+            key: 'selection',
+            first: false
         }
     )
 
     function handleDateSelection(ranges){
         const { selection } = ranges;
+        selection.first = true;
         setSelectRange(selection)
     }
 
     function handleSearch(){
+        console.log(selectRange.first)
         console.log(selectRange)
     }
 
@@ -89,18 +92,21 @@ const Searchbar = () => {
             </div>
             <div ref={calNode}>
                 <label className={`cursor-pointer relative flex items-center justify-start`}>
-                    <CalendarMonthIcon className={`w-8 h-8 absolute transform scale-125 ml-2 ${false ? 'text-tertiary' : 'text-tertiaryTone-300'}`}/>
-                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-12 p-2] ${false ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center`}
+                    <CalendarMonthIcon className={`w-8 h-8 absolute transform scale-125 ml-2 ${selectRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'}`}/>
+                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-12 p-2] ${selectRange ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center`}
                     onClick={()=>setOpenCalendar(!openCalendar)}
                     >
-                        When
+                        {selectRange.first ? format(selectRange.startDate, 'MMM, d').concat(' - ', format(selectRange.endDate, 'MMM d yyyy')) : 'When' }
                     </div>
                 </label>
                 <DateRange
                     ranges={[selectRange]}
+                    showMonthAndYearPickers={false}
                     onChange={handleDateSelection}
                     minDate={today}
                     direction='horizontal'
+                    startDatePlaceholder='Beginning'
+                    endDatePlaceholder='Finale'
                     className={`${openCalendar ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border shadow-md`}
                     
                 />
