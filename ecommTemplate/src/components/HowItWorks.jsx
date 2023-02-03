@@ -13,7 +13,7 @@ const iconDict = {
 }
 
 const StepCard = ({icon, title, paragraph, index}) => (
-    <div className='border flex flew-row rounded-md mb-2 p-4 bg-white shadow-md transition ease-in-out hover:scale-105'>
+    <div className='border flex flew-row items-center rounded-md mb-2 p-4 bg-white shadow-md transition ease-in-out hover:scale-105'>
         <div className='w-[64px] h-[64px] rounded-md flex justify-center items-center'>
             {iconDict[icon]}
         </div>
@@ -21,7 +21,8 @@ const StepCard = ({icon, title, paragraph, index}) => (
             <h4 className='font-semibold text-[18px] mb-1'>
                 {title}
             </h4>
-            <p className='text-[14px]'>
+        
+            <p className='text-[12px] sm:text-[14px]'>
                 {paragraph}
             </p>
         </div>
@@ -31,24 +32,24 @@ const StepCard = ({icon, title, paragraph, index}) => (
 const HowItWorks = () => {
   return (
     <div
-        className='flex sm:flex-row flex-col p-6 font-poppins text-primary'
+        className='flex sm:flex-row flex-col sm:p-6 font-poppins text-primary'
     >
-        <div className='flex flex-col justify-center items-start'>
-            <h1 className='text-[48px] w-full'>
+        <div className='flex flex-col justify-center sm:items-start items-center'>
+            <h1 className='text-[28px] sm:text-[48px] w-full'>
                 {howToInfo.title}
             </h1>
-            <div className='max-w-[470px] text-[18px] mt-5 leading-relaxed'>
+            <div className='max-w-[470px] text-[14px] sm:text-[18px] mt-5 leading-relaxed'>
                 With the right credit card, you can improve your financial life by building credit, earning rewards and saving money. But with hundreds of credit cards on the market.
             </div>
-            <div className='mt-10 text-white font-semibold'>
+            <div className='flex mt-5 sm:mt-10 text-white font-semibold justify-center'>
                 <button className="bg-primary p-3 rounded-md mr-3 shadow-md 
-                transition ease-in-out hover:scale-105 text-white text-center min-w-[115px]">
+                transition ease-in-out hover:scale-105 text-white text-center min-w-[115px] mb-6">
                     Get Started
                 </button>
             </div>
             
         </div>
-        <div className='ml-10'>
+        <div className='sm:ml-10'>
             {howToInfo.steps.map((step, index) => (
                 <StepCard icon={step.logo} key={index} title={step.title} paragraph={step.paragraph} index={index}/>
             ))}

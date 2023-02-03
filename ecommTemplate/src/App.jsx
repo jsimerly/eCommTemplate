@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import CategoryHero from './components/CategoryHero'
 import Footer from './components/Footer'
 import HowItWorks from './components/HowItWorks'
+import CarouselHero from './components/CarouselHero'
 
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
           <div className={`${styles.boxWidth}`}>
             <CategoryHero/>
             <HowItWorks/>
-
+            <CarouselHero/>
           </div>
         </div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center items-center'>
           <Footer/>
         </div>
       </div>

@@ -93,7 +93,7 @@ const Searchbar = () => {
             <div ref={calNode}>
                 <label className={`cursor-pointer relative flex items-center justify-start`}>
                     <CalendarMonthIcon className={`w-8 h-8 absolute transform scale-125 ml-2 ${selectRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'}`}/>
-                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-12 p-2] ${selectRange ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center`}
+                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-12 p-2] ${selectRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center`}
                     onClick={()=>setOpenCalendar(!openCalendar)}
                     >
                         {selectRange.first ? format(selectRange.startDate, 'MMM, d').concat(' - ', format(selectRange.endDate, 'MMM d yyyy')) : 'When' }
