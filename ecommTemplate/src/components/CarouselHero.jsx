@@ -1,29 +1,13 @@
 import CaroProdCard from './CaroProdCard';
 import { useState } from 'react';
-
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 640 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 640, min: 0 },
-    items: 1
-  }
-};
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4']
 
 const CarouselHero = () => {
   const [cardn, setCardn] = useState(0)
+  const [rightCardHidden, setRightHidden] = useState(false)
 
   function leftButtonClick(){
     setCardn(cardn-1)
@@ -33,29 +17,51 @@ const CarouselHero = () => {
     setCardn(cardn+1)
   }
 
-  function translateX(n, list, scrollN){
+  function translateXPerc(n, list, scrollN){
+    if (n < 0) {
+      setCardn(0)
+      n = 0
+    }
     let suffix = Math.round(n / list.length * 100 * scrollN).toString() + '%)'
-    console.log(suffix)
-    let fullTrans = 'translateX(-' + suffix
-    return(fullTrans)
+
+    return('translateX(-' + suffix)
   }
+
+  function translateXWidth(n, width, list, scrollN){
+    if (n < 0) {
+      setCardn(0)
+      n = 0
+    }
+    if ((n+1)*scrollN > list.length){
+      let remainingItems = list.length%scrollN
+      let suffix = Math.round((n+1) * width * remainingItems).toString() + 'px)'
+
+      return('translateX(-' + suffix)
+    }
+
+    let suffix = Math.round(n * width * scrollN).toString() + 'px)'
+    console.log(suffix)
+    return('translateX(-' + suffix)
+  }
+
+  const nCardsPerView = 3
 
   return (
     <div className='bg-white rounded-md shadow-md flex'>
-      <div className='flex justify-center items-center py-4 px-10 ml-4 relative text-[36px] text-center'>TOP SELLERS
+      <div className='flex justify-center items-center py-4 px-10 ml-4 relative text-[36px] text-center font-bold text-primary'>TOP SELLERS
       
       </div>
       
       <div className='overflow-hidden flex flex-row border relative'>
         <button 
-        className={`text-white bg-primary rounded-full absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'hidden' : ''}`}
+        className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'hidden' : ''} p-2 bg-opacity-20 hover:bg-opacity-50`}
         onClick={()=> leftButtonClick()}
         >
-          {cardn}
+          <ArrowBackIosNewIcon/>
         </button>
         <div 
           className={`flex transform transition ease-linear duration-200`}
-          style={{ transform: translateX(cardn, list, 3)}}
+          style={{ transform: translateXWidth(cardn, 316, list , nCardsPerView)}}
           >
           {list.map((item, index) => {
             return (
@@ -64,10 +70,10 @@ const CarouselHero = () => {
           })}
         </div>
         <button 
-        className='text-white bg-primary rounded-full absolute top-1/2 right-0 z-10 mx-1'
+        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${(cardn+1)*nCardsPerView > list.length ? 'hidden' : ''}`}
         onClick={() => rightButtonClick()}
         >
-          BUTTOn
+          <ArrowForwardIosIcon/>
         </button>
       </div>
     </div>
