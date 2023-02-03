@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4']
+const list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9']
 
 const CarouselHero = () => {
   const [cardn, setCardn] = useState(0)
@@ -28,14 +28,13 @@ const CarouselHero = () => {
   }
 
   function translateXWidth(n, width, list, scrollN){
-    if (n < 0) {
-      setCardn(0)
-      n = 0
-    }
-    if ((n+1)*scrollN > list.length){
-      let remainingItems = list.length%scrollN
-      let suffix = Math.round((n+1) * width * remainingItems).toString() + 'px)'
+    if ((n+1)*scrollN >= list.length && list.length%scrollN != 0){
 
+      let remainingItems = list.length%scrollN
+
+      let suffix = Math.round(((n-1) * width * scrollN) + (width * remainingItems)).toString() + 'px)'
+      console.log(n.toString() + ' - ' + width.toString() + ' - ' + remainingItems.toString())
+      console.log(suffix)
       return('translateX(-' + suffix)
     }
 
@@ -70,7 +69,7 @@ const CarouselHero = () => {
           })}
         </div>
         <button 
-        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${(cardn+1)*nCardsPerView > list.length ? 'hidden' : ''}`}
+        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${(cardn+1)*nCardsPerView >= list.length ? 'hidden' : ''}`}
         onClick={() => rightButtonClick()}
         >
           <ArrowForwardIosIcon/>
