@@ -17,7 +17,10 @@ function App() {
           <div className={`${styles.boxWidth}`}>
             <CategoryHero/>
             <HowItWorks/>
-            <CarouselHero/>
+            <CarouselHero title='Top Vacation Sellers'/>
+            <div className='my-6'>
+              <CarouselHero title='Popular Packages'/>
+            </div>
           </div>
         </div>
         <div className='flex justify-center items-center'>

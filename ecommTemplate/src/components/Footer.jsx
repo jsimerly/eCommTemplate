@@ -5,7 +5,7 @@ import {facebook, twitter, instagram, whiteLeaf} from '../assets/images'
 
 const Footer = () => {
   return (
-    <section className={`flex justify-center items-center sm:py-6 py-16 px-4 sm:px-10 flex-col border ${styles.boxWidth} text-tertiary`}>
+    <section className={`flex justify-center items-center sm:py-6 py-16 px-4 sm:px-10 flex-col ${styles.boxWidth} text-tertiary`}>
         <div className='flex flex-row flex-wrap justify-between items-start w-full sm:pt-10 sm:pb-4' >
             {footerInfo.map((footerColInfo, index) => (
                 <div key={index}>

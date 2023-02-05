@@ -4,7 +4,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useSwipeable } from 'react-swipeable'
 
-const list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9']
+const list = ['Tundra - 45 Hard Cooler', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9']
 
 function windowToScrollN(){
 
@@ -18,7 +18,7 @@ function windowToScrollN(){
   }
 }
 
-const CarouselHero = () => {
+const CarouselHero = (props) => {
   const [cardn, setCardn] = useState(0)
   const [translateString, setTranslate] = useState('translateX(0px)')
   const [scrollN, setScrollN] = useState(windowToScrollN)
@@ -82,14 +82,14 @@ const CarouselHero = () => {
   }
 
   return (
-    <div className='bg-white rounded-md shadow-md flex flex-col md:flex-row'>
-      <div className='flex justify-center items-center py-4 px-10 ml-4 relative text-[36px] text-center font-bold text-primary'>
-        TOP SELLERS
+    <div className='flex flex-col bg-white rounded-md shadow-md'>
+      <div className='flex justify-start items-center py-4 px-10 ml-4 relative text-[36px] text-center font-bold text-primary'>
+        {props.title}
       </div>
       
       <div 
         {...handlers}
-        className='overflow-hidden flex flex-row relative'>
+        className='overflow-hidden flex flex-row relative px-6'>
         <button 
         className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'hidden' : ''} p-2 bg-opacity-20 hover:bg-opacity-50`}
         onClick={()=> leftButtonClick()}
@@ -102,7 +102,7 @@ const CarouselHero = () => {
           >
           {list.map((item, index) => {
             return (
-              <CaroProdCard food={item} key={index}/>
+              <CaroProdCard header={item} key={index}/>
             )
           })}
         </div>

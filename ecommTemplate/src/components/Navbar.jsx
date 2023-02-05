@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className='flex justify-end items-center divide-x'>
                 <div className='flex p-2 m-2 text-white justify-between items-center cursor-pointer'>
                     <PersonIcon className='scale-125'/>
-                    <div className='ml-2 hover:underline hidden md:flex font-poppins'>
+                    <div className='ml-2 text-[18px] hover:underline hidden md:flex font-poppins'>
                         Sign-In
                     </div>
                 </div>
