@@ -6,13 +6,35 @@ import { useSwipeable } from 'react-swipeable'
 
 const list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9']
 
+function windowToScrollN(){
+
+  if (window.innerWidth < 680) {
+    console.log(1)
+    return 1
+  } else if (window.innerWidth < 1200) {
+    return 2
+  } else {
+    return 3
+  }
+}
+
 const CarouselHero = () => {
   const [cardn, setCardn] = useState(0)
   const [translateString, setTranslate] = useState('translateX(0px)')
-
-  const scrollN = 3
-  const nCardsPerView = 3
+  const [scrollN, setScrollN] = useState(windowToScrollN)
+  const [nCardsPerView, setNCardsPerView] = useState(windowToScrollN)
   const scrollWidth = 316
+
+  useEffect(() => {
+    let handleWindowResize = () => {
+      let n = windowToScrollN()
+      setScrollN(n)
+      setNCardsPerView(n)
+    }
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, [])
 
   function leftButtonClick(){
     if (cardn <= 0) {
