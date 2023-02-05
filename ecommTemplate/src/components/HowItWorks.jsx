@@ -13,7 +13,7 @@ const iconDict = {
 }
 
 const StepCard = ({icon, title, paragraph, index}) => (
-    <div className='border flex flew-row items-center rounded-md mb-2 p-4 bg-white shadow-md transition ease-in-out hover:scale-105'>
+    <div className='border flex flew-row items-center rounded-md mb-2 p-4 bg-white shadow cursor-pointer transition ease-in-out hover:scale-105'>
         <div className='w-[64px] h-[64px] rounded-md flex justify-center items-center'>
             {iconDict[icon]}
         </div>

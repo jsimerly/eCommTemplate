@@ -82,14 +82,15 @@ const CarouselHero = (props) => {
   }
 
   return (
-    <div className='flex flex-col bg-white rounded-md shadow-md'>
-      <div className='flex justify-start items-center py-4 px-10 ml-4 relative text-[36px] text-center font-bold text-primary'>
+    <div className='flex flex-col bg-white rounded-md shadow p-6'>
+      <div className='flex justify-start items-center relative text-[36px] text-center font-bold text-primary pb-6 mx-6'>
         {props.title}
       </div>
       
       <div 
         {...handlers}
-        className='overflow-hidden flex flex-row relative px-6'>
+        className='overflow-hidden flex flex-row relative px-6'
+      >
         <button 
         className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'hidden' : ''} p-2 bg-opacity-20 hover:bg-opacity-50`}
         onClick={()=> leftButtonClick()}

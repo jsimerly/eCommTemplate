@@ -6,7 +6,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const CaroProdCard = (props) => {
   return (
-    <div className='min-h-[460px] w-[300px] rounded-md bg-tertiaryTone-100 shadow mx-2 my-6 pt-4 px-4 border flex flex-col'>
+    <div className='min-h-[460px] w-[300px] rounded-md bg-tertiaryTone-100 shadow pt-4 px-4 flex flex-col mr-4'>
       <img src={yeti45} className='bg-white object-scale-down rounded-md hover:cursor-pointer'/>
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
