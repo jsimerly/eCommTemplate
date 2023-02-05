@@ -2,7 +2,6 @@ import { useState} from 'react';
 import {DateRange} from 'react-date-range';
 import useClickOutside from '../hooks/useClickOutside';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from 'https://esm.run/date-fns'
