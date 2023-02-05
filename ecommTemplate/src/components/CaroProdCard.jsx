@@ -24,7 +24,9 @@ const CaroProdCard = (props) => {
             <StarIcon/>
             <StarIcon/>
             <StarHalfIcon/>
-            (6443)
+            <div className='ml-1'>
+             (6443)
+            </div>
           </div>
         </div>
         <div className='flex flex-col flex-1 w-full justify-between items-start my-4'>

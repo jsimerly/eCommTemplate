@@ -6,6 +6,7 @@ import CategoryHero from './components/CategoryHero'
 import Footer from './components/Footer'
 import HowItWorks from './components/HowItWorks'
 import CarouselHero from './components/CarouselHero'
+import QualityHero from './components/QualityHero'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <div className='my-6'>
               <CarouselHero title='Popular Packages'/>
             </div>
+            <QualityHero/>
           </div>
         </div>
         <div className='flex justify-center items-center'>

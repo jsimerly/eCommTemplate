@@ -36,11 +36,8 @@ export const footerInfo = [
                 link: 'https://http://127.0.0.1:5173/'
             },
             {
-                name: 'Our Vision'
-            },
-            {
-                name: 'How it Works',
-                link: 'https://http://127.0.0.1:5173/'
+                name: 'Our Vision',
+                link:'1'
             },
             {
                 name: 'Shop Now',
@@ -73,6 +70,10 @@ export const footerInfo = [
             },
             {
                 name: 'Newsletters',
+                link: 'https://http://127.0.0.1:5173/'
+            },
+            {
+                name: 'Reviews',
                 link: 'https://http://127.0.0.1:5173/'
             },
             {

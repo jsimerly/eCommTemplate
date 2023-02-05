@@ -47,12 +47,12 @@ const Footer = () => {
                     Blue Elf
                 </div>
             </div>
-            <div className='font-semibold text-[14px] flex sm:flex-row flex-col order-3'>
+            <div className='font-semibold text-[14px] flex sm:flex-row flex-col order-3 sm:order-2'>
                 <a className='m-3'> Terms </a>
                 <a className='m-3'> Privacy </a>
                 <a className='m-3'> Cookies </a>
             </div>
-            <div className='flex flew-row p-1 text-primary order-2'>
+            <div className='flex flew-row p-1 text-primary order-2 sm:order-3'>
                 <img className='m-1 max-w-[40px] max-h-[40px]' src={facebook}/>
                 <img className='m-1 max-w-[40px] max-h-[40px]' src={twitter}/>
                 <img className='m-1 max-w-[40px] max-h-[40px]' src={instagram}/>
