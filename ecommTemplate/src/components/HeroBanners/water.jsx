@@ -5,7 +5,7 @@ function Water() {
     <div className='inline-flex'>
       <img src={unicorn_image}/>
       <div className='absolute'>
-        Jacob
+        Water
       </div>
   </div>
   )

@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles'
 import Navbar from './components/Navbar'
-import CategoryHero from './components/CategoryHero'
 import Footer from './components/Footer'
-import HowItWorks from './components/HowItWorks'
 import ProductCarousel from './components/ProductCarousel'
-import QualityHero from './components/QualityHero'
 import QualityHeroV2 from './components/QualityHeroV2'
+import HowItWorksV2 from './components/HowItWorksV2'
 import HeroV2 from './components/HeroV2'
 
 function App() {
@@ -17,7 +15,7 @@ function App() {
         <HeroV2/>
         <div className={`${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
-            <HowItWorks/>
+            <HowItWorksV2/>
             <ProductCarousel title='Top Vacation Sellers'/>
             <div className='my-6'>
               <ProductCarousel title='Popular Packages'/>

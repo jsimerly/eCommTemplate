@@ -5,7 +5,7 @@ import Beach from './HeroBanners/beach.jsx';
 import ProdPackages from './HeroBanners/prodPackages.jsx';
 import Water from './HeroBanners/water.jsx';
 
-const banners = [ Beach, Water ]
+const banners = [ Beach, Water, ProdPackages ]
 
 const HeroCarousel = () => {
     const [slideIndex, setSlideIndex] = useState(0)
