@@ -6,6 +6,7 @@ import ProductCarousel from './components/ProductCarousel'
 import QualityHeroV2 from './components/QualityHeroV2'
 import HowItWorksV2 from './components/HowItWorksV2'
 import HeroV2 from './components/HeroV2'
+import Change from './components/Change'
 
 function App() {
   return (
@@ -16,15 +17,31 @@ function App() {
         <div className={`${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <HowItWorksV2/>
-            <ProductCarousel title='Top Vacation Sellers'/>
+            <div className='py-20'>
+               BANNER AD HERE
+            </div>
+            <ProductCarousel title='Most Popular'/>
             <div className='my-6'>
-              <ProductCarousel title='Popular Packages'/>
+              <ProductCarousel title='Top Deals'/>
+            </div>
+            <div className='py-20'>
+               Categories Here
             </div>
             <div className='my-6'>
               <ProductCarousel title='New Arrivals'/>
             </div>
+            <div className='my-6'>
+              <ProductCarousel title='Spring Break!'/>
+            </div>
             <QualityHeroV2/>
+            <div className='py-20'>
+               <Change/>
+            </div>
+            <div className='py-20'>
+               BANNER AD HERE
+            </div>
           </div>
+
         </div>
         <div className='flex justify-center items-center'>
           <Footer/>
