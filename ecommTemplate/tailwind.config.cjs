@@ -9,6 +9,7 @@ module.exports = {
           primary: "#4F86C6",
           primaryLight: "#e4eaf6",
           secondary: "#FAF3C5", 
+          complementary: '#ffa400',
           secondaryTone: {
             10:"#fefef9",
             20:"#fefdf3",

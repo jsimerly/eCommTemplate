@@ -37,7 +37,7 @@ const HowItWorksV2 = () => {
             </h1>
             <div className='flex flex-row justify-between w-full text-tertiary'>
                 <StepCard n={1} title={'Tell Us Where'} paragraph="No need to leave the condo, just let us know where to go."/>
-                <StepCard n={2} title={'Tell Us When'} paragraph="Taking a long weekend or extended getaway? We'll make sure it's well spent."/>
+                <StepCard n={2} title={'Tell Us When'} paragraph="Taking a long weekend or extended getaway? We'll make sure it's time well spent."/>
                 <StepCard n={3} title={'Tell Us What'} paragraph="Need a hammock, canopy, and surfboard? We've got you covered."/>
                 <StepCard n={4} title={'Relax'} paragraph='Enjoy your hassle free vacation.'/>
             </div>

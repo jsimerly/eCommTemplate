@@ -7,7 +7,7 @@ const BlogCard = ({title, date, img}) => (
             <div>            
                 <h1 className='font-semibold text-[20px] p-2 text-center'>{title}</h1>
             </div>
-            <div className='mb-3'>
+            <div className='flex mb-3 justify-end'>
                 <h4>{date}</h4>
             </div>
         </div>

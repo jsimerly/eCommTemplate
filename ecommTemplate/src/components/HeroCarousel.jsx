@@ -35,7 +35,10 @@ const HeroCarousel = () => {
 
   return (
     <div className='flex flex-1 relative overflow-hidden'>
-      <div className={`flex flex-row transform transition ease-in-out duration-700 translate-x-[-${slideIndex*100}%]`}>
+      <div 
+        className={`flex flex-row transform transition ease-in-out duration-700 `}
+        style={{transform: `translateX(-${slideIndex*100}%)`}}
+      >
         {banners.map((Banner, index) => (
           <div className='inline-flex min-w-full'>
             <Banner key={index}/>
