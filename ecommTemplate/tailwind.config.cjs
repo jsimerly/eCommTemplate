@@ -41,7 +41,7 @@ module.exports = {
           secondaryHover: ""
         },
         fontFamily: {
-          poppins: ["Poppins", "sans-serif"],
+          roboto : ['Roboto', 'serif'],
           londrina: ['Londrina Solid', 'sans-serif']
         },
       },

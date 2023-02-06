@@ -1,6 +1,8 @@
 import styles from '../styles'
 import { footerInfo, socialMedia } from '../constants'
 import {facebook, twitter, instagram, whiteLeaf} from '../assets/images'
+import blueLeaf from '/src/assets/images/logos/blueleafv1.png'
+import { blue } from '@mui/material/colors'
 
 
 const Footer = () => {
@@ -40,7 +42,7 @@ const Footer = () => {
         <div className='mt-12 sm:mt-0 border-t border-tertiary w-full flex sm:justify-between sm:flex-row flex-col justify-center items-center sm:flex-nowrap'>
             <div className='flex justify-start items-center order-4 sm:order-1'>
                 <img
-                    src={whiteLeaf}
+                    src={blueLeaf}
                     className='w-[48px] h-[48px] mr-2 cursor-pointer'
                 />
                 <div className='text-primary font-londrina cursor-pointer hidden sm:block'>

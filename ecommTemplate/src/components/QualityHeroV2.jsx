@@ -28,15 +28,15 @@ const QualityHeroV2 = () => {
             </div>   
             <div className="grid grid-cols-4 justify-center items-center p-10 bg-tertiary">
                 {topRightLogos.map((logo, index) => (
-                    <div className="p-10 h-[160px] flex justify-center items-center op">
-                        <img src={logo} className='max-h-[80px]'/>
+                    <div key={index} className="p-10 h-[160px] flex justify-center items-center op">
+                        <img src={logo} className='max-h-[80px]' key={index}/>
                     </div>
                 ))}
             </div>
             <div className="grid grid-cols-4 justify-center items-center rounded-b-md p-10 bg-tertiary">
-                {bottomLeftLogos.map((logo, index) => (
-                        <div className="p-10 h-[160px] flex justify-center items-center">
-                            <img src={logo} className='max-h-[80px]'/>
+                {bottomLeftLogos.map((logo, index ) => (
+                        <div key={index} className="p-10 h-[160px] flex justify-center items-center">
+                            <img src={logo} className='max-h-[80px]' key={index}/>
                         </div>
                     ))}
             </div>

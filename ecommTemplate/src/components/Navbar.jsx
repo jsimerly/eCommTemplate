@@ -1,6 +1,4 @@
-import {useState} from 'react';
-import whiteLeaf from '/src/assets/images/whiteleafv1.png'
-import Sidebar from './Sidebar'
+import blueLeaf from '/src/assets/images/logos/blueleafv1.png'
 import Searchbar from './Searchbar';
 import useClickOutside from '../hooks/useClickOutside';
 import styles from '../styles';
@@ -8,19 +6,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 
 const Navbar = () => {
-    const [menuToggle, setMenuToggle] = useState(false);
-
-    let domNode = useClickOutside(() => {
-        setMenuToggle(false);
-    })
-    
 
   return (
-    <nav className={`bg-primary w-full flex p-3 justify-center items-center`}>
+    <nav className={`bg-white text-primary w-full flex p-3 justify-center items-center fixed z-20`}>
         <div className={`${styles.boxWidth} flex justify-between items-center`}>
-            <div className='flex justify-start items-center text-white font-poppins text-[34px] mr-5'>
+            <div className='flex justify-start items-center text-[34px] mr-5'>
                 <img
-                    src={whiteLeaf}
+                    src={blueLeaf}
                     className='w-[48px] h-[48px] mr-2 cursor-pointer '
                 />
                 <div className='font-londrina sm:hidden md:block cursor-pointer'>
@@ -32,41 +24,16 @@ const Navbar = () => {
                 <Searchbar/>
             </div>
             <div className='flex justify-end items-center divide-x'>
-                <div className='flex p-2 m-2 text-white justify-between items-center cursor-pointer'>
+                <div className='flex p-2 m-2 justify-between items-center cursor-pointer'>
                     <PersonIcon className='scale-125'/>
                     <div className='ml-2 text-[18px] hover:underline hidden md:flex font-poppins'>
                         Sign-In
                     </div>
                 </div>
-                <div className='pl-4 pt-2 pb-2 pr-2 text-white cursor-pointer'>
+                <div className='pl-4 pt-2 pb-2 pr-2 cursor-pointer'>
                     <ShoppingCartIcon className='scale-125'/>
                 </div>
             </div>
-            
-            {/* <div className='sm:hidden' ref={domNode}>
-                <div className='text-white  flex flex-1 justify-end items-center'> 
-                    <button
-                        onClick={()=>  setMenuToggle((menuToggle) => !menuToggle)}
-                    >   
-                        {menuToggle? 
-                        //If menu is open show an X
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>: 
-                        //If menu is not open show 3 bars
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-menu">
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>}
-                    </button>
-                </div>
-                <div
-                    className={`flex fixed min-w-[140px] h-full top-[72px] right-0 tranform ${menuToggle? '' : 'translate-x-full'} transition duration-200 ease-in-out`}
-                >
-                </div>
-            </div> */}
         </div>
     </nav>
   )

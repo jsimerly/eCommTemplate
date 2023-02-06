@@ -13,8 +13,8 @@ const iconDict = {
 }
 
 const StepCard = ({icon, title, paragraph, index}) => (
-    <div className='border flex flew-row items-center rounded-md mb-2 p-4 bg-white shadow cursor-pointer transition ease-in-out hover:scale-105'>
-        <div className='w-[64px] h-[64px] rounded-md flex justify-center items-center'>
+    <div className='border flex flew-row items-center rounded-md mb-2 p-4 bg-white shadow cursor-pointer transition ease-in-out hover:shadow-md'>
+        <div className='w-[64px] h-[64px] rounded-md flex justify-center items-center text-primary'>
             {iconDict[icon]}
         </div>
         <div className='flex-1 flex flex-col ml-5'>
@@ -32,22 +32,21 @@ const StepCard = ({icon, title, paragraph, index}) => (
 const HowItWorks = () => {
   return (
     <div
-        className='flex sm:flex-row flex-col sm:p-6 font-poppins text-primary'
+        className='flex sm:flex-row flex-col sm:p-6 font-poppins text-tertiary'
     >
         <div className='flex flex-col justify-center sm:items-start items-center'>
-            <h1 className='text-[28px] sm:text-[48px] w-full'>
+            <h1 className='text-[28px] sm:text-[48px] w-full text-primary'>
                 {howToInfo.title}
             </h1>
             <div className='max-w-[470px] text-[14px] sm:text-[18px] mt-5 leading-relaxed'>
                 With the right credit card, you can improve your financial life by building credit, earning rewards and saving money. But with hundreds of credit cards on the market.
             </div>
             <div className='flex mt-5 sm:mt-10 text-white font-semibold justify-center'>
-                <button className="bg-primary p-3 rounded-md mr-3 shadow-md 
-                transition ease-in-out hover:scale-105 text-white text-center min-w-[115px] mb-6">
+                <button className="bg-primary p-3 rounded-md mr-3
+                transition ease-in-out hover:shadow-md text-white text-center min-w-[115px] mb-6">
                     Get Started
                 </button>
             </div>
-            
         </div>
         <div className='sm:ml-10'>
             {howToInfo.steps.map((step, index) => (

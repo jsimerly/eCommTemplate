@@ -14,7 +14,9 @@ import pyzel_logo from './pyzel logo.png'
 import reicoop_logo from './rei-coop-logo.png'
 import rtci_logo from './RTIC logo.png'
 import sony_logo from './sonylogo.png'
-
+import unicorn_image from './unicorn_image.jpg'
+import leisure from './leisure.jpg'
+import prod_package from './package.jpg'
 
 export {
     facebook,
@@ -32,5 +34,8 @@ export {
     pyzel_logo,
     reicoop_logo,
     rtci_logo,
-    sony_logo
+    sony_logo,
+    unicorn_image,
+    leisure,
+    prod_package,
 }

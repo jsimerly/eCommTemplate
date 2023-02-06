@@ -59,21 +59,21 @@ const Searchbar = () => {
   return (
     
         <div 
-        className='flex-1 flex flex-col sm:flex-row font-poppins'
+        className='flex-1 flex flex-col sm:flex-row items-center justify-center'
         >
             <div className='relative flex flex-1 flex-col' ref={destNode}>
                 <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
                     <LocationOnIcon className={`w-8 h-8 absolute scale-125 ml-2 transform ${destination == null ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
                     onClick={(openDest)=>{setOpenDest(!openDest)}}
                     />
-                    <div className={`bg-white cursor-pointer rounded-md mr-1 flex-1 min-h-[40px] overflow-hidden truncate shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 ${destination == null ? 'text-tertiaryTone-300': 'text-tertiary'} pl-10 p-2`} 
+                    <div className={`bg-white cursor-pointer rounded-md mr-1 flex-1 min-h-[40px] overflow-hidden truncate focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 ${destination == null ? 'text-tertiaryTone-300': 'text-tertiary'} pl-10 p-2 border border-primary`} 
                     onClick={()=> setOpenDest((openDest) => !openDest)}
                     >
                         {destination == null ? 'Where to' : destination}
                     </div>
                     
                 </label>
-                <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md shadow p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'}`}>
+                <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'}`}>
                     <ul>
                         {dests.map((value, i) => (
                         <li 
@@ -92,7 +92,7 @@ const Searchbar = () => {
             <div ref={calNode}>
                 <label className={`cursor-pointer relative flex items-center justify-start`}>
                     <CalendarMonthIcon className={`w-8 h-8 absolute transform scale-125 ml-2 ${selectRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'}`}/>
-                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] shadow focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-12 p-2] ${selectRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center`}
+                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] placeholder-tertiaryTone-200 pl-12 p-2] ${selectRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center border border-primary`}
                     onClick={()=>setOpenCalendar(!openCalendar)}
                     >
                         {selectRange.first ? format(selectRange.startDate, 'MMM, d').concat(' - ', format(selectRange.endDate, 'MMM d yyyy')) : 'When' }
@@ -112,7 +112,7 @@ const Searchbar = () => {
             </div>
             
             <button 
-            className='rounded-md bg-primaryLight p-2 min-h-[40px] min-w-[40px] text-tertiary'
+            className='rounded-md bg-primary p-2 min-h-[40px] min-w-[40px] text-white'
             onClick={handleSearch}
             
             >

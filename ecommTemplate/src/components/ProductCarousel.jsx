@@ -18,7 +18,7 @@ function windowToScrollN(){
   }
 }
 
-const CarouselHero = (props) => {
+const ProductCarousel = (props) => {
   const [cardn, setCardn] = useState(0)
   const [translateString, setTranslate] = useState('translateX(0px)')
   const [scrollN, setScrollN] = useState(windowToScrollN)
@@ -82,7 +82,7 @@ const CarouselHero = (props) => {
   }
 
   return (
-    <div className='flex flex-col bg-white rounded-md shadow p-6'>
+    <div className='flex flex-col bg-white rounded-md p-6 '>
       <div className='flex justify-start items-center relative text-[36px] text-center font-bold text-primary pb-6 mx-6'>
         {props.title}
       </div>
@@ -120,4 +120,4 @@ const CarouselHero = (props) => {
   )
 }
 
-export default CarouselHero
+export default ProductCarousel
