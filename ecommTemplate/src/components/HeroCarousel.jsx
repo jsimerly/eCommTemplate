@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import CircleIcon from '@mui/icons-material/Circle';
 import Beach from './HeroBanners/beach.jsx';
@@ -24,7 +24,7 @@ const HeroCarousel = () => {
       const interval = setInterval(() => {
         updateIndex(slideIndex+1)
    
-      }, 10000)
+      }, 7500)
 
       return () => {
         if (interval) {
@@ -50,12 +50,14 @@ const HeroCarousel = () => {
               return (
               <CircleIcon 
                 className='scale-75'
+                key={index}
                 onClick={()=>updateIndex(index)}
               />
               )
             }
             return (
               <CircleOutlinedIcon 
+                key={index}
                 className='mx-1 scale-75'
                 onClick={()=>updateIndex(index)}
               />

@@ -10,7 +10,7 @@ const CaroProdCard = (props) => {
       <img src={yeti45} className='bg-white object-scale-down rounded-md hover:cursor-pointer'/>
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
-          <h3 className='font-bold text-[20px] truncate hover:cursor-pointer'>
+          <h3 className='font-bold text-[20px] truncate hover:cursor-pointer hover:underline'>
             {props.header}
           </h3>
           <h4 className='text-[18px] tracking-wide'>
@@ -35,7 +35,7 @@ const CaroProdCard = (props) => {
             <div className='font-semibold text-[26px]'>
                     $16.98
               </div>
-              <button className='text-white p-3 bg-primary rounded flex justify-center items-center'>
+              <button className='text-white p-3 bg-primary rounded flex justify-center items-center hover:underline'>
                 Add to Cart
               </button>
           </div>

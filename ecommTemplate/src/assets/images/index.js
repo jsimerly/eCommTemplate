@@ -17,6 +17,9 @@ import sony_logo from './sonylogo.png'
 import unicorn_image from './unicorn_image.jpg'
 import leisure from './leisure.jpg'
 import prod_package from './package.jpg'
+import games from './games.jpg'
+import pineapples from './All.jpg'
+import kids from './Kids.jpg'
 
 export {
     facebook,
@@ -38,4 +41,7 @@ export {
     unicorn_image,
     leisure,
     prod_package,
+    games,
+    pineapples,
+    kids
 }

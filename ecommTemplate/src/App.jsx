@@ -7,6 +7,8 @@ import QualityHeroV2 from './components/QualityHeroV2'
 import HowItWorksV2 from './components/HowItWorksV2'
 import HeroV2 from './components/HeroV2'
 import Change from './components/Change'
+import BlogBanner from './components/BlogBanner'
+import Categories from './components/Categories'
 
 function App() {
   return (
@@ -25,20 +27,23 @@ function App() {
               <ProductCarousel title='Top Deals'/>
             </div>
             <div className='py-20'>
-               Categories Here
+               <Categories/>
             </div>
             <div className='my-6'>
               <ProductCarousel title='New Arrivals'/>
             </div>
             <div className='my-6'>
-              <ProductCarousel title='Spring Break!'/>
+              <ProductCarousel title='Family Packages'/>
             </div>
             <QualityHeroV2/>
-            <div className='py-20'>
+            <div className='my-6'>
                <Change/>
             </div>
             <div className='py-20'>
                BANNER AD HERE
+            </div>
+            <div className='my-6'>
+               <BlogBanner/>
             </div>
           </div>
 

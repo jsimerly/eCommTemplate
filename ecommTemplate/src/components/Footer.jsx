@@ -21,11 +21,11 @@ const Footer = () => {
                     </ul>
                 </div>
             ))}
-            <div className='bg-white rounded-md shadow-md pt-0 p-10 sm:relative sm:bottom-6'>
+            <div className='bg-white rounded-md pt-0 p-10 sm:relative sm:bottom-6'>
                 <div className='mt-6 font-semibold mb-2'> Subscribe </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
-                    <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100'/>
-                    <div className="ml-1 bg-secondary rounded p-2">
+                    <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100 '/>
+                    <div className="ml-1 bg-primaryLight rounded p-2">
                         <svg 
                         className='min-w-[22px] min-h-[22px]'
                         fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
