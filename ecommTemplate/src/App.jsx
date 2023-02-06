@@ -26,7 +26,7 @@ function App() {
             <div className='my-6'>
               <ProductCarousel title='Top Deals'/>
             </div>
-            <div className='py-20'>
+            <div className='my-6*'>
                <Categories/>
             </div>
             <div className='my-6'>

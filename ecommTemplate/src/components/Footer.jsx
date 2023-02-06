@@ -25,7 +25,7 @@ const Footer = () => {
                 <div className='mt-6 font-semibold mb-2'> Subscribe </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
                     <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100 '/>
-                    <div className="ml-1 bg-primaryLight rounded p-2">
+                    <div className="ml-1 bg-primary text-white rounded p-2">
                         <svg 
                         className='min-w-[22px] min-h-[22px]'
                         fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -34,7 +34,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='text-[12px] max-w-[250px]'>
-                    The Elfy's news letter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities. 
+                    The Blue Elf newsletter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities. 
                 </div>
 
             </div>
