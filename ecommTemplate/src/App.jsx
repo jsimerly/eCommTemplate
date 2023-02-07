@@ -10,6 +10,7 @@ import Change from './components/Change'
 import BlogBanner from './components/BlogBanner'
 import Categories from './components/Categories'
 import NewCustomers from './components/adBanners.jsx/NewCustomers'
+import FreeWagon from './components/adBanners.jsx/FreeWagon'
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
                <Change/>
             </div>
             <div className='py-20'>
-               BANNER AD HERE
+              <FreeWagon />
             </div>
             <div className='my-6'>
                <BlogBanner/>

@@ -24,6 +24,7 @@ import banner_girl from './banner_beach_chair_girl_whitebikini.avif'
 import banner_paddle from './banner_paddle.avif'
 import banner_flamingo from './banner_flamingo.avif'
 import full_line_drawing from './FullLineDraw.avif'
+import free_wagon from './WagonBanner.avif'
 
 export {
     facebook,
@@ -51,5 +52,6 @@ export {
     banner_girl,
     banner_paddle,
     banner_flamingo,
-    full_line_drawing
+    full_line_drawing,
+    free_wagon
 }
