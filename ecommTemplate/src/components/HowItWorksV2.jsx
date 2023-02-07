@@ -45,11 +45,7 @@ const HowItWorksV2 = () => {
                 <button className='bg-primary text-white p-3 rounded-md my-6 font-bold w-[180px] text-[18px] hover:underline text-center'>
                     Get Started
                 </button>
-                <button className='bg-primary text-white p-3 rounded-md my-6 font-bold w-[180px] text-[18px] hover:underline text-center ml-4'>
-                    Learn More
-                </button>
             </div>
-
         </div>
     </div>
   )

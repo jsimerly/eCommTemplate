@@ -20,6 +20,9 @@ import prod_package from './package.jpg'
 import games from './games.jpg'
 import pineapples from './All.jpg'
 import kids from './Kids.jpg'
+import banner_girl from './banner_beach_chair_girl_whitebikini.avif'
+import banner_paddle from './banner_paddle.avif'
+import banner_flamingo from './banner_flamingo.avif'
 
 export {
     facebook,
@@ -43,5 +46,8 @@ export {
     prod_package,
     games,
     pineapples,
-    kids
+    kids,
+    banner_girl,
+    banner_paddle,
+    banner_flamingo
 }

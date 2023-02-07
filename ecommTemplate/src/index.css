@@ -19,6 +19,11 @@
   animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-.black-text-outline {
+.full-text-outline {
   text-shadow: -1px -1px 0 #454d66, 1px -1px 0 #454d66, -1px 1px 0 #454d66, 1px 1px 0 #454d66;
 }
+
+.br-text-outline-thick {
+  text-shadow: 2px 2px 0 #454d66, 1px 1px 0 #454d66;
+}
+

@@ -9,6 +9,7 @@ import HeroV2 from './components/HeroV2'
 import Change from './components/Change'
 import BlogBanner from './components/BlogBanner'
 import Categories from './components/Categories'
+import NewCustomers from './components/adBanners.jsx/NewCustomers'
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
         <div className={`${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <HowItWorksV2/>
-            <div className='py-20'>
-               BANNER AD HERE
+            <div className='my-6'>
+              <NewCustomers/>
             </div>
             <ProductCarousel title='Most Popular'/>
             <div className='my-6'>
