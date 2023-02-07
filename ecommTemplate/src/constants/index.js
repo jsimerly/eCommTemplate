@@ -29,6 +29,17 @@ export const howToInfo = {
 
 export const footerInfo = [
     {
+        title: 'Cities',
+        links: [
+            { name: 'Virgina Beach, VA'},
+            { name: 'Myrtle Beach, SC'},
+            { name: 'St. Augustine, FL'},
+            { name: 'Daytona Beach, FL'},
+            { name: 'Outer Banks, NC'},
+            { name: 'Hilton Head Island, SC'},
+        ]
+    },
+    {
         title: 'Quick Links',
         links: [
             {

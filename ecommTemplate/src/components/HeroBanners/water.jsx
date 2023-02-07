@@ -5,7 +5,7 @@ function Water() {
     <div className='inline-flex'>
       <img src={unicorn_image}/>
       <div className='absolute'>
-        Water
+        Order today for free wagon
       </div>
   </div>
   )

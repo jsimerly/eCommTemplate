@@ -5,7 +5,7 @@ function Beach () {
     <div className='inline-flex w-100'>
       <img src={leisure} className='relative'/>
       <div className='absolute'>
-        Beach
+        Cancel Any Time
       </div>
     </div>
   )

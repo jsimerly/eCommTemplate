@@ -10,13 +10,13 @@ const NewCustomers = () => {
         <div 
           className='w-full  flex justify-center items-center text-white text-[48px] font-[900] leading-none p-3 br-text-outline-thick'
         >
-            First Time? <br/> Save 40%
+            First Time? <br/> Save 20%
         </div>
         <div className='w-full'>
         </div>
         <div className='w-full flex justify-center items-center text-white text-[48px] font-[900]'>
           <button className='bg-white text-primary p-3 rounded-md my-6 font-bold w-[180px] text-[24px] hover:underline'>
-            Get Started
+            Shop Now
           </button>
         </div>
       </div>

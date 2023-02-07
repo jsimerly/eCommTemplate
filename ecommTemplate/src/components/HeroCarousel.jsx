@@ -24,7 +24,7 @@ const HeroCarousel = () => {
       const interval = setInterval(() => {
         updateIndex(slideIndex+1)
    
-      }, 7500)
+      }, 10000)
 
       return () => {
         if (interval) {

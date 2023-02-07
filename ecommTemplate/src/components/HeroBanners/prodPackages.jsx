@@ -6,7 +6,7 @@ function ProdPackages() {
     <div className='inline-flex w-100'>
     <img src={prod_package}/>
     <div className='absolute'>
-      Product
+      Never Charge for Shipping
     </div>
   </div>
   )
