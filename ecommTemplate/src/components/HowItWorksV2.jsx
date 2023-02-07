@@ -1,16 +1,6 @@
-import { howToInfo } from '../constants'
-import KitesurfingIcon from '@mui/icons-material/Kitesurfing';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { full_line_drawing } from "../assets/images"
 
-const iconDict = {
-    'kite' : <KitesurfingIcon className='scale-[2.0]'/>,
-    'location' : <LocationOnIcon className='scale-[2.0]'/>,
-    'calendar': <CalendarMonthIcon className='scale-[2.0]'/>,
-    'cart' : <ShoppingCartIcon className='scale-[2.0]'/>,
 
-}
 
 const StepCard = ({n, title, paragraph, index}) => (
     <div className='flex flex-col items-center mx-4  flex-1'>
@@ -41,10 +31,8 @@ const HowItWorksV2 = () => {
                 <StepCard n={3} title={'Tell Us What'} paragraph="Need a hammock, canopy, and surfboard? We've got you covered."/>
                 <StepCard n={4} title={'Relax'} paragraph='Enjoy your hassle free vacation.'/>
             </div>
-            <div className='w-full flex justify-center mt-4'>
-                <button className='bg-primary text-white p-3 rounded-md my-6 font-bold w-[180px] text-[18px] hover:underline text-center'>
-                    Get Started
-                </button>
+            <div className='w-full flex justify-center my-6'>
+                <img src={full_line_drawing}/>
             </div>
         </div>
     </div>

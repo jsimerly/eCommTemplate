@@ -23,6 +23,7 @@ import kids from './Kids.jpg'
 import banner_girl from './banner_beach_chair_girl_whitebikini.avif'
 import banner_paddle from './banner_paddle.avif'
 import banner_flamingo from './banner_flamingo.avif'
+import full_line_drawing from './FullLineDraw.avif'
 
 export {
     facebook,
@@ -49,5 +50,6 @@ export {
     kids,
     banner_girl,
     banner_paddle,
-    banner_flamingo
+    banner_flamingo,
+    full_line_drawing
 }
