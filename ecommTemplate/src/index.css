@@ -27,3 +27,6 @@
   text-shadow: 2px 2px 0 #454d66, 1px 1px 0 #454d66;
 }
 
+.br-text-outline-normal {
+  text-shadow: 1px 1px 0 #454d66;
+}

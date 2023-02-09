@@ -25,6 +25,7 @@ import banner_paddle from './banner_paddle.avif'
 import banner_flamingo from './banner_flamingo.avif'
 import full_line_drawing from './FullLineDraw.avif'
 import free_wagon from './WagonBanner.avif'
+import polariod_banner from './polariodBanner.avif'
 
 export {
     facebook,
@@ -53,5 +54,6 @@ export {
     banner_paddle,
     banner_flamingo,
     full_line_drawing,
-    free_wagon
+    free_wagon,
+    polariod_banner,
 }

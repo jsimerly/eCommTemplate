@@ -39,11 +39,12 @@ function App() {
             </div>
             <QualityHeroV2/>
             <div className='my-6'>
-               <Change/>
-            </div>
-            <div className='py-20'>
               <FreeWagon />
             </div>
+            <div className='my-6'>
+               <Change/>
+            </div>
+
             <div className='my-6'>
                <BlogBanner/>
             </div>

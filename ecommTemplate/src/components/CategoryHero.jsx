@@ -1,4 +1,3 @@
-import CategoryTile from "./CategoryTile"
 import leisure from '../assets/images/leisure-shadow.jpg'
 import games from '../assets/images/games-shadow.jpg'
 import kids from '../assets/images/kids-shadow.jpg'
@@ -44,9 +43,6 @@ const CategoryHero = () => {
   return (
     <div className="my-6">
         <div className="grid grid-cols-2 sm:grid-cols-3">
-          {category_info.map((cat, index) => (
-            <CategoryTile image={cat.image} title={cat.title} text={cat.text} key={index}/>
-          ))}
 
         </div>
     </div>

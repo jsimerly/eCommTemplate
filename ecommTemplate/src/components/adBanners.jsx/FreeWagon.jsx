@@ -11,7 +11,7 @@ const FreeWagon = () => {
         >
             <div className='flex flex-col justify-center text-primary font-bold text-[30px]'>
                 <h1>
-                    Order Today
+                    Orders Over $70
                 </h1>
                 <h1 className='pl-16'>
                     Get a <span className='bg-primary text-white pl-2 mr-1 rounded-md'> Free </span> Wagon

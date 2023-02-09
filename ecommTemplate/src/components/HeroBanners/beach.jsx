@@ -1,11 +1,16 @@
-import {leisure} from '../../assets/images'
+import {leisure, polariod_banner} from '../../assets/images'
 
 function Beach () {
   return (
     <div className='inline-flex w-100'>
-      <img src={leisure} className='relative'/>
-      <div className='absolute'>
-        Cancel Any Time
+      <img src={polariod_banner} className='relative'/>
+      <div className='absolute top-1/2 w-[66%] h-[40%] flex flex-col justify-center items-center my-6'>
+        <h1 className='text-[48px] font-[900] leading-none p-3 br-text-outline-thick text-center'>
+          Capture Moments <br/> that will last forever
+        </h1>
+        <h1 className='text-[30px] br-text-outline-thick underline'>
+          Check Out Cameras
+        </h1>
       </div>
     </div>
   )
