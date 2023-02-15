@@ -1,8 +1,13 @@
-import { games } from '../assets/images/'
+import { cat_fun, cat_electronics, cat_kids, cat_leisure } from '../assets/images/'
 
-const CatCard = ({img}) => (
-    <div className='flex w-full rounded-md'>
+const CatCard = ({img, text}) => (
+    <div className='flex w-full rounded-md relative cursor-pointer'>
         <img src={img} className='rounded-md'/>
+        <div className='absolute w-full top-[10%]'>
+            <div className='flex justify-center text-white font-bold text-[44px] br-text-outline-thick'>
+                {text}
+            </div>
+        </div>
     </div>
 )
 
@@ -13,10 +18,10 @@ const Categories = () => {
             Something for Everyone
         </div>
         <div className='flex flex-row space-x-6'>
-            <CatCard img={games}/>
-            <CatCard img={games}/>
-            <CatCard img={games}/>
-            <CatCard img={games}/>
+            <CatCard img={cat_leisure} text='Leisure'/>
+            <CatCard img={cat_fun} text='Fun'/>
+            <CatCard img={cat_kids} text='Kids'/>
+            <CatCard img={cat_electronics} text='Electronics'/>
         </div>
     </div>
   )

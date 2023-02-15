@@ -1,15 +1,15 @@
-import {leisure, polariod_banner} from '../../assets/images'
+import { beach_banner } from '../../assets/images'
 
 function Beach () {
   return (
-    <div className='inline-flex w-100'>
-      <img src={polariod_banner} className='relative'/>
-      <div className='absolute top-1/2 w-[66%] h-[40%] flex flex-col justify-center items-center my-6'>
-        <h1 className='text-[48px] font-[900] leading-none p-3 br-text-outline-thick text-center'>
-          Capture Moments <br/> that will last forever
+    <div className='cursor-pointer'>
+      <img src={beach_banner} className='relative'/>
+      <div className='absolute top-[55%] left-[50%] transform -translate-x-1/2 -translate-y-1/2'>
+        <h1 className='text-tertiary text-[48px] font-[900] br-text-outline-thick-white text-center'>
+          Doing Nothing has Never been this Easy
         </h1>
-        <h1 className='text-[30px] br-text-outline-thick underline'>
-          Check Out Cameras
+        <h1 className='text-tertiary text-[30px] br-text-outline-normal-white underline hover:scale-105 text-center'>
+          Click here to do nothing
         </h1>
       </div>
     </div>

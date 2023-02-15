@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import CircleIcon from '@mui/icons-material/Circle';
-import Beach from './HeroBanners/beach.jsx';
-import ProdPackages from './HeroBanners/prodPackages.jsx';
-import Water from './HeroBanners/water.jsx';
+import Polariod from './HeroBanners/Polariod.jsx';
+import Beach from './HeroBanners/Beach'
+import Cancel from './HeroBanners/Cancel.jsx';
 
-const banners = [ Beach, ]
+const banners = [Cancel, ]
 
 const HeroCarousel = () => {
     const [slideIndex, setSlideIndex] = useState(0)

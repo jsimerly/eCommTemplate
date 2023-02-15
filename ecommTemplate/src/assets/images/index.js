@@ -25,9 +25,21 @@ import banner_paddle from './banner_paddle.avif'
 import banner_flamingo from './banner_flamingo.avif'
 import full_line_drawing from './FullLineDraw.avif'
 import free_wagon from './WagonBanner.avif'
-import polariod_banner from './polariodBanner.avif'
+import polariod_banner from './polariodBanner16_9.avif'
+import cat_fun from './fun.avif'
+import cat_electronics from './electronics.avif'
+import cat_kids from './kids.avif'
+import cat_leisure from './leisure.avif'
+import beach_banner from './beachbanner16_9.jpg'
+import cancel_banner from './cancel.avif'
 
 export {
+    cancel_banner,
+    beach_banner,
+    cat_fun,
+    cat_electronics,
+    cat_kids,
+    cat_leisure,
     facebook,
     instagram,
     twitter,

@@ -5,11 +5,11 @@ const HeroV2 = () => {
     <div className='bg-primary w-full max-h-[600px] text-white flex'>
       <div className='flex flex-1 justify-center items-center'>
         <div className='w-[500px] text-center'>
-          <h1 className='text-[56px] font-extrabold mb-6'>
+          <h1 className='text-[56px] font-extrabold mb-6 leading-none'>
             Make Memories.
             Not Compromises.
           </h1>
-          <p className='text-[24px]'>
+          <p className='text-[24px] leading-10'>
             Rent products to be dropped off and picked up on your next vacation.
           </p>
           <button className='bg-white text-primary p-3 rounded-md my-6 font-bold w-[180px] text-[18px] hover:underline'>
