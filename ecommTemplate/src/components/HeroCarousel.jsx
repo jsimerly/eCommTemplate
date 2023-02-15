@@ -5,7 +5,7 @@ import Polariod from './HeroBanners/Polariod.jsx';
 import Beach from './HeroBanners/Beach'
 import Cancel from './HeroBanners/Cancel.jsx';
 
-const banners = [Cancel, ]
+const banners = [Beach, Cancel, Polariod]
 
 const HeroCarousel = () => {
     const [slideIndex, setSlideIndex] = useState(0)
