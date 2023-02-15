@@ -1,11 +1,11 @@
 import { games, pineapples, kids } from '../assets/images/'
 
 const BlogCard = ({title, date, img}) => (
-    <div className="bg-white rounded-md w-full mx-6 hover:cursor-pointer text-tertiary">
+    <div className="bg-white rounded-md w-full mx-6 hover:cursor-pointer text-tertiary group">
         <img src={img} className='rounded-t-md'/>
         <div className='flex flex-col justify-center items-center'>
             <div>            
-                <h1 className='font-semibold text-[20px] p-2 text-center'>{title}</h1>
+                <h1 className='font-semibold text-[20px] p-2 text-center group-hover:underline'>{title}</h1>
             </div>
             <div className='flex mb-3 justify-end'>
                 <h4>{date}</h4>

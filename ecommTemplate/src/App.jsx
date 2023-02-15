@@ -21,14 +21,16 @@ function App() {
         <div className={`${styles.paddingX} ${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <HowItWorksV2/>
-            <div className='my-6'>
+            <div className='my-16'>
               <NewCustomers/>
             </div>
-            <ProductCarousel title='Most Popular'/>
+            <div className='my-6'>
+              <ProductCarousel title='Most Popular'/>
+            </div>
             <div className='my-6'>
               <ProductCarousel title='Top Deals'/>
             </div>
-            <div className='my-6*'>
+            <div className='my-16'>
                <Categories/>
             </div>
             <div className='my-6'>
@@ -37,14 +39,15 @@ function App() {
             <div className='my-6'>
               <ProductCarousel title='Family Packages'/>
             </div>
-            <QualityHeroV2/>
+            <div className='my-16'>
+              <QualityHeroV2/>
+            </div>
             <div className='my-6'>
               <FreeWagon />
             </div>
-            <div className='my-6'>
+            <div className='my-16'>
                <Change/>
             </div>
-
             <div className='my-6'>
                <BlogBanner/>
             </div>

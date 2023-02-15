@@ -1,8 +1,8 @@
 import styles from '../styles'
-import { footerInfo, socialMedia } from '../constants'
-import {facebook, twitter, instagram, whiteLeaf} from '../assets/images'
+import { footerInfo } from '../constants'
+import {facebook, twitter, instagram,} from '../assets/images'
 import blueLeaf from '/src/assets/images/logos/blueleafv1.png'
-import { blue } from '@mui/material/colors'
+
 
 
 const Footer = () => {
@@ -16,7 +16,7 @@ const Footer = () => {
                     </div>
                     <ul>
                         {footerColInfo.links.map((links, index) => (
-                            <li className='text-[14px] mt-2' key={index}><a>{links.name}</a></li>
+                            <li className='text-[14px] mt-2 hover:underline cursor-pointer' key={index}><a>{links.name}</a></li>
                         ))}
                     </ul>
                 </div>
@@ -27,7 +27,7 @@ const Footer = () => {
                     <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100 '/>
                     <div className="ml-1 bg-primary text-white rounded p-2">
                         <svg 
-                        className='min-w-[22px] min-h-[22px]'
+                        className='min-w-[22px] min-h-[22px] cursor-pointer'
                         fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                         </svg>
@@ -36,7 +36,6 @@ const Footer = () => {
                 <div className='text-[12px] max-w-[250px]'>
                     The Blue Elf newsletter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities. 
                 </div>
-
             </div>
         </div>
         <div className='mt-12 sm:mt-0 border-t border-tertiary w-full flex sm:justify-between sm:flex-row flex-col justify-center items-center sm:flex-nowrap'>
@@ -50,14 +49,14 @@ const Footer = () => {
                 </div>
             </div>
             <div className='font-semibold text-[14px] flex sm:flex-row flex-col order-3 sm:order-2'>
-                <a className='m-3'> Terms </a>
-                <a className='m-3'> Privacy </a>
-                <a className='m-3'> Cookies </a>
+                <a className='m-3 cursor-pointer'> Terms </a>
+                <a className='m-3 cursor-pointer'> Privacy </a>
+                <a className='m-3 cursor-pointer'> Cookies </a>
             </div>
             <div className='flex flew-row p-1 text-primary order-2 sm:order-3'>
-                <img className='m-1 max-w-[40px] max-h-[40px]' src={facebook}/>
-                <img className='m-1 max-w-[40px] max-h-[40px]' src={twitter}/>
-                <img className='m-1 max-w-[40px] max-h-[40px]' src={instagram}/>
+                <img className='m-1 max-w-[40px] max-h-[40px] cursor-pointer' src={facebook}/>
+                <img className='m-1 max-w-[40px] max-h-[40px] cursor-pointer' src={twitter}/>
+                <img className='m-1 max-w-[40px] max-h-[40px] cursor-pointer' src={instagram}/>
             </div>
         </div>
     </section>
