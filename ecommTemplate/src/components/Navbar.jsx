@@ -1,6 +1,5 @@
-import blueLeaf from '/src/assets/images/logos/blueleafv1.png'
+import { main_blue } from '/src/assets/images/blueElf'
 import Searchbar from './Searchbar';
-import useClickOutside from '../hooks/useClickOutside';
 import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
@@ -12,7 +11,7 @@ const Navbar = () => {
         <div className={`${styles.boxWidth} flex justify-between items-center`}>
             <div className='flex justify-start items-center text-[34px] mr-5'>
                 <img
-                    src={blueLeaf}
+                    src={main_blue}
                     className='w-[48px] h-[48px] mr-2 cursor-pointer '
                 />
                 <div className='font-londrina hidden sm:hidden md:block cursor-pointer'>

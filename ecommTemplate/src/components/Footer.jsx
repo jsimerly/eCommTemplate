@@ -1,7 +1,9 @@
 import styles from '../styles'
 import { footerInfo } from '../constants'
-import {facebook, twitter, instagram,} from '../assets/images'
-import blueLeaf from '/src/assets/images/logos/blueleafv1.png'
+import { main_blue } from '/src/assets/images/blueElf'
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 
 
@@ -57,7 +59,7 @@ const Footer = () => {
         <div className='mt-12 sm:mt-0 border-t border-tertiary w-full flex sm:justify-between sm:flex-row flex-col justify-center items-center sm:flex-nowrap'>
             <div className='flex justify-start items-center order-4 sm:order-1'>
                 <img
-                    src={blueLeaf}
+                    src={main_blue}
                     className='w-[48px] h-[48px] mr-2 cursor-pointer'
                 />
                 <div className='text-primary font-londrina cursor-pointer hidden sm:block'>
@@ -70,9 +72,9 @@ const Footer = () => {
                 <a className='m-3 cursor-pointer'> Cookies </a>
             </div>
             <div className='flex flew-row p-1 text-primary order-2 sm:order-3'>
-                <img className='m-1 max-w-[40px] max-h-[40px] cursor-pointer' src={facebook}/>
-                <img className='m-1 max-w-[40px] max-h-[40px] cursor-pointer' src={twitter}/>
-                <img className='m-1 max-w-[40px] max-h-[40px] cursor-pointer' src={instagram}/>
+                <InstagramIcon/>
+                <FacebookIcon/>
+                <TwitterIcon/>
             </div>
         </div>
     </section>

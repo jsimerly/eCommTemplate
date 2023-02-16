@@ -1,5 +1,5 @@
-import { useState} from 'react';
-import {DateRange} from 'react-date-range';
+import { useState } from 'react';
+import { DateRange } from 'react-date-range';
 import useClickOutside from '../hooks/useClickOutside';
 
 import 'react-date-range/dist/styles.css'; // main style file

@@ -1,8 +1,8 @@
-import { beach_banner } from '../../assets/images'
+import { beach_banner } from '../../assets/images/banners'
 
 function Beach () {
   return (
-    <div className='cursor-pointer'>
+    <div className='inline-flex cursor-pointer relative'>
       <img src={beach_banner}/>
       <div className='absolute top-[55%] left-[50%] transform -translate-x-1/2 -translate-y-1/2'>
         <h1 className='text-tertiary text-[48px] font-[900] br-text-outline-thick-white text-center'>
