@@ -9,6 +9,7 @@ const banners = [Beach, Cancel, Polariod]
 
 const HeroCarousel = () => {
     const [slideIndex, setSlideIndex] = useState(0)
+    const [paused, setPaused] = useState(false);
 
     const updateIndex = (newIndex) => {
       if (newIndex < 0) {
@@ -22,9 +23,10 @@ const HeroCarousel = () => {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        updateIndex(slideIndex+1)
-   
-      }, 8000)
+        if (!paused) {
+          updateIndex(slideIndex+1);
+        }
+      }, 7500)
 
       return () => {
         if (interval) {
@@ -34,7 +36,11 @@ const HeroCarousel = () => {
     })
 
   return (
-    <div className='flex-1 relative overflow-hidden hidden sm:flex'>
+    <div 
+      className='flex-1 relative overflow-hidden hidden sm:flex'
+      onMouseEnter={()=> setPaused(true)}
+      onMouseLeave={()=> setPaused(false)}
+    >
       <div 
         className={`flex flex-row transform transition ease-in-out duration-700 `}
         style={{transform: `translateX(-${slideIndex*100}%)`}}
