@@ -25,7 +25,7 @@ const Searchbar = () => {
 
     const [selectRange, setSelectRange ]= useState(
         {
-            startDate: null,
+            startDate: new Date(),
             endDate: new Date(),
             key: 'selection',
             first: false
