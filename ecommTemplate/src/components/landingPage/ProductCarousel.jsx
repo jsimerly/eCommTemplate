@@ -2,14 +2,13 @@ import CaroProdCard from './CaroProdCard';
 import { useState, useEffect } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useSwipeable } from 'react-swipeable'
+import { max, set } from 'date-fns';
 
-const list = ['Tundra - 45 Hard Cooler', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9']
+const list = ['Tundra - 45 Hard Cooler', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9',]
 
 function windowToScrollN(){
 
   if (window.innerWidth < 680) {
-    console.log(1)
     return 1
   } else if (window.innerWidth < 1200) {
     return 2
@@ -19,16 +18,62 @@ function windowToScrollN(){
 }
 
 const ProductCarousel = (props) => {
-  const [cardn, setCardn] = useState(0)
-  const [translateString, setTranslate] = useState('translateX(0px)')
-  const [scrollN, setScrollN] = useState(windowToScrollN)
+
+  const [translateDistance, setTranslateDistance] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(null)
   const [nCardsPerView, setNCardsPerView] = useState(windowToScrollN)
-  const scrollWidth = 316
+  const cardWidth = 316
+  const maxLength = (list.length - nCardsPerView) * cardWidth
+
+  function handleTranslate(newPosition){
+    if (newPosition > 0) {
+      if (newPosition < maxLength){
+        setTranslateDistance(newPosition)
+      } else {
+        setTranslateDistance(maxLength)
+      }
+    } else {
+      setTranslateDistance(0)
+    }
+  }
+
+  const handleMouseDown = (e) => {
+    setStartX(e.touches[0].clientX)
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      const deltaX = e.touches[0].clientX - startX
+      console.log(deltaX)
+      if (deltaX > 0){
+        console.log('here')
+        handleTranslate(translateDistance-1)
+      } else {
+        console.log('not')
+        handleTranslate(translateDistance+1)
+      }
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+  }
+
+  function leftButtonClick(){
+    const deltaX = nCardsPerView * cardWidth
+    handleTranslate(translateDistance-deltaX)
+  }
+
+  function rightButtonClick(){
+    const deltaX = nCardsPerView * cardWidth
+    handleTranslate(translateDistance+deltaX)
+  }
 
   useEffect(() => {
     let handleWindowResize = () => {
       let n = windowToScrollN()
-      setScrollN(n)
       setNCardsPerView(n)
     }
     window.addEventListener("resize", handleWindowResize);
@@ -36,70 +81,28 @@ const ProductCarousel = (props) => {
     return () => window.removeEventListener('resize', handleWindowResize);
   }, [])
 
-  function leftButtonClick(){
-    if (cardn <= 0) {
-      setCardn(0)
-      return
-    }
-    setCardn(cardn-1)
-    translateXWidth(cardn-1)
-  }
-
-  function rightButtonClick(){
-    if ((cardn+1)*scrollN >= list.length){
-      return
-    }
-    setCardn(cardn+1)
-    translateXWidth(cardn+1)
-  }
-
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => rightButtonClick(),
-    onSwipedRight: () => leftButtonClick(),
-  });
-
-
-
-
-  function translateXWidth(n){
-    if ((n+1)*scrollN >= list.length && list.length%scrollN != 0){
-
-      let remainingItems = list.length%scrollN
-
-      let suffix = Math.round(((n-1) * scrollWidth * scrollN) + (scrollWidth * remainingItems)).toString() + 'px)'
-
-      setTranslate('translateX(-' + suffix)
-      console.log(suffix)
-      return
-    }
-
-    let suffix = Math.round(n * scrollWidth * scrollN).toString() + 'px)'
-
-    console.log(suffix)
-    setTranslate('translateX(-' + suffix)
-    return
-  }
-
   return (
-    <div className='flex flex-col bg-white sm:rounded-md p-2 sm:p-6 '>
+    <div className='flex flex-col bg-white sm:rounded-md p-2 sm:p-6'>
       <div className='flex justify-center sm:justify-start items-center relative text-[36px] text-center font-bold text-primary p-2 sm:pb-6 sm:mx-6'>
         {props.title}
       </div>
       
       <div 
-        {...handlers}
+        
+        onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
+        onTouchEnd={handleMouseUp}
         className='overflow-hidden flex flex-row relative px-6'
       >
         <button 
-        className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
+        className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
         onClick={()=> leftButtonClick()}
         >
           <ArrowBackIosNewIcon/>
         </button>
         <div 
           className={`flex transform transition ease-linear duration-300`}
-          style={{ transform: translateString}}
+          style={{ transform: 'translateX(-'+translateDistance+'px)'}}
           >
           {list.map((item, index) => {
             return (
@@ -108,7 +111,7 @@ const ProductCarousel = (props) => {
           })}
         </div>
         <button 
-        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${(cardn+1)*nCardsPerView >= list.length ? 'sm:hidden' : 'sm:block'} hidden`}
+        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${translateDistance >= maxLength ? 'sm:hidden' : 'sm:block'} hidden`}
         onClick={() => rightButtonClick()}
         >
           <ArrowForwardIosIcon/>
