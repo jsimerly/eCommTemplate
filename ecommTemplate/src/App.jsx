@@ -18,31 +18,31 @@ function App() {
         <Navbar/>
         <div className='mt-20'/>
         <HeroV2/>
-        <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+        <div className={`${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <HowItWorksV2/>
-            <div className='my-16'>
+            <div className='hidden sm:block my-16'>
               <NewCustomers/>
             </div>
-            <div className='my-6'>
+            <div>
               <ProductCarousel title='Most Popular'/>
             </div>
-            <div className='my-6'>
+            <div className='sm:my-6'>
               <ProductCarousel title='Top Deals'/>
             </div>
-            <div className='my-16'>
+            <div className='my-6 sm:my-16'>
                <Categories/>
             </div>
-            <div className='my-6'>
+            <div className='sm:my-6'>
               <ProductCarousel title='New Arrivals'/>
             </div>
-            <div className='my-6'>
+            <div className='sm:my-6'>
               <ProductCarousel title='Family Packages'/>
             </div>
-            <div className='my-16'>
+            <div className='my-6 sm:my-16'>
               <QualityHeroV2/>
             </div>
-            <div className='my-6'>
+            <div className='my-6 hidden sm:block'>
               <FreeWagon />
             </div>
             <div className='my-16'>

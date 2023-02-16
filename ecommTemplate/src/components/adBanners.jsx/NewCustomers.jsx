@@ -2,7 +2,7 @@ import {banner_flamingo} from '../../assets/images/'
 
 const NewCustomers = () => {
   return (
-    <div className='flex w-full  rounded-md cursor-pointer bg-gradient-to-bl  relative'>
+    <div className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl relative'>
       <img src={banner_flamingo}
       className='flex rounded-md'
       />

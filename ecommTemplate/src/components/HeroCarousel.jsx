@@ -34,7 +34,7 @@ const HeroCarousel = () => {
     })
 
   return (
-    <div className='flex flex-1 relative overflow-hidden'>
+    <div className='flex-1 relative overflow-hidden hidden sm:flex'>
       <div 
         className={`flex flex-row transform transition ease-in-out duration-700 `}
         style={{transform: `translateX(-${slideIndex*100}%)`}}

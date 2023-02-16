@@ -1,7 +1,7 @@
 import { games, pineapples, kids } from '../assets/images/'
 
 const BlogCard = ({title, date, img}) => (
-    <div className="bg-white rounded-md w-full mx-6 hover:cursor-pointer text-tertiary group">
+    <div className="bg-white rounded-md w-full sm:mx-6 my-2 sm:my-0 hover:cursor-pointer text-tertiary group">
         <img src={img} className='rounded-t-md'/>
         <div className='flex flex-col justify-center items-center'>
             <div>            
@@ -20,7 +20,7 @@ const BlogBanner = () => {
         <h1 className="text-center text-[36px] text-tertiary mb-2">
             Our Blogs
         </h1>
-        <div className="flex justify-between w-full px-20">
+        <div className="flex flex-col sm:flex-row justify-between w-full px-6 sm:px-20">
             <BlogCard 
                 img={games} 
                 title={'10 Fun Beach Games'}

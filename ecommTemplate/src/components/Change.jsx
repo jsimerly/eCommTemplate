@@ -24,7 +24,7 @@ const Change = () => {
         <h1 className="text-center text-[36px] text-tertiary mb-2">
             We <span className="text-primary"> Help </span> Make It Easy
         </h1>
-        <div className="flex flex-row w-full justify-between items-center text-tertiary space-x-3 border">
+        <div className="flex flex-col p-2 space-y-3 sm:space-y-0 sm:flex-row w-full justify-between items-center text-tertiary sm:space-x-3">
             <ChangeCard 
                 title='Update or Cancel an Order' 
                 icon={<EditIcon/>}
@@ -38,7 +38,7 @@ const Change = () => {
             <ChangeCard 
                 title='Contact Support' 
                 icon={<HelpCenterIcon/>}
-                desc="Need a hand with anything? We're happy to help*"
+                desc="Need a hand with anything? We're happy to help"
             />
         </div>
     </div>

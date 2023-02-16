@@ -82,8 +82,8 @@ const ProductCarousel = (props) => {
   }
 
   return (
-    <div className='flex flex-col bg-white rounded-md p-6 '>
-      <div className='flex justify-start items-center relative text-[36px] text-center font-bold text-primary pb-6 mx-6'>
+    <div className='flex flex-col bg-white sm:rounded-md p-2 sm:p-6 '>
+      <div className='flex justify-center sm:justify-start items-center relative text-[36px] text-center font-bold text-primary p-2 sm:pb-6 sm:mx-6'>
         {props.title}
       </div>
       
@@ -92,7 +92,7 @@ const ProductCarousel = (props) => {
         className='overflow-hidden flex flex-row relative px-6'
       >
         <button 
-        className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'hidden' : ''} p-2 bg-opacity-20 hover:bg-opacity-50`}
+        className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${cardn === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
         onClick={()=> leftButtonClick()}
         >
           <ArrowBackIosNewIcon/>
@@ -108,7 +108,7 @@ const ProductCarousel = (props) => {
           })}
         </div>
         <button 
-        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${(cardn+1)*nCardsPerView >= list.length ? 'hidden' : ''}`}
+        className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${(cardn+1)*nCardsPerView >= list.length ? 'sm:hidden' : 'sm:block'} hidden`}
         onClick={() => rightButtonClick()}
         >
           <ArrowForwardIosIcon/>
