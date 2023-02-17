@@ -33,10 +33,10 @@ const Categories = () => {
             Something for Everyone
         </div>
         <div className='grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:space-x-3'>
-            <CustomCardLeisure img={leisure} text='Leisure' color='#46C6C7'/>
-            <CatCard img={fun} text='Fun' color='#C7B13C'/>
-            <CatCard img={kids} text='Kids' color='#C78963'/>
-            <CatCard img={electronics} text='Electronics' color='#605AC7'/>
+            <CustomCardLeisure img={leisure} text='Leisure' color='#FCEEA9'/>
+            <CatCard img={fun} text='Fun' color='#FFB6AD'/>
+            <CatCard img={kids} text='Kids' color='#B1FCD7'/>
+            <CatCard img={electronics} text='Electronics' color='#C1C0FC'/>
         </div>
     </div>
   )
