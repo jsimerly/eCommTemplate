@@ -11,9 +11,11 @@ const HeroV2 = () => {
           <p className='text-[24px] max-w-[600px] leading-6 sm:leading-10 sm:px-6 pb-6'>
             {heroMain.desc}
           </p>
-          <button className='bg-white text-primary p-3 rounded-md  font-bold w-[180px] text-[18px] hover:underline'>
-            {heroMain.cta}
-          </button>
+          <a href='/shopping'>
+            <button className='bg-white text-primary p-3 rounded-md  font-bold w-[180px] text-[18px] hover:underline'>
+              {heroMain.cta}
+            </button>
+          </a>
         </div>
 
       </div>

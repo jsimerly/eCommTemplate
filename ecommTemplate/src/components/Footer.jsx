@@ -74,6 +74,7 @@ const Footer = () => {
             <div className='flex flew-row p-1 text-primary order-2 sm:order-3'>
                 {footerSocialIcons.map((iconInfo, index) => (
                     <a 
+                        key={index}
                         to={iconInfo.link}
                         className='md: pl-3 hover:cursor-pointer'
                     >
