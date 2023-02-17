@@ -1,4 +1,5 @@
 import { full_line_drawing } from "../../assets/images/banners"
+import { howToInfo } from "../../constants"
 
 const StepCard = ({n, title, paragraph, index}) => (
     <div className='flex flex-col sm:items-center mx-4 flex-1'>
@@ -21,13 +22,19 @@ const HowItWorksV2 = () => {
     <div className='my-6'>
         <div className='flex flex-col justify-center sm:items-start items-center'>
             <h1 className='text-[28px] sm:text-[48px] w-full text-primary text-center mb-6 px-6 order-1'>
-                Your Vacation Made Easy
+                {howToInfo.title}
             </h1>
             <div className='flex flex-col sm:flex-row justify-between w-full text-tertiary order-3 sm:order-2'>
-                <StepCard n={1} title={'Tell Us Where'} paragraph="No need to leave the condo, just let us know where to go."/>
-                <StepCard n={2} title={'Tell Us When'} paragraph="Taking a long weekend or extended getaway? We'll make sure it's time well spent."/>
-                <StepCard n={3} title={'Tell Us What'} paragraph="Need a hammock, canopy, and surfboard? We've got you covered."/>
-                <StepCard n={4} title={'Relax'} paragraph='Enjoy your hassle free vacation.'/>
+                {howToInfo.steps.map((step, index) => {
+                    return (
+                        <StepCard 
+                            n={index+1}
+                            title={step.title}
+                            paragraph={step.paragraph}
+                            key={index}
+                        />
+                    )
+                })}
             </div>
             <div className='w-full flex justify-center my-6 order-2 sm:order-3'>
                 <img src={full_line_drawing}/>

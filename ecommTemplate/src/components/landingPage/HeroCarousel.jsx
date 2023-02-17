@@ -46,7 +46,7 @@ const HeroCarousel = () => {
         style={{transform: `translateX(-${slideIndex*100}%)`}}
       >
         {banners.map((Banner, index) => (
-          <div className='inline-flex min-w-full'>
+          <div className='inline-flex min-w-full' key={index}>
             <Banner key={index}/>
           </div>
 

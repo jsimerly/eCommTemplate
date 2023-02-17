@@ -1,5 +1,5 @@
 import styles from '../styles'
-import { footerInfo } from '../constants'
+import { footerInfo, footerSocialIcons } from '../constants'
 import { main_blue } from '/src/assets/images/blueElf'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -72,9 +72,15 @@ const Footer = () => {
                 <a className='m-3 cursor-pointer'> Cookies </a>
             </div>
             <div className='flex flew-row p-1 text-primary order-2 sm:order-3'>
-                <InstagramIcon/>
-                <FacebookIcon/>
-                <TwitterIcon/>
+                {footerSocialIcons.map((iconInfo, index) => (
+                    <a 
+                        to={iconInfo.link}
+                        className='md: pl-3 hover:cursor-pointer'
+                    >
+                        {iconInfo.icon}
+                    </a>
+                ))}
+
             </div>
         </div>
     </section>

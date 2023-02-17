@@ -14,7 +14,6 @@ import {
 const LandingPage = () => {
   return (
     <div>
-    <div className='mt-20'/>
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>

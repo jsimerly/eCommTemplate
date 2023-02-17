@@ -8,6 +8,7 @@ const Navbar = () => {
 
   return (
     <nav className={`bg-white text-primary w-full flex p-3 justify-center items-center fixed z-20`}>
+        
         <div className={`${styles.boxWidth} flex justify-between items-center`}>
             <div className='flex justify-start items-center text-[34px] mr-5'>
                 <img
