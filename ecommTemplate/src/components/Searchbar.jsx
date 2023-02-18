@@ -10,9 +10,100 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
+const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
+
+    return (
+        <div className='relative flex flex-1 flex-col h-full' ref={node}>
+        <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
+            <IconComponent className={`w-8 h-8 absolute scale-125 ml-2 transform ${selectedData == '' ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
+            onClick={(openBool)=>{openFunc(!openBool);}}
+            />
+            <div className={`bg-white cursor-pointer rounded-md mr-1 flex-1 overflow-hidden truncate focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 pl-10 px-4 h-full items-center flex ${selectedData == '' ? 'text-tertiaryTone-300': 'text-tertiary'}  border border-primary`} 
+            onClick={()=> openFunc((openBool) => !openBool)}
+            >
+                {selectedData == '' ? placeholder : selectedData}
+            </div>
+        </label>
+        {dropdown()}
+    </div>
+    )
+}
+
+const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, setSelectedDestination}) => {
+    const dropdown = () => (
+        <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'}`}>
+            <ul>
+                {dests?.map((value, i) => (
+                <li 
+                className='text-tertiary'
+                onClick={() => {
+                    setSelectedDestination(value.text); setOpenDest(false);
+                }}
+                key={i}
+                >
+                    {value.text}
+                </li>
+                ))}
+            </ul>
+        </div>
+    )
+
+    const destText = selectedDestination == '' ? '' : selectedDestination
+
+    return (
+        <BarTemplate
+            node={destNode}
+            openFunc={setOpenDest}
+            selectedData={destText}
+            dropdown={dropdown}
+            placeholder={'Where to'}
+            icon={LocationOnIcon}
+        />
+    )
+}
+ 
+
+
+const CalendarBar2 = ({calNode, selectedDateRange, openCalendar, setOpenCalendar, handleDateSelection}) => {
+
+    const dropdown = () => (
+        <DateRange
+            ranges={[selectedDateRange]}
+            showMonthAndYearPickers={false}
+            onChange={handleDateSelection}
+            minDate={new Date()}
+            direction='horizontal'
+            startDatePlaceholder='Beginning'
+            endDatePlaceholder='Finale'
+            className={`${openCalendar ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border  shadow-md`}
+        />
+    )
+
+    const dateText = selectedDateRange?.first ? format(selectedDateRange.startDate, 'MMM, d').concat(' - ', format(selectedDateRange.endDate, 'MMM d yyyy')) : ''
+
+    console.log(dateText)
+
+    return(    
+    <BarTemplate
+        node={calNode}
+        openFunc={setOpenCalendar}
+        selectedData={dateText}
+        placeholder={'When'}
+        dropdown={dropdown}
+        icon={CalendarMonthIcon}
+    />
+    )
+}
+
+
+const CategoriesBar = () => (
+    <div className='flex flex-1 border border-primary px-2 py-4 rounded-md mr-1'>
+        Jacob
+    </div>
+)
+
 const Searchbar = (props) => {
 
-    console.log(props)
     function handleDateSelection(ranges){
         const { selection } = ranges;
         selection.first = true;
@@ -37,68 +128,45 @@ const Searchbar = (props) => {
 
    
   return (
-    
+    <div className='p-10 bg-white rounded-md'>
+
+
         <div 
         className='flex-1 flex flex-col sm:flex-row items-center justify-center'
         >
-            <div className='relative flex flex-1 flex-col' ref={destNode}>
-                <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
-                    <LocationOnIcon className={`w-8 h-8 absolute scale-125 ml-2 transform ${props.selectedDestination == '' ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
-                    onClick={(openDest)=>{setOpenDest(!openDest);}}
-                    />
-                    <div className={`bg-white cursor-pointer rounded-md mr-1 flex-1 min-h-[40px] overflow-hidden truncate focus-shadow-outline focus:outline-none placeholder-tertiaryTone-200 ${props.selectedDestination == '' ? 'text-tertiaryTone-300': 'text-tertiary'} pl-10 p-2 border border-primary`} 
-                    onClick={()=> setOpenDest((openDest) => !openDest)}
-                    >
-                        {props.selectedDestination == '' ? 'Where to' : props.selectedDestination}
-                    </div>
-                    
-                </label>
-                <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'}`}>
-                    <ul>
-                        {props.dests?.map((value, i) => (
-                        <li 
-                        className='text-tertiary'
-                        onClick={() => {
-                            props.setSelectedDestination(value.text); setOpenDest(false);
-                        }}
-                        key={i}
-                        >
-                            {value.text}
-                        </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-            <div ref={calNode}>
-                <label className={`cursor-pointer relative flex items-center justify-start`}>
-                    <CalendarMonthIcon className={`w-8 h-8 absolute transform scale-125 ml-2 ${props.selectedDateRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'}`}/>
-                    <div className={`bg-white cursor-pointer rounded-md mr-1 min-w-[240px] min-h-[40px] placeholder-tertiaryTone-200 pl-12 p-2] ${props.selectedDateRange.first ? 'text-tertiary' : 'text-tertiaryTone-300'} text-start flex items-center border border-primary`}
-                    onClick={()=>setOpenCalendar(!openCalendar)}
-                    >
-                        {props.selectedDateRange.first ? format(props.selectedDateRange.startDate, 'MMM, d').concat(' - ', format(props.selectedDateRange.endDate, 'MMM d yyyy')) : 'When' }
-                    </div>
-                </label>
-                <DateRange
-                    ranges={[props.selectedDateRange]}
-                    showMonthAndYearPickers={false}
-                    onChange={handleDateSelection}
-                    minDate={new Date()}
-                    direction='horizontal'
-                    startDatePlaceholder='Beginning'
-                    endDatePlaceholder='Finale'
-                    className={`${openCalendar ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border shadow-md`}
-                    
+            <div className='w-1/2 h-[60px]'>
+                <DestBar
+                    destNode={destNode}
+                    openDest={openDest}
+                    setOpenDest={setOpenDest}
+                    dests={props.dests}
+                    selectedDestination={props.selectedDestination}
+                    setSelectedDestination={props.setSelectedDestination}
                 />
             </div>
-            
-            <button 
-            className='rounded-md bg-primary p-2 min-h-[40px] min-w-[40px] text-white'
-            onClick={handleSearch}
-            
-            >
-                <SearchIcon className='scale-125'/>
-            </button>
+            <div className='w-1/4 h-[60px] border'>
+                <CalendarBar2
+                    calNode={calNode}
+                    selectedDateRange={props.selectedDateRange}
+                    openCalendar={openCalendar}
+                    setOpenCalendar={setOpenCalendar}
+                    handleDateSelection={handleDateSelection}
+                />
+            </div>
+            <div className='w-1/4'>
+                <CategoriesBar/>
+            </div>
+            <div className='flex justify-center itmes-center'>
+                <button 
+                    className='rounded-md bg-primary text-white flex flex-1 justify-center items-center p-4'
+                    onClick={handleSearch}
+                >
+                    <SearchIcon className='scale-125'/>
+                    
+                </button>
+            </div>
         </div>
+    </div>
   )
 }
 

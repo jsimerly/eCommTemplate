@@ -47,15 +47,20 @@ function App() {
     <Router>
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
         <Navbar 
-          dests={dests} 
-          selectedDateRange={selectedDateRange}
-          selectedDestination={selectedDestination}
-          setSelectedDateRage={setSelectedDateRage}
-          setSelectedDestination={setSelectedDestination}
         />
         <div className='my-20'/>
         <Routes>
-          <Route exact path='/' element={<LandingPage/>}/>
+          <Route 
+            exact path='/' 
+            element={
+            <LandingPage
+              dests={dests} 
+              selectedDateRange={selectedDateRange}
+              selectedDestination={selectedDestination}
+              setSelectedDateRage={setSelectedDateRage}
+              setSelectedDestination={setSelectedDestination}
+            />
+            }/>
           <Route path='/shopping' element={<StandardShop/>}/>
         </Routes>
         <div className='flex justify-center items-center'>

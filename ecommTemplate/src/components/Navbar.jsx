@@ -21,13 +21,7 @@ const Navbar = (props) => {
                 </div>
             </a>
             <div className='flex-1 justify-start items-center max-w-3xl hidden sm:block'>
-                <Searchbar 
-                    dests={props.dests}
-                    selectedDateRange={props.selectedDateRange}
-                    selectedDestination={props.selectedDestination}
-                    setSelectedDateRage={props.setSelectedDateRage}
-                    setSelectedDestination={props.setSelectedDestination}
-                />
+
             </div>
             <div className='flex justify-end items-center divide-x'>
                 <div className='flex p-2 m-2 justify-between items-center cursor-pointer'>

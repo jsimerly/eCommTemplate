@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../styles';
 import { NewCustomers } from '../banners';
+import Searchbar from '../Searchbar';
 import {
     Hero,
     HowItWorks,
@@ -11,12 +12,19 @@ import {
     BlogBanner,
 } from '../landingPage';
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   return (
     <div>
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>
+                <Searchbar 
+                    dests={props.dests}
+                    selectedDateRange={props.selectedDateRange}
+                    selectedDestination={props.selectedDestination}
+                    setSelectedDateRage={props.setSelectedDateRage}
+                    setSelectedDestination={props.setSelectedDestination}
+                />
                 <HowItWorks/>
                 <div className='hidden sm:block my-16'>
                     <NewCustomers/>
