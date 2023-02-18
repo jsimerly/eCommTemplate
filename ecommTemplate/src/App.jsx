@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import LandingPage from './components/pages/LandingPage'
 import StandardShop from './components/pages/StandardShop';
 import { dests } from './api/temp'
+import { allCategories } from './constants';
 
 function getDateRange(){
   const localDateRange = localStorage.getItem('date_range')
@@ -47,6 +48,12 @@ function App() {
     <Router>
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
         <Navbar 
+            dests={dests}
+            selectedDateRange={selectedDateRange}
+            selectedDestination={selectedDestination}
+            setSelectedDateRage={setSelectedDateRage}
+            setSelectedDestination={setSelectedDestination}
+            allCategories={allCategories}
         />
         <div className='my-20'/>
         <Routes>
@@ -59,6 +66,7 @@ function App() {
               selectedDestination={selectedDestination}
               setSelectedDateRage={setSelectedDateRage}
               setSelectedDestination={setSelectedDestination}
+              allCategories={allCategories}
             />
             }/>
           <Route path='/shopping' element={<StandardShop/>}/>

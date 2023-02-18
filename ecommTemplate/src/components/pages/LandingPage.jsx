@@ -18,13 +18,6 @@ const LandingPage = (props) => {
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>
-                <Searchbar 
-                    dests={props.dests}
-                    selectedDateRange={props.selectedDateRange}
-                    selectedDestination={props.selectedDestination}
-                    setSelectedDateRage={props.setSelectedDateRage}
-                    setSelectedDestination={props.setSelectedDestination}
-                />
                 <HowItWorks/>
                 <div className='hidden sm:block my-16'>
                     <NewCustomers/>

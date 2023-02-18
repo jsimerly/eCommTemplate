@@ -1,5 +1,6 @@
 import { full_line_drawing } from "../../assets/images/banners"
 import { howToInfo } from "../../constants"
+import Searchbar from "../Searchbar"
 
 const StepCard = ({n, title, paragraph, index}) => (
     <div className='flex flex-col sm:items-center mx-4 flex-1'>

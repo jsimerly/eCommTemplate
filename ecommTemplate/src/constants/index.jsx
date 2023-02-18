@@ -19,6 +19,116 @@ import { fun, electronics, kids, leisure } from '../assets/images/categories'
 // Copy 
 
 //------- All --------------------------------------------------------------------------------------------------
+
+export const allCategories = [
+    {
+        name:'Chairs', 
+        link:'',
+        type:'full',
+        sub: [
+            {name:'Luxury Chairs', link:'', type:'sub'},
+            {name:'Kids Chairs', link:'', type:'sub'},
+            {name:'Canopy Chairs', link:'', type:'sub'},
+            {name:'Chair Accessories', link:'', type:'sub'},
+        ]
+    },
+    {
+        name: 'Shelters',
+        link: '',
+        type:'full',
+        sub: [
+            {name:'Canopies', link:'', type:'sub'},
+            {name:'Umbrellas', link:'', type:'sub'},
+            {name:'Tents', link:'', type:'sub'},
+            {name:'Attachable', link:'', type:'sub'},
+
+        ]
+    },
+    {
+        name: 'On the Beach',
+        link: '',
+        type:'full',
+        sub: [
+            {name:'Wagons', link:'', type:'sub'},
+            {name:'Coolers', link:'', type:'sub'},
+            {name:'Beach & Dry Bags', link:'', type:'sub'},
+            {name:'Speakers', link:'', type:'sub'}, 
+            {name:'Mats', link:'', type:'sub'},
+            {name:'Shovels & Buckets', type:'sub'}
+        ]
+    },
+    {
+        name:'Fun', 
+        link:'',
+        type:'full',
+        sub: [
+            {name:'Sports' , link:'', type:'sub'},
+            {name:'Games' , link:'', type:'sub'},
+            {name:'Sandcastles' , link:'', type:'sub'},
+            {name:'Bikes' , link:'', type:'sub'},
+            {name:'Bonefire', link:'', type:'sub'},
+            {name:'Fishing', link:'', type:'sub'},
+            {name:'Drinking' , link:'', type:'sub'},
+        ]
+    
+    },
+    {
+        name:'Kids', 
+        link:'',
+        type:'full',
+        sub:[
+            {name: 'Infant', links:'', type:'sub'},
+            {name: 'Toddlers', links:'', type:'sub'},
+            {name: 'Shelter', links:'', type:'sub'},
+            {name: 'Stroller & Carriers ', type:'sub'},
+            {name: 'Changing Station', links:'', type:'sub'},
+        ]
+    
+    },
+    {
+        name:'Electronics', 
+        link:'',
+        type:'full',
+        sub: [
+            {name: 'Speakers', link:'', type:'sub'},
+            {name: 'Cameras', link:'', type:'sub'},
+            {name: 'Fans', link:'', type:'sub'},
+            {name: 'Metal Detectors', links:'', type:'sub'},
+            {name: 'Water Proof Headphones', links:'', type:'sub'}
+        ]
+
+    },
+    {
+        name:'Water & Pool', 
+        link:'',
+        type:'full',
+        sub: [
+            {name: 'Surf & Paddleboards', link:'', type:'sub'},
+            {name: 'Skim & Boogieboards', link:'', type:'sub'},
+            {name: 'Snorkeling', type:'sub'},
+            {name: 'Kayaks & Boats', link:'', type:'sub'},
+            {name: 'Inflatables', link:'', type:'sub'},
+            {name: 'Mats & Lounge', link:'', type:'sub'},
+            {name: 'Pool Toys', link:'', type:'sub'},
+            {name: 'Swim Accessories', link:'', type:'sub'}
+        ]
+
+    },
+    {
+        name:'Home', 
+        link:'',
+        type:'full',
+        sub:[
+            {name: 'Kitchen', link:'', type:'sub'},
+            {name: 'Bedroom', link:'', type:'sub'}, 
+            {name: 'Forgot at Home', links:'', type:'sub'},
+            {name: 'Entertainment', links:'', type:'sub'} //board games etc
+        ]
+    
+    },
+]
+
+//----------- Footer --------------------------------------------------------------------
 export const footerInfo = [
     {
         title: 'Cities',

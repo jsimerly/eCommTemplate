@@ -9,12 +9,13 @@ import { format } from 'https://esm.run/date-fns'
 import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 
 const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
 
     return (
-        <div className='relative flex flex-1 flex-col h-full' ref={node}>
-        <label className="cursor-pointer relative text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
+        <div className='flex flex-1 flex-col h-full' ref={node}>
+        <label className="cursor-pointer text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
             <IconComponent className={`w-8 h-8 absolute scale-125 ml-2 transform ${selectedData == '' ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
             onClick={(openBool)=>{openFunc(!openBool);}}
             />
@@ -31,20 +32,29 @@ const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeho
 
 const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, setSelectedDestination}) => {
     const dropdown = () => (
-        <div className={`absolute bg-white flex flex-1 w-full top-[40px] mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'}`}>
-            <ul>
-                {dests?.map((value, i) => (
-                <li 
-                className='text-tertiary'
-                onClick={() => {
-                    setSelectedDestination(value.text); setOpenDest(false);
-                }}
-                key={i}
-                >
-                    {value.text}
-                </li>
+        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'} shadow-md z-10`}>
+            <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
+                Locations
+            </h1>
+            <div className='grid grid-cols-4 text-tertiary'>
+                {dests?.map((dest, i) => (
+                    <div>
+                        <h3 className='font-bold text-[18px] p-2'>
+                            {dest.state}
+                        </h3>
+                        <ul>
+                            {dest.cities?.map((city, i) => (
+                                <li
+                                    className='hover:underline pl-4 cursor-pointer'
+                                    onClick={()=> {setSelectedDestination(city.city); setOpenDest(false)}}
+                                >
+                                    {city.text}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     )
 
@@ -64,7 +74,7 @@ const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, s
  
 
 
-const CalendarBar2 = ({calNode, selectedDateRange, openCalendar, setOpenCalendar, handleDateSelection}) => {
+const CalendarBar = ({calNode, selectedDateRange, openCalendar, setOpenCalendar, handleDateSelection}) => {
 
     const dropdown = () => (
         <DateRange
@@ -96,12 +106,65 @@ const CalendarBar2 = ({calNode, selectedDateRange, openCalendar, setOpenCalendar
 }
 
 
-const CategoriesBar = () => (
-    <div className='flex flex-1 border border-primary px-2 py-4 rounded-md mr-1'>
-        Jacob
-    </div>
-)
+const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelectedCategory, categories}) => {
+    const dropdown = () => (
+        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openCat ? '' : 'hidden'} shadow-md z-10`}>
+            <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
+                Categories
+            </h1>
+            <div className='grid grid-cols-4 text-tertiary'>
+                {categories?.map((cat, i) => (
+                    <div>
+                        <h3 
+                            className='font-bold text-[18px] p-2 cursor-pointer hover:underline'
+                            onClick={()=> {
+                                setSelectedCategory(cat); setOpenCat(false)
+                            }}
+                        >
+                            {cat.name}
+                        </h3>
+                        <ul>
+                            {cat.sub?.map((subCat, i) => (
+                                <li 
+                                    className='pl-4 cursor-pointer hover:underline'
+                                    onClick={()=> {
+                                        setSelectedCategory(subCat); setOpenCat(false)
+                                    }}
+                                >
+                                    {subCat.name}
+                                </li>
+                                
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+            <h4 
+                className='w-full text-center underline text-tertiary cursor-pointer hover:scale-105 mt-2'
+                onClick={()=> {
+                    setSelectedCategory({
+                        name: 'All Categories',
+                        link: ''
+                    });
+                    setOpenCat(false)
+                }}
+            >
+                All Categories
+            </h4>
+        </div>
+    )
 
+    return (
+        <BarTemplate
+            node={catNode}
+            openFunc={setOpenCat}
+            selectedData={selectedCategory}
+            placeholder={'What'}
+            dropdown={dropdown}
+            icon={BeachAccessIcon}
+        />
+    )
+}
 const Searchbar = (props) => {
 
     function handleDateSelection(ranges){
@@ -117,6 +180,13 @@ const Searchbar = (props) => {
 
     const [openDest, setOpenDest] = useState(false)
     const [openCalendar, setOpenCalendar] = useState(false);
+    const [openCat, setOpenCat] = useState(false)
+    const [selectedCategory, setSelectedCategory] = useState(
+        {
+            name: '',
+            link: '',
+        }
+    )
 
     let destNode = useClickOutside(() => {
         setOpenDest(false);
@@ -126,15 +196,16 @@ const Searchbar = (props) => {
         setOpenCalendar(false);
     })
 
+    let catNode = useClickOutside(() => {
+        setOpenCat(false);
+    })
+
    
   return (
-    <div className='p-10 bg-white rounded-md'>
-
-
         <div 
-        className='flex-1 flex flex-col sm:flex-row items-center justify-center'
+        className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
         >
-            <div className='w-1/2 h-[60px]'>
+            <div className='w-1/4 h-[40px]'>
                 <DestBar
                     destNode={destNode}
                     openDest={openDest}
@@ -144,8 +215,8 @@ const Searchbar = (props) => {
                     setSelectedDestination={props.setSelectedDestination}
                 />
             </div>
-            <div className='w-1/4 h-[60px] border'>
-                <CalendarBar2
+            <div className='w-1/4 h-[40px]'>
+                <CalendarBar
                     calNode={calNode}
                     selectedDateRange={props.selectedDateRange}
                     openCalendar={openCalendar}
@@ -153,20 +224,25 @@ const Searchbar = (props) => {
                     handleDateSelection={handleDateSelection}
                 />
             </div>
-            <div className='w-1/4'>
-                <CategoriesBar/>
+            <div className='w-1/4 h-[40px]'>
+                <CategoriesBar
+                    catNode={catNode}
+                    selectedCategory={selectedCategory.name}
+                    openCat={openCat}
+                    setOpenCat={setOpenCat}
+                    setSelectedCategory={setSelectedCategory}
+                    categories={props.allCategories}               
+                />
             </div>
             <div className='flex justify-center itmes-center'>
                 <button 
-                    className='rounded-md bg-primary text-white flex flex-1 justify-center items-center p-4'
+                    className='rounded-md bg-primary text-white flex flex-1 justify-center items-center h-[40px] w-[40px]'
                     onClick={handleSearch}
                 >
                     <SearchIcon className='scale-125'/>
-                    
                 </button>
             </div>
         </div>
-    </div>
   )
 }
 
