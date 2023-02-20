@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { DateRange } from 'react-date-range';
+
 import useClickOutside from '../hooks/useClickOutside';
+import { ShoppingContext } from '../context';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -10,6 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+
+
 
 const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
 
@@ -38,13 +42,14 @@ const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, s
             </h1>
             <div className='grid grid-cols-4 text-tertiary'>
                 {dests?.map((dest, i) => (
-                    <div>
+                    <div key={i}>
                         <h3 className='font-bold text-[18px] p-2'>
                             {dest.state}
                         </h3>
                         <ul>
                             {dest.cities?.map((city, i) => (
                                 <li
+                                    key={i}
                                     className='hover:underline pl-4 cursor-pointer'
                                     onClick={()=> {setSelectedDestination(city.city); setOpenDest(false)}}
                                 >
@@ -76,6 +81,12 @@ const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, s
 
 const CalendarBar = ({calNode, selectedDateRange, openCalendar, setOpenCalendar, handleDateSelection}) => {
 
+    const handleRangeChange = (focusedRange) => {
+        if (focusedRange[1] == 0) {
+            setOpenCalendar(false)
+        }
+    }
+
     const dropdown = () => (
         <DateRange
             ranges={[selectedDateRange]}
@@ -86,12 +97,11 @@ const CalendarBar = ({calNode, selectedDateRange, openCalendar, setOpenCalendar,
             startDatePlaceholder='Beginning'
             endDatePlaceholder='Finale'
             className={`${openCalendar ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border  shadow-md`}
+            onRangeFocusChange={handleRangeChange}
         />
     )
 
     const dateText = selectedDateRange?.first ? format(selectedDateRange.startDate, 'MMM, d').concat(' - ', format(selectedDateRange.endDate, 'MMM d yyyy')) : ''
-
-    console.log(dateText)
 
     return(    
     <BarTemplate
@@ -114,7 +124,7 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
             </h1>
             <div className='grid grid-cols-4 text-tertiary'>
                 {categories?.map((cat, i) => (
-                    <div>
+                    <div key={i}>
                         <h3 
                             className='font-bold text-[18px] p-2 cursor-pointer hover:underline'
                             onClick={()=> {
@@ -126,6 +136,7 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
                         <ul>
                             {cat.sub?.map((subCat, i) => (
                                 <li 
+                                    key={i}
                                     className='pl-4 cursor-pointer hover:underline'
                                     onClick={()=> {
                                         setSelectedCategory(subCat); setOpenCat(false)
@@ -167,26 +178,26 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
 }
 const Searchbar = (props) => {
 
+    const {selectedDateRange, setSelectedDateRage, 
+        selectedDestination, setSelectedDestination,
+        selectedCategory, setSelectedCategory,
+    } = useContext(ShoppingContext)
+
     function handleDateSelection(ranges){
         const { selection } = ranges;
         selection.first = true;
-        props.setSelectedDateRage(selection)
+        setSelectedDateRage(selection)
     }
 
     function handleSearch(){
-        console.log(props.selectedDateRange.first)
-        console.log(props.selectedDateRange)
+        console.log(selectedDestination)
+        console.log(selectedDateRange)
+        console.log(selectedCategory)
     }
 
     const [openDest, setOpenDest] = useState(false)
     const [openCalendar, setOpenCalendar] = useState(false);
     const [openCat, setOpenCat] = useState(false)
-    const [selectedCategory, setSelectedCategory] = useState(
-        {
-            name: '',
-            link: '',
-        }
-    )
 
     let destNode = useClickOutside(() => {
         setOpenDest(false);
@@ -211,14 +222,14 @@ const Searchbar = (props) => {
                     openDest={openDest}
                     setOpenDest={setOpenDest}
                     dests={props.dests}
-                    selectedDestination={props.selectedDestination}
-                    setSelectedDestination={props.setSelectedDestination}
+                    selectedDestination={selectedDestination}
+                    setSelectedDestination={setSelectedDestination}
                 />
             </div>
             <div className='w-1/4 h-[40px]'>
                 <CalendarBar
                     calNode={calNode}
-                    selectedDateRange={props.selectedDateRange}
+                    selectedDateRange={selectedDateRange}
                     openCalendar={openCalendar}
                     setOpenCalendar={setOpenCalendar}
                     handleDateSelection={handleDateSelection}

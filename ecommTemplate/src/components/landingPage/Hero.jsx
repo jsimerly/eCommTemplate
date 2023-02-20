@@ -1,6 +1,6 @@
 import HeroCarousel from './HeroCarousel'
 import { heroMain } from '../../constants'
-
+import navigateShopping from '../../hooks/navigateShopping'
 
 const HeroV2 = () => {
   return (
@@ -11,13 +11,13 @@ const HeroV2 = () => {
           <p className='text-[24px] max-w-[600px] leading-6 sm:leading-10 sm:px-6 pb-6'>
             {heroMain.desc}
           </p>
-          <a href='/shopping'>
-            <button className='bg-white text-primary p-3 rounded-md  font-bold w-[180px] text-[18px] hover:underline'>
-              {heroMain.cta}
-            </button>
-          </a>
+          <button 
+            className='bg-white text-primary p-3 rounded-md  font-bold w-[180px] text-[18px] hover:underline'
+            onClick={()=> navigateShopping('wher', 'when1', 'when2')}  
+          >
+            {heroMain.cta}A
+          </button>
         </div>
-
       </div>
       <HeroCarousel/>
     </div>

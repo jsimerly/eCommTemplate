@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 
 import Navbar from './components/Navbar'
@@ -7,36 +7,22 @@ import LandingPage from './components/pages/LandingPage'
 import StandardShop from './components/pages/StandardShop';
 import { dests } from './api/temp'
 import { allCategories } from './constants';
+import { ShoppingContext } from './context';
 
-function getDateRange(){
-  const localDateRange = localStorage.getItem('date_range')
-  if (localDateRange){
-
-    let dateRange = JSON.parse(localDateRange)
-
-    dateRange['startDate'] = new Date(dateRange['startDate'])
-    dateRange['endDate'] = new Date(dateRange['endDate'])
-
-    return dateRange
-  }
-  return (
+function App() {
+  const [selectedDestination, setSelectedDestination] = useState('')
+  const [selectedDateRange, setSelectedDateRage] = useState(    
     {
       startDate: new Date(),
       endDate: new Date(),
       key: 'selection',
       first: false
-    }
-  )
-}
-
-function App() {
-
-  const [selectedDestination, setSelectedDestination] = useState(
-    localStorage.getItem('destination') || ''
-  )
-  const [selectedDateRange, setSelectedDateRage] = useState(
-    getDateRange()
-  )
+    })
+  const [selectedCategory, setSelectedCategory] = useState(
+    {
+      name: '',
+      link: '',
+    })
 
   useEffect(() => {
     localStorage.setItem('destination', selectedDestination);
@@ -47,33 +33,28 @@ function App() {
   return (
     <Router>
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
-        <Navbar 
-            dests={dests}
-            selectedDateRange={selectedDateRange}
-            selectedDestination={selectedDestination}
-            setSelectedDateRage={setSelectedDateRage}
-            setSelectedDestination={setSelectedDestination}
-            allCategories={allCategories}
-        />
-        <div className='my-20'/>
-        <Routes>
-          <Route 
-            exact path='/' 
-            element={
-            <LandingPage
-              dests={dests} 
-              selectedDateRange={selectedDateRange}
-              selectedDestination={selectedDestination}
-              setSelectedDateRage={setSelectedDateRage}
-              setSelectedDestination={setSelectedDestination}
+        <ShoppingContext.Provider value={
+          {selectedDateRange, setSelectedDateRage, 
+            selectedDestination, setSelectedDestination, 
+            selectedCategory, setSelectedCategory}}
+        >
+          <Navbar 
+              dests={dests}
               allCategories={allCategories}
-            />
-            }/>
-          <Route path='/shopping' element={<StandardShop/>}/>
-        </Routes>
-        <div className='flex justify-center items-center'>
-          <Footer/>
-        </div>
+          />
+          <div className='h-[80px]'/>
+          <Routes>
+            <Route 
+              exact path='/' 
+              element={
+              <LandingPage/>
+              }/>
+            <Route path='/shopping/:where/:startDate/:endDate/:category' element={<StandardShop/>}/>*
+          </Routes>
+          <div className='flex justify-center items-center'>
+            <Footer/>
+          </div>
+        </ShoppingContext.Provider>
       </div>
     </Router>
 
