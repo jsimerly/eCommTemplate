@@ -1,7 +1,16 @@
-const shoppingHeros = {
+const shoppingPageData = {
         '0100' : {
             title:'Chairs',
             desc:'',
+            filterOption:[
+                {
+                    name: 'Category',
+                    type: 'checkbox',
+                    sub: [
+                        
+                    ]
+                }
+            ]
         },
         '0101' : {
             title:'LuxuryChairs',
@@ -21,7 +30,7 @@ const shoppingHeros = {
             title:'Chair Accessories',
             desc:'',
         },
-        '0202' : {
+        '0200' : {
             title: 'Shelters',
             desc: ''
         },
@@ -53,7 +62,38 @@ const shoppingHeros = {
         ,
         '0302' :{
             name:'Coolers',
-            desc:''
+            desc:'',
+            filterOptions:[
+                {
+                    name: 'Category',
+                    type: 'checkbox',
+                    tags: ['Hardshell', 'Softshell', 'Floating', 'Wheeled'],
+                    defaultChecked: true
+                },
+                {
+                    name: 'Brand',
+                    type: 'checkbox',
+                    tags: ['Yeti', 'RTIC', 'Igloo'],
+                    defaultChecked: true
+                },
+                {
+                    name: 'Capacity',
+                    type: 'checkbox',
+                    tags:['0-20 Cans', '20-30 Cans', '31-40 Cans', '40-50 Cans', '50+ Cans'],
+                    defaultChecked: true
+                },
+                {
+                    name: 'Deals',
+                    type: 'checkbox',
+                    tags: ['On Sale', 'Standard'],
+                    defaultChecked: true
+                },
+                {
+                    name: 'Rating',
+                    type: 'Scale',
+                }
+
+            ]
         }
         ,
         '0303' :{
@@ -213,4 +253,8 @@ const shoppingHeros = {
             desc:'',
         }
      
+}
+
+export {
+    shoppingPageData,
 }

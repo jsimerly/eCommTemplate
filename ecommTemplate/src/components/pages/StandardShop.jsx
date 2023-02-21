@@ -1,10 +1,44 @@
-import { useState } from 'react'
+import { Children, useState } from 'react'
 import styles from '../../styles'
-import TuneIcon from '@mui/icons-material/Tune';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import { Filter } from '../shopping';
+import TuneIcon from '@mui/icons-material/Tune';
+import CloseIcon from '@mui/icons-material/Close';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CheckboxFilter from '../shopping/CheckboxFilter';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 import useClickOutside from '../../hooks/useClickOutside';
+import { shoppingPageData } from '../../constants/shopping';
+
+
+const Filter = ({closeFunc, options}) => {
+
+  return (
+    <div className='bg-white mt-1 rounded-md p-2 w-[300px] shadow-md'>
+      <div className='flex justify-between'>
+        <p className='text-[20px] mb-2'>
+          Filter Options
+        </p>
+        <CloseIcon
+          onClick={() => closeFunc(false)}
+          className='hover:scale-125 cursor-pointer'
+        />
+      </div>
+      {options.map((option, i) => {
+
+        if (option.type === 'checkbox') {
+          return (
+            <CheckboxFilter
+              key={i}
+              category={option}
+            />
+          )
+        }
+
+      })}
+    </div>
+  )
+}
 
 const StandardShop = () => {
   const sortByOptions = [
@@ -13,6 +47,8 @@ const StandardShop = () => {
     'Price: High to Low',
     'Most Popular',
   ]
+  const filterOptions = shoppingPageData['0302']['filterOptions']
+
   const [filterOpen, setFilterOpen] = useState(true)
   const [sortOpen, setSortOpen] = useState(false)
   const [sortBy, setSortBy] = useState('Featured')
@@ -31,24 +67,29 @@ const StandardShop = () => {
         </div>
         <div>
           <div className='flex flex-row justify-between'>
-            <div>
+            <div className='flex space-x-1 items-center'>
               <button
-                className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline'
+                className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline group'
                 onClick={()=> setFilterOpen((filterOpen) => !filterOpen) }
               >
-                <TuneIcon className='mr-1 text-tertiary'/>
+                <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
                 Filter
               </button>
+              <button className='text-white bg-primary rounded-md h-full p-2 shadow-md group'>
+                <DeleteForeverIcon className='group-hover:scale-125'/>
+              </button>
+
+
             </div>
             <div
               ref={sortNode}
             >
               <button
-                className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative'
+                className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative group'
                 onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
               >
                 Sort By: {sortBy}
-                <ExpandMoreIcon className='ml-1 text-tertiary'/>
+                <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-125'/>
               </button>
               <div 
                 className={`${sortOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
@@ -56,6 +97,7 @@ const StandardShop = () => {
                 <ul>
                   {sortByOptions.map((option, i) => (
                     <li 
+                      key={i}
                       className='hover:underline cursor-pointer'
                       onClick={() => {setSortBy(option); setSortOpen(false)}}
                     >
@@ -68,7 +110,10 @@ const StandardShop = () => {
           </div>
           <div className='flex flex-row'>
             <div className={`${filterOpen ? '' : 'hidden'}`}>
-              <Filter/>
+              <Filter
+                closeFunc={setFilterOpen}
+                options={filterOptions}
+              />
             </div>
             <div className='flex flex-1 w-full'>
               Items
