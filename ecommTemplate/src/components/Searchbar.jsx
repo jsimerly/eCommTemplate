@@ -123,7 +123,7 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
             </h1>
             <div className='grid grid-cols-4 text-tertiary'>
                 {categories?.map((cat, i) => (
-                    <div key={i}>
+                    <div key={i} className='last:hidden'>
                         <h3 
                             className='font-bold text-[18px] p-2 cursor-pointer hover:underline'
                             onClick={()=> {
@@ -143,7 +143,6 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
                                 >
                                     {subCat.name}
                                 </li>
-                                
                             ))}
                         </ul>
                     </div>
@@ -154,7 +153,9 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
                 onClick={()=> {
                     setSelectedCategory({
                         name: 'All Categories',
-                        link: ''
+                        link: '',
+                        type:'full',
+                        id:'0000'
                     });
                     setOpenCat(false)
                 }}
@@ -245,7 +246,7 @@ const Searchbar = (props) => {
                     className='rounded-md bg-primary text-white flex flex-1 justify-center items-center h-[40px] w-[40px]'
                     onClick={handleSearch}
                 >
-                    <SearchIcon className='scale-125'/>
+                    <SearchIcon className='scale-125 hover:scale-150'/>
                 </button>
             </div>
         </div>

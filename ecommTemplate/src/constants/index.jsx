@@ -25,22 +25,24 @@ export const allCategories = [
         name:'Chairs', 
         link:'',
         type:'full',
+        id:'0100',
         sub: [
-            {name:'Luxury Chairs', link:'', type:'sub'},
-            {name:'Kids Chairs', link:'', type:'sub'},
-            {name:'Canopy Chairs', link:'', type:'sub'},
-            {name:'Chair Accessories', link:'', type:'sub'},
+            {name:'Luxury Chairs', link:'', type:'sub', id:'0101'},
+            {name:"Kid's Chairs", link:'', type:'sub', id:'0102'},
+            {name:'Canopy Chairs', link:'', type:'sub', id:'0103'},
+            {name:'Chair Accessories', link:'', type:'sub', id:'0104'},
         ]
     },
     {
         name: 'Shelters',
         link: '',
         type:'full',
+        id:'0200',
         sub: [
-            {name:'Canopies', link:'', type:'sub'},
-            {name:'Umbrellas', link:'', type:'sub'},
-            {name:'Tents', link:'', type:'sub'},
-            {name:'Attachable', link:'', type:'sub'},
+            {name:'Canopies', link:'', type:'sub', id:'0201'},
+            {name:'Umbrellas', link:'', type:'sub', id:'0202'},
+            {name:'Tents', link:'', type:'sub', id:'0203'},
+            {name:'Attachable', link:'', type:'sub', id:'0204'},
 
         ]
     },
@@ -48,27 +50,29 @@ export const allCategories = [
         name: 'On the Beach',
         link: '',
         type:'full',
+        id:'0300',
         sub: [
-            {name:'Wagons', link:'', type:'sub'},
-            {name:'Coolers', link:'', type:'sub'},
-            {name:'Beach & Dry Bags', link:'', type:'sub'},
-            {name:'Speakers', link:'', type:'sub'}, 
-            {name:'Mats', link:'', type:'sub'},
-            {name:'Shovels & Buckets', type:'sub'}
+            {name:'Wagons', link:'', type:'sub', id:'0301',},
+            {name:'Coolers', link:'', type:'sub', id:'0302'},
+            {name:'Beach & Dry Bags', link:'', type:'sub', id:'0303'},
+            {name:'Speakers', link:'', type:'sub', id:'0304'}, 
+            {name:'Mats', link:'', type:'sub', id:'0305'},
+            {name:'Shovels & Buckets', type:'sub', id:'0306'}
         ]
     },
     {
         name:'Fun', 
         link:'',
         type:'full',
+        id:'0400',
         sub: [
-            {name:'Sports' , link:'', type:'sub'},
-            {name:'Games' , link:'', type:'sub'},
-            {name:'Sandcastles' , link:'', type:'sub'},
-            {name:'Bikes' , link:'', type:'sub'},
-            {name:'Bonefire', link:'', type:'sub'},
-            {name:'Fishing', link:'', type:'sub'},
-            {name:'Drinking' , link:'', type:'sub'},
+            {name:'Sports' , link:'', type:'sub', id:'0401'},
+            {name:'Games' , link:'', type:'sub', id:'0402'},
+            {name:'Sandcastles' , link:'', type:'sub', id:'0403'},
+            {name:'Bikes' , link:'', type:'sub', id:'0404'},
+            {name:'Bonefire', link:'', type:'sub', id:'0405'},
+            {name:'Fishing', link:'', type:'sub', id:'0406'},
+            {name:'Drinking' , link:'', type:'sub', id:'0407'},
         ]
     
     },
@@ -76,12 +80,13 @@ export const allCategories = [
         name:'Kids', 
         link:'',
         type:'full',
+        id:'0500',
         sub:[
-            {name: 'Infant', links:'', type:'sub'},
-            {name: 'Toddlers', links:'', type:'sub'},
-            {name: 'Shelter', links:'', type:'sub'},
-            {name: 'Stroller & Carriers ', type:'sub'},
-            {name: 'Changing Station', links:'', type:'sub'},
+            {name: 'Infant', links:'', type:'sub', id:'0501'},
+            {name: 'Toddlers', links:'', type:'sub', id:'0502'},
+            {name: 'Shelter', links:'', type:'sub', id:'0503'},
+            {name: 'Stroller & Carriers ', type:'sub', id:'0504'},
+            {name: 'Changing Station', links:'', type:'sub', id:'0505'},
         ]
     
     },
@@ -89,12 +94,13 @@ export const allCategories = [
         name:'Electronics', 
         link:'',
         type:'full',
+        id:'0600',
         sub: [
-            {name: 'Speakers', link:'', type:'sub'},
-            {name: 'Cameras', link:'', type:'sub'},
-            {name: 'Fans', link:'', type:'sub'},
-            {name: 'Metal Detectors', links:'', type:'sub'},
-            {name: 'Water Proof Headphones', links:'', type:'sub'}
+            {name: 'Speakers', link:'', type:'sub', id:'0601'},
+            {name: 'Cameras', link:'', type:'sub', id:'0602'},
+            {name: 'Fans', link:'', type:'sub', id:'0603'},
+            {name: 'Metal Detectors', links:'', type:'sub', id:'0604'},
+            {name: 'Water Proof Headphones', links:'', type:'sub', id:'0605'}
         ]
 
     },
@@ -102,15 +108,17 @@ export const allCategories = [
         name:'Water & Pool', 
         link:'',
         type:'full',
+        id:'0700',
         sub: [
-            {name: 'Surf & Paddleboards', link:'', type:'sub'},
-            {name: 'Skim & Boogieboards', link:'', type:'sub'},
-            {name: 'Snorkeling', type:'sub'},
-            {name: 'Kayaks & Boats', link:'', type:'sub'},
-            {name: 'Inflatables', link:'', type:'sub'},
-            {name: 'Mats & Lounge', link:'', type:'sub'},
-            {name: 'Pool Toys', link:'', type:'sub'},
-            {name: 'Swim Accessories', link:'', type:'sub'}
+            {name: 'Surfboards', link:'', type:'sub', id:'0701'},
+            {name: 'Paddleboards', link:'', type:'sub', id:'0709' },
+            {name: 'Skim & Boogieboards', link:'', type:'sub', id:'0702'},
+            {name: 'Snorkeling', type:'sub', id:'0703'},
+            {name: 'Kayaks & Boats', link:'', type:'sub', id:'0704'},
+            {name: 'Inflatables', link:'', type:'sub', id:'0705'},
+            {name: 'Mats & Lounge', link:'', type:'sub', id:'0706'},
+            {name: 'Pool Toys', link:'', type:'sub', id:'0707'},
+            {name: 'Swim Accessories', link:'', type:'sub', id:'0708'}
         ]
 
     },
@@ -118,14 +126,21 @@ export const allCategories = [
         name:'Home', 
         link:'',
         type:'full',
+        id:'0800',
         sub:[
-            {name: 'Kitchen', link:'', type:'sub'},
-            {name: 'Bedroom', link:'', type:'sub'}, 
-            {name: 'Forgot at Home', links:'', type:'sub'},
-            {name: 'Entertainment', links:'', type:'sub'} //board games etc
+            {name: 'Kitchen', link:'', type:'sub', id:'0801'},
+            {name: 'Bedroom', link:'', type:'sub', id:'0802'}, 
+            {name: 'Forgot at Home', links:'', type:'sub', id:'0803'},
+            {name: 'Entertainment', links:'', type:'sub', id:'0804'} //board games etc
         ]
     
     },
+    {
+        name:'All Categories',
+        link:'',
+        type:'full',
+        id:'0000'
+    }
 ]
 
 //----------- Footer --------------------------------------------------------------------
