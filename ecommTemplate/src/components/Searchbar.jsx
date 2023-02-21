@@ -116,16 +116,17 @@ const CalendarBar = ({calNode, selectedDateRange, openCalendar, setOpenCalendar,
 
 
 const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelectedCategory, categories}) => {
+    //Need to add search to this and location
     const dropdown = () => (
         <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openCat ? '' : 'hidden'} shadow-md z-10`}>
             <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
                 Categories
             </h1>
-            <div className='grid grid-cols-4 text-tertiary'>
+            <div className='grid grid-cols-5 text-tertiary'>
                 {categories?.map((cat, i) => (
                     <div key={i} className='last:hidden'>
                         <h3 
-                            className='font-bold text-[18px] p-2 cursor-pointer hover:underline'
+                            className='font-bold text-[18px] px-2 cursor-pointer hover:underline'
                             onClick={()=> {
                                 setSelectedCategory(cat); setOpenCat(false)
                             }}
@@ -136,7 +137,7 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
                             {cat.sub?.map((subCat, i) => (
                                 <li 
                                     key={i}
-                                    className='pl-4 cursor-pointer hover:underline'
+                                    className='pl-4 cursor-pointer hover:underline truncate'
                                     onClick={()=> {
                                         setSelectedCategory(subCat); setOpenCat(false)
                                     }}

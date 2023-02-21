@@ -1,13 +1,12 @@
-
-import {yeti45} from '../../assets/images/products'
+import { yeti45 }from '../../assets/images/products/'
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import AddIcon from '@mui/icons-material/Add';
 
 
-const CaroProdCard = (props) => {
+const ProductCard = (props) => {
   return (
-    <div className='w-[150px] h-[260px] sm:h-[470px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col mr-4'>
+    <div className='w-[150px] h-[260px] sm:h-[470px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col m-2'>
       <img src={yeti45} className='bg-white object-scale-down rounded-md hover:cursor-pointer'/>
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
@@ -48,4 +47,4 @@ const CaroProdCard = (props) => {
   )
 }
 
-export default CaroProdCard
+export default ProductCard

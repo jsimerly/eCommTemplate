@@ -111,12 +111,10 @@ export const allCategories = [
         id:'0700',
         sub: [
             {name: 'Surfboards', link:'', type:'sub', id:'0701'},
-            {name: 'Paddleboards', link:'', type:'sub', id:'0709' },
-            {name: 'Skim & Boogieboards', link:'', type:'sub', id:'0702'},
-            {name: 'Snorkeling', type:'sub', id:'0703'},
+            {name: 'Other Boards', link:'', type:'sub', id:'0709' },
+            {name: 'Ocean', type:'sub', id:'0703'},
             {name: 'Kayaks & Boats', link:'', type:'sub', id:'0704'},
-            {name: 'Inflatables', link:'', type:'sub', id:'0705'},
-            {name: 'Mats & Lounge', link:'', type:'sub', id:'0706'},
+            {name: 'Inflatables & Mats', link:'', type:'sub', id:'0705'},
             {name: 'Pool Toys', link:'', type:'sub', id:'0707'},
             {name: 'Swim Accessories', link:'', type:'sub', id:'0708'}
         ]
@@ -134,6 +132,18 @@ export const allCategories = [
             {name: 'Entertainment', links:'', type:'sub', id:'0804'} //board games etc
         ]
     
+    },
+    {
+        name: 'Pets',
+        link:'',
+        type:'full',
+        id:'0900',
+        sub:[
+            {name: 'Dogs', link:'', type:'sub', id:'0901'},
+            {name: 'Cats', link:'', type:'sub', id:'0902'}, 
+            {name: 'Toys', links:'', type:'sub', id:'0903'},
+            {name: 'Cages & Pens', links:'', type:'sub', id:'0904'}
+        ]
     },
     {
         name:'All Categories',

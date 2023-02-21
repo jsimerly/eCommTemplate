@@ -1,3 +1,5 @@
+import { sandcastleBanner } from "../assets/images/shoppingBanners"
+
 const shoppingPageData = {
         '0100' : {
             title:'Chairs',
@@ -52,6 +54,7 @@ const shoppingPageData = {
         },
         '0300' :{
             name:'On the Beach',
+            parent:null,
             desc:''
         }
         ,
@@ -62,7 +65,17 @@ const shoppingPageData = {
         ,
         '0302' :{
             name:'Coolers',
-            desc:'',
+            parent: {name:'On the Beach', id:'0300'},
+            desc:"Looking to make the most of your vacation? Don't let warm weather and outdoor activities get in the way of enjoying cool beverages and snacks. We offer only high-quality coolers that are perfect for keeping everything cold and fresh.",
+            img: sandcastleBanner,
+            relatedCategories:[
+                {name: 'Wagons',id: '0301'},
+                {name: 'Fishing',id: '0406'},
+                {name: 'Luxury Chairs',id: '0101'},
+                {name: 'Speakers',id: '0304'},
+                {name: 'Drinking',id: '0407'},
+                {name: 'Water & Pool',id: '0700'},
+            ],
             checkboxOptions:[
                 {
                     name: 'Category',

@@ -24,18 +24,16 @@ const CheckBoxFilterCat = ({category, handleCheckboxClicked}) => {
                     const name = tag[0]
                     const checked = tag[1]
                     return (
-                        <div className="flex ml-2" key={i}>
+                        <div 
+                            className="flex ml-2 cursor-pointer" 
+                            key={i}
+                            onClick={() => handleCheckboxClicked(category.name, name, checked)}
+                        >
                             <div>
                                 {checked ? 
-                                    <CheckBoxIcon
-                                        className="cursor-pointer"
-                                        onClick={() => handleCheckboxClicked(category.name, name, checked)}
-                                    />
+                                    <CheckBoxIcon/>
                                     :
-                                    <CheckBoxOutlineBlankIcon
-                                        className="cursor-pointer"
-                                        onClick={() => handleCheckboxClicked(category.name, name, checked)}
-                                    />
+                                    <CheckBoxOutlineBlankIcon/>
                                 }
                             </div>
                             <p className="ml-2">
