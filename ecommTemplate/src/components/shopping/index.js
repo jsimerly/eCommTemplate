@@ -6,5 +6,6 @@ import ItemSuggestion from "./ItemSuggestion";
 import RelatedCategories from "./RelatedCategories";
 import SmallCard from "./SmallCard";
 import ShoppingMain from "./ShoppingMain";
+import SmallCarousel from "./SmallCarousel";
 
-export {Filter, Items, ProductCard, BrowsingHistory, ItemSuggestion, RelatedCategories, SmallCard, ShoppingMain}
+export {Filter, Items, ProductCard, BrowsingHistory, ItemSuggestion, RelatedCategories, SmallCard, ShoppingMain, SmallCarousel}

@@ -2,7 +2,7 @@
 import styles from '../../styles'
 
 import { shoppingPageData } from '../../constants/shopping';
-import { ShoppingMain }  from '../shopping';
+import { BrowsingHistory, ItemSuggestion, ShoppingMain }  from '../shopping';
 
 import ShoppingHero from '../shopping/ShoppingHero';
 
@@ -25,6 +25,10 @@ const StandardShop = () => {
                 relatedCategories={shoppingData['relatedCategories']}
               />
             </div>
+          </div>
+          <div>
+              <ItemSuggestion/>
+              <BrowsingHistory/>
           </div>
         </div>
       </div>

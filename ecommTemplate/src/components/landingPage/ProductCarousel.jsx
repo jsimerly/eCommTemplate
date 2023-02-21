@@ -2,7 +2,6 @@ import CaroProdCard from './CaroProdCard';
 import { useState, useEffect } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { max, set } from 'date-fns';
 
 const list = ['Tundra - 45 Hard Cooler', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2','3', '4', '5', '6', '7', '8', '9',]
 
@@ -17,7 +16,7 @@ function windowToScrollN(){
   }
 }
 
-const ProductCarousel = (props) => {
+const ProductCarousel = ({title}) => {
 
   const [translateDistance, setTranslateDistance] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -84,7 +83,7 @@ const ProductCarousel = (props) => {
   return (
     <div className='flex flex-col bg-white sm:rounded-md p-2 sm:p-6'>
       <div className='flex justify-center sm:justify-start items-center relative text-[36px] text-center font-bold text-primary p-2 sm:pb-6 sm:mx-6'>
-        {props.title}
+        {title}
       </div>
       
       <div 
@@ -118,8 +117,6 @@ const ProductCarousel = (props) => {
         </button>
       </div>
     </div>
-
-
   )
 }
 

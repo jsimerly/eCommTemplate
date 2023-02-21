@@ -65,7 +65,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   return (
     <div>
     <div className='flex flex-row justify-between min-h-[80px]'>
-              <div className='flex space-x-10 items-center'>
+              <div className='flex space-x-10 items-center w-1/4'>
                 <div className='flex space-x-2'>
                   <button
                     className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline group min-h-[42px]'
@@ -96,7 +96,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
 
                 </div>
               </div>
-              <div className='flex justify-center items-center'>
+              <div className='flex justify-end items-center w-1/4'>
                 <div
                 
                 ref={sortNode}
