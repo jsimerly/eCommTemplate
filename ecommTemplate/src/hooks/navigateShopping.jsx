@@ -12,9 +12,8 @@ const navigateShopping = () => {
     function handleNav(){
         navigate(`/shopping${params}`)
     }
+    
     return handleNav
 }   
 
 export default navigateShopping
-
-// 

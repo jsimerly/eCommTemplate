@@ -48,7 +48,7 @@ function App() {
     sessionStorage.setItem('destination', selectedDestination);
     sessionStorage.setItem('date_range', JSON.stringify(selectedDateRange));
     sessionStorage.setItem('category', JSON.stringify(selectedCategory) )
-  }, [selectedDateRange, selectedDestination], selectedCategory)  
+  }, [selectedDateRange, selectedDestination, selectedCategory])  
 
   return (
     <Router>

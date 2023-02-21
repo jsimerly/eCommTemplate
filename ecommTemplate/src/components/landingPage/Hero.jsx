@@ -3,7 +3,7 @@ import { heroMain } from '../../constants'
 import navigateShopping from '../../hooks/navigateShopping'
 
 const HeroV2 = () => {  
-  let shop = navigateShopping()
+  let handleClick = navigateShopping()
 
   return (
     <div className='bg-primary w-full text-white flex flex-col md:flex-row'>
@@ -15,7 +15,7 @@ const HeroV2 = () => {
           </p>
           <button 
             className='bg-white text-primary p-3 rounded-md  font-bold w-[180px] text-[18px] hover:underline'
-            onClick={shop}  
+            onClick={handleClick}  
           >
             {heroMain.cta}
           </button>

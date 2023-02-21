@@ -3,6 +3,7 @@ import { DateRange } from 'react-date-range';
 
 import useClickOutside from '../hooks/useClickOutside';
 import { ShoppingContext } from '../context';
+import navigateShopping from '../hooks/navigateShopping';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -77,8 +78,6 @@ const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, s
     )
 }
  
-
-
 const CalendarBar = ({calNode, selectedDateRange, openCalendar, setOpenCalendar, handleDateSelection}) => {
 
     const handleRangeChange = (focusedRange) => {
@@ -189,11 +188,7 @@ const Searchbar = (props) => {
         setSelectedDateRage(selection)
     }
 
-    function handleSearch(){
-        console.log(selectedDestination)
-        console.log(selectedDateRange)
-        console.log(selectedCategory)
-    }
+    let handleSearch = navigateShopping()
 
     const [openDest, setOpenDest] = useState(false)
     const [openCalendar, setOpenCalendar] = useState(false);
