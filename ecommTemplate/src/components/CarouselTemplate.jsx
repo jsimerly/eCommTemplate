@@ -1,27 +1,18 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect,} from "react"
 import { SmallCard } from "../components/shopping/"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-function windowToScrollN(){
 
-    if (window.innerWidth < 680) {
-      return 1
-    } else if (window.innerWidth < 1200) {
-      return 2
-    } else {
-      return 3
-    }
-  }
   
-const CarouselTemplate = ({Card, cardData, header}) => {
-
+const CarouselTemplate = ({Card, cardData, cardWidth, header, scrollNFunc }) => {
     const [translateDistance, setTranslateDistance] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
     const [startX, setStartX] = useState(null)
-    const [nCardsPerView, setNCardsPerView] = useState(windowToScrollN)
-    const cardWidth = 316
+    const [nCardsPerView, setNCardsPerView] = useState(scrollNFunc)
     const maxLength = (cardData.length - nCardsPerView) * cardWidth
+
+
   
     function handleTranslate(newPosition){
       if (newPosition > 0) {
@@ -89,7 +80,7 @@ const CarouselTemplate = ({Card, cardData, header}) => {
           className='overflow-hidden flex flex-row relative p-4 bg-white sm:rounded-md'
         >
           <button 
-          className={`text-white bg-primary rounded-md absolute top-1/2 z-10 {translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
+          className={`text-white bg-primary rounded-md absolute top-1/2 z-10 ${translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
           onClick={()=> leftButtonClick()}
           >
             <ArrowBackIosNewIcon/>
@@ -101,6 +92,7 @@ const CarouselTemplate = ({Card, cardData, header}) => {
             {cardData.map((data, index) => {
               return (
                 <Card
+                    key={index}
                     {...data}
                 />
               )

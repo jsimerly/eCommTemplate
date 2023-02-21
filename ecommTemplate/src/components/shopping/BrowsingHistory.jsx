@@ -9,6 +9,18 @@ const data = [
   {text: 'Test4', img: yeti45, price:'$33.33'},
   {text: 'Test5', img: yeti45, price:'$33.33'},
   {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test1', img: yeti45, price:'$33.33'},
+  {text: 'Test2', img: yeti45, price:'$33.33'},
+  {text: 'Test3', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test1', img: yeti45, price:'$33.33'},
+  {text: 'Test2', img: yeti45, price:'$33.33'},
+  {text: 'Test3', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test6', img: yeti45, price:'$33.33'},
 ]
 
 const header = (
@@ -17,12 +29,24 @@ const header = (
 </div>
 )
 
+function scrollN(){
+  if (window.innerWidth < 680) {
+    return 1
+  } else if (window.innerWidth < 1200) {
+    return 2
+  } else {
+    return 3
+  }
+}
+
 const BrowsingHistory = () => {
   return (
     <CarouselTemplate
       Card={SmallCard}
       cardData={data}
+      cardWidth={164}
       header={header}
+      scrollNFunc={scrollN}
     />
   )
 }

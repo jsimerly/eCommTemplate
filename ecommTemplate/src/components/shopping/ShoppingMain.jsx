@@ -91,7 +91,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
                 </h4>
                 <div className='flex text-[18px] space-x-8'>
                   {relatedCategories.map((cat, i) => (
-                    <p className='hover:underline cursor-pointer '>{cat.name}</p>
+                    <p className='hover:underline cursor-pointer ' key={i}>{cat.name}</p>
                   ))}
 
                 </div>

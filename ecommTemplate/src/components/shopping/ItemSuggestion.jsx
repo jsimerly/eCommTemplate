@@ -9,6 +9,12 @@ const suggestions = [
   {text: 'Test4', img: yeti45, price:'$33.33'},
   {text: 'Test5', img: yeti45, price:'$33.33'},
   {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test6', img: yeti45, price:'$33.33'},
 ]
 
 
@@ -18,12 +24,25 @@ const header = (
 </div>
 )
 
+function scrollN(){
+  if (window.innerWidth < 680) {
+    return 1
+  } else if (window.innerWidth < 1200) {
+    return 2
+  } else {
+    return 3
+  }
+}
+
+
 const ItemSuggestion = () => {
   return (
     <CarouselTemplate
       Card={SmallCard}
       cardData={suggestions}
+      cardWidth={164}
       header={header}
+      scrollNFunc={scrollN}
     />
   )
 }
