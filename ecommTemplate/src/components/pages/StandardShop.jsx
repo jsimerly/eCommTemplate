@@ -1,4 +1,4 @@
-import { Children, useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import { useState } from 'react'
 import styles from '../../styles'
 
 import TuneIcon from '@mui/icons-material/Tune';
@@ -11,7 +11,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import { shoppingPageData } from '../../constants/shopping';
 
 
-const Filter = ({closeFunc, checkFilterOptions, setCheckFilterOptions}) => {
+const Filter = ({closeFunc, checkFilterOptions, setCheckFilterOptions, checkForFilterApplied}) => {
   return (
     <div 
       className='bg-white mt-1 rounded-md p-2 w-[300px] shadow-md filter-parent'
@@ -28,35 +28,60 @@ const Filter = ({closeFunc, checkFilterOptions, setCheckFilterOptions}) => {
       <CheckboxFilter
         setCheckFilterOptions={setCheckFilterOptions}
         checkFilterOptions={checkFilterOptions}
+        checkForFilterApplied={checkForFilterApplied}
       />
     </div>
   )
 };
 
 const StandardShop = () => {
+  //filter related
+  const checkboxOptions = shoppingPageData['0302']['checkboxOptions']
+  const checkboxOptions_deepCopy = JSON.parse(JSON.stringify(checkboxOptions))
+  const deepCopy2 = JSON.parse(JSON.stringify(checkboxOptions_deepCopy)) //clean up the memory management
+
+  const [checkFilterOptions, setCheckFilterOptions] = useState(checkboxOptions_deepCopy)
+  const [filterOpen, setFilterOpen] = useState(true)
+  const [filterApplied, setFilterApplied] = useState(false)
+
+  const areListsEqual = (deepCopy, stateCopy) =>{
+
+    for (let i=0; i < deepCopy.length; i++){
+      const dict1 = deepCopy[i].tags
+      const dict2 = stateCopy[i].tags
+
+      for (const key in dict1){
+        if (dict1[key] != dict2[key]){
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  const checkForFilterApplied = () => {
+    const bool = areListsEqual(deepCopy2, checkFilterOptions)
+    setFilterApplied(!bool)
+  }
+
+  const handleClearClick = () => {
+    setCheckFilterOptions([...checkboxOptions_deepCopy])
+    setFilterApplied(false)
+  }
+
+  //sort related
   const sortByOptions = [
     'Featured',
     'Price: Low to High',
     'Price: High to Low',
     'Most Popular',
   ]
-  const checkboxOptions = shoppingPageData['0302']['checkboxOptions']
-  const clearData = JSON.parse(JSON.stringify(checkboxOptions))
-  const [checkFilterOptions, setCheckFilterOptions] = useState(checkboxOptions)
-  const [filterOpen, setFilterOpen] = useState(true)
   const [sortOpen, setSortOpen] = useState(false)
   const [sortBy, setSortBy] = useState('Featured')
-
-
 
   let sortNode = useClickOutside(() => {
     setSortOpen(false);
   })
-
-  const handleClearClick = () => {
-    console.log(clearData)
-    setCheckFilterOptions(clearData)
-  }
 
   return (
     <div 
@@ -77,10 +102,12 @@ const StandardShop = () => {
                 <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
                 Filter
               </button>
-              <button className='text-white bg-primary rounded-md h-full p-2 shadow-md group'>
+              <button 
+                className={`${filterApplied ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group`}
+                onClick={handleClearClick}
+              >
                 <DeleteForeverIcon 
                   className='group-hover:scale-125'
-                  onClick={handleClearClick}
                 />
               </button>
             </div>
@@ -117,6 +144,7 @@ const StandardShop = () => {
                 closeFunc={setFilterOpen}
                 checkFilterOptions={checkFilterOptions}
                 setCheckFilterOptions={setCheckFilterOptions}
+                checkForFilterApplied={checkForFilterApplied}
               />
             </div>
             <div className='flex flex-1 w-full'>
