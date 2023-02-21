@@ -63,36 +63,41 @@ const shoppingPageData = {
         '0302' :{
             name:'Coolers',
             desc:'',
-            filterOptions:[
+            checkboxOptions:[
                 {
                     name: 'Category',
-                    type: 'checkbox',
-                    tags: ['Hardshell', 'Softshell', 'Floating', 'Wheeled'],
-                    defaultChecked: true
-                },
+                    tags: {
+                        'Hardshell' : true,
+                        'Softshell': true,
+                        'Floating' : true,
+                        'Wheeled' : true,
+                    },
+                },  
                 {
                     name: 'Brand',
-                    type: 'checkbox',
-                    tags: ['Yeti', 'RTIC', 'Igloo'],
-                    defaultChecked: true
+                    tags: {
+                        'Yeti' : true,
+                        'RTIC' : true,
+                        'Igloo' : true,
+                    }
                 },
                 {
                     name: 'Capacity',
-                    type: 'checkbox',
-                    tags:['0-20 Cans', '20-30 Cans', '31-40 Cans', '40-50 Cans', '50+ Cans'],
-                    defaultChecked: true
+                    tags:{
+                        '0-20 Cans' :  true,
+                        '20-30 Cans':  true,
+                        '31-40 Cans':  true,
+                        '40-50 Cans':  true,
+                        '50+ Cans' : true
+                    }
                 },
                 {
                     name: 'Deals',
-                    type: 'checkbox',
-                    tags: ['On Sale', 'Standard'],
-                    defaultChecked: true
+                    tags: {
+                        'Standard' : true,
+                        'On Sale' : true
+                    }
                 },
-                {
-                    name: 'Rating',
-                    type: 'Scale',
-                }
-
             ]
         }
         ,

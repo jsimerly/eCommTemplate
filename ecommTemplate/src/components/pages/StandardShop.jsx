@@ -1,4 +1,4 @@
-import { Children, useState } from 'react'
+import { Children, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import styles from '../../styles'
 
 import TuneIcon from '@mui/icons-material/Tune';
@@ -11,34 +11,27 @@ import useClickOutside from '../../hooks/useClickOutside';
 import { shoppingPageData } from '../../constants/shopping';
 
 
-const Filter = ({closeFunc, options}) => {
-
+const Filter = ({closeFunc, checkFilterOptions, setCheckFilterOptions}) => {
   return (
-    <div className='bg-white mt-1 rounded-md p-2 w-[300px] shadow-md'>
+    <div 
+      className='bg-white mt-1 rounded-md p-2 w-[300px] shadow-md filter-parent'
+    >
       <div className='flex justify-between'>
         <p className='text-[20px] mb-2'>
           Filter Options
         </p>
         <CloseIcon
           onClick={() => closeFunc(false)}
-          className='hover:scale-125 cursor-pointer'
+          className='hover:scale-105 cursor-pointer'
         />
       </div>
-      {options.map((option, i) => {
-
-        if (option.type === 'checkbox') {
-          return (
-            <CheckboxFilter
-              key={i}
-              category={option}
-            />
-          )
-        }
-
-      })}
+      <CheckboxFilter
+        setCheckFilterOptions={setCheckFilterOptions}
+        checkFilterOptions={checkFilterOptions}
+      />
     </div>
   )
-}
+};
 
 const StandardShop = () => {
   const sortByOptions = [
@@ -47,18 +40,27 @@ const StandardShop = () => {
     'Price: High to Low',
     'Most Popular',
   ]
-  const filterOptions = shoppingPageData['0302']['filterOptions']
-
+  const checkboxOptions = shoppingPageData['0302']['checkboxOptions']
+  const clearData = checkboxOptions.
+  const [checkFilterOptions, setCheckFilterOptions] = useState(checkboxOptions)
   const [filterOpen, setFilterOpen] = useState(true)
   const [sortOpen, setSortOpen] = useState(false)
   const [sortBy, setSortBy] = useState('Featured')
+
+
 
   let sortNode = useClickOutside(() => {
     setSortOpen(false);
   })
 
+  const handleClearClick = () => {
+    console.log(clearData)
+    setCheckFilterOptions(clearData)
+  }
+
   return (
-    <div className='flex justify-center items-start text-tertiary'>
+    <div 
+      className='flex justify-center items-start text-tertiary'>
       <div className={`${styles.boxWidth}`}>
         <div>
           <h1>
@@ -76,10 +78,11 @@ const StandardShop = () => {
                 Filter
               </button>
               <button className='text-white bg-primary rounded-md h-full p-2 shadow-md group'>
-                <DeleteForeverIcon className='group-hover:scale-125'/>
+                <DeleteForeverIcon 
+                  className='group-hover:scale-125'
+                  onClick={handleClearClick}
+                />
               </button>
-
-
             </div>
             <div
               ref={sortNode}
@@ -112,7 +115,8 @@ const StandardShop = () => {
             <div className={`${filterOpen ? '' : 'hidden'}`}>
               <Filter
                 closeFunc={setFilterOpen}
-                options={filterOptions}
+                checkFilterOptions={checkFilterOptions}
+                setCheckFilterOptions={setCheckFilterOptions}
               />
             </div>
             <div className='flex flex-1 w-full'>
