@@ -1,11 +1,20 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { ShoppingContext } from '../context';
 
-const navigateShopping = ({where, startDate, endDate, category}) => {
+const navigateShopping = () => {
+    const {selectedDateRange, selectedDestination, selectedCategory} = useContext(ShoppingContext)
     const navigate = useNavigate();
-    const params = {where: where, startDate: startDate, endDate: endDate, category: category}
 
-    navigate('/shopping/:where/:startDate/:endDate/:category')
+    let params = `?destination=${selectedDestination}&startDate=${selectedDateRange.startDate}&endDate=${selectedDateRange.endDate}&categoryId=${selectedCategory.name}&dateChange=${selectedDateRange.first}`
+
+    function handleNav(){
+        navigate(`/shopping${params}`)
+    }
+    return handleNav
 }   
 
 export default navigateShopping
+
+// 

@@ -9,26 +9,46 @@ import { dests } from './api/temp'
 import { allCategories } from './constants';
 import { ShoppingContext } from './context';
 
-function App() {
-  const [selectedDestination, setSelectedDestination] = useState('')
-  const [selectedDateRange, setSelectedDateRage] = useState(    
+function getDateRange(){
+  const sessionDateRange = sessionStorage.getItem('date_range')
+  if (sessionDateRange){
+    let dateRange = JSON.parse(sessionDateRange)
+    dateRange['startDate'] = new Date(dateRange['startDate'])
+    dateRange['endDate'] = new Date(dateRange['endDate'])
+    return dateRange
+
+    
+  }
+  return (
     {
       startDate: new Date(),
       endDate: new Date(),
       key: 'selection',
       first: false
-    })
-  const [selectedCategory, setSelectedCategory] = useState(
-    {
-      name: '',
-      link: '',
-    })
+    }
+  )
+}
+
+function getDestination(){
+  const sessionDest = sessionStorage.getItem('destination')
+  return sessionDest ? sessionDest : ''
+}
+
+function getCategory(){
+  const sessionCat = sessionStorage.getItem('category')
+    return sessionCat ? JSON.parse(sessionCat) : {name: '', link:''}
+  }
+
+function App() {
+  const [selectedDestination, setSelectedDestination] = useState(getDestination())
+  const [selectedDateRange, setSelectedDateRage] = useState(getDateRange())
+  const [selectedCategory, setSelectedCategory] = useState(getCategory())
 
   useEffect(() => {
-    localStorage.setItem('destination', selectedDestination);
-    localStorage.setItem('date_range', JSON.stringify(selectedDateRange));
-  }, [selectedDateRange, selectedDestination])
-  
+    sessionStorage.setItem('destination', selectedDestination);
+    sessionStorage.setItem('date_range', JSON.stringify(selectedDateRange));
+    sessionStorage.setItem('category', JSON.stringify(selectedCategory) )
+  }, [selectedDateRange, selectedDestination], selectedCategory)  
 
   return (
     <Router>
@@ -49,7 +69,7 @@ function App() {
               element={
               <LandingPage/>
               }/>
-            <Route path='/shopping/:where/:startDate/:endDate/:category' element={<StandardShop/>}/>*
+            <Route path='/shopping/' element={<StandardShop/>}/>*
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>
