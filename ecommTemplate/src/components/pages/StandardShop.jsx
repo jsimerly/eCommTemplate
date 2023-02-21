@@ -41,7 +41,7 @@ const StandardShop = () => {
     'Most Popular',
   ]
   const checkboxOptions = shoppingPageData['0302']['checkboxOptions']
-  const clearData = checkboxOptions.
+  const clearData = JSON.parse(JSON.stringify(checkboxOptions))
   const [checkFilterOptions, setCheckFilterOptions] = useState(checkboxOptions)
   const [filterOpen, setFilterOpen] = useState(true)
   const [sortOpen, setSortOpen] = useState(false)
