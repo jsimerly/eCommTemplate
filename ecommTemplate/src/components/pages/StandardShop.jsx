@@ -41,7 +41,7 @@ const StandardShop = () => {
   const deepCopy2 = JSON.parse(JSON.stringify(checkboxOptions_deepCopy)) //clean up the memory management
 
   const [checkFilterOptions, setCheckFilterOptions] = useState(checkboxOptions_deepCopy)
-  const [filterOpen, setFilterOpen] = useState(true)
+  const [filterOpen, setFilterOpen] = useState(false)
   const [filterApplied, setFilterApplied] = useState(false)
 
   const areListsEqual = (deepCopy, stateCopy) =>{
