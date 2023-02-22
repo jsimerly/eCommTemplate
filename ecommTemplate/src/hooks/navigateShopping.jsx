@@ -7,7 +7,7 @@ const navigateShopping = () => {
     const {selectedDateRange, selectedDestination, selectedCategory} = useContext(ShoppingContext)
     const navigate = useNavigate();
 
-    let params = `?destination=${selectedDestination}&startDate=${selectedDateRange.startDate}&endDate=${selectedDateRange.endDate}&categoryId=${selectedCategory.name}&dateChange=${selectedDateRange.first}`
+    let params = `?destination=${selectedDestination}&startDate=${selectedDateRange.startDate}&endDate=${selectedDateRange.endDate}&categoryId=${selectedCategory.id}&dateChange=${selectedDateRange.first}`
 
     function handleNav(){
         navigate(`/shopping${params}`)

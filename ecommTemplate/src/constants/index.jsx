@@ -55,9 +55,9 @@ export const allCategories = [
             {name:'Wagons', link:'', type:'sub', id:'0301',},
             {name:'Coolers', link:'', type:'sub', id:'0302'},
             {name:'Beach & Dry Bags', link:'', type:'sub', id:'0303'},
-            {name:'Speakers', link:'', type:'sub', id:'0304'}, 
             {name:'Mats', link:'', type:'sub', id:'0305'},
-            {name:'Shovels & Buckets', type:'sub', id:'0306'}
+            {name:'Shovels & Buckets', type:'sub', id:'0306'},
+            {name:'Tables', id:'0307'}
         ]
     },
     {
@@ -84,9 +84,8 @@ export const allCategories = [
         sub:[
             {name: 'Infant', links:'', type:'sub', id:'0501'},
             {name: 'Toddlers', links:'', type:'sub', id:'0502'},
-            {name: 'Shelter', links:'', type:'sub', id:'0503'},
             {name: 'Stroller & Carriers ', type:'sub', id:'0504'},
-            {name: 'Changing Station', links:'', type:'sub', id:'0505'},
+            {name: 'Changing Stations', links:'', type:'sub', id:'0505'},
         ]
     
     },
@@ -98,8 +97,7 @@ export const allCategories = [
         sub: [
             {name: 'Speakers', link:'', type:'sub', id:'0601'},
             {name: 'Cameras', link:'', type:'sub', id:'0602'},
-            {name: 'Fans', link:'', type:'sub', id:'0603'},
-            {name: 'Metal Detectors', links:'', type:'sub', id:'0604'},
+            {name: 'Hobby', links:'', type:'sub', id:'0604'},
         ]
 
     },
@@ -111,10 +109,9 @@ export const allCategories = [
         sub: [
             {name: 'Surfboards', link:'', type:'sub', id:'0701'},
             {name: 'Other Boards', link:'', type:'sub', id:'0709' },
-            {name: 'Ocean', type:'sub', id:'0703'},
             {name: 'Kayaks & Boats', link:'', type:'sub', id:'0704'},
             {name: 'Inflatables & Mats', link:'', type:'sub', id:'0705'},
-            {name: 'Pool Toys', link:'', type:'sub', id:'0707'},
+            {name: 'Water Toys', link:'', type:'sub', id:'0707'},
             {name: 'Swim Accessories', link:'', type:'sub', id:'0708'}
         ]
 
@@ -128,22 +125,12 @@ export const allCategories = [
             {name: 'Kitchen', link:'', type:'sub', id:'0801'},
             {name: 'Bedroom', link:'', type:'sub', id:'0802'}, 
             {name: 'Forgot at Home', links:'', type:'sub', id:'0803'},
-            {name: 'Entertainment', links:'', type:'sub', id:'0804'} //board games etc
+            {name: 'Entertainment', links:'', type:'sub', id:'0804'}, //board games etc
+            {name: 'Pets', link:'', type:'sub', id:'0805'},
         ]
     
     },
-    {
-        name: 'Pets',
-        link:'',
-        type:'full',
-        id:'0900',
-        sub:[
-            {name: 'Dogs', link:'', type:'sub', id:'0901'},
-            {name: 'Cats', link:'', type:'sub', id:'0902'}, 
-            {name: 'Toys', links:'', type:'sub', id:'0903'},
-            {name: 'Cages & Pens', links:'', type:'sub', id:'0904'}
-        ]
-    },
+
     {
         name:'All Categories',
         link:'',

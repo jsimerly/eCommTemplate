@@ -36,7 +36,7 @@ function getDestination(){
 
 function getCategory(){
   const sessionCat = sessionStorage.getItem('category')
-    return sessionCat ? JSON.parse(sessionCat) : {name: '', link:''}
+    return sessionCat ? JSON.parse(sessionCat) : {name: '', id:'0000'}
   }
 
 function App() {

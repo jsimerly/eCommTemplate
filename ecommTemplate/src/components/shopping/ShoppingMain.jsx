@@ -65,7 +65,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   return (
     <div>
     <div className='flex flex-row justify-between min-h-[80px]'>
-              <div className='flex space-x-10 items-center w-1/4'>
+              <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
                   <button
                     className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline group min-h-[42px]'
@@ -89,14 +89,14 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
                 <h4 className='text-[14px] font-semibold'>
                   Related Categories
                 </h4>
-                <div className='flex text-[18px] space-x-8'>
+                <div className='flex text-[18px] space-x-8 items-center'>
                   {relatedCategories.map((cat, i) => (
-                    <p className='hover:underline cursor-pointer ' key={i}>{cat.name}</p>
+                    <p className='hover:underline cursor-pointer text-center' key={i}>{cat.name}</p>
                   ))}
 
                 </div>
               </div>
-              <div className='flex justify-end items-center w-1/4'>
+              <div className='flex justify-end items-center w-1/5'>
                 <div
                 
                 ref={sortNode}
