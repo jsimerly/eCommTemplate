@@ -1,10 +1,7 @@
 import { useState, useEffect,} from "react"
-import { SmallCard } from "../components/shopping/"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-
-  
 const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
     const [translateDistance, setTranslateDistance] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
@@ -17,13 +14,9 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
   
     function handleTranslate(newPosition){
       if (newPosition > 0) {
-        console.log(newPosition)
-        console.log(maxLength)
         if (newPosition < maxLength){
-            console.log('1')
           setTranslateDistance(newPosition)
         } else {
-            console.log('2')
           setTranslateDistance(maxLength)
         }
       } else {

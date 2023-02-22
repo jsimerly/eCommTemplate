@@ -5,14 +5,14 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import AddIcon from '@mui/icons-material/Add';
 
 
-const CaroProdCard = (props) => {
+const CaroProdCard = ({text, img, price}) => {
   return (
     <div className='w-[150px] h-[260px] sm:h-[470px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col mr-4'>
       <img src={yeti45} className='bg-white object-scale-down rounded-md hover:cursor-pointer'/>
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'>
-            {props.header}
+            {text}
           </h3>
           <h4 className='text-[12px] sm:text-[18px] tracking-wide'>
             Yeti
@@ -33,7 +33,7 @@ const CaroProdCard = (props) => {
         <div className='flex flex-col flex-1 w-full justify-between items-start sm:my-4'>
           <div className='flex justify-between w-full items-center mt-3 pb-5'>
             <div className='font-semibold sm:text-[26px]'>
-                    $16.98
+                    {price}
               </div>
               <button className='text-white p-3 bg-primary rounded justify-center items-center hover:underline hidden sm:flex'>
                 Add to Cart

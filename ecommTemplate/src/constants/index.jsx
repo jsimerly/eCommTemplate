@@ -70,9 +70,9 @@ export const allCategories = [
             {name:'Games' , link:'', type:'sub', id:'0402'},
             {name:'Sandcastles' , link:'', type:'sub', id:'0403'},
             {name:'Bikes' , link:'', type:'sub', id:'0404'},
-            {name:'Bonefire', link:'', type:'sub', id:'0405'},
+            {name:'Bonefires', link:'', type:'sub', id:'0405'},
             {name:'Fishing', link:'', type:'sub', id:'0406'},
-            {name:'Drinking' , link:'', type:'sub', id:'0407'},
+            {name:'Party' , link:'', type:'sub', id:'0407'},
         ]
     
     },
@@ -100,7 +100,6 @@ export const allCategories = [
             {name: 'Cameras', link:'', type:'sub', id:'0602'},
             {name: 'Fans', link:'', type:'sub', id:'0603'},
             {name: 'Metal Detectors', links:'', type:'sub', id:'0604'},
-            {name: 'Water Proof Headphones', links:'', type:'sub', id:'0605'}
         ]
 
     },
