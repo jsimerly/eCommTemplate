@@ -20,11 +20,11 @@ const data = [
   {text: 'Test3', img: yeti45, price:'$33.33'},
   {text: 'Test4', img: yeti45, price:'$33.33'},
   {text: 'Test5', img: yeti45, price:'$33.33'},
-  {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test610', img: yeti45, price:'$33.33'},
 ]
 
 const header = (
-  <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2'>
+  <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8'>
   Your Browsing History
 </div>
 )
@@ -44,7 +44,7 @@ const BrowsingHistory = () => {
     <CarouselTemplate
       Card={SmallCard}
       cardData={data}
-      cardWidth={164}
+      cardW={166}
       header={header}
       scrollNFunc={scrollN}
     />

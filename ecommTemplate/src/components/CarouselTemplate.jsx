@@ -5,20 +5,25 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
   
-const CarouselTemplate = ({Card, cardData, cardWidth, header, scrollNFunc }) => {
+const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
     const [translateDistance, setTranslateDistance] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
     const [startX, setStartX] = useState(null)
     const [nCardsPerView, setNCardsPerView] = useState(scrollNFunc)
-    const maxLength = (cardData.length - nCardsPerView) * cardWidth
+    const cardWidth = cardW + 20
+    const maxLength =  (cardData.length) * cardWidth - 1280
 
 
   
     function handleTranslate(newPosition){
       if (newPosition > 0) {
+        console.log(newPosition)
+        console.log(maxLength)
         if (newPosition < maxLength){
+            console.log('1')
           setTranslateDistance(newPosition)
         } else {
+            console.log('2')
           setTranslateDistance(maxLength)
         }
       } else {
@@ -61,7 +66,7 @@ const CarouselTemplate = ({Card, cardData, cardWidth, header, scrollNFunc }) => 
   
     useEffect(() => {
       let handleWindowResize = () => {
-        let n = windowToScrollN()
+        let n = scrollNFunc()
         setNCardsPerView(n)
       }
       window.addEventListener("resize", handleWindowResize);

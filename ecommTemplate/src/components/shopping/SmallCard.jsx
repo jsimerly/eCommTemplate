@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 const SmallCard = ({text, img, price}) => {
   return (
   
-    <div className="bg-tertiaryTone-100 m-2 p-2 flex flex-col ">
+    <div className="bg-tertiaryTone-100 m-1 p-2 flex flex-col ">
       <div className="w-[160px] h-[160px] mb-2 cursor-pointer">
         <img
           className="bg-white object-scale-down rounded-md"
