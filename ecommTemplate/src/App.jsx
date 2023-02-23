@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 
-import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import LandingPage from './components/pages/LandingPage'
 import StandardShop from './components/pages/StandardShop';
-import { dests } from './api/temp'
+import { allDests } from './api/temp'
 import { allCategories } from './constants';
 import { ShoppingContext } from './context';
 
@@ -56,20 +55,24 @@ function App() {
         <ShoppingContext.Provider value={
           {selectedDateRange, setSelectedDateRage, 
             selectedDestination, setSelectedDestination, 
-            selectedCategory, setSelectedCategory}}
+            selectedCategory, setSelectedCategory,
+            allDests, allCategories}}
         >
-          <Navbar 
-              dests={dests}
-              allCategories={allCategories}
-          />
-          <div className='h-[80px]'/>
           <Routes>
             <Route 
               exact path='/' 
               element={
-              <LandingPage/>
+              <LandingPage
+                immediateSearch={false}
+              />
               }/>
-            <Route path='/shopping/' element={<StandardShop/>}/>*
+            <Route 
+              path='/shopping/' 
+              element={
+              <StandardShop
+                immediateSearch={true}
+              />
+              }/>
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>

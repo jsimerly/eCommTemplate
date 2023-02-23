@@ -1,8 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
 
 import useClickOutside from '../hooks/useClickOutside';
-import { ShoppingContext } from '../context';
+import { SearchContext, ShoppingContext, } from '../context';
 import navigateShopping from '../hooks/navigateShopping';
 
 import 'react-date-range/dist/styles.css'; // main style file
@@ -13,7 +13,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-
 
 
 const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
@@ -36,6 +35,13 @@ const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeho
 }
 
 const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, setSelectedDestination}) => {
+
+    let handleSelect = (city) => {
+        setSelectedDestination(city);
+        setOpenDest(false);
+    }
+
+
     const dropdown = () => (
         <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'} shadow-md z-10`}>
             <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
@@ -52,7 +58,7 @@ const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, s
                                 <li
                                     key={i}
                                     className='hover:underline pl-4 cursor-pointer'
-                                    onClick={()=> {setSelectedDestination(city.city); setOpenDest(false)}}
+                                    onClick={() => handleSelect(city.city)}
                                 >
                                     {city.text}
                                 </li>
@@ -115,7 +121,13 @@ const CalendarBar = ({calNode, selectedDateRange, openCalendar, setOpenCalendar,
 }
 
 
-const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelectedCategory, categories}) => {
+const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelectedCategory, categories,}) => {
+
+    const handleSelect = (cat) => {
+        setSelectedCategory(cat);
+        setOpenCat(false);
+    }
+
     //Need to add search to this and location
     const dropdown = () => (
         <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openCat ? '' : 'hidden'} shadow-md z-10`}>
@@ -127,9 +139,7 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
                     <div key={i} className='last:hidden'>
                         <h3 
                             className='font-bold text-[18px] px-2 cursor-pointer hover:underline'
-                            onClick={()=> {
-                                setSelectedCategory(cat); setOpenCat(false)
-                            }}
+                            onClick={()=> {handleSelect(cat)}}
                         >
                             {cat.name}
                         </h3>
@@ -138,9 +148,7 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
                                 <li 
                                     key={i}
                                     className='pl-4 cursor-pointer hover:underline truncate'
-                                    onClick={()=> {
-                                        setSelectedCategory(subCat); setOpenCat(false)
-                                    }}
+                                    onClick={()=> handleSelect(subCat)}
                                 >
                                     {subCat.name}
                                 </li>
@@ -177,12 +185,26 @@ const CategoriesBar = ({catNode, selectedCategory, openCat, setOpenCat, setSelec
         />
     )
 }
-const Searchbar = (props) => {
+const Searchbar = ({immediateSearch}) => {
 
     const {selectedDateRange, setSelectedDateRage, 
         selectedDestination, setSelectedDestination,
         selectedCategory, setSelectedCategory,
+        allDests, allCategories
     } = useContext(ShoppingContext)
+    const [mounted, setMounted] = useState(false)
+    const useNavShopping = navigateShopping()
+
+    useEffect(() => {
+        if (mounted) {
+            if(immediateSearch){
+                useNavShopping()
+            }
+        } else {
+
+            setMounted(true)
+        }
+    }, [selectedDestination, selectedCategory, selectedDateRange])
 
     function handleDateSelection(ranges){
         const { selection } = ranges;
@@ -208,17 +230,17 @@ const Searchbar = (props) => {
         setOpenCat(false);
     })
 
-   
   return (
         <div 
         className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
         >
+
             <div className='w-1/4 h-[40px]'>
                 <DestBar
                     destNode={destNode}
                     openDest={openDest}
                     setOpenDest={setOpenDest}
-                    dests={props.dests}
+                    dests={allDests}
                     selectedDestination={selectedDestination}
                     setSelectedDestination={setSelectedDestination}
                 />
@@ -239,17 +261,22 @@ const Searchbar = (props) => {
                     openCat={openCat}
                     setOpenCat={setOpenCat}
                     setSelectedCategory={setSelectedCategory}
-                    categories={props.allCategories}               
+                    categories={allCategories}               
                 />
             </div>
-            <div className='flex justify-center itmes-center'>
-                <button 
-                    className='rounded-md bg-primary text-white flex flex-1 justify-center items-center h-[40px] w-[40px]'
-                    onClick={handleSearch}
-                >
-                    <SearchIcon className='scale-125 hover:scale-150'/>
-                </button>
-            </div>
+            {immediateSearch ? 
+                null
+                :
+                <div className='flex justify-center itmes-center'>
+                    <button 
+                        className='rounded-md bg-primary text-white flex flex-1 justify-center items-center h-[40px] w-[40px]'
+                        onClick={handleSearch}
+                    >
+                        <SearchIcon className='scale-125 hover:scale-150'/>
+                    </button>
+                </div>
+            }
+
         </div>
   )
 }

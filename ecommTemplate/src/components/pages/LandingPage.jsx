@@ -12,6 +12,7 @@ import {
     CaroProdCard,
 } from '../landingPage';
 import CarouselTemplate from "../CarouselTemplate"
+import Navbar from '../Navbar';
 
 const data =  [
     {text: 'Test1', img: yeti45, price:'$33.33'},
@@ -57,9 +58,13 @@ const Carousel = ({head, data}) => (
 />
 )
 
-const LandingPage = (props) => {
+const LandingPage = ({immediateSearch}) => {
   return (
     <div>
+        <Navbar
+            immediateSearch={immediateSearch}
+        />
+        <div className='h-[80px]'/>
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>

@@ -4,7 +4,7 @@ import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 
-const Navbar = (props) => {
+const Navbar = ({immediateSearch}) => {
 
   return (
     <nav className={`bg-white text-primary w-full flex p-4 justify-center items-center fixed z-20 h-[80px]`}>
@@ -22,12 +22,7 @@ const Navbar = (props) => {
                 </a>
                 <div className='flex-1 justify-start items-center w-full hidden sm:block'>
                     <Searchbar
-                        dests={props.dests}
-                        selectedDateRange={props.selectedDateRange}
-                        selectedDestination={props.selectedDestination}
-                        setSelectedDateRage={props.setSelectedDateRage}
-                        setSelectedDestination={props.setSelectedDestination}
-                        allCategories={props.allCategories}
+                        immediateSearch={immediateSearch}
                     />
                 </div>
                 <div className='flex justify-end items-center divide-x'>

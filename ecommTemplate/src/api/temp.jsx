@@ -1,6 +1,6 @@
 
 
-export const dests = [
+export const allDests = [
     {
         state: 'Florida',
         cities: [

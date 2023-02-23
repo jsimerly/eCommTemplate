@@ -1,7 +1,8 @@
-import React from 'react'
+import { createContext} from 'react'
 
-const ShoppingContext = React.createContext();
+const ShoppingContext = createContext();
+const SearchContext = createContext();
 
 export {
-    ShoppingContext,
+    ShoppingContext, SearchContext
 }
