@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -48,6 +48,9 @@ const CheckBoxFilterCat = ({category, handleCheckboxClicked}) => {
 
 
 const CheckboxFilter = ({checkFilterOptions, setCheckFilterOptions, checkForFilterApplied}) => {
+
+    useEffect(() => {
+    }, [checkFilterOptions])
 
     const handleCheckboxClicked = (name, tag) => {
        let new_list = checkFilterOptions

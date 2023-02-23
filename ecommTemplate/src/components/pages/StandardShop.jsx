@@ -1,7 +1,7 @@
 
 import styles from '../../styles'
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { shoppingPageData } from '../../constants/shopping';
 import { BrowsingHistory, ItemSuggestion, ShoppingMain }  from '../shopping';
 
@@ -11,8 +11,8 @@ import Navbar from '../Navbar';
 
 const StandardShop = ({immediateSearch}) => {
   const { selectedCategory } = useContext(ShoppingContext)
-
   const shoppingData = shoppingPageData[selectedCategory.id]
+
   return (
     <div>
       <Navbar

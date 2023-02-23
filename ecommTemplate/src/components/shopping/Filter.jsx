@@ -2,6 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckboxFilter from '../shopping/CheckboxFilter';
 
 const Filter = ({closeFunc, checkFilterOptions, setCheckFilterOptions, checkForFilterApplied}) => {
+
     return (
       <div 
         className='bg-white rounded-md p-2 min-w-[300px]'

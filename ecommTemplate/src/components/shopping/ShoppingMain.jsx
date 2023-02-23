@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -10,14 +10,17 @@ import useClickOutside from '../../hooks/useClickOutside';
 
 
 const ShoppingMain = ({shoppingData, relatedCategories}) => {
-  //Filter Related
-  const checkboxOptions = shoppingData
-  const checkboxOptions_deepCopy = JSON.parse(JSON.stringify(checkboxOptions))
-  const deepCopy2 = JSON.parse(JSON.stringify(checkboxOptions_deepCopy)) //clean up the memory management
 
-  const [checkFilterOptions, setCheckFilterOptions] = useState(checkboxOptions_deepCopy)
+  //Filter Related
+  const shoppingData_copy = JSON.parse(JSON.stringify(shoppingData))
+  const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(shoppingData)));
+
   const [filterOpen, setFilterOpen] = useState(false)
   const [filterApplied, setFilterApplied] = useState(false)
+
+  useEffect(() => {
+    setCheckFilterOptions(JSON.parse(JSON.stringify(shoppingData)));
+  }, [shoppingData]);
 
   const areListsEqual = (deepCopy, stateCopy) =>{
 
@@ -35,12 +38,12 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   }
 
   const checkForFilterApplied = () => {
-    const bool = areListsEqual(deepCopy2, checkFilterOptions)
+    const bool = areListsEqual(shoppingData_copy, checkFilterOptions)
     setFilterApplied(!bool)
   }
 
   const handleClearClick = () => {
-    setCheckFilterOptions([...checkboxOptions_deepCopy])
+    setCheckFilterOptions([...shoppingData_copy])
     setFilterApplied(false)
   }
 
