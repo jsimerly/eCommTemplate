@@ -29,6 +29,7 @@ export const allCategories = [
         sub: [
             {name:'Luxury Chairs', link:'', type:'sub', id:'0101'},
             {name:"Kid's Chairs", link:'', type:'sub', id:'0102'},
+            {name:"Hammocks", link:'', type:'sub', id:'0105'},
             {name:'Canopy Chairs', link:'', type:'sub', id:'0103'},
             {name:'Chair Accessories', link:'', type:'sub', id:'0104'},
         ]

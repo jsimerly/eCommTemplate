@@ -3,6 +3,7 @@ import Searchbar from './Searchbar';
 import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Navbar = ({immediateSearch}) => {
 
@@ -33,7 +34,8 @@ const Navbar = ({immediateSearch}) => {
                         </div>
                     </div>
                     <div className='pl-4 pt-2 pb-2 pr-2 cursor-pointer'>
-                        <ShoppingCartIcon className='scale-125'/>
+                        <FavoriteIcon className='scale-125'/>
+                        <ShoppingCartIcon className='scale-125 ml-4'/>
                     </div>
                 </div>
             </div>

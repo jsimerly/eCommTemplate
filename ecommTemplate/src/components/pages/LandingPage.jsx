@@ -11,7 +11,7 @@ import {
     CaroProdCard,
 } from '../landingPage';
 import CarouselTemplate from "../CarouselTemplate"
-import Navbar from '../Navbar';
+import { useEffect } from 'react';
 
 const data =  [
     {text: 'Test1', img: yeti45, price:'$33.33'},
@@ -58,6 +58,11 @@ const Carousel = ({head, data}) => (
 )
 
 const LandingPage = ({immediateSearch}) => {
+
+useEffect(() => {
+    window.scrollTo(0, 0);
+    }, []);
+
   return (
     <div>
         <Hero/>

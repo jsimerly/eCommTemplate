@@ -13,6 +13,10 @@ const StandardShop = ({immediateSearch}) => {
   const { selectedCategory } = useContext(ShoppingContext)
   const shoppingData = shoppingPageData[selectedCategory.id]
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <div className='text-tertiary'>

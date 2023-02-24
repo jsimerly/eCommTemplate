@@ -65,6 +65,27 @@ const shoppingPageData = {
                 }
             ]
         },
+        '0105' : {
+            title:'Hammocks',
+            parent: {name: 'Chairs', id:'0100'},
+            desc:'Need a hammock desc still',
+            img: chairsBanner,
+            relatedCategories:[
+                {name: 'Canopies', id:'0201'},
+                {name: 'Umbrellas', id: '0202'},
+                {name: 'Wagons', id: '0301'},
+                {name: 'Coolers', id: '0302'},
+                {name: "Luxury Chairs", id:'0101'},
+            ],
+            checkboxOptions:[
+                {
+                    name: 'Category',
+                    tags: {
+                        '' : true
+                    }
+                }
+            ]
+        },
         '0103' : {
             title:'Canopy Chairs',
             parent: {name: 'Chairs', id:'0100'},
