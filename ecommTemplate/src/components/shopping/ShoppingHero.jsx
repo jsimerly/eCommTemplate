@@ -2,6 +2,7 @@ import styles from '../../styles'
 import { useContext, useEffect } from 'react'
 import { ShoppingContext } from '../../context';
 import { useNavigate } from 'react-router-dom';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const ShoppingHero = ({name, desc, img, parent}) => {
     const {selectedCategory, setSelectedCategory} = useContext(ShoppingContext)
@@ -80,9 +81,7 @@ const ShoppingHero = ({name, desc, img, parent}) => {
                                         >
                                             {cat.name}
                                         </a>
-                                        <span>
-                                            {' / '} 
-                                        </span>
+                                        <ChevronRightIcon className='scale-75'/>
                                     </div>
                                     )
                                 })}                                
@@ -90,7 +89,6 @@ const ShoppingHero = ({name, desc, img, parent}) => {
                             <h1 className='font-bold text-[60px] leading-none'>
                                 {name}
                             </h1>
-
                         </div>
 
                         <p className='text-[20px] mt-4'>
