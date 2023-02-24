@@ -88,7 +88,7 @@ const ProductMain = ({imgList, bullets}) => {
               </div>
             </div>
             <div className='flex flex-row w-full mt-6 p-2'>
-              <div className='w-[130px] border flex justify-center items-center bg-white rounded-md border-primary'>
+              <div className='w-[130px] border flex justify-center items-center bg-white rounded-md border-primary relative'>
                 <div className='flex flex-row justify-center items-center w-full'>
                   <input 
                     className='w-full text-end p-2 text-[24px] outline-none' 

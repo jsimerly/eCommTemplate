@@ -40,15 +40,20 @@ const CaroProdCard = ({text, img, price}) => {
         </div>
         <div className='flex flex-col flex-1 w-full justify-between items-start sm:my-4'>
           <div className='flex justify-between w-full items-center mt-3 pb-5'>
-            <div className='font-semibold sm:text-[26px]'>
-                    {price}
+            <div className='flex flex-col text-center'>
+              <div className='leading-none font-semibold sm:text-[26px]'>
+                  {price}
               </div>
-              <button className='text-white p-3 bg-primary rounded justify-center items-center hover:underline hidden sm:flex'>
-                Add to Cart
-              </button>
-              <div className='text-white bg-primary rounded-md sm:hidden'>
-                <AddIcon/>
-              </div>
+              <p className='leading-none text-[12px]'>
+                For 7 Days
+              </p>
+            </div>
+            <button className='text-white p-3 bg-primary rounded justify-center items-center hover:underline hidden sm:flex'>
+              Add to Cart
+            </button>
+            <div className='text-white bg-primary rounded-md sm:hidden'>
+              <AddIcon/>
+            </div>
           </div>
         </div>
       </div>

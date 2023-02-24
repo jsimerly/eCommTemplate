@@ -42,15 +42,20 @@ const ProductCard = ({header}) => {
         </div>
         <div className='flex flex-col flex-1 w-full justify-between items-start sm:my-4'>
           <div className='flex justify-between w-full items-center mt-3 pb-5'>
-            <div className='font-semibold sm:text-[26px]'>
-                    $16.98
+            <div className='flex flex-col'>
+              <div className='font-semibold sm:text-[26px] leading-none'>
+                $16.98
               </div>
-              <button className='text-white p-3 bg-primary rounded justify-center items-center hover:underline hidden sm:flex'>
-                Add to Cart
-              </button>
-              <div className='text-white bg-primary rounded-md sm:hidden'>
-                <AddIcon/>
-              </div>
+              <p className='leading-none text-[12px] text-center'>
+                For 7 Days
+              </p>
+            </div>
+            <button className='text-white p-3 bg-primary rounded justify-center items-center hover:underline hidden sm:flex'>
+              Add to Cart
+            </button>
+            <div className='text-white bg-primary rounded-md sm:hidden'>
+              <AddIcon/>
+            </div>
           </div>
         </div>
       </div>
