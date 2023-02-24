@@ -19,8 +19,9 @@ const damagesReturns = {
 const ReturnDamage = ({context}) => {
   return (
     <div className="bg-tertiaryTone-100 p-10 mx-1 flex flex-col justify-center items-center">
-      <h1>We understand that accidents can happen during the rental period. To ensure a fair and consistent policy, we have outlined the following rental damages and returns policy.
-      </h1>
+      <h1 className="mb-6 font-semibold">Damages & Returns Policy</h1>
+      <h2>We understand that accidents can happen during the rental period. To ensure a fair and consistent policy, we have outlined the following rental damages and returns policy.
+      </h2>
       <div className="w-3/4 my-2">
         <div className="my-2">
           <h3 className="text-[16px] pb-3">
