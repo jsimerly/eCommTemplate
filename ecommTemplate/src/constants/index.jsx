@@ -70,7 +70,7 @@ export const allCategories = [
             {name:'Games' , link:'', type:'sub', id:'0402'},
             {name:'Sandcastles' , link:'', type:'sub', id:'0403'},
             {name:'Bikes' , link:'', type:'sub', id:'0404'},
-            {name:'Bonefires', link:'', type:'sub', id:'0405'},
+            {name:'Bonfires', link:'', type:'sub', id:'0405'},
             {name:'Fishing', link:'', type:'sub', id:'0406'},
             {name:'Party' , link:'', type:'sub', id:'0407'},
         ]
@@ -134,7 +134,7 @@ export const allCategories = [
     {
         name:'All Categories',
         link:'',
-        type:'full',
+        type:'All Categories',
         id:'0000'
     }
 ]

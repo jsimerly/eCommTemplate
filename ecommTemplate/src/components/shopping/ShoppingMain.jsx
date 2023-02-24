@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { ShoppingContext } from '../../context';
 
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -9,8 +10,8 @@ import { Filter, Items }  from '../shopping';
 import useClickOutside from '../../hooks/useClickOutside';
 
 
-const ShoppingMain = ({shoppingData, relatedCategories}) => {
 
+const ShoppingMain = ({shoppingData, relatedCategories}) => {
   //Filter Related
   const shoppingData_copy = JSON.parse(JSON.stringify(shoppingData))
   const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(shoppingData)));
@@ -48,6 +49,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   }
 
   //Category Related
+  const {setSelectedCategory} = useContext(ShoppingContext)
  
   //sort related
   const sortByOptions = [
@@ -94,7 +96,13 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
                 </h4>
                 <div className='flex text-[18px] space-x-8 items-center'>
                   {relatedCategories.map((cat, i) => (
-                    <p className='hover:underline cursor-pointer text-center' key={i}>{cat.name}</p>
+                    <a
+                      className='hover:underline cursor-pointer text-center' 
+                      key={i}
+                      onClick={()=>{setSelectedCategory(cat)}}
+                    >
+                      {cat.name}
+                    </a>
                   ))}
 
                 </div>
