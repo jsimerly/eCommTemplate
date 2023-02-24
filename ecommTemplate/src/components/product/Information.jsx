@@ -16,7 +16,7 @@ const classProps = (selected) => {
 }
 
 const Information = () => {
-  const [view, setView] = useState('Reviews')
+  const [view, setView] = useState('Details')
 
   const HeaderButton = ({type}) => (
     <button 
@@ -28,8 +28,8 @@ const Information = () => {
   )
 
   return (
-    <div className="flex flex-col justify-center items-center mt-20 text-tertiary">
-        <h1 className="text-[30px]">
+    <div className="bg-white rounded-md flex flex-col justify-center items-center mt-20 text-tertiary">
+        <h1 className="text-[30px] pt-4">
             Product Information
         </h1>
         <div className="bg-white w-full p-4 justify-center flex flex-col items-center rounded-md">
