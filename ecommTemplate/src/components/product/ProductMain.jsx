@@ -9,6 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 const ProductMain = ({imgList, bullets}) => {
     const [mainImg, setMainImg] = useState(imgList[0])
+    const [quant, setQuant] = useState(1)
 
   return (
 
@@ -43,7 +44,7 @@ const ProductMain = ({imgList, bullets}) => {
                   Yeti
                 </h2>
               </div>
-              <div className='flex justify-center p-4'>
+              <div className='flex justify-center p-4 text-primary'>
                   <FavoriteBorderIcon
                     className='scale-125 hover:cursor-pointer hover:scale-150'
                   />
@@ -89,10 +90,20 @@ const ProductMain = ({imgList, bullets}) => {
             <div className='flex flex-row w-full mt-6 p-2'>
               <div className='w-[130px] border flex justify-center items-center bg-white rounded-md border-primary'>
                 <div className='flex flex-row justify-center items-center w-full'>
-                  <input className='w-full text-end p-2 text-[24px] outline-none' value='1' />
+                  <input 
+                    className='w-full text-end p-2 text-[24px] outline-none' 
+                    value={quant} 
+                    onChange={(e)=> setQuant(e.target.value)}
+                    />
                   <div className='flex flex-col p-2'>
-                    <AddIcon className='scale-75 cursor-pointer hover:scale-90'/>
-                    <RemoveIcon className='scale-75 cursor-pointer hover:scale-90'/>
+                    <AddIcon 
+                        className='scale-75 cursor-pointer hover:scale-90'
+                        onClick={()=> setQuant(quant+1)}
+                    />
+                    <RemoveIcon 
+                        className='scale-75 cursor-pointer hover:scale-90'
+                        onClick={()=> setQuant(quant-1)}
+                    />
                   </div>
                 </div>
               </div>
