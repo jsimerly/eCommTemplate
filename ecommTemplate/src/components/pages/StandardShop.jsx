@@ -15,10 +15,6 @@ const StandardShop = ({immediateSearch}) => {
 
   return (
     <div>
-      <Navbar
-        immediateSearch={immediateSearch}
-      />
-      <div className='h-[80px]'/>
       <div className='text-tertiary'>
           <ShoppingHero
             name={shoppingData['title']}

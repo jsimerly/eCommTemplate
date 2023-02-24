@@ -18,11 +18,9 @@ const ShoppingHero = ({name, desc, img, parent}) => {
                 name: 'Home', 
                 onClick: ()=> navigate('/')}
         ]
-        console.log(selectedCategory)
         if (selectedCategory.name == 'All Categories'){
             return heirarchy
         } 
-
         heirarchy.push(
             {
             name: 'All Categories', 
@@ -43,7 +41,6 @@ const ShoppingHero = ({name, desc, img, parent}) => {
         return heirarchy
     }
     const backLinks = createHeirarchy()
-    console.log(backLinks)
   return (
     <div className='w-full flex flex-col relative'>
         <img
@@ -61,9 +58,10 @@ const ShoppingHero = ({name, desc, img, parent}) => {
                                         return (
                                             <div
                                                 key={i}
+                                                className='flex items-center'
                                             >
                                                 <a
-                                                 className='underline cursor-pointer'
+                                                 className='hover:underline cursor-pointer'
                                                  onClick={cat.onClick}
                                                 >
                                                     {cat.name}
@@ -74,15 +72,16 @@ const ShoppingHero = ({name, desc, img, parent}) => {
                                     return (
                                         <div
                                             key={i}
+                                            className='flex items-center'
                                         >
                                         <a
-                                            className='underline cursor-pointer'
+                                            className='hover:underline cursor-pointer'
                                             onClick={cat.onClick}
                                         >
                                             {cat.name}
                                         </a>
                                         <ChevronRightIcon className='scale-75'/>
-                                    </div>
+                                        </div>
                                     )
                                 })}                                
                             </div>

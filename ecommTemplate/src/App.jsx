@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 
 import Footer from './components/Footer'
 import LandingPage from './components/pages/LandingPage'
@@ -7,6 +7,8 @@ import StandardShop from './components/pages/StandardShop';
 import { allDests } from './api/temp'
 import { allCategories } from './constants';
 import { ShoppingContext } from './context';
+import ProductPage from './components/pages/ProductPage';
+import Navbar from './components/Navbar';
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -43,6 +45,17 @@ function App() {
   const [selectedDateRange, setSelectedDateRage] = useState(getDateRange())
   const [selectedCategory, setSelectedCategory] = useState(getCategory())
 
+  const location = useLocation();
+  const [immediateSearch, setImmediateSearch] = useState(false)
+
+  useEffect(()=>{
+    if (location.pathname == '/shopping'){
+      setImmediateSearch(true)
+    } else {
+      setImmediateSearch(false)
+    }
+  }, [location])
+
   useEffect(() => {
     sessionStorage.setItem('destination', selectedDestination);
     sessionStorage.setItem('date_range', JSON.stringify(selectedDateRange));
@@ -50,7 +63,6 @@ function App() {
   }, [selectedDateRange, selectedDestination, selectedCategory])  
 
   return (
-    <Router>
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
         <ShoppingContext.Provider value={
           {selectedDateRange, setSelectedDateRage, 
@@ -58,29 +70,33 @@ function App() {
             selectedCategory, setSelectedCategory,
             allDests, allCategories}}
         >
+          <Navbar
+            immediateSearch={immediateSearch}
+          />
+          <div className='h-[80px]'/>
           <Routes>
             <Route 
               exact path='/' 
               element={
-              <LandingPage
-                immediateSearch={false}
-              />
+              <LandingPage/>
               }/>
             <Route 
               path='/shopping/' 
               element={
-              <StandardShop
-                immediateSearch={true}
-              />
+              <StandardShop/>
               }/>
+            <Route
+              path='/p/:slug'
+              element={
+                <ProductPage/>
+              }
+            />
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>
           </div>
         </ShoppingContext.Provider>
       </div>
-    </Router>
-
   )
 }
 

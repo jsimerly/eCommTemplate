@@ -3,12 +3,20 @@ import {yeti45} from '../../assets/images/products'
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import AddIcon from '@mui/icons-material/Add';
+import navigateProduct from '../../hooks/navigateProduct';
 
 
 const CaroProdCard = ({text, img, price}) => {
+  const itemSlug = 'my-item-slug'
+  let navigate = navigateProduct({itemSlug});
+
   return (
     <div className='w-[150px] h-[260px] sm:h-[470px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col mr-4'>
-      <img src={yeti45} className='bg-white object-scale-down rounded-md hover:cursor-pointer'/>
+      <img 
+        src={yeti45} 
+        className='bg-white object-scale-down rounded-md hover:cursor-pointer'
+        onClick={navigate}
+      />
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'>

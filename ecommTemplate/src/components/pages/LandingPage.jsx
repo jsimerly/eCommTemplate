@@ -4,7 +4,6 @@ import { NewCustomers, FreeWagon } from '../banners';
 import {
     Hero,
     HowItWorks,
-    ProductCarousel,
     Categories,
     QualityHero,
     Change,
@@ -61,10 +60,6 @@ const Carousel = ({head, data}) => (
 const LandingPage = ({immediateSearch}) => {
   return (
     <div>
-        <Navbar
-            immediateSearch={immediateSearch}
-        />
-        <div className='h-[80px]'/>
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>
