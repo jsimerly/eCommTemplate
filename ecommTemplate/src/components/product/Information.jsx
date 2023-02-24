@@ -20,7 +20,7 @@ const Information = () => {
 
   const HeaderButton = ({type}) => (
     <button 
-      className={`${classProps(view==type)}`}
+      className={`${classProps(view==type)} hover:underline`}
       onClick={()=> setView(type)}
     >
       {type}

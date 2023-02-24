@@ -6,7 +6,14 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
+import { ReviewCard } from "./InfoContent";
 
+const reviews = [
+  {title: 'This worked pretty well', context: "This is a really great product, my family loved how cold our beers were the entire vacation. Only complain is it's fairly heavy so my husband had to carry it the entire trip. But i guess that's expected anyway when you walking around with 45 beers.",
+  rating:4,  userName: 'Emily P.', recommonded: true, verifiedPurchaser: true},
+  {title: 'Okay product', context: "The service was really great, but wish we would have went with different items. This cooler spefically was just to heavy and since it didn't have wheels we couldn't get it through the sand. We'll use Blue Elf again but will go for more convinent items.",
+  rating:3,  userName: 'Jacob S.', recommended: false, verifiedPurchaser: false}
+]
 
 const Reviews = () => {
 
@@ -17,6 +24,7 @@ const Reviews = () => {
     {'3 Stars':  true },
     {'4 Stars':  true },
     {'5 Stars': true },
+    {'Verified Purchaser' : false}
   ]
 
   const filterOptions_copy = JSON.parse(JSON.stringify(filterOptions))
@@ -162,7 +170,19 @@ const Reviews = () => {
           </div>
         </div>
       </div>
-      Reviews
+      <div>
+        {reviews.map((review, i) => (
+          <ReviewCard
+            review={review}
+          />
+        ))}
+
+      </div>
+      <div className="w-full flex justify-center p-4">
+          <button className="bg-primary p-2 text-white rounded-md">
+            Leave a Review
+          </button>
+        </div>
     </div>
   )
 }

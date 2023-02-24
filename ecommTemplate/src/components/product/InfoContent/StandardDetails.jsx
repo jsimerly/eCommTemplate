@@ -1,7 +1,7 @@
 
 const StandardDetails = ({context}) => {
   return (
-    <p className="px-6 text-[14px] tracking-wide">
+    <p className="px-6 pb-4 text-[16px] tracking-wide">
         {context}
     </p>
   )

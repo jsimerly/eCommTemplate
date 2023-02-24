@@ -27,7 +27,7 @@ const additionalDetails = [
 
 const DetailBox = ({title, Card, context}) => (
   <div className='bg-tertiaryTone-100 rounded-md mx-1 flex flex-col flex-1 p-3'>
-    <h1 className='text-center font-semibold p-2'>
+    <h1 className='text-center font-semibold p-2 text-[20px]'>
       {title}
     </h1>
     <div>
