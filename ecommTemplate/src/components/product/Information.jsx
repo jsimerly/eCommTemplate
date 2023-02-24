@@ -16,7 +16,7 @@ const classProps = (selected) => {
 }
 
 const Information = () => {
-  const [view, setView] = useState('Details')
+  const [view, setView] = useState('Reviews')
 
   const HeaderButton = ({type}) => (
     <button 

@@ -54,8 +54,8 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   //sort related
   const sortByOptions = [
     'Featured',
-    'Price: Low to High',
-    'Price: High to Low',
+    'Price - Low to High',
+    'Price - High to Low',
     'Most Popular',
   ]
   
@@ -108,17 +108,14 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
                 </div>
               </div>
               <div className='flex justify-end items-center w-1/5'>
-                <div
-                
-                ref={sortNode}
-              >
-                <button
-                  className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative group min-h-[42px]'
-                  onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
-                >
-                  Sort By: {sortBy}
-                  <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-125'/>
-                </button>
+                <div ref={sortNode}>
+                  <button
+                    className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative group min-h-[42px]'
+                    onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
+                  >
+                    Sort By: {sortBy}
+                    <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-125'/>
+                  </button>
                 <div 
                   className={`${sortOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
                 >
