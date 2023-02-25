@@ -12,7 +12,7 @@ const reviews = [
   {title: 'This worked pretty well', context: "This is a really great product, my family loved how cold our beers were the entire vacation. Only complain is it's fairly heavy so my husband had to carry it the entire trip. But i guess that's expected anyway when you walking around with 45 beers.",
   rating:4,  userName: 'Emily P.', recommonded: true, verifiedPurchaser: true},
   {title: 'Okay product', context: "The service was really great, but wish we would have went with different items. This cooler spefically was just to heavy and since it didn't have wheels we couldn't get it through the sand. We'll use Blue Elf again but will go for more convinent items.",
-  rating:3,  userName: 'Jacob S.', recommended: false, verifiedPurchaser: false}
+  rating:2.5,  userName: 'Jacob S.', recommended: false, verifiedPurchaser: false}
 ]
 
 const Reviews = () => {

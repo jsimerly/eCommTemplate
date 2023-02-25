@@ -3,29 +3,14 @@ import { categories } from '../../constants'
 
 
 const CatCard = ({img, text, color}) => (
-    <div className={`flex flex-col w-full rounded-md cursor-pointer`}
-    style={{background: color}}
-    >
-        <div className='flex justify-center text-primary font-bold text-[30px] md:text-[44px]'>
-            {text}
-        </div>
-        <div className='px-10 py-2'>
-            <img src={img}/>
+    <div className={`flex flex-col w-full rounded-md cursor-pointer relative`}>
+        <img src={img} className='h-full w-full rounded-md'/>
+        <div className='absolute top-0 w-full text-center pb-2'>
+            <h2 className='text-white text-[40px] font-bold br-text-outline-thick'>
+                {text}
+            </h2>
         </div>
     </div>
-)
-
-const CustomCardLeisure = ({img, text, color}) => (
-    <div className='flex w-full rounded-md relative cursor-pointer'
-    style={{background: color}}
-    >
-    <img src={img} className='absolute h-full pl-3 pb-3'/>
-    <div className='absolute w-full'>
-        <div className='flex justify-center text-primary font-bold text-[30px] md:text-[44px]'>
-            {text}
-        </div>
-    </div>
-</div>
 )
 
 const Categories = () => {
@@ -36,16 +21,6 @@ const Categories = () => {
         </div>
         <div className='grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:space-x-3'>
             {categories.cats.map((cat, index) => {
-                if (cat.header == 'Leisure'){
-                    return (
-                        <CustomCardLeisure 
-                            img={cat.img} 
-                            text={cat.header} 
-                            color={cat.bg_color}
-                            key={index}
-                            />
-                    )
-                }
                 return (
                     <CatCard 
                         img={cat.img} 

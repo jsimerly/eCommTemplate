@@ -4,6 +4,10 @@ import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import navigateCart from '../hooks/navigateCart';
+
+const itemsInCart = 3
+const favItems = 12
 
 const Navbar = ({immediateSearch}) => {
 
@@ -26,16 +30,30 @@ const Navbar = ({immediateSearch}) => {
                         immediateSearch={immediateSearch}
                     />
                 </div>
-                <div className='flex justify-end items-center divide-x'>
+                <div className='flex justify-end items-center '>
                     <div className='flex p-2 m-2 justify-between items-center cursor-pointer'>
-                        <PersonIcon className='scale-125'/>
-                        <div className='ml-2 text-[16px] hover:underline hidden md:flex font-poppins'>
-                            Sign-In
-                        </div>
+                        <PersonIcon className='scale-150'/>
                     </div>
-                    <div className='pl-4 pt-2 pb-2 pr-2 cursor-pointer'>
-                        <FavoriteIcon className='scale-125'/>
-                        <ShoppingCartIcon className='scale-125 ml-4'/>
+                    <div className='flex flex-row cursor-pointer'>
+                        <div className='relative'>
+                            <FavoriteIcon className='scale-125 m-3 relative'/>
+                            <div className='absolute rounded-full  flex justify-center items-center top-1/2  -translate-y-1/2 left-1/2 -translate-x-1/2'>
+                                <div className='text-[12px] text-white text-center'>
+                                    {favItems}
+                                </div>
+                            </div>
+                        </div>
+                        <div 
+                            className='relative'
+                            onClick={navigateCart()}
+                        >
+                            <ShoppingCartIcon className='scale-125 m-3'/>
+                            <div className='absolute top-1 right-0 leading-none rounded-full flex justify-center items-center text-[12px] text-white bg-primary p-1'>
+                                <div className='text-[12px] text-white text-center'>
+                                        {itemsInCart}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ import {
     sony_white_logo,
     yeti_white_logo,
 }  from "../assets/images/logos"
-import { fun, electronics, kids, leisure } from '../assets/images/categories'
+import { fun, electronics, kids, leisure, gameOn, layingOut, withKids, sheltered } from '../assets/images/categories'
 
 // Copy 
 
@@ -22,7 +22,7 @@ import { fun, electronics, kids, leisure } from '../assets/images/categories'
 
 export const allCategories = [
     {
-        name:'Chairs', 
+        name:'Relaxing', 
         link:'',
         type:'full',
         id:'0100',
@@ -91,14 +91,15 @@ export const allCategories = [
     
     },
     {
-        name:'Electronics', 
+        name:'Hobby', 
         link:'',
         type:'full',
         id:'0600',
         sub: [
             {name: 'Speakers', link:'', type:'sub', id:'0601'},
             {name: 'Cameras', link:'', type:'sub', id:'0602'},
-            {name: 'Hobby', links:'', type:'sub', id:'0604'},
+            {name: 'Metal Detectors', id:'0603'},
+            {name: 'Telescopes', links:'', type:'sub', id:'0604'},
         ]
 
     },
@@ -286,29 +287,29 @@ export const howToInfo = {
 }
 
 export const categories = {
-    title: 'Something for Any',
+    title: 'Spend Your Vacation How You Want To',
     cats: [
         {
-            header: 'Leisure',
-            img: leisure,
+            header: 'Laying Out',
+            img: layingOut,
             bg_color: '#ffffff',
             link: '',
         },
         {
-            header: 'Fun',
-            img: fun,
+            header: 'Game On',
+            img: gameOn,
             bg_color: '#ffffff',
             link: '',
         },
         {
-            header: 'Kids',
-            img: kids,
+            header: 'With the Kids',
+            img: withKids,
             bg_color: '#ffffff',
             link: '',
         },
         {
-            header: 'Electronics',
-            img: electronics,
+            header: 'Staying Cool',
+            img: sheltered,
             bg_color: '#ffffff',
             link: '',
         },

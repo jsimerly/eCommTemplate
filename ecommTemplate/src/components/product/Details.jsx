@@ -26,7 +26,7 @@ const additionalDetails = [
 ]
 
 const DetailBox = ({title, Card, context}) => (
-  <div className='bg-tertiaryTone-100 rounded-md mx-1 flex flex-col flex-1 p-3'>
+  <div className='bg-tertiaryTone-100 rounded-md mx-1 flex flex-col w-full p-3 mb-2'>
     <h1 className='text-center font-semibold p-2 text-[20px]'>
       {title}
     </h1>
@@ -40,14 +40,16 @@ const DetailBox = ({title, Card, context}) => (
 
 const Details = () => {
   return (
-    <div className='flex flex-col w-full'>
-      <DetailBox
-        title='Description'
-        Card={StandardDetails}
-        context={text}
-      />
-      <div>
-        <div className="flex flex-row mt-2">
+    <div className='flex flex-row w-full'>
+      <div className="w-1/2">
+        <DetailBox
+          title='Description'
+          Card={StandardDetails}
+          context={text}
+        />
+      </div>
+      <div className="w-1/2 ml-2">
+        <div className="flex flex-col">
           {additionalDetails.map((detail, i) => (
             <DetailBox
               title={detail.title}

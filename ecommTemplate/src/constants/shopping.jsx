@@ -2,7 +2,7 @@ import { sandcastleBanner, chairsBanner, funBanner, homeBanner, kidsBanner, pets
 
 const shoppingPageData = {
         '0100' : {
-            title:'Chairs',
+            title:'Relaxing',
             parent: {name: 'All Categories', id:'0000'},
             desc:"Relax and soak up the sun in style with our high-quality beach chairs. Our chairs are designed for maximum comfort and convenience, with adjustable features to accommodate different people and positions.",
             img: chairsBanner,
@@ -23,7 +23,7 @@ const shoppingPageData = {
         },
         '0101' : {
             title:'Luxury Chairs',
-            parent: {name: 'Chairs', id:'0100'},
+            parent: {name: 'Relaxing', id:'0100'},
             desc:'Looking for the ultimate beach relaxation experience? Our luxury rental chairs are the perfect solution. Enjoy high-quality, stylish chairs with features like adjustable headrests, cup holders, and more.',
             img: chairsBanner,
             relatedCategories:[
@@ -45,7 +45,7 @@ const shoppingPageData = {
         },
         '0102' : {
             title:"Kid's Chairs",
-            parent: {name: 'Chairs', id:'0100'},
+            parent: {name: 'Relaxing', id:'0100'},
             desc:"Don't let uncomfortable chairs ruin your family's beach day. Our rental kid's chairs are perfect for young beachgoers. Our chairs are lightweight and easy to carry, making it simple for families to enjoy a comfortable day at the beach.",
             img: chairsBanner,
             relatedCategories:[
@@ -67,7 +67,7 @@ const shoppingPageData = {
         },
         '0105' : {
             title:'Hammocks',
-            parent: {name: 'Chairs', id:'0100'},
+            parent: {name: 'Relaxing', id:'0100'},
             desc:'Need a hammock desc still',
             img: chairsBanner,
             relatedCategories:[
@@ -88,7 +88,7 @@ const shoppingPageData = {
         },
         '0103' : {
             title:'Canopy Chairs',
-            parent: {name: 'Chairs', id:'0100'},
+            parent: {name: 'Relaxing', id:'0100'},
             desc:'Worried about too much sun on your beach vacation? Our canopy chairs provide the perfect solution. With adjustable canopies to keep you cool and protected, our chairs are the perfect way to enjoy your day at the beach without worrying about sunburn.',
             img: chairsBanner,
             relatedCategories:[
@@ -110,7 +110,7 @@ const shoppingPageData = {
         },
         '0104' : {
             title:'Chair Accessories',
-            parent: {name: 'Chairs', id:'0100'},
+            parent: {name: 'Relaxing', id:'0100'},
             desc:'Looking to take your beach day to the next level? Our chair accessories provide the perfect solution. From umbrellas and canopies to cup holders and side tables, we have everything you need to make your day at the beach as comfortable as possible.',
             img: chairsBanner,
             relatedCategories:[
@@ -513,7 +513,7 @@ const shoppingPageData = {
                 {name: 'Beachbags',id: '0303'},
                 {name: 'Strollers',id: '0504'},
                 {name: 'Luxury Chairs',id: '0101'},
-                {name: 'Hobby Electronics',id: '0603'},
+                {name: 'Hobbies',id: '0603'},
                 {name: 'Home',id: '0403'},
                 {name: 'Water & Pool',id: '0700'},
             ],
@@ -555,7 +555,7 @@ const shoppingPageData = {
             img: funBanner,
             relatedCategories:[
                 {name: 'Wagons',id: '0301'},
-                {name: 'Electronic Hobbies',id: '0602'},
+                {name: 'Hobbies',id: '0602'},
                 {name: 'Luxury Chairs',id: '0101'},
                 {name: 'Speakers',id: '0601'},
                 {name: 'Kitchen',id: '0801'},
@@ -702,9 +702,9 @@ const shoppingPageData = {
             ]
         },
         '0600' :{
-            title:'Electronics',
+            title:'Hobbies',
             parent: {name: 'All Categories', id:'0000'},
-            desc:'Looking to enhance your beach day with some electronics? Our rental electronic equipment, including portable speakers and charging packs, are the perfect addition to your beach day. Waterproofed, our equipment is designed to withstand the sand and surf, and provide hours of entertainment.',
+            desc:'',
             img: electBanner,
             relatedCategories:[
                 {name: 'Speakers', id:'0601'},
@@ -722,7 +722,7 @@ const shoppingPageData = {
         },
         '0601' :{
             title:'Speakers',
-            parent: {name: 'Electronics', id:'0600'},
+            parent: {name: 'Hobbies', id:'0600'},
             desc:'Looking for a way to enhance your beach experience? Our speakers are the perfect addition to your beach gear. Designed to provide high-quality sound and easy to use, our speakers are the perfect choice for a day at the beach.',
             img: electBanner,
             relatedCategories:[
@@ -744,7 +744,7 @@ const shoppingPageData = {
         },
         '0602' :{
             title:'Cameras',
-            parent: {name: 'Electronics', id:'0600'},
+            parent: {name: 'Hobbies', id:'0600'},
             desc:"Looking to capture all the memories of your beach vacation? Our cameras are the perfect solution. High-quality and easy to use, our cameras will help you document your time in the sun and sand. Whether you're a professional photographer or a novice, we have cameras to suit all levels of experience.",
             img: electBanner,
             relatedCategories:[
@@ -766,7 +766,7 @@ const shoppingPageData = {
         },
         '0604' :{
             title:'Hobbies',
-            parent: {name: 'Electronics', id:'0600'},
+            parent: {name: 'Hobbies', id:'0600'},
             desc:"Looking to take your beach experience to the next level? Rent one of our metal detectors and search for buried treasure in the sand. Our metal detectors are high-quality and easy to use, making them the perfect addition to your beach day. Don't miss out on the excitement of finding something valuable and memorable.",
             img: electBanner,
             relatedCategories:[
@@ -880,7 +880,7 @@ const shoppingPageData = {
             relatedCategories:[
                 {name: 'Water Toys', id:'0707'},
                 {name: 'Speakers', id:'0601'},
-                {name: 'Chairs', id:'0100'},
+                {name: 'Relaxing', id:'0100'},
                 {name: 'Swim Accessories', id:'0708'},
                 {name: 'Coolers', id:'0302'},
                 {name: 'Dry Bags', id:'0303'},
@@ -1034,7 +1034,7 @@ const shoppingPageData = {
                 {name: 'Forgot at Home', id:'0703'},
                 {name: 'Speaker', id:'0601'},
                 {name: 'Pets', id:'0900'},
-                {name: 'Hobby Electronics', id:'0604'},
+                {name: 'Hobbies', id:'0604'},
                 {name: 'Party', id:'0407'}
             ],
             checkboxOptions:[
@@ -1074,12 +1074,12 @@ const shoppingPageData = {
             desc:"Planning your next vacation? Make sure you have everything you need with our selection of rental vacation items. From beach gear to kitchen essentials, we have everything to make your stay comfortable and convenient. All of our rental items are high-quality and well-maintained, so you can enjoy your vacation worry-free.",
             img: allBanner,
             relatedCategories:[
-                {name: 'Chairs', id:'0100'},
+                {name: 'Relaxing', id:'0100'},
                 {name: 'Shelters', id:'0200'},
                 {name: 'On the Beach', id:'0300'},
                 {name: 'Fun', id:'0400'},
                 {name: 'Kids', id:'0500'},
-                {name: 'Electronics', id:'0600'},
+                {name: 'Hobbies', id:'0600'},
                 {name: 'Water & Pool', id:'0700'},
                 {name: 'Home', id:'0800'},
             ],

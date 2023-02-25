@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation} from 'react-router
 import Footer from './components/Footer'
 import LandingPage from './components/pages/LandingPage'
 import StandardShop from './components/pages/StandardShop';
+import CartPage from './components/pages/CartPage';
 import { allDests } from './api/temp'
 import { allCategories } from './constants';
 import { ShoppingContext } from './context';
@@ -89,6 +90,12 @@ function App() {
               path='/p/:slug'
               element={
                 <ProductPage/>
+              }
+            />
+            <Route
+              path='/cart'
+              element={
+                <CartPage/>
               }
             />
           </Routes>

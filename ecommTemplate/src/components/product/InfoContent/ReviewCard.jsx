@@ -5,7 +5,34 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const ReviewCard = ({review}) => {
-    console.log(review)
+
+    const getStarsComps = (rating) => {
+        let stars = [<StarIcon/>]
+
+        for (let i = 1; i < 5; i++){
+            if (rating > i){
+                if (rating-i < 1){
+                    stars.push(<StarHalfIcon/>)
+                } else {
+                    stars.push(<StarIcon/>)
+                }
+            } else {
+                stars.push(<StarOutlineIcon/>)
+            }
+        }
+        return stars
+    }
+
+    const createStarsComp = () => {
+        const stars = getStarsComps(review.rating);
+
+        return (
+          <div>
+            {stars.map((star, i) => star)}
+          </div>
+        );
+      };
+
   return (
     <div className='w-full border border-tertiary rounded-md p-2 my-2'>
         <div className="flex flex-row justify-between items-center">
@@ -21,19 +48,15 @@ const ReviewCard = ({review}) => {
             </div>
             <div className="flex flex-col px-6 justify-center">
                 <div className="flex flex-row justify-center text-primary p-2">
-                    <StarIcon/>
-                    <StarIcon/>
-                    <StarIcon/>
-                    <StarHalfIcon/>
-                    <StarOutlineIcon/>
+                    {createStarsComp()}
                 </div>
                 <div className='text-[18px] flex items-center justify-center'>
                     {review.recommonded ? 
-                    <CheckCircleIcon className='text-primary mr-3 scale-125'/> 
+                    <CheckCircleIcon className='text-primary mr-3 scale-125'/>
                     : 
                     <CancelIcon className='mr-3 scale-125'/>
                     }
-                    <span>Would Recommend</span>
+                    {review.recommonded ? 'Would Recommend' : "Wouldn't Recommend"}
                 </div>
             </div>
         </div>
