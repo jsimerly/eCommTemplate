@@ -2,10 +2,12 @@ import { yeti45 }from '../../assets/images/products/'
 import navigateProduct from '../../hooks/navigateProduct';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { useState } from 'react';
 
 const FreqBoughtCard= ({header}) => {
   const itemSlug = 'my-item-slug'
   let navigate = navigateProduct({itemSlug});
+  const [checked, setChecked] = useState(true)
 
   return (
 
@@ -33,8 +35,14 @@ const FreqBoughtCard= ({header}) => {
                 <div className='font-semibold sm:text-[18px] leading-none'>
                     $16.98
                 </div>
-                <div>
-                    <CheckBoxIcon className='text-primary scale-125 hover:scale-150 cursor-pointer'/>
+                <div
+                    onClick={()=> setChecked(!checked)}
+                >
+                    {checked ?                     
+                    <CheckBoxIcon className='text-primary scale-125 hover:scale-150 cursor-pointer'/> 
+                    :
+                    <CheckBoxOutlineBlankIcon className='text-primary scale-125 hover:scale-150 cursor-default'/>
+                    }
                 </div>
             </div>
         </div>

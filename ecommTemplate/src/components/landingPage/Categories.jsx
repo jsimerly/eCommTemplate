@@ -6,7 +6,7 @@ const CatCard = ({img, text, color}) => (
     <div className={`flex flex-col w-full rounded-md cursor-pointer`}
     style={{background: color}}
     >
-        <div className='flex justify-center text-white font-bold text-[30px] md:text-[44px] br-text-outline-thick'>
+        <div className='flex justify-center text-primary font-bold text-[30px] md:text-[44px]'>
             {text}
         </div>
         <div className='px-10 py-2'>
@@ -21,7 +21,7 @@ const CustomCardLeisure = ({img, text, color}) => (
     >
     <img src={img} className='absolute h-full pl-3 pb-3'/>
     <div className='absolute w-full'>
-        <div className='flex justify-center text-white font-bold text-[30px] md:text-[44px] br-text-outline-thick'>
+        <div className='flex justify-center text-primary font-bold text-[30px] md:text-[44px]'>
             {text}
         </div>
     </div>

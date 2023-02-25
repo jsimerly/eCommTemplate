@@ -32,7 +32,7 @@ const KeepShopping = () => {
     const header = ( 
         <div className=" bg-white rounded-t-md pt-4 flex justify-center items-center text-tertiary">
             <h2 className="text-[30px] ">
-                Product Information
+                Continue Shopping
             </h2>
         </div>
     )

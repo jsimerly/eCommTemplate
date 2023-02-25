@@ -29,7 +29,7 @@ const BoughtTogether = () => {
               <p className='leading-none text-[12px]'>For 7 Days</p>
             </div>
           </div>
-          <button className='text-white bg-primary p-3 rounded-md mx-4'>
+          <button className='text-white bg-primary p-3 rounded-md mx-4 hover:underline'>
             Add to Cart
           </button>
         </div>

@@ -286,30 +286,30 @@ export const howToInfo = {
 }
 
 export const categories = {
-    title: 'Something for Everyone',
+    title: 'Something for Any',
     cats: [
         {
             header: 'Leisure',
             img: leisure,
-            bg_color: '#58E1FC',
+            bg_color: '#ffffff',
             link: '',
         },
         {
             header: 'Fun',
             img: fun,
-            bg_color: '#FCB97E',
+            bg_color: '#ffffff',
             link: '',
         },
         {
             header: 'Kids',
             img: kids,
-            bg_color: '#FCD64C',
+            bg_color: '#ffffff',
             link: '',
         },
         {
             header: 'Electronics',
             img: electronics,
-            bg_color: '#7C84CF',
+            bg_color: '#ffffff',
             link: '',
         },
     ]
