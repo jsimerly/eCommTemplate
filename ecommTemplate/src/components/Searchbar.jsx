@@ -8,11 +8,7 @@ import navigateShopping from '../hooks/navigateShopping';
 
 const Searchbar = ({immediateSearch}) => {
 
-    const {selectedDateRange, setSelectedDateRage, 
-        selectedDestination, setSelectedDestination,
-        selectedCategory, setSelectedCategory,
-        allDests, allCategories
-    } = useContext(ShoppingContext)
+    const {selectedDateRange, selectedDestination, selectedCategory,} = useContext(ShoppingContext)
     const [mounted, setMounted] = useState(false)
     const useNavShopping = navigateShopping()
 
@@ -26,30 +22,8 @@ const Searchbar = ({immediateSearch}) => {
             setMounted(true)
         }
     }, [selectedDestination, selectedCategory, selectedDateRange])
-
-    function handleDateSelection(ranges){
-        const { selection } = ranges;
-        selection.first = true;
-        setSelectedDateRage(selection)
-    }
-
+    
     let handleSearch = navigateShopping()
-
-    const [openDest, setOpenDest] = useState(false)
-    const [openCalendar, setOpenCalendar] = useState(false);
-    const [openCat, setOpenCat] = useState(false)
-
-    let destNode = useClickOutside(() => {
-        setOpenDest(false);
-    })
-
-    let calNode = useClickOutside(() => {
-        setOpenCalendar(false);
-    })
-
-    let catNode = useClickOutside(() => {
-        setOpenCat(false);
-    })
 
   return (
         <div 
