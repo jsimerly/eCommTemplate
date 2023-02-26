@@ -1,11 +1,11 @@
-import { yeti45 }from '../../assets/images/products/'
+import { yeti45 }from '../../assets/images/products'
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import AddIcon from '@mui/icons-material/Add';
 import navigateProduct from '../../hooks/navigateProduct';
 
 
-const ProductCard = ({header}) => {
+const ProductCard = ({text, img, price}) => {
   const itemSlug = 'my-item-slug'
   let navigate = navigateProduct({itemSlug});
 
@@ -22,7 +22,7 @@ const ProductCard = ({header}) => {
             className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'
             onClick={navigate}
           >
-            {header}
+           {text}
           </h3>
           <h4 className='text-[12px] sm:text-[18px] tracking-wide'>
             Yeti

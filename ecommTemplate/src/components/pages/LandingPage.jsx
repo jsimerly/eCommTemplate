@@ -8,10 +8,10 @@ import {
     QualityHero,
     Change,
     BlogBanner,
-    CaroProdCard,
 } from '../landingPage';
-import CarouselTemplate from "../CarouselTemplate"
+import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useEffect } from 'react';
+import { ProductCard } from '../shopping';
 
 const data =  [
     {text: 'Test1', img: yeti45, price:'$33.33'},
@@ -49,12 +49,12 @@ const header = (text) => (
 
 const Carousel = ({head, data}) => (
     <CarouselTemplate
-    Card={CaroProdCard}
-    cardData={data}
-    cardW={298}
-    header={head}
-    scrollNFunc={scrollN}
-/>
+        Card={ProductCard}
+        cardData={data}
+        cardW={298}
+        header={head}
+        scrollNFunc={scrollN}
+    />
 )
 
 const LandingPage = ({immediateSearch}) => {

@@ -1,4 +1,4 @@
-import { ProductCard } from "./"
+import { ProductCard } from "."
 
 const items = ['Yeti Cooler', 'Yeti Cooler', 'Yeti Cooler','Yeti Cooler','Yeti Cooler','Yeti Cooler','Yeti Cooler','Yeti Cooler','Yeti Cooler','Yeti Cooler',]
 

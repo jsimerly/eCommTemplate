@@ -1,4 +1,4 @@
-import CarouselTemplate  from "../CarouselTemplate"
+import CarouselTemplate  from "../cardsAndCarousels/CarouselTemplate"
 import { yeti45 } from "../../assets/images/products"
 import { SmallCard} from "../shopping"
 
@@ -40,7 +40,7 @@ const KeepShopping = () => {
     <CarouselTemplate
         Card={SmallCard}
         cardData={suggestions}
-        cardW={166}
+        cardW={156}
         header={header}
         scrollNFunc={scrollN}
     />

@@ -5,11 +5,18 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 const ProductMain = ({imgList, bullets}) => {
     const [mainImg, setMainImg] = useState(imgList[0])
     const [quant, setQuant] = useState(1)
+    const [insured, setInsured] = useState(false)
+
+    const handleInsuredClicked = () => {
+      setInsured(!insured)
+    }
 
   return (
 
@@ -68,6 +75,24 @@ const ProductMain = ({imgList, bullets}) => {
                 <span className='ml-2'>
                   (463)
                 </span>
+              </div>
+            </div>
+            <div className='w-full mt-6'>
+              <div className='flex grow-0 cursor-pointer group'
+                onClick={handleInsuredClicked}
+              >
+                {insured ? 
+                <CheckBoxIcon
+                  className='text-primary scale-150 group-hover:scale-110'
+                /> 
+                : 
+                <CheckBoxOutlineBlankIcon
+                  className='text-primary scale-150 group-hover:scale-110'
+                />}
+
+                <div className='text-[20px] ml-2 group-hover:underline'>
+                  Insure for <span className='font-bold'> $6.99</span>
+                </div>
               </div>
             </div>
             <div className='w-full flex flex-col justify-start mt-6'>

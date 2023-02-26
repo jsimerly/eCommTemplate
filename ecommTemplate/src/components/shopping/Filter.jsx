@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import CheckboxFilter from '../shopping/CheckboxFilter';
+import CheckboxFilter from './CheckboxFilter';
 
 const Filter = ({closeFunc, checkFilterOptions, setCheckFilterOptions, checkForFilterApplied}) => {
 

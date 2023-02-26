@@ -1,5 +1,5 @@
-import CarouselTemplate from "../CarouselTemplate"
-import { SmallCard } from "../shopping/"
+import CarouselTemplate from "./CarouselTemplate"
+import { SmallCard } from "../shopping"
 import { yeti45 } from "../../assets/images/products"
 
 const data = [
@@ -44,7 +44,7 @@ const BrowsingHistory = () => {
     <CarouselTemplate
       Card={SmallCard}
       cardData={data}
-      cardW={166}
+      cardW={156}
       header={header}
       scrollNFunc={scrollN}
     />

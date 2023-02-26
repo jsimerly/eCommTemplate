@@ -1,5 +1,8 @@
 import { Favorites, CartMain, OrderSummary } from "../cart"
+import { BrowsingHistory, SmallCard } from "../shopping"
 import { yeti45 } from '../../assets/images/products'
+import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
+
 
 const cartItems = [  
     {name: 'Tundra - Hard 45 Cooler', img:yeti45, quant:1, stock:6},
@@ -7,7 +10,44 @@ const cartItems = [
     {name: 'Chair 2', img:yeti45, quant:4, stock:10},
 ]
 
+const favorites = [
+  {text: 'Test1', img: yeti45, price:'$33.33'},
+  {text: 'Test2', img: yeti45, price:'$33.33'},
+  {text: 'Test3', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test1', img: yeti45, price:'$33.33'},
+  {text: 'Test2', img: yeti45, price:'$33.33'},
+  {text: 'Test3', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test6', img: yeti45, price:'$33.33'},
+  {text: 'Test1', img: yeti45, price:'$33.33'},
+  {text: 'Test2', img: yeti45, price:'$33.33'},
+  {text: 'Test3', img: yeti45, price:'$33.33'},
+  {text: 'Test4', img: yeti45, price:'$33.33'},
+  {text: 'Test5', img: yeti45, price:'$33.33'},
+  {text: 'Test610', img: yeti45, price:'$33.33'},
+]
+
 const CartPage = () => {
+
+    const header = (
+        <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8'>
+        Your Browsing History
+        </div>
+    )
+
+    function scrollN(){
+    if (window.innerWidth < 680) {
+        return 1
+    } else if (window.innerWidth < 1200) {
+        return 2
+    } else {
+        return 3
+    }
+    }
   return (
     <div className='flex justify-center items-center text-tertiary'>
         <div className='max-w-[1280px] w-full'>
@@ -36,14 +76,20 @@ const CartPage = () => {
                                 cartItems={cartItems}
                             />
                         </div>
-                        <div>
-                            Jacob
-                        </div>
+
                     </div>
                     <div className='w-2/5 ml-3'>
                         <OrderSummary/>
                     </div>
                 </div>
+            </div>
+            <div>
+                <Favorites
+                    favorites={favorites}
+                />
+            </div>
+            <div>
+                <BrowsingHistory/>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-import { Filter, Items }  from '../shopping';
+import { Filter, Items }  from '.';
 
 import useClickOutside from '../../hooks/useClickOutside';
 

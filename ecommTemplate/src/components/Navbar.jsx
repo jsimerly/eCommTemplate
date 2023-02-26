@@ -35,14 +35,6 @@ const Navbar = ({immediateSearch}) => {
                         <PersonIcon className='scale-150'/>
                     </div>
                     <div className='flex flex-row cursor-pointer'>
-                        <div className='relative'>
-                            <FavoriteIcon className='scale-125 m-3 relative'/>
-                            <div className='absolute rounded-full  flex justify-center items-center top-1/2  -translate-y-1/2 left-1/2 -translate-x-1/2'>
-                                <div className='text-[12px] text-white text-center'>
-                                    {favItems}
-                                </div>
-                            </div>
-                        </div>
                         <div 
                             className='relative'
                             onClick={navigateCart()}

@@ -1,6 +1,6 @@
 import { yeti45 } from "../../assets/images/products"
-import { SmallCard} from "./"
-import CarouselTemplate from "../CarouselTemplate"
+import { SmallCard} from "../shopping"
+import CarouselTemplate from "./CarouselTemplate"
 
 const suggestions = [
   {text: 'Test1', img: yeti45, price:'$33.33'},
@@ -19,7 +19,7 @@ const suggestions = [
 
 
 const header = (
-  <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8 '>
+<div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8 '>
   You May be Interested In
 </div>
 )
@@ -40,7 +40,7 @@ const ItemSuggestion = () => {
     <CarouselTemplate
       Card={SmallCard}
       cardData={suggestions}
-      cardW={166}
+      cardW={156}
       header={header}
       scrollNFunc={scrollN}
     />

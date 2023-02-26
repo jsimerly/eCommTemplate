@@ -1,30 +1,16 @@
-import { useState, useEffect } from "react"
-import { yeti45 } from "../../assets/images/products"
-import { SmallCard } from "./"
+import { useState, useEffect,} from "react"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const suggestions = ['Tundra - 45 Hard Cooler asdfs', 'B', 'C', 'D', 'E', 'F','F','G']
-
-function windowToScrollN(){
-
-    if (window.innerWidth < 680) {
-      return 1
-    } else if (window.innerWidth < 1200) {
-      return 2
-    } else {
-      return 3
-    }
-  }
-  
-const SmallCarousel = ({header}) => {
-
+const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
     const [translateDistance, setTranslateDistance] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
     const [startX, setStartX] = useState(null)
-    const [nCardsPerView, setNCardsPerView] = useState(windowToScrollN)
-    const cardWidth = 316
-    const maxLength = (suggestions.length - nCardsPerView) * cardWidth
+    const [nCardsPerView, setNCardsPerView] = useState(scrollNFunc)
+    const cardWidth = cardW + 20
+    const maxLength =  (cardData.length) * cardWidth - 1280
+
+
   
     function handleTranslate(newPosition){
       if (newPosition > 0) {
@@ -73,7 +59,7 @@ const SmallCarousel = ({header}) => {
   
     useEffect(() => {
       let handleWindowResize = () => {
-        let n = windowToScrollN()
+        let n = scrollNFunc()
         setNCardsPerView(n)
       }
       window.addEventListener("resize", handleWindowResize);
@@ -82,20 +68,17 @@ const SmallCarousel = ({header}) => {
     }, [])
   
     return (
-      <div className='flex flex-col bg-white sm:rounded-md p-2 sm:p-6'>
-        <div className='flex justify-center sm:justify-start items-center relative text-[36px] text-center font-bold text-primary p-2 sm:pb-6 sm:mx-6'>
-          {header}
-        </div>
-        
+      <div className='flex flex-col'>
+        {header}
         <div 
           
           onTouchStart={handleMouseDown}
           onTouchMove={handleMouseMove}
           onTouchEnd={handleMouseUp}
-          className='overflow-hidden flex flex-row relative px-6'
+          className='overflow-hidden flex flex-row relative p-4 bg-white sm:rounded-md'
         >
           <button 
-          className={`text-white bg-primary rounded-md absolute top-1/2 z-10 mx-1 ${translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
+          className={`text-white bg-primary rounded-md absolute top-1/2 z-10 ${translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
           onClick={()=> leftButtonClick()}
           >
             <ArrowBackIosNewIcon/>
@@ -104,13 +87,12 @@ const SmallCarousel = ({header}) => {
             className={`flex transform transition ease-linear duration-300`}
             style={{ transform: 'translateX(-'+translateDistance+'px)'}}
             >
-            {suggestions.map((suggest, index) => {
+            {cardData.map((data, index) => {
+              console.log(data)
               return (
-                <SmallCard 
-                    text={suggest} 
+                <Card
                     key={index}
-                    img={yeti45}
-                    price={'$32.44'}
+                    {...data}
                 />
               )
             })}
@@ -126,4 +108,4 @@ const SmallCarousel = ({header}) => {
     )
 }
 
-export default SmallCarousel
+export default CarouselTemplate
