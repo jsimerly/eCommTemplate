@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react';
+
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useEffect, useState } from 'react';
+
+import { payment } from '../../assets/svg'
+
 
 const OrderSummary = () => {
     const [openPromos, setOpenPromos] = useState(false)
@@ -19,7 +23,7 @@ const OrderSummary = () => {
 
 
   return (
-    <div className='w-full flex flex-col px-6 py-3'>
+    <div className='w-full flex flex-col px-6 py-6'>
         <div>
             <h3 className='font-bold'>Where and When</h3>
             <div className='flex flex-row space-x-1'>
@@ -37,9 +41,9 @@ const OrderSummary = () => {
                     >
                         <span className='text-[12px] group-hover:underline'> Add Code </span>
                         {openPromos ? 
-                        <RemoveIcon className='scale-75 group-hover:scale-100'/>
-                        :
-                        <AddIcon className='scale-75 group-hover:scale-100'/>
+                            <RemoveIcon className='scale-75 group-hover:scale-100'/>
+                            :
+                            <AddIcon className='scale-75 group-hover:scale-100'/>
                         }
 
                     </div>
@@ -103,10 +107,12 @@ const OrderSummary = () => {
                     Checkout
                 </button>
         </div>
-        <div>
-        Payments we accept icons*
+        <div className='flex justify-center'>
+            <div className='flex flex-row justify-center items-center space-x-1 my-2 w-2/3'>
+                <img src={payment}/>
+            </div>
         </div>
-        <div className='w-full flex justify-center items-center hover:underline cursor-pointer'>
+        <div className='w-full flex justify-center items-center hover:underline cursor-pointer mt-2'>
             Continue Shopping
         </div>   
     </div>
