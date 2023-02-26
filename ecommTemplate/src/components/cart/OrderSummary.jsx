@@ -23,7 +23,7 @@ const OrderSummary = () => {
 
 
   return (
-    <div className='w-full flex flex-col px-6 py-6'>
+    <div className='bg-white rounded-md w-full flex flex-col px-6 py-6'>
         <div>
             <h3 className='font-bold'>Where and When</h3>
             <div className='flex flex-row space-x-1'>

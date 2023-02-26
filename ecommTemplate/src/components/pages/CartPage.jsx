@@ -26,11 +26,14 @@ const CartPage = () => {
                 </div>
                 <div className="flex flex-row mt-3">
                     <div className="w-3/5">
-                        <div className='bg-white rounded-md grow-0'>
-                            Items
+                        <div className='grow-0'>
+                            <CartMain/>
+                        </div>
+                        <div>
+                            Jaocb
                         </div>
                     </div>
-                    <div className='bg-white rounded-md w-2/5 ml-3'>
+                    <div className='w-2/5 ml-3'>
                         <OrderSummary/>
                     </div>
                 </div>
