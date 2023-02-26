@@ -4,6 +4,8 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 import { payment } from '../../assets/svg'
+import { Where, When } from '../tripInfo';
+
 
 
 const OrderSummary = () => {
@@ -24,11 +26,11 @@ const OrderSummary = () => {
 
   return (
     <div className='bg-white rounded-md w-full flex flex-col px-6 py-6'>
-        <div>
+        <div className='relative'>
             <h3 className='font-bold'>Where and When</h3>
             <div className='flex flex-row space-x-1'>
-                <div className='border border-primary p-2 rounded-md w-1/2'>Location Selector</div>
-                <div className='border border-primary p-2 rounded-md w-1/2'>Date Selector</div>
+                <div className='w-1/2 flex h-[40px] '><Where/></div>
+                <div className='w-1/2 flex h-[40px] relative'><When/></div>
             </div>
         </div>
         <div className='mt-2'>
