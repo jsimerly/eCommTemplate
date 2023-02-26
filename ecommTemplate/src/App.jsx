@@ -43,7 +43,7 @@ function getCategory(){
 
 function App() {
   const [selectedDestination, setSelectedDestination] = useState(getDestination())
-  const [selectedDateRange, setSelectedDateRage] = useState(getDateRange())
+  const [selectedDateRange, setSelectedDateRange] = useState(getDateRange())
   const [selectedCategory, setSelectedCategory] = useState(getCategory())
 
   const location = useLocation();
@@ -66,7 +66,7 @@ function App() {
   return (
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
         <ShoppingContext.Provider value={
-          {selectedDateRange, setSelectedDateRage, 
+          {selectedDateRange, setSelectedDateRange, 
             selectedDestination, setSelectedDestination, 
             selectedCategory, setSelectedCategory,
             allDests, allCategories}}

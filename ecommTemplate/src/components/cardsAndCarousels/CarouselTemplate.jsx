@@ -32,12 +32,9 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
     const handleMouseMove = (e) => {
       if (isDragging) {
         const deltaX = e.touches[0].clientX - startX
-        console.log(deltaX)
         if (deltaX > 0){
-          console.log('here')
           handleTranslate(translateDistance-1)
         } else {
-          console.log('not')
           handleTranslate(translateDistance+1)
         }
       }
@@ -88,7 +85,6 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
             style={{ transform: 'translateX(-'+translateDistance+'px)'}}
             >
             {cardData.map((data, index) => {
-              console.log(data)
               return (
                 <Card
                     key={index}

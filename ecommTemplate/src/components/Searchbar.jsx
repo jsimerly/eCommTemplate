@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
 
 import useClickOutside from '../hooks/useClickOutside';
-import { SearchContext, ShoppingContext, } from '../context';
+import {ShoppingContext, } from '../context';
 import navigateShopping from '../hooks/navigateShopping';
 
 import 'react-date-range/dist/styles.css'; // main style file
@@ -13,6 +13,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+
+import { What, Where, When } from './tripInfo';
 
 
 const BarTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
@@ -70,7 +72,7 @@ const DestBar = ({destNode, openDest, setOpenDest, dests, selectedDestination, s
         </div>
     )
 
-    const destText = selectedDestination == '' ? '' : selectedDestination
+    const destText = selectedDestination === '' ? '' : selectedDestination
 
     return (
         <BarTemplate
@@ -235,34 +237,14 @@ const Searchbar = ({immediateSearch}) => {
         className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
         >
 
-            <div className='w-1/4 h-[40px]'>
-                <DestBar
-                    destNode={destNode}
-                    openDest={openDest}
-                    setOpenDest={setOpenDest}
-                    dests={allDests}
-                    selectedDestination={selectedDestination}
-                    setSelectedDestination={setSelectedDestination}
-                />
+            <div className='w-1/4 h-[40px] flex border'>
+                <Where/>
             </div>
-            <div className='w-1/4 h-[40px]'>
-                <CalendarBar
-                    calNode={calNode}
-                    selectedDateRange={selectedDateRange}
-                    openCalendar={openCalendar}
-                    setOpenCalendar={setOpenCalendar}
-                    handleDateSelection={handleDateSelection}
-                />
+            <div className='w-1/4 h-[40px] flex'>
+                <When/> 
             </div>
-            <div className='w-1/4 h-[40px]'>
-                <CategoriesBar
-                    catNode={catNode}
-                    selectedCategory={selectedCategory.name}
-                    openCat={openCat}
-                    setOpenCat={setOpenCat}
-                    setSelectedCategory={setSelectedCategory}
-                    categories={allCategories}               
-                />
+            <div className='w-1/4 h-[40px] flex'>
+                <What/>
             </div>
             {immediateSearch ? 
                 null
