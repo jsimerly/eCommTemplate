@@ -1,14 +1,19 @@
 import { useState, useContext, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { What, Where, When } from './tripInfo';
-import {ShoppingContext } from '../context';
 import useClickOutside from '../hooks/useClickOutside';
+import {ShoppingContext, } from '../context';
 import navigateShopping from '../hooks/navigateShopping';
+import { What, Where, When } from './tripInfo';
+
 
 const Searchbar = ({immediateSearch}) => {
 
-    const {selectedDateRange, selectedDestination, selectedCategory,} = useContext(ShoppingContext)
+    const {selectedDateRange, setSelectedDateRage, 
+        selectedDestination, setSelectedDestination,
+        selectedCategory, setSelectedCategory,
+        allDests, allCategories
+    } = useContext(ShoppingContext)
     const [mounted, setMounted] = useState(false)
     const useNavShopping = navigateShopping()
 
@@ -22,8 +27,30 @@ const Searchbar = ({immediateSearch}) => {
             setMounted(true)
         }
     }, [selectedDestination, selectedCategory, selectedDateRange])
-    
+
+    function handleDateSelection(ranges){
+        const { selection } = ranges;
+        selection.first = true;
+        setSelectedDateRage(selection)
+    }
+
     let handleSearch = navigateShopping()
+
+    const [openDest, setOpenDest] = useState(false)
+    const [openCalendar, setOpenCalendar] = useState(false);
+    const [openCat, setOpenCat] = useState(false)
+
+    let destNode = useClickOutside(() => {
+        setOpenDest(false);
+    })
+
+    let calNode = useClickOutside(() => {
+        setOpenCalendar(false);
+    })
+
+    let catNode = useClickOutside(() => {
+        setOpenCat(false);
+    })
 
   return (
         <div 
