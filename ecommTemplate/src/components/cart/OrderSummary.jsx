@@ -1,6 +1,23 @@
 import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { useEffect, useState } from 'react';
 
 const OrderSummary = () => {
+    const [openPromos, setOpenPromos] = useState(false)
+    const [promoCode, setPromoCode] = useState()
+    const [activePromos, setActivePromos] = useState([])
+
+    useEffect(() => {
+        
+    }, [activePromos])
+
+    const handlePromoAdded = (code) => {
+        let newActives = activePromos
+        newActives.push(code)
+        setActivePromos([...newActives])
+    }
+
+
   return (
     <div className='w-full flex flex-col px-6 py-3'>
         <div>
@@ -12,24 +29,44 @@ const OrderSummary = () => {
         </div>
         <div className='mt-2'>
             <div className='flex flex-col items-start'>
-                <h3 className='font-bold'> Promos</h3>
-                <div>
-                    Active Display Promos
+                <div className='w-full flex justify-between'> 
+                    <h3 className='font-bold'> Promos</h3> 
+                    <div 
+                        className='cursor-pointer group'
+                        onClick={()=> setOpenPromos(!openPromos)}
+                    >
+                        <span className='text-[12px] group-hover:underline'> Add Code </span>
+                        {openPromos ? 
+                        <RemoveIcon className='scale-75 group-hover:scale-100'/>
+                        :
+                        <AddIcon className='scale-75 group-hover:scale-100'/>
+                        }
+
+                    </div>
                 </div>
-                <div className='flex flex-row w-1/2'>
+                <div>
+                    {activePromos.map((promo, i) => (
+                        <div key={i}>
+                            {promo}
+                        </div>
+                    ))}
+                </div>
+                <div className={`${openPromos ? '' : 'hidden'} flex flex-row w-1/2`}>
                     <input 
                         className='border border-primary p-2 rounded-md outline-primary flex'
                         placeholder='PROMO CODE'
+                        onChange={(e)=>setPromoCode(e.target.value)}
                     />
                     <div className='p-2 bg-primary rounded-md ml-1 cursor-pointer group'>
                         <AddIcon
+                            onClick={()=> handlePromoAdded(promoCode)}
                             className='group-hover:scale-125 text-white'
                         />
                     </div>
                 </div>
             </div>
         </div>
-        <div className='mt-6'>
+        <div className='mt-2'>
             <div className='flex flex-row justify-between'>
                 <h3 className=''>Subtotal ({3} items)</h3>
                 <div>
