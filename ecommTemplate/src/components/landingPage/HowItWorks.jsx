@@ -22,7 +22,7 @@ const HowItWorksV2 = () => {
   return (
     <div className='my-6'>
         <div className='flex flex-col justify-center sm:items-start items-center'>
-            <h1 className='text-[28px] sm:text-[48px] w-full text-primary text-center mb-6 px-6 order-1'>
+            <h1 className='text-[28px] sm:text-[48px] w-full text-primary text-center px-6 order-1'>
                 {howToInfo.title}
             </h1>
             <div className='flex flex-col sm:flex-row justify-between w-full text-tertiary order-3 sm:order-2'>

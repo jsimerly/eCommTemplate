@@ -29,7 +29,7 @@ const OrderSummary = () => {
         <div className='relative'>
             <h3 className='font-bold'>Where and When</h3>
             <div className='flex flex-row space-x-1'>
-                <div className='w-1/2 flex h-[40px] '><Where/></div>
+                <div className='w-1/2 flex h-[40px]'><Where/></div>
                 <div className='w-1/2 flex h-[40px] relative'><When/></div>
             </div>
         </div>

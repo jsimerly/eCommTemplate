@@ -33,21 +33,6 @@ const favorites = [
 
 const CartPage = () => {
 
-    const header = (
-        <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8'>
-        Your Browsing History
-        </div>
-    )
-
-    function scrollN(){
-    if (window.innerWidth < 680) {
-        return 1
-    } else if (window.innerWidth < 1200) {
-        return 2
-    } else {
-        return 3
-    }
-    }
   return (
     <div className='flex justify-center items-center text-tertiary'>
         <div className='max-w-[1280px] w-full'>

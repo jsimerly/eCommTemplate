@@ -79,10 +79,8 @@ const What = () => {
     
     const getDisplayData = () => {
         if (searchParamActive){
-            console.log('-')
             return searchInput
         }
-        console.log('1')
         return selectedCategory.name
     }
 

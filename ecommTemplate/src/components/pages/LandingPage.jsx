@@ -78,13 +78,6 @@ useEffect(() => {
                     data={data}
                 />
                 </div>
-                <div className='sm:mt-6'>
-                <Carousel
-                    head={header('Top Deals')}
-                    data={data}
-                />
-                </div>
-
                 <div className='my-6 sm:my-16'>
                 <Categories/>
                 </div>
@@ -95,10 +88,6 @@ useEffect(() => {
                 />
                 </div>
                 <div className='sm:my-6'>
-                <Carousel
-                    head={header('Spring Break!')}
-                    data={data}
-                />
                 </div>
                 <div className='my-6 sm:my-16'>
                 <QualityHero/>

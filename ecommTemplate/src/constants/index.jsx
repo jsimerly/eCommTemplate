@@ -256,7 +256,7 @@ export const footerSubscribe = {
 //--------------------- LANDING PAGE ----------------------------------------------------------------------------------------------
 
 export const heroMain = {
-    title: <h1 className=' text-[36px] sm:text-[56px] font-extrabold py-6 px-0     sm:px-6 leading-none'>
+    title: <h1 className=' text-[36px] sm:text-[70px] font-extrabold py-6 px-0     sm:px-6 leading-none'>
                 Vacation Made Easy
             </h1>,
     desc: "Rent products to be dropped off and picked up on your next vacation.",
@@ -265,7 +265,7 @@ export const heroMain = {
 
 
 export const howToInfo = {
-    title: " Your Vacation Made Easy",
+    title: "Doing Nothing has Never been this Easy",
     steps: [
         {
             title: "Tell Us Where",
