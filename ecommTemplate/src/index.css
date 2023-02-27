@@ -28,7 +28,7 @@
 }
 
 .br-text-outline-thick-white {
-  text-shadow: 2px 2px 0 #ffffff, 1px 1px 0 #ffffff;
+  text-shadow: 1px 1px 2px #ffffff;
 }
 
 .br-text-outline-normal-white {

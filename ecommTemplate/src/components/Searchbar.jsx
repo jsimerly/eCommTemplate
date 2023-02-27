@@ -1,19 +1,16 @@
 import { useState, useContext, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 
-import useClickOutside from '../hooks/useClickOutside';
-import {ShoppingContext, } from '../context';
+import {ShoppingContext} from '../context';
 import navigateShopping from '../hooks/navigateShopping';
 import { What, Where, When } from './tripInfo';
 
 
 const Searchbar = ({immediateSearch}) => {
 
-    const {selectedDateRange, setSelectedDateRage, 
-        selectedDestination, setSelectedDestination,
-        selectedCategory, setSelectedCategory,
-        allDests, allCategories
-    } = useContext(ShoppingContext)
+    const {selectedDateRange, 
+        selectedDestination, 
+        selectedCategory, } = useContext(ShoppingContext)
     const [mounted, setMounted] = useState(false)
     const useNavShopping = navigateShopping()
 
@@ -28,36 +25,15 @@ const Searchbar = ({immediateSearch}) => {
         }
     }, [selectedDestination, selectedCategory, selectedDateRange])
 
-    function handleDateSelection(ranges){
-        const { selection } = ranges;
-        selection.first = true;
-        setSelectedDateRage(selection)
-    }
 
     let handleSearch = navigateShopping()
-
-    const [openDest, setOpenDest] = useState(false)
-    const [openCalendar, setOpenCalendar] = useState(false);
-    const [openCat, setOpenCat] = useState(false)
-
-    let destNode = useClickOutside(() => {
-        setOpenDest(false);
-    })
-
-    let calNode = useClickOutside(() => {
-        setOpenCalendar(false);
-    })
-
-    let catNode = useClickOutside(() => {
-        setOpenCat(false);
-    })
 
   return (
         <div 
         className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
         >
 
-            <div className='w-1/4 h-[40px] flex border'>
+            <div className='w-1/4 h-[40px] flex'>
                 <Where/>
             </div>
             <div className='w-1/4 h-[40px] flex'>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import { yeti45 }from '../../assets/images/products/'
+import { yeti45 }from '../../assets/images/products'
 import Information from '../product/Information';
 import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';

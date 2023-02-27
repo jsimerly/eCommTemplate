@@ -170,7 +170,7 @@ export const footerInfo = [
                 link: 'https://http://127.0.0.1:5173/'
             },
             {
-                name: 'FAQ',
+                name: 'Help',
                 link: 'https://http://127.0.0.1:5173/'
             },
             {

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import SearchIcon from '@mui/icons-material/Search';
 
 import { ShoppingContext } from "../../context";
 import useClickOutside from "../../hooks/useClickOutside";
@@ -9,10 +10,21 @@ const What = () => {
     //add search ability to this at some point
     const {setSelectedCategory, selectedCategory, allCategories} = useContext(ShoppingContext)
     const [openCategory, setOpenCategory] = useState(false)
+    const [searchInput, setSearchInput] = useState('')
+    const [searchParamActive, setSearchParamActive] = useState(false)
  
     const dropdown = () => (
         <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openCategory ? '' : 'hidden'} shadow-md z-10`}>
-            <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
+            <div className="relative">
+                <input 
+                    className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
+                    placeholder="Search"
+                    value={searchInput}
+                    onChange={(e)=> {setSearchInput(e.target.value); setSearchParamActive(true)}}
+                />
+                <SearchIcon className="absolute -translate-y-1/2 top-1/2 right-2 scale-125 hover:scale-150 cursor-pointer"/>
+            </div>
+            <h1 className='w-full text text-tertiary font-bold text-[22px] py-2'>
                 Categories
             </h1>
             <div className='grid grid-cols-5 text-tertiary'>
@@ -58,18 +70,28 @@ const What = () => {
     const handleSelect = (cat) => {
         setSelectedCategory(cat);
         setOpenCategory(false);
+        setSearchParamActive(false)
     }
 
     const node = useClickOutside(() => {
         setOpenCategory(false)
     })
+    
+    const getDisplayData = () => {
+        if (searchParamActive){
+            console.log('-')
+            return searchInput
+        }
+        console.log('1')
+        return selectedCategory.name
+    }
 
   return (
     <div className="w-full">
         <FormTemplate
             node={node}
             openFunc={setOpenCategory}
-            selectedData={selectedCategory.name}
+            selectedData={getDisplayData()}
             dropdown={dropdown}
             placeholder={'What'}
             icon={BeachAccessIcon}
