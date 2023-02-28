@@ -19,8 +19,8 @@ const Footer = () => {
                         {footerColInfo.title}
                     </div>
                     <ul>
-                        {footerColInfo.links.map((links, index) => (
-                            <li className='text-[16px] mt-2 hover:underline cursor-pointer' key={index}><a>{links.name}</a></li>
+                        {footerColInfo.links.map((link, index) => (
+                            <li className='text-[16px] mt-2 hover:underline cursor-pointer' key={index}><a href={link.link}>{link.name}</a></li>
                         ))}
                     </ul>
                 </div>

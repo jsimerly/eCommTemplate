@@ -4,6 +4,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+import HandshakeIcon from '@mui/icons-material/Handshake';
 
 export const helpButtons = [
     {title: 'Contact Support', desc:"Need a hand with anything? We're happy to help", icon:<HelpCenterIcon/>},
@@ -11,6 +12,7 @@ export const helpButtons = [
     {title: 'Exchange an Item', desc: "Change your mind? We'll swap it out", icon:<LoopIcon/>},
     {title: 'Dispute Damages', desc:"Were you charged for item damages that you did not cause? Dispute them here", icon:<BrokenImageIcon/>},
     {title: 'Give Us Feedback', desc:'Leave suggestions, reviews, and general feedback for us!', icon:<FeedbackIcon/>},
-    {title: 'FAQs', desc:'Frequently asked Questions', icon:<QuestionAnswerIcon/>}
+    {title: 'FAQs', desc:'Frequently asked Questions', icon:<QuestionAnswerIcon/>},
+    {title:'Become a Partner', desc:'Partner with us at Blue Elf for special benefits and positioning.', icon:<HandshakeIcon/>}
 ]
 

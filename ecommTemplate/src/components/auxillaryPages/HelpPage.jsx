@@ -7,9 +7,9 @@ import Email from "@mui/icons-material/Email";
 
 const HelpPage = () => {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center py-10">
     <div className="w-full text-tertiary flex flex-col justify-center items-center">
-        <h1 className="font-bold text-[80px] py-20 px-6">
+        <h1 className="font-bold text-[80px] py-10 px-6">
             Help Center
         </h1>
         <div className="flex flex-row gap-2 justify-center">
@@ -36,7 +36,7 @@ const HelpPage = () => {
             </div>
         </div>
     </div>
-    <div className="w-2/3 flex flex-row justify-between items-between gap-2 text-tertiary mt-20">
+    <div className="w-2/3 flex flex-row justify-between items-between gap-2 text-tertiary mt-[200px]">
         <div className="flex flex-col justify-center items-center">
             <h2 className="text-[36px] font-bold text-center leading-none">Customer <br/> Service Team</h2>
             <p className="w-[300px] text-center">Contact Blue Elf on help on order, products, and general inquiries.</p>

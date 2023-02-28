@@ -147,24 +147,20 @@ export const footerInfo = [
         links: [
             {
                 name: 'Home',
-                link: 'https://http://127.0.0.1:5173/'
+                link: '/'
             },
             {
-                name: 'Our Vision',
-                link:'1'
+                name: 'About Us',
+                link:'/about-us'
             },
             {
                 name: 'Shop Now',
-                link: 'https://http://127.0.0.1:5173/'
+                link: '/shopping/'
             },
             {
                 name: 'Careers',
                 link: 'https://http://127.0.0.1:5173/'
             },
-            {
-                name: 'Company',
-                link: ''
-            }
         ],         
     },
     {
@@ -172,14 +168,6 @@ export const footerInfo = [
         links: [
             {
                 name: 'Blog',
-                link: 'https://http://127.0.0.1:5173/'
-            },
-            {
-                name: 'Newsletters',
-                link: 'https://http://127.0.0.1:5173/'
-            },
-            {
-                name: 'Reviews',
                 link: 'https://http://127.0.0.1:5173/'
             },
             {
@@ -191,7 +179,7 @@ export const footerInfo = [
                 link: 'https://http://127.0.0.1:5173/'
             },            {
                 name: 'Support',
-                link: 'https://http://127.0.0.1:5173/'
+                link: '/help'
             },
         ]
     },
