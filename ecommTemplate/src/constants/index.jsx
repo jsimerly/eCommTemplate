@@ -158,10 +158,6 @@ export const footerInfo = [
                 link: 'https://http://127.0.0.1:5173/'
             },
             {
-                name: 'Help',
-                link: 'https://http://127.0.0.1:5173/'
-            },
-            {
                 name: 'Careers',
                 link: 'https://http://127.0.0.1:5173/'
             },
@@ -174,10 +170,6 @@ export const footerInfo = [
     {
         title: 'Community',
         links: [
-            {
-                name: 'Support',
-                link: 'https://http://127.0.0.1:5173/'
-            },
             {
                 name: 'Blog',
                 link: 'https://http://127.0.0.1:5173/'
@@ -197,6 +189,9 @@ export const footerInfo = [
             {
                 name: 'Contact Us',
                 link: 'https://http://127.0.0.1:5173/'
+            },            {
+                name: 'Support',
+                link: 'https://http://127.0.0.1:5173/'
             },
         ]
     },
@@ -204,15 +199,11 @@ export const footerInfo = [
         title: 'Partner',
         links: [
             {
-                name: 'Our Partners',
+                name: 'Partner Benefits',
                 link: 'https://http://127.0.0.1:5173/'
-            },
+            },            
             {
                 name: 'Become a Partner',
-                link: 'https://http://127.0.0.1:5173/'
-            },
-            {
-                name: 'Partner Benefits',
                 link: 'https://http://127.0.0.1:5173/'
             },
         ]

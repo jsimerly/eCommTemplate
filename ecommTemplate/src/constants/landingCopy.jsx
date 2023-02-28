@@ -44,7 +44,7 @@ export const howToInfo = {
 }
 
 export const categories = {
-    title: 'Spend Your Vacation How You Want To',
+    title: 'Spend Your Vacation How You Want',
     cats: [
         {
             header: 'You Can Have it All',

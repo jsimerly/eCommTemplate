@@ -10,6 +10,7 @@ import { allCategories } from './constants';
 import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
+import HelpPage from './components/auxillaryPages/HelpPage'
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -96,6 +97,12 @@ function App() {
               path='/cart'
               element={
                 <CartPage/>
+              }
+            />
+            <Route
+              path='/help'
+              element={
+                <HelpPage/>
               }
             />
           </Routes>
