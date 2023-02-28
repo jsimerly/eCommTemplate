@@ -4,14 +4,15 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { ShoppingContext } from "../../context";
 import useClickOutside from "../../hooks/useClickOutside";
 import FormTemplate from "./FormTemplate";
+import useDropdown from "../../hooks/useDropdown";
 
 const Where = () => {
 
     const {setSelectedDestination, selectedDestination, allDests} = useContext(ShoppingContext)
-    const [openDest, setOpenDest] = useState(false)
+    const [open, setOpen, handleClick, node] = useDropdown()
  
     const dropdown = () => (
-        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openDest ? '' : 'hidden'} shadow-md z-10`}>
+        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${open ? '' : 'hidden'} shadow-md z-10`}>
             <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
                 Locations
             </h1>
@@ -40,19 +41,16 @@ const Where = () => {
 
     const handleSelect = (city) => {
         setSelectedDestination(city);
-        setOpenDest(false)
+        setOpen(false)
     }
 
-    const node = useClickOutside(() => {
-        setOpenDest(false)
-    })
     const destText = selectedDestination === '' ? '' : selectedDestination
 
   return (
     <div className="w-full">
         <FormTemplate
             node={node}
-            openFunc={setOpenDest}
+            openFunc={setOpen}
             selectedData={destText}
             dropdown={dropdown}
             placeholder={'Where to'}

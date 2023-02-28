@@ -3,18 +3,36 @@ import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import SearchIcon from '@mui/icons-material/Search';
 
 import { ShoppingContext } from "../../context";
-import useClickOutside from "../../hooks/useClickOutside";
+
 import FormTemplate from "./FormTemplate";
+import useDropdown from "../../hooks/useDropdown";
+
+
 
 const What = () => {
     //add search ability to this at some point
     const {setSelectedCategory, selectedCategory, allCategories} = useContext(ShoppingContext)
-    const [openCategory, setOpenCategory] = useState(false)
+    const [open, setOpen, handleClick, node] = useDropdown()
+
     const [searchInput, setSearchInput] = useState('')
     const [searchParamActive, setSearchParamActive] = useState(false)
- 
-    const dropdown = () => (
-        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${openCategory ? '' : 'hidden'} shadow-md z-10`}>
+
+    const handleSelect = (cat) => {
+        setSelectedCategory(cat);
+        setOpen(false);
+        setSearchParamActive(false)
+    }
+    
+    const getDisplayData = () => {
+        if (searchParamActive){
+            return searchInput
+        }
+        return selectedCategory.name
+    }
+
+    const dropdown = () => {
+        return (
+        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${open ? '' : 'hidden'} shadow-md z-10`}>
             <div className="relative">
                 <input 
                     className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
@@ -59,36 +77,20 @@ const What = () => {
                         type:'full',
                         id:'0000'
                     });
-                    setOpenCat(false)
+                    setOpen(false)
                 }}
             >
                 All Categories
             </h4>
         </div>
-    )
-
-    const handleSelect = (cat) => {
-        setSelectedCategory(cat);
-        setOpenCategory(false);
-        setSearchParamActive(false)
-    }
-
-    const node = useClickOutside(() => {
-        setOpenCategory(false)
-    })
-    
-    const getDisplayData = () => {
-        if (searchParamActive){
-            return searchInput
-        }
-        return selectedCategory.name
+        )
     }
 
   return (
     <div className="w-full">
         <FormTemplate
             node={node}
-            openFunc={setOpenCategory}
+            openFunc={setOpen}
             selectedData={getDisplayData()}
             dropdown={dropdown}
             placeholder={'What'}

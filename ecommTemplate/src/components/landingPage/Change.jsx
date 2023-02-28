@@ -1,4 +1,4 @@
-import { easy } from '../../constants'
+import { easy } from '../../constants/landingCopy'
 
 const ChangeCard = ({title, icon, desc}) => (
     <div className="border w-full p-4 rounded-md bg-white border-primary cursor-pointer group">

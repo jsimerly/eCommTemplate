@@ -8,15 +8,16 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { ShoppingContext } from "../../context";
 import useClickOutside from "../../hooks/useClickOutside";
 import FormTemplate from "./FormTemplate";
+import useDropdown from "../../hooks/useDropdown";
 
 const When = () => {
 
     const {setSelectedDateRange, selectedDateRange,} = useContext(ShoppingContext)
-    const [openCalendar, setOpenCalendar] = useState(false)
+    const [open, setOpen, handleClick, node] = useDropdown()
 
     const handleRangeChange = (focusedRange) => {
         if (focusedRange[1] == 0) {
-            setOpenCalendar(false)
+            setOpen(false)
         }
     }
 
@@ -25,10 +26,6 @@ const When = () => {
         selection.first = true;
         setSelectedDateRange(selection)
     }
-
-    const node = useClickOutside(() => {
-        setOpenCalendar(false)
-    })
 
     const dropdown = () => (
         <DateRange
@@ -39,7 +36,7 @@ const When = () => {
             direction='horizontal'
             startDatePlaceholder='Beginning'
             endDatePlaceholder='Finale'
-            className={`${openCalendar ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border  shadow-md`}
+            className={`${open ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border  shadow-md`}
             onRangeFocusChange={handleRangeChange}
         />
     )
@@ -50,7 +47,7 @@ const When = () => {
     <div className="w-full">
         <FormTemplate
             node={node}
-            openFunc={setOpenCalendar}
+            openFunc={setOpen}
             selectedData={dateText}
             dropdown={dropdown}
             placeholder={'When'}

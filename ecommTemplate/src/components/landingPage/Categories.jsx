@@ -1,5 +1,5 @@
 import { fun, electronics, kids, leisure } from '../../assets/images/categories'
-import { categories } from '../../constants'
+import { categories } from '../../constants/landingCopy'
 
 
 const CatCard = ({img, text, color}) => (

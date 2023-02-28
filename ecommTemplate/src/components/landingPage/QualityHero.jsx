@@ -1,4 +1,4 @@
-import { quality } from '../../constants'
+import { quality } from '../../constants/landingCopy'
 
 const QualityHeroV2 = () => {
   return (
@@ -6,9 +6,13 @@ const QualityHeroV2 = () => {
         <div className="text-tertiary md:min-w-[1280px]">
             <div className="flex justify-center items-center bg-white sm:rounded-tl-md relative">
             <div className="flex justify-center items-center flex-col md:w-[600px] p-10">
+                <h1 className="text-[28px] md:text-[40px] text-center font-bold"> 
                     {quality.title}
+                </h1>, 
+                <p className='text-center md:text-[20px]'>
                     {quality.paragraph}
-                </div>
+                </p>
+            </div>
             </div>   
             <div className="grid grid-cols-2 md:grid-cols-4 justify-center items-center px-6 p-2 sm:p-10 bg-tertiary rounded-b-md">
                 {quality.logos.map((logo, index) => (
