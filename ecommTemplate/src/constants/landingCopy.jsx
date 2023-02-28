@@ -9,7 +9,7 @@ import {
     yeti_white_logo,
 }  from "../assets/images/logos"
 
-import { gameOn, layingOut, withKids, sheltered } from '../assets/images/categories'
+import { gameOn, sunbathing, withKids} from '../assets/images/categories'
 
 import EditIcon from '@mui/icons-material/Edit';
 import LoopIcon from '@mui/icons-material/Loop';
@@ -17,7 +17,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 
 export const heroMain = {
     title: 'Vacation Made Easy',
-    desc: "Rent products to be dropped off and picked up on your next vacation.",
+    desc: "Rent vacation products to be dropped off and picked up.",
     cta: "Shop Now"
 }
 
@@ -47,29 +47,27 @@ export const categories = {
     title: 'Spend Your Vacation How You Want To',
     cats: [
         {
-            header: 'Laying Out',
-            img: layingOut,
-            bg_color: '#ffffff',
-            link: '',
+            header: 'You Can Have it All',
+            desc:"Whether you're surfing in style or laying out in the sun, we've got what you need.",
+            cta1: 'Shop Paddleboards',
+            cta2: 'Shop Relaxation',
+            img: sunbathing,
         },
         {
             header: 'Game On',
+            desc : 'Trying to stay active or just want to make things competitive on your get away?',
+            cta1: 'Shop Games',
+            cta2: 'Shop Sports',
             img: gameOn,
-            bg_color: '#ffffff',
-            link: '',
         },
         {
-            header: 'With the Kids',
-            img: withKids,
-            bg_color: '#ffffff',
-            link: '',
-        },
-        {
-            header: 'Staying Cool',
-            img: sheltered,
-            bg_color: '#ffffff',
-            link: '',
-        },
+            header: "Don't Kid Yourself",
+            desc: 'Keep the young ones safe and smiling can be stressful, but we can make it easy.',
+            cta1: 'Shop Kids',
+            cta2: 'Shop Floaties',
+            img: withKids
+        }
+
     ]
 }
 

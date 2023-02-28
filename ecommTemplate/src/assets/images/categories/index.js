@@ -6,8 +6,10 @@ import layingOut from './layingout_square.jpg'
 import gameOn from './fun_square.jpg'
 import withKids from './kids_square.jpg'
 import sheltered from './shelter_square.jpg'
+import sunbathing from './sunbathing.jpg'
 
 export {
+    sunbathing,
     electronics,
     fun,
     kids,

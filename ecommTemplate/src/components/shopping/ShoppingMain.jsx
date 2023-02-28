@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from 'react'
-import { ShoppingContext } from '../../context';
 
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import { Filter, Items }  from '.';
-
-import useClickOutside from '../../hooks/useClickOutside';
+import useDropdown from '../../hooks/useDropdown';
+import useOpenAndClose from '../../hooks/useOpenAndClose';
+import { ShoppingContext } from '../../context';
 
 
 
@@ -16,7 +16,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   const shoppingData_copy = JSON.parse(JSON.stringify(shoppingData))
   const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(shoppingData)));
 
-  const [filterOpen, setFilterOpen] = useState(false)
+  const [filterOpen, setFilterOpen, handleFilterClick] = useOpenAndClose(false)
   const [filterApplied, setFilterApplied] = useState(false)
 
   useEffect(() => {
@@ -59,12 +59,8 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
     'Most Popular',
   ]
   
-  const [sortOpen, setSortOpen] = useState(false)
+  const [sortOpen, setSortOpen, handleSortClick, sortNode] = useDropdown()
   const [sortBy, setSortBy] = useState('Featured')
-
-  let sortNode = useClickOutside(() => {
-    setSortOpen(false);
-  })
 
 
   return (
@@ -74,7 +70,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
                 <div className='flex space-x-2'>
                   <button
                     className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline group min-h-[42px]'
-                    onClick={()=> setFilterOpen((filterOpen) => !filterOpen) }
+                    onClick={handleFilterClick}
                   >
                     <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
                     Filter
@@ -111,7 +107,7 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
                 <div ref={sortNode}>
                   <button
                     className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative group min-h-[42px]'
-                    onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
+                    onClick={handleSortClick}
                   >
                     Sort By: {sortBy}
                     <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-125'/>

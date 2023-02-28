@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useDropdown from '../hooks/useDropdown';
 
 import { main_blue } from '/src/assets/images/blueElf'
 import Searchbar from './Searchbar';
@@ -6,6 +6,7 @@ import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
+
 
 const itemsInCart = 3
 
@@ -50,8 +51,7 @@ const AccountDropdown = ({open}) => {
 }
 
 const Navbar = ({immediateSearch}) => {
-
-    const [openAccount, setOpenAccount] = useState(false)
+    const [openAccount, setOpenAccount, handleClickAccount, node] = useDropdown(false)
 
   return (
     <nav className={`bg-white text-primary w-full flex p-4 justify-center items-center fixed z-20 h-[80px]`}>
@@ -73,11 +73,13 @@ const Navbar = ({immediateSearch}) => {
                     />
                 </div>
                 <div className='flex justify-end items-center relative overflow-visible'>
-                    <div className='flex h-[40px] w-[40px] justify-between items-center cursor-pointer'>
+                    <div className='flex h-[40px] w-[40px] justify-between items-center cursor-pointer'
+                    ref={node}
+                    >
                         <PersonIcon 
                             className='hover:scale-110'
                             sx={{fontSize: '40px'}}
-                            onClick = {() => setOpenAccount(!openAccount)}
+                            onClick = {handleClickAccount}
                         />
                         <AccountDropdown open={openAccount}/>
                     </div>
