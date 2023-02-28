@@ -11,6 +11,7 @@ import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
+import {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, UpdateOrderPage, Feedback, Account,Partners} from './components/auxillaryPages'
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -77,34 +78,25 @@ function App() {
           />
           <div className='h-[80px]'/>
           <Routes>
-            <Route 
-              exact path='/' 
-              element={
-              <LandingPage/>
-              }/>
-            <Route 
-              path='/shopping/' 
-              element={
-              <StandardShop/>
-              }/>
-            <Route
-              path='/p/:slug'
-              element={
-                <ProductPage/>
-              }
+            <Route exact path='/' element={ <LandingPage/>}/>
+            <Route path='/shopping/' element={<StandardShop/>}/>
+            <Route path='/p/:slug' element= {<ProductPage/>}
             />
-            <Route
-              path='/cart'
-              element={
-                <CartPage/>
-              }
+            <Route path='/cart' element={<CartPage/>}/>
+            <Route path='/help' element={<HelpPage/>}
             />
-            <Route
-              path='/help'
-              element={
-                <HelpPage/>
-              }
-            />
+            <Route path='/contact-support' element={<ContactSupport/>}/>
+            <Route path='/FAQ' element={<FAQ/>}/>
+            <Route path='/update-order' element={<UpdateOrderPage/>}/>
+            <Route path='/exchange-item' element={<ExchangeItem/>}/>
+            <Route path='/dispute-damages' element={<DisputeDamages/>}/>
+            <Route path='/feedback' element={<Feedback/>}/>
+            <Route path='/partner' element={<Partners/>}/>
+            <Route path='/account-management' element={<Account/>}/>
+            <Route path='/Blogs' element={<AllBlogsPage/>}/>
+            <Route path='/Blogs/:blogID' element={<BlogPage/>}/>
+            <Route path='/privacy' element={<Privacy/>}/>
+            <Route path='/account-management' element={<TermsConditionsPage/>}/>
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>

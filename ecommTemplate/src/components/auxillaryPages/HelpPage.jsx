@@ -3,7 +3,6 @@ import { helpButtons } from "../../constants/helpCopy"
 
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
-import Email from "@mui/icons-material/Email";
 
 const HelpPage = () => {
   return (
@@ -20,6 +19,7 @@ const HelpPage = () => {
                         desc={card.desc}
                         icon={card.icon}
                         key={i}
+                        link={card.link}
                     />
                 ))}
             </div>

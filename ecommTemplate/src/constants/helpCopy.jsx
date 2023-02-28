@@ -7,12 +7,42 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
 export const helpButtons = [
-    {title: 'Contact Support', desc:"Need a hand with anything? We're happy to help", icon:<HelpCenterIcon/>},
-    {title: 'Update or Cancel an Order', desc: 'Make updates to where, when, and what you ordered', icon:<EditIcon/>},
-    {title: 'Exchange an Item', desc: "Change your mind? We'll swap it out", icon:<LoopIcon/>},
-    {title: 'Dispute Damages', desc:"Were you charged for item damages that you did not cause? Dispute them here", icon:<BrokenImageIcon/>},
-    {title: 'Give Us Feedback', desc:'Leave suggestions, reviews, and general feedback for us!', icon:<FeedbackIcon/>},
-    {title: 'FAQs', desc:'Frequently asked Questions', icon:<QuestionAnswerIcon/>},
-    {title:'Become a Partner', desc:'Partner with us at Blue Elf for special benefits and positioning.', icon:<HandshakeIcon/>}
+    {
+        title: 'Contact Support', 
+        desc:"Need a hand with anything? We're happy to help", 
+        icon:<HelpCenterIcon/>, 
+        link:'/contact-support'
+    },
+    {
+        title: 'Update or Cancel an Order', 
+        desc: 'Make updates to where, when, and what you ordered', 
+        icon:<EditIcon/>, 
+        link:'/update-order'
+    },
+    {
+        title: 'Exchange an Item', 
+        desc: "Change your mind? We'll swap it out", icon:<LoopIcon/>, 
+        link:'/exchange-item'
+    },
+    {
+        title: 'Dispute Damages', 
+        desc:"Were you charged for item damages that you did not cause? Dispute them here", icon:<BrokenImageIcon/>,
+        link:'/dispute-damages'
+    },
+    {
+        title: 'Give Us Feedback', 
+        desc:'Leave suggestions, reviews, and general feedback for us!', icon:<FeedbackIcon/>,
+        link:'/feedback'
+    },
+    {
+        title: 'FAQs', 
+        desc:'Frequently asked Questions', icon:<QuestionAnswerIcon/>,
+        link:'/FAQ'
+    },
+    {
+        title:'Become a Partner', 
+        desc:'Partner with us at Blue Elf for special benefits and positioning.', icon:<HandshakeIcon/>,
+        link:'/partner'
+    }
 ]
 
