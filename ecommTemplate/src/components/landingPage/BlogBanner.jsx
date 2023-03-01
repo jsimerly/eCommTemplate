@@ -1,18 +1,5 @@
 import { games_blog, cool_blog, kids_blog } from '../../assets/images/blog'
-
-const BlogCard = ({title, date, img}) => (
-    <div className="bg-white rounded-md w-full sm:mx-6 my-2 sm:my-0 hover:cursor-pointer text-tertiary group">
-        <img src={img} className='rounded-t-md'/>
-        <div className='flex flex-col justify-center items-center'>
-            <div>            
-                <h1 className='font-semibold text-[20px] p-2 text-center group-hover:underline'>{title}</h1>
-            </div>
-            <div className='flex mb-3 justify-end'>
-                <h4>{date}</h4>
-            </div>
-        </div>
-    </div>
-)
+import { BlogCard } from '../auxillaryPages'
 
 const BlogBanner = () => {
   return (
@@ -20,7 +7,7 @@ const BlogBanner = () => {
         <h1 className="text-center text-[36px] text-tertiary mb-2">
             Our Blogs
         </h1>
-        <div className="flex flex-col sm:flex-row justify-between w-full px-6 sm:px-20">
+        <div className="flex flex-col sm:flex-row justify-between gap-6 w-full px-6 sm:px-20">
             <BlogCard 
                 img={games_blog} 
                 title={'10 Fun Beach Games'}
@@ -38,7 +25,7 @@ const BlogBanner = () => {
             />
         </div>
         <div className="flex justify-center mt-6">
-           <a className='hover:underline hover:cursor-pointer text-tertiary'> View All Blogs </a>
+           <a href='/blogs' className='hover:underline hover:cursor-pointer text-tertiary'> View All Blogs </a>
         </div>
     </div>
 

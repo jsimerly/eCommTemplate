@@ -78,25 +78,25 @@ function App() {
           />
           <div className='h-[80px]'/>
           <Routes>
-            <Route exact path='/' element={ <LandingPage/>}/>
-            <Route path='/shopping/' element={<StandardShop/>}/>
-            <Route path='/p/:slug' element= {<ProductPage/>}
-            />
-            <Route path='/cart' element={<CartPage/>}/>
-            <Route path='/help' element={<HelpPage/>}
-            />
-            <Route path='/contact-support' element={<ContactSupport/>}/>
-            <Route path='/FAQ' element={<FAQ/>}/>
-            <Route path='/update-order' element={<UpdateOrderPage/>}/>
-            <Route path='/exchange-item' element={<ExchangeItem/>}/>
-            <Route path='/dispute-damages' element={<DisputeDamages/>}/>
-            <Route path='/feedback' element={<Feedback/>}/>
-            <Route path='/partner' element={<Partners/>}/>
-            <Route path='/account-management' element={<Account/>}/>
-            <Route path='/Blogs' element={<AllBlogsPage/>}/>
-            <Route path='/Blogs/:blogID' element={<BlogPage/>}/>
-            <Route path='/privacy' element={<Privacy/>}/>
-            <Route path='/account-management' element={<TermsConditionsPage/>}/>
+            <Route exact path='/' element={ <LandingPage/>}/> {/* Update the Categories */}
+            <Route path='/shopping/' element={<StandardShop/>}/> {/* Completed */}
+            <Route path='/p/:slug' element= {<ProductPage/>} 
+            /> {/* Completed */}
+            <Route path='/cart' element={<CartPage/>}/> {/* Completed */}
+            <Route path='/help' element={<HelpPage/>} 
+            /> {/* Add Address */}
+            <Route path='/contact-support' element={<ContactSupport/>}/> {/* X */}
+            <Route path='/FAQ' element={<FAQ/>}/> {/* Need to Update Answers */}
+            <Route path='/update-order' element={<UpdateOrderPage/>}/> {/* X */}
+            <Route path='/exchange-item' element={<ExchangeItem/>}/> {/* X */}
+            <Route path='/dispute-damages' element={<DisputeDamages/>}/>{/* X */}
+            <Route path='/feedback' element={<Feedback/>}/> {/* Completed */}
+            <Route path='/partner' element={<Partners/>}/> {/* X */}  
+            <Route path='/account-management' element={<Account/>}/> {/* X */}
+            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* X */}
+            <Route path='/blogs/:blogID' element={<BlogPage/>}/> {/* X */}
+            <Route path='/privacy' element={<Privacy/>}/> {/* X */}
+            <Route path='/account-management' element={<TermsConditionsPage/>}/> {/* X */}
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>

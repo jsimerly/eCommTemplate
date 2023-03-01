@@ -6,6 +6,7 @@ import wagon_banner from './WagonBanner.avif'
 import new_cust_banner from './banner_flamingo.avif'
 import hero_banner from './hero.avif'
 
+
 export {
     hero_banner,
     cancel_banner,

@@ -10,5 +10,6 @@ import UpdateOrderPage from "./UpdateOrderPage";
 import Feedback from "./Feedback"
 import Partners from "./Partners";
 import Account from "./Account";
+import BlogCard from "./BlogCard";
 
-export {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, UpdateOrderPage, Feedback, Partners, Account}
+export {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, UpdateOrderPage, Feedback, Partners, Account, BlogCard}
