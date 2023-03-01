@@ -1,7 +1,7 @@
 
 
 const BlogCard = ({title, date, img}) => (
-    <div className="bg-white rounded-md w-full h-full my-2 sm:my-0 hover:cursor-pointer text-tertiary group ">
+    <div className="bg-white rounded-md w-full my-2 sm:my-0 hover:cursor-pointer text-tertiary group ">
         <img src={img} className='rounded-t-md'/>
         <div className='flex flex-col justify-center items-center'>
             <div>            

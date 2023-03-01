@@ -35,13 +35,15 @@ const pages = [
 const page = 1 //from url param
 
 const MainBlog = ({title, img})  => (
-  <div className='w-full rounded-md relative'>
+  <div className='w-full rounded-md p-10 mx-20'>
+    <div className='relative w-full'>
     <img src={img} className='rounded-md'/>
-    <div className='absolute top-3/4 left-1/2 -translate-x-1/2 flex flex-col justify-center items-center bg-white rounded-md p-3'>
-      <h2 className={`text-tertiary text-[40px] text-center font-bold`}> {title}</h2>
+    <div className='absolute top-[10%] w-1/2 left-[10%] flex flex-col justify-center items-center bg-white rounded-md p-3'>
+      <h2 className={`text-tertiary text-[40px] text-center font-bold p-6`}> {title}</h2>
       <button className='border border-primary bg-white text-primary text-bold rounded-md py-2 px-10 hover:underline cursor-pointer'>
         Read More
       </button>
+      </div>
     </div>
   </div>
 )
@@ -55,7 +57,7 @@ const AllBlogsPage = () => {
       />
       <div className='flex flex-wrap gap-6 justify-center items-center mt-6 flex-grow'>
         {blogData.map((blog,i) => (
-          <div className='w-[300px] h-[280px]'>
+          <div className='w-[300px] h-[280px] flex'>
             <BlogCard
               key={i}
               title={blog.title}
