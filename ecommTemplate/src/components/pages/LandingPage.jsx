@@ -77,6 +77,10 @@ useEffect(() => {
                     head={header('Most Popular')}
                     data={data}
                 />
+                <Carousel
+                    head={header('Trending')}
+                    data={data}
+                />
                 </div>
                 <div className='my-6 sm:my-16'>
                 <Categories/>

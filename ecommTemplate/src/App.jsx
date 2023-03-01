@@ -78,7 +78,7 @@ function App() {
           />
           <div className='h-[80px]'/>
           <Routes>
-            <Route exact path='/' element={ <LandingPage/>}/> {/* Update the Categories */}
+            <Route exact path='/' element={ <LandingPage/>}/> {/* Update the links */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* Completed */}
             <Route path='/p/:slug' element= {<ProductPage/>} 
             /> {/* Completed */}

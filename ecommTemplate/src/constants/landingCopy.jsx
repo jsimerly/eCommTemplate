@@ -9,7 +9,7 @@ import {
     yeti_white_logo,
 }  from "../assets/images/logos"
 
-import { gameOn, sunbathing, withKids} from '../assets/images/categories'
+import { gameOn, layingOut, withKids} from '../assets/images/categories'
 
 import EditIcon from '@mui/icons-material/Edit';
 import LoopIcon from '@mui/icons-material/Loop';
@@ -51,7 +51,7 @@ export const categories = {
             desc:"Whether you're surfing in style or laying out in the sun, we've got what you need.",
             cta1: 'Shop Paddleboards',
             cta2: 'Shop Relaxation',
-            img: sunbathing,
+            img: layingOut,
         },
         {
             header: 'Game On',
@@ -62,7 +62,7 @@ export const categories = {
         },
         {
             header: "Don't Kid Yourself",
-            desc: 'Keep the young ones safe and smiling can be stressful, but we can make it easy.',
+            desc: 'Keeping the young ones safe and smiling can be stressful, but we can make it easy.',
             cta1: 'Shop Kids',
             cta2: 'Shop Floaties',
             img: withKids
