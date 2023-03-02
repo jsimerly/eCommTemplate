@@ -78,7 +78,7 @@ function App() {
           />
           <div className='h-[80px]'/>
           <Routes>
-            <Route exact path='/' element={ <LandingPage/>}/> {/* Update the Categories */}
+            <Route exact path='/' element={ <LandingPage/>}/> {/* Crop the Categories */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* Completed */}
             <Route path='/p/:slug' element= {<ProductPage/>} 
             /> {/* Completed */}
@@ -93,7 +93,7 @@ function App() {
             <Route path='/feedback' element={<Feedback/>}/> {/* Completed */}
             <Route path='/partner' element={<Partners/>}/> {/* X */}  
             <Route path='/account-management' element={<Account/>}/> {/* X */}
-            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* X */}
+            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* Completed */}
             <Route path='/blogs/:blogID' element={<BlogPage/>}/> {/* X */}
             <Route path='/privacy' element={<Privacy/>}/> {/* X */}
             <Route path='/account-management' element={<TermsConditionsPage/>}/> {/* X */}
