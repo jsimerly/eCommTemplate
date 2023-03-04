@@ -55,7 +55,7 @@ const AllBlogsPage = () => {
         title='A Guide to Picking the Best Ocean and Pool Toys for your Vacation'
         img={unicorn_blog}
       />
-      <div className='flex flex-wrap gap-6 justify-center items-center mt-6 flex-grow'>
+      <div className='grid grid-cols-4 gap-6 justify-center items-center mt-6 flex-grow'>
         {blogData.map((blog,i) => (
           <div className='w-[300px] h-[280px] flex'>
             <BlogCard

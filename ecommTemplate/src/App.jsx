@@ -11,7 +11,7 @@ import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
-import {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, UpdateOrderPage, Feedback, Account,Partners} from './components/auxillaryPages'
+import {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account,Partners, Cookies} from './components/auxillaryPages'
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -87,16 +87,15 @@ function App() {
             /> {/* Add Address */}
             <Route path='/contact-support' element={<ContactSupport/>}/> {/* X */}
             <Route path='/FAQ' element={<FAQ/>}/> {/* Need to Update Answers */}
-            <Route path='/update-order' element={<UpdateOrderPage/>}/> {/* X */}
-            <Route path='/exchange-item' element={<ExchangeItem/>}/> {/* X */}
-            <Route path='/dispute-damages' element={<DisputeDamages/>}/>{/* X */}
+            <Route path='/find-order' element={<FindOrder/>}/> {/* Completed */}
             <Route path='/feedback' element={<Feedback/>}/> {/* Completed */}
             <Route path='/partner' element={<Partners/>}/> {/* X */}  
             <Route path='/account-management' element={<Account/>}/> {/* X */}
             <Route path='/blogs' element={<AllBlogsPage/>}/> {/* X */}
             <Route path='/blogs/:blogID' element={<BlogPage/>}/> {/* X */}
-            <Route path='/privacy' element={<Privacy/>}/> {/* X */}
-            <Route path='/account-management' element={<TermsConditionsPage/>}/> {/* X */}
+            <Route path='/privacy' element={<Privacy/>}/> {/* Completed */}
+            <Route path='/cookies' element={<Privacy/>}/> {/* X*/}
+            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* Completed */}
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>

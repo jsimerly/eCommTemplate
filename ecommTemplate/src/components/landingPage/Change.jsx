@@ -15,8 +15,12 @@ const Change = () => {
                     desc={info.desc}
                     icon={info.icon}
                     key={index}
+                    link={info.link}
                 />
             ))}
+        </div>
+        <div className="flex justify-center mt-6">
+           <a href='/help' className='hover:underline hover:cursor-pointer text-tertiary'> View Help Page </a>
         </div>
     </div>
   )

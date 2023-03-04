@@ -89,18 +89,18 @@ export const easy = [
         title: 'Update or Cancel an Order',
         desc: 'Make updates to where, when, and what you ordered',
         icon: <EditIcon/>,
-        link: ''
+        link: '/find-order'
     },
     {
         title: 'Exchange an Item',
         desc: "Change your mind? We'll swap it out",
         icon: <LoopIcon/>,
-        link: ''
+        link: '/find-order'
     },
     {
         title: 'Contact Support',
         desc: "Need a hand with anything? We're happy to help",
         icon: <HelpCenterIcon/>,
-        link: ''
+        link: '/contact-support'
     }
 ]

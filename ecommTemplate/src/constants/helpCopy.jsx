@@ -17,17 +17,17 @@ export const helpButtons = [
         title: 'Update or Cancel an Order', 
         desc: 'Make updates to where, when, and what you ordered', 
         icon:<EditIcon/>, 
-        link:'/update-order'
+        link:'/find-order'
     },
     {
         title: 'Exchange an Item', 
         desc: "Change your mind? We'll swap it out", icon:<LoopIcon/>, 
-        link:'/exchange-item'
+        link:'/find-order'
     },
     {
         title: 'Dispute Damages', 
         desc:"Were you charged for item damages that you did not cause? Dispute them here", icon:<BrokenImageIcon/>,
-        link:'/dispute-damages'
+        link:'/find-order'
     },
     {
         title: 'Give Us Feedback', 
