@@ -14,10 +14,10 @@ const navigateShopping = () => {
     function handleNav(category, destination, startDate, endDate, dateChange){
 
         const cat = category || selectedCategory
-        const dest=selectedDestination || undefined
-        const start=selectedDateRange.startDate || undefined
-        const end=selectedDateRange.endDate || undefined
-        const change=selectedDateRange.first || undefined
+        const dest= destination || selectedDestination 
+        const start= startDate || selectedDateRange.startDate 
+        const end= endDate || selectedDateRange.endDate
+        const change= dateChange || selectedDateRange.first
 
         if (selectedCategory.id !== cat.id){
             setSelectedCategory(category)
