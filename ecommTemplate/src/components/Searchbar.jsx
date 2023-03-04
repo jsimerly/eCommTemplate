@@ -4,9 +4,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import {ShoppingContext} from '../context';
 import navigateShopping from '../hooks/navigateShopping';
 import { What, Where, When } from './tripInfo';
+import navigateSearch from '../hooks/navigateSearch';
 
 
-const Searchbar = ({immediateSearch}) => {
+const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
 
     const {selectedDateRange, 
         selectedDestination, 
@@ -26,7 +27,8 @@ const Searchbar = ({immediateSearch}) => {
     }, [selectedDestination, selectedCategory, selectedDateRange])
 
 
-    let handleSearch = navigateShopping()
+    let handleShopping= navigateShopping()
+    let handleSearch = navigateSearch()    
 
   return (
         <div 
@@ -40,7 +42,12 @@ const Searchbar = ({immediateSearch}) => {
                 <When/> 
             </div>
             <div className='w-1/4 h-[40px] flex'>
-                <What/>
+                <What
+                    searchInput={searchInput}
+                    setSearchInput={setSearchInput}
+                    searchParamActive={searchParamActive}
+                    setSearchParamActive={setSearchParamActive}
+                />
             </div>
             {immediateSearch ? 
                 null
@@ -48,7 +55,11 @@ const Searchbar = ({immediateSearch}) => {
                 <div className='flex justify-center itmes-center'>
                     <button 
                         className='rounded-md bg-primary text-white flex flex-1 justify-center items-center h-[40px] w-[40px]'
-                        onClick={handleSearch}
+                        onClick={searchParamActive ? 
+                            ()=>handleSearch(searchInput)
+                            :
+                            ()=>handleShopping()
+                        }
                     >
                         <SearchIcon className='scale-125 hover:scale-150'/>
                     </button>

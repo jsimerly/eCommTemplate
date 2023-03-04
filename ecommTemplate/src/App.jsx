@@ -42,18 +42,21 @@ function getDestination(){
 function getCategory(){
   const sessionCat = sessionStorage.getItem('category')
     return sessionCat ? JSON.parse(sessionCat) : {name: '', id:'0000'}
-  }
+}
 
 function App() {
   const [selectedDestination, setSelectedDestination] = useState(getDestination())
   const [selectedDateRange, setSelectedDateRange] = useState(getDateRange())
+
   const [selectedCategory, setSelectedCategory] = useState(getCategory())
+  const [searchInput, setSearchInput] = useState('')
+  const [searchParamActive, setSearchParamActive] = useState(false)
 
   const location = useLocation();
   const [immediateSearch, setImmediateSearch] = useState(false)
 
   useEffect(()=>{
-    if (location.pathname == '/shopping'){
+    if (location.pathname === '/shopping' || location.pathname === '/search'){
       setImmediateSearch(true)
     } else {
       setImmediateSearch(false)
@@ -76,6 +79,10 @@ function App() {
         >
           <Navbar
             immediateSearch={immediateSearch}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            searchParamActive={searchParamActive}
+            setSearchParamActive={setSearchParamActive}
           />
           <div className='h-[80px]'/>
           <Routes>
@@ -88,7 +95,7 @@ function App() {
             <Route path='/help' element={<HelpPage/>} 
             /> {/* Add Address */}
             <Route path='/contact-support' element={<ContactSupport/>}/> {/* X */}
-            <Route path='/FAQ' element={<FAQ/>}/> {/* Need to Update Answers */}
+            <Route path='/FAQ' element={<FAQ/>}/> {/* Need to Update Answers (waiting on business model) */}
             <Route path='/find-order' element={<FindOrder/>}/> {/* Completed */}
             <Route path='/feedback' element={<Feedback/>}/> {/* Completed */}
             <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */}  

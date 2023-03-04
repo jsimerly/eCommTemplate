@@ -15,7 +15,6 @@ const CatCard = ({header, img, desc, cta1, cta2, reverse}) => (
                 </div>
                 <div className='flex flex-row justify-center items-center py-6'>
                     <button className='bg-primary p-2 w-1/2 text-white rounded-md hover:underline'> {cta1} </button>
-                    <button className='ml-2 bg-primary p-2 w-1/2 text-white rounded-md hover:underline'> {cta2} </button>
                 </div>
             </div>
 
@@ -32,7 +31,7 @@ const Categories = () => {
         <div className='flex flex-col'>
             {categories.cats.map((cat, index) => {
                 const reverse = index % 2 === 1
-                console.log(reverse)
+
                 return (
                     <CatCard 
                         key={index}

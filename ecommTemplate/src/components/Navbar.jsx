@@ -50,7 +50,7 @@ const AccountDropdown = ({open}) => {
     )
 }
 
-const Navbar = ({immediateSearch}) => {
+const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
     const [openAccount, setOpenAccount, handleClickAccount, node] = useDropdown(false)
 
   return (
@@ -70,6 +70,10 @@ const Navbar = ({immediateSearch}) => {
                 <div className='flex-1 justify-start items-center w-full hidden sm:block'>
                     <Searchbar
                         immediateSearch={immediateSearch}
+                        searchInput={searchInput}
+                        setSearchInput={setSearchInput}
+                        searchParamActive={searchParamActive}
+                        setSearchParamActive={setSearchParamActive}
                     />
                 </div>
                 <div className='flex justify-end items-center relative overflow-visible'>

@@ -11,17 +11,17 @@ import { ShoppingContext } from '../../context';
 
 
 
-const ShoppingMain = ({shoppingData, relatedCategories}) => {
+const ShoppingMain = ({filterData, relatedCategories}) => {
   //Filter Related
-  const shoppingData_copy = JSON.parse(JSON.stringify(shoppingData))
-  const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(shoppingData)));
+  const filterData_copy = JSON.parse(JSON.stringify(filterData))
+  const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
 
   const [filterOpen, setFilterOpen, handleFilterClick] = useOpenAndClose(false)
   const [filterApplied, setFilterApplied] = useState(false)
 
   useEffect(() => {
-    setCheckFilterOptions(JSON.parse(JSON.stringify(shoppingData)));
-  }, [shoppingData]);
+    setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));
+  }, [filterData]);
 
   const areListsEqual = (deepCopy, stateCopy) =>{
 
@@ -39,12 +39,12 @@ const ShoppingMain = ({shoppingData, relatedCategories}) => {
   }
 
   const checkForFilterApplied = () => {
-    const bool = areListsEqual(shoppingData_copy, checkFilterOptions)
+    const bool = areListsEqual(filterData_copy, checkFilterOptions)
     setFilterApplied(!bool)
   }
 
   const handleClearClick = () => {
-    setCheckFilterOptions([...shoppingData_copy])
+    setCheckFilterOptions([...filterData_copy])
     setFilterApplied(false)
   }
 

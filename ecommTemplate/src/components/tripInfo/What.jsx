@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -9,13 +9,10 @@ import useDropdown from "../../hooks/useDropdown";
 
 
 
-const What = () => {
+const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
     //add search ability to this at some point
     const {setSelectedCategory, selectedCategory, allCategories} = useContext(ShoppingContext)
     const [open, setOpen, handleClick, node] = useDropdown()
-
-    const [searchInput, setSearchInput] = useState('')
-    const [searchParamActive, setSearchParamActive] = useState(false)
 
     const handleSelect = (cat) => {
         setSelectedCategory(cat);
@@ -24,6 +21,7 @@ const What = () => {
     }
     
     const getDisplayData = () => {
+
         if (searchParamActive){
             return searchInput
         }

@@ -9,7 +9,7 @@ import ShoppingHero from '../shopping/ShoppingHero';
 import { ShoppingContext } from '../../context';
 import Navbar from '../Navbar';
 
-const StandardShop = ({immediateSearch}) => {
+const StandardShop = () => {
   const { selectedCategory } = useContext(ShoppingContext)
   const shoppingData = shoppingPageData[selectedCategory.id]
 
@@ -31,7 +31,7 @@ const StandardShop = ({immediateSearch}) => {
             <div className={`flex justify-between items-center w-full mt-4`}>
               <div >
                 <ShoppingMain
-                  shoppingData={shoppingData['checkboxOptions']}
+                  filterData={shoppingData['checkboxOptions']}
                   relatedCategories={shoppingData['relatedCategories']}
                 />
               </div>
