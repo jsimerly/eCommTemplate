@@ -11,6 +11,7 @@ import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
+import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account,Partners, Cookies} from './components/auxillaryPages'
 
 function getDateRange(){
@@ -78,8 +79,9 @@ function App() {
           />
           <div className='h-[80px]'/>
           <Routes>
-            <Route exact path='/' element={ <LandingPage/>}/> {/* Update the links */}
+            <Route exact path='/' element={ <LandingPage/>}/> {/* Update the links (waiting on search page) */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* Completed */}
+            <Route path='/search' element={<SearchPage/>}/> {/* X */}
             <Route path='/p/:slug' element= {<ProductPage/>} 
             /> {/* Completed */}
             <Route path='/cart' element={<CartPage/>}/> {/* Completed */}
