@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
 import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account,Partners, Cookies} from './components/auxillaryPages'
+import AboutUs from './components/auxillaryPages/AboutUs';
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -87,6 +88,7 @@ function App() {
           <div className='h-[80px]'/>
           <Routes>
             <Route exact path='/' element={ <LandingPage/>}/> {/* Update the links (waiting on search page) */}
+            <Route path='/about-us' element={<AboutUs/>}/> {/* X */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* Completed */}
             <Route path='/search' element={<SearchPage/>}/> {/* X */}
             <Route path='/p/:slug' element= {<ProductPage/>} 

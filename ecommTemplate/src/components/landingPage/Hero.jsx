@@ -19,7 +19,7 @@ const Hero = () => {
           </p>
           <button 
             className='bg-primary text-white p-4 rounded-md  font-bold w-[180px] text-[20px] hover:underline'
-            onClick={handleClick}  
+            onClick={()=> handleClick()}  
           >
             {heroMain.cta}
           </button>

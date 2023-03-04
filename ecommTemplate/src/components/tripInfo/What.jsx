@@ -6,6 +6,7 @@ import { ShoppingContext } from "../../context";
 
 import FormTemplate from "./FormTemplate";
 import useDropdown from "../../hooks/useDropdown";
+import navigateSearch from "../../hooks/navigateSearch";
 
 
 
@@ -28,6 +29,14 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
         return selectedCategory.name
     }
 
+    const handleSearchClick = navigateSearch()
+
+    const handleKeyDown = (e) =>{
+        if (e.key === 'Enter'){
+            handleSearchClick(searchInput)
+        }
+    }
+
     const dropdown = () => {
         return (
         <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${open ? '' : 'hidden'} shadow-md z-10`}>
@@ -37,8 +46,12 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
                     placeholder="Search"
                     value={searchInput}
                     onChange={(e)=> {setSearchInput(e.target.value); setSearchParamActive(true)}}
+                    onKeyDown={handleKeyDown}
                 />
-                <SearchIcon className="absolute -translate-y-1/2 top-1/2 right-2 scale-125 hover:scale-150 cursor-pointer"/>
+                <SearchIcon 
+                    className="absolute -translate-y-1/2 top-1/2 right-2 scale-125 hover:scale-150 cursor-pointer"
+                    onClick={()=>handleSearchClick(searchInput)}
+                />
             </div>
             <h1 className='w-full text text-tertiary font-bold text-[22px] py-2'>
                 Categories

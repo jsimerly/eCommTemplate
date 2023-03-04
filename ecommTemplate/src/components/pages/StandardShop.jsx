@@ -6,12 +6,14 @@ import { shoppingPageData } from '../../constants/shopping';
 import { BrowsingHistory, ItemSuggestion, ShoppingMain }  from '../shopping';
 
 import ShoppingHero from '../shopping/ShoppingHero';
-import { ShoppingContext } from '../../context';
-import Navbar from '../Navbar';
+import { useLocation } from 'react-router-dom';
 
 const StandardShop = () => {
-  const { selectedCategory } = useContext(ShoppingContext)
-  const shoppingData = shoppingPageData[selectedCategory.id]
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search);
+  const categoryId = searchParams.get('categoryId')
+
+  const shoppingData = shoppingPageData[categoryId]
 
   useEffect(() => {
     window.scrollTo(0, 0);

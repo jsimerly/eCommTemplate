@@ -10,13 +10,13 @@ const ProductCard = ({text, img, price}) => {
   let navigate = navigateProduct({itemSlug});
 
   return (
-    <div className='w-[150px] h-[260px] sm:h-[470px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col m-2'>
+    <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2'>
       <img 
         src={yeti45} 
         className='bg-white object-scale-down rounded-md hover:cursor-pointer'
         onClick={navigate}
       />
-      <div className='mt-2 text-tertiary flex flex-col grow'>
+      <div className='mt-2 p-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 
             className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'

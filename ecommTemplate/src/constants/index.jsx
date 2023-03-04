@@ -159,7 +159,7 @@ export const footerInfo = [
             },
             {
                 name: 'Careers',
-                link: 'https://http://127.0.0.1:5173/'
+                link: '/'
             },
         ],         
     },
@@ -172,11 +172,11 @@ export const footerInfo = [
             },
             {
                 name: 'Feedback',
-                link: 'https://http://127.0.0.1:5173/'
+                link: '/feedback'
             },
             {
                 name: 'Contact Us',
-                link: 'https://http://127.0.0.1:5173/'
+                link: '/contact-support'
             },            {
                 name: 'Support',
                 link: '/help'
