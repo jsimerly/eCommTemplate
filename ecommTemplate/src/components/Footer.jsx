@@ -26,7 +26,7 @@ const Footer = () => {
                 </div>
             ))}
             <div className='bg-white rounded-md pt-0 p-10 sm:relative sm:bottom-6 hidden sm:block text-tertiary'>
-                <div className='mt-6 font-semibold mb-2'> Subscribe </div>
+                <div className='mt-6 font-semibold mb-2'> Stay Connected </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
                     <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100 '/>
                     <div className="ml-1 bg-primary text-white rounded p-2">
@@ -69,9 +69,9 @@ const Footer = () => {
                 </div>
             </div>
             <div className='font-semibold text-[14px] flex sm:flex-row flex-col order-3 sm:order-2'>
-                <a className='m-3 cursor-pointer'> Terms </a>
-                <a className='m-3 cursor-pointer'> Privacy </a>
-                <a className='m-3 cursor-pointer'> Cookies </a>
+                <a href='/terms-and-conditions' className='m-3 cursor-pointer'> Terms </a>
+                <a href='/privacy' className='m-3 cursor-pointer'> Privacy </a>
+                <a href='/cookies' className='m-3 cursor-pointer'> Cookies </a>
             </div>
             <div className='flex flew-row p-1 text-white order-2 sm:order-3'>
                 {footerSocialIcons.map((iconInfo, index) => (

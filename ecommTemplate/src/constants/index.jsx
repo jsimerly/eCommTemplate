@@ -183,19 +183,19 @@ export const footerInfo = [
             },
         ]
     },
-    {
-        title: 'Partner',
-        links: [
-            {
-                name: 'Partner Benefits',
-                link: 'https://http://127.0.0.1:5173/'
-            },            
-            {
-                name: 'Become a Partner',
-                link: 'https://http://127.0.0.1:5173/'
-            },
-        ]
-    }
+    // {
+    //     title: 'Partner',
+    //     links: [
+    //         {
+    //             name: 'Partner Benefits',
+    //             link: 'https://http://127.0.0.1:5173/'
+    //         },            
+    //         {
+    //             name: 'Become a Partner',
+    //             link: 'https://http://127.0.0.1:5173/'
+    //         },
+    //     ]
+    // }
 ];
 
 export const footerSocialIcons = [

@@ -89,12 +89,12 @@ function App() {
             <Route path='/FAQ' element={<FAQ/>}/> {/* Need to Update Answers */}
             <Route path='/find-order' element={<FindOrder/>}/> {/* Completed */}
             <Route path='/feedback' element={<Feedback/>}/> {/* Completed */}
-            <Route path='/partner' element={<Partners/>}/> {/* X */}  
+            <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */}  
             <Route path='/account-management' element={<Account/>}/> {/* X */}
-            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* X */}
+            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* Completed */}
             <Route path='/blogs/:blogID' element={<BlogPage/>}/> {/* X */}
             <Route path='/privacy' element={<Privacy/>}/> {/* Completed */}
-            <Route path='/cookies' element={<Privacy/>}/> {/* X*/}
+            <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}
             <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* Completed */}
           </Routes>
           <div className='flex justify-center items-center'>
