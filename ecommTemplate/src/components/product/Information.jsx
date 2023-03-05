@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { SwitchComp } from "../utils"
 import {Details, ReturnDamage, Reviews, Specs} from './'
 
 
@@ -12,15 +13,7 @@ const classProps = (selected) => {
 
 const Information = () => {
   const [view, setView] = useState('Details')
-
-  const HeaderButton = ({type}) => (
-    <button 
-      className={`${classProps(view==type)} hover:underline`}
-      onClick={()=> setView(type)}
-    >
-      {type}
-    </button>
-  )
+  
   const infoDict = {
     'Details' : <Details/>,
     'Reviews' : <Reviews/>,
@@ -33,25 +26,12 @@ const Information = () => {
         <h1 className="text-[30px] pt-4">
             Product Information
         </h1>
-        <div className="bg-white w-full p-4 justify-center flex flex-col items-center rounded-md">
-          <div className="flex flex-row justify-center p-2 items-center space-x-12 text-[18px]">
-            <HeaderButton
-              type='Details'
+        <div className="p-6 w-full">
+          <SwitchComp
+              compDict={infoDict}
+              defComp={'Details'}
+              className='!border-none'
             />
-            <HeaderButton
-              type='Specifications'
-            />
-            <HeaderButton
-              type='Returns & Damages'
-            />
-            <HeaderButton
-              type='Reviews'
-            />            
-          </div>
-            <div className="border w-4/5 border-primary"/>
-            <div className="flex p-6 w-full">
-              {infoDict[view]}
-            </div>
         </div>
     </div>
   )
