@@ -1,5 +1,6 @@
 import { categories } from './landingCopy_constant'
 import navigateShopping from '../../hooks/navigateShopping'
+import { BlueButton } from '../utils'
 
 
 const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
@@ -16,16 +17,15 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
                     <div className='text-tertiary text-[18px]'>
                         {desc}
                     </div>
-                    <div className='flex flex-row justify-center items-center py-6'>
-                        <button 
-                            className='bg-primary p-2 w-1/2 text-white rounded-md hover:underline'
-                            onClick={()=>navShopping(nav)}
-                        >
-                            {cta1} 
-                        </button>
+                    <div className='flex flex-row justify-center items-center py-6 '>
+                        <div className='w-1/2'>
+                            <BlueButton
+                                content={cta1}
+                                onClick={()=>navShopping(nav)}
+                            />
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

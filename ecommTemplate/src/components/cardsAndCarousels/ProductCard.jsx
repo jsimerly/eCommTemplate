@@ -3,6 +3,7 @@ import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import AddIcon from '@mui/icons-material/Add';
 import navigateProduct from '../../hooks/navigateProduct';
+import { BlueButton } from '../utils';
 
 
 const ProductCard = ({text, img, price}) => {
@@ -41,8 +42,8 @@ const ProductCard = ({text, img, price}) => {
           </div>
         </div>
         <div className='flex flex-col flex-1 w-full justify-between items-start sm:my-4'>
-          <div className='flex justify-between w-full items-center mt-3 pb-5'>
-            <div className='flex flex-col'>
+          <div className='flex justify-between w-full items-center h-[50px]'>
+            <div className='flex flex-col h-full justify-center'>
               <div className='font-semibold sm:text-[26px] leading-none'>
                 $16.98
               </div>
@@ -50,11 +51,17 @@ const ProductCard = ({text, img, price}) => {
                 For 7 Days
               </p>
             </div>
-            <button className='text-white p-3 bg-primary rounded justify-center items-center hover:underline hidden sm:flex'>
-              Add to Cart
-            </button>
-            <div className='text-white bg-primary rounded-md sm:hidden'>
-              <AddIcon/>
+            <div className='h-full border hidden sm:block'>
+              <BlueButton
+                content='Add to Cart'
+                onClick={console.log('add to cart')}
+              />
+            </div>
+            <div className='sm:hidden'>
+              <BlueButton
+                className='!p-1'
+                content={<AddIcon/>}
+              />
             </div>
           </div>
         </div>

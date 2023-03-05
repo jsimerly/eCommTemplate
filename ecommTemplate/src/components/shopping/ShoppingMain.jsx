@@ -8,6 +8,7 @@ import { Filter, Items }  from '.';
 import useDropdown from '../../hooks/useDropdown';
 import useOpenAndClose from '../../hooks/useOpenAndClose';
 import { ShoppingContext } from '../../context';
+import { WhiteButton } from '../utils';
 
 
 
@@ -68,13 +69,16 @@ const ShoppingMain = ({filterData, relatedCategories}) => {
     <div className='flex flex-row justify-between min-h-[80px]'>
               <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
-                  <button
-                    className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline group min-h-[42px]'
+                  <WhiteButton 
                     onClick={handleFilterClick}
-                  >
-                    <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
-                    Filter
-                  </button>
+                    content={
+                      <div>
+                        <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
+                        Filter
+                      </div>
+                    }
+                    className='!text-tertiary'
+                  />
                   <button 
                     className={`${filterApplied ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
                     onClick={handleClearClick}
@@ -105,13 +109,18 @@ const ShoppingMain = ({filterData, relatedCategories}) => {
               </div>
               <div className='flex justify-end items-center w-1/5'>
                 <div ref={sortNode}>
-                  <button
-                    className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative group min-h-[42px]'
-                    onClick={handleSortClick}
-                  >
-                    Sort By: {sortBy}
-                    <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-125'/>
-                  </button>
+                  <div className='h-[42px] group'>
+                    <WhiteButton
+                      onClick={handleSortClick}
+                      content={
+                        <div className='flex flex-row justify-between'>
+                          Sort By: {sortBy}
+                          <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-110'/>
+                        </div>
+                      }
+                      className='!text-tertiary'
+                    />
+                  </div>
                 <div 
                   className={`${sortOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
                 >

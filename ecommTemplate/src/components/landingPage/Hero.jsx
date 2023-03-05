@@ -1,6 +1,7 @@
 import { heroMain } from './landingCopy_constant'
 import navigateShopping from '../../hooks/navigateShopping'
 import { hero_banner } from '../../assets/images/banners'
+import { LargeBlueButton} from '../utils'
 
 const Hero = () => {  
   let handleClick = navigateShopping()
@@ -16,12 +17,12 @@ const Hero = () => {
           <p className='text-[30px] leading-6 sm:leading-10 sm:px-6 pb-6 text-tertiary text-center max-w-[450px]'>
             {heroMain.desc}
           </p>
-          <button 
-            className='bg-primary text-white p-4 rounded-md  font-bold w-[180px] text-[20px] hover:underline'
-            onClick={()=> handleClick()}  
-          >
-            {heroMain.cta}
-          </button>
+          <div className='w-1/3'>
+            <LargeBlueButton
+              onClick={handleClick}
+              content={heroMain.cta}
+            />
+          </div>
         </div>
       </div>
     </div>

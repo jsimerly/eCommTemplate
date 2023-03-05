@@ -1,6 +1,7 @@
 import useDropdown from "../../../../hooks/useDropdown"
 import ExpandMore from "@mui/icons-material/ExpandMore"
 import { useState } from "react"
+import { BlueButton } from "../../../utils"
 
 
 const issues = [
@@ -46,9 +47,12 @@ const OpenTicket = () => {
                         placeholder="Please leave whatever feedback you feel is relevant."
                 />
             </div>
-            <button className="w-full text-center bg-primary text-white mt-2 p-2 rounded-md">
-                Submit Ticket
-            </button>
+            <div className="mt-2">
+                <BlueButton
+                    content='Submit Ticket'
+                />
+            </div>
+
         </div>
     </div>
   )

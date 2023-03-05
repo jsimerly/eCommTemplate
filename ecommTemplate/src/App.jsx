@@ -96,7 +96,7 @@ function App() {
             <Route path='/cart' element={<CartPage/>}/> {/* Mobile */}
             <Route path='/help' element={<HelpPage/>} 
             /> {/* Mobile */}
-            <Route path='/contact-support' element={<ContactSupport/>}/> {/* X */}
+            <Route path='/contact-support' element={<ContactSupport/>}/> {/* Mobile */}
             <Route path='/FAQ' element={<FAQ/>}/> {/* On Hold until Business Model */}
             <Route path='/find-order' element={<FindOrder/>}/> {/* Mobile */}
             <Route path='/feedback' element={<Feedback/>}/> {/* Mobile */}

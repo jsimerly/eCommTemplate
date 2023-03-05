@@ -5,6 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 import { payment } from '../../assets/svg'
 import { Where, When } from '../tripInfo';
+import { LargeBlueButton } from '../utils';
 
 
 
@@ -105,9 +106,9 @@ const OrderSummary = () => {
             </div>
         </div>
         <div className='w-full flex justify-center items-center mt-4'>
-                <button className='p-2 bg-primary text-white rounded-md w-full text-[24px]'>
-                    Checkout
-                </button>
+            <LargeBlueButton
+                content='Checkout'
+            />
         </div>
         <div className='flex justify-center'>
             <div className='flex flex-row justify-center items-center space-x-1 my-2 w-2/3'>

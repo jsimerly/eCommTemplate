@@ -6,6 +6,7 @@ import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
+import { BlueButton, WhiteButton } from './utils/buttons';
 
 
 const itemsInCart = 3
@@ -37,12 +38,18 @@ const AccountDropdown = ({open}) => {
                     type='password'
                 />
                 <div className='flex w-full justify-around space-x-1 pt-1'>
-                    <button className='px-2 w-1/2 bg-primary text-white rounded-md hover:underline'>
-                        Sign-In
-                    </button>
-                    <button className='px-2 w-1/2 bg-white text-primary rounded-md border border-primary hover:underline'>
-                        Register
-                    </button>
+                    <div className='w-1/2'>
+                        <BlueButton
+                            content='Sign-In'
+                            onClick={console.log('sign in POST')}
+                        />
+                    </div>
+                    <div className='w-1/2'>
+                        <WhiteButton
+                            content='Register'
+                            onClick={console.log('sign in POST')}
+                        />
+                    </div>
                 </div>
                 <span className='text-[12px] underline'> Forgot Password </span>
             </div>

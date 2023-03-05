@@ -5,8 +5,10 @@ import TuneIcon from '@mui/icons-material/Tune';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { WhiteButton } from "../utils";
 
 import { ReviewCard } from "./InfoContent";
+import { BlueButton } from "../utils";
 
 const reviews = [
   {title: 'This worked pretty well', context: "This is a really great product, my family loved how cold our beers were the entire vacation. Only complain is it's fairly heavy so my husband had to carry it the entire trip. But i guess that's expected anyway when you walking around with 45 beers.",
@@ -107,13 +109,16 @@ const Reviews = () => {
       <div className="flex flex-row justify-between w-full">
         <div ref={filterNode}>
           <div className="flex space-x-2">
-            <button
-              className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline group min-h-[42px] relative'
+            <WhiteButton 
               onClick={()=> setFilterOpen((filterOpen) => !filterOpen) }
-            >
-              <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
-              Filter
-            </button>
+              content={
+                <div>
+                  <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
+                  Filter
+                </div>
+              }
+              className='!text-tertiary'
+            />
             <button 
               className={`${filterApplied ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
               onClick={handleClearClick}
@@ -146,13 +151,18 @@ const Reviews = () => {
           </div>
         </div>
         <div ref={sortNode}>
-            <button
-              className='flex justify-center items-center bg-white p-2 border border-primary rounded-md hover:underline relative group min-h-[42px]'
-              onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
-            >
-              Sort By: {sortBy}
-              <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-125'/>
-            </button>
+          <div className='h-[42px] group'>
+                <WhiteButton
+                  onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
+                  content={
+                    <div className='flex flex-row justify-between'>
+                      Sort By: {sortBy}
+                      <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-110'/>
+                    </div>
+                  }
+                  className='!text-tertiary'
+                />
+              </div>
           <div 
             className={`${sortOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
           >
@@ -179,10 +189,12 @@ const Reviews = () => {
 
       </div>
       <div className="w-full flex justify-center p-4">
-          <button className="bg-primary p-2 text-white rounded-md">
-            Leave a Review
-          </button>
+        <div>
+          <BlueButton
+            content='Leave a Review'
+          />
         </div>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import {new_cust_banner} from '../../assets/images/banners'
 import navigateShopping from '../../hooks/navigateShopping'
+import { LargeWhiteButton, LargeBlueButton } from '../utils'
 
 const NewCustomers = () => {
 
@@ -19,13 +20,13 @@ const NewCustomers = () => {
         </div>
         <div className='w-full'>
         </div>
-        <div className='w-full flex justify-center items-center text-white text-[48px] font-[900]'>
-          <button 
-            className='bg-white text-primary p-3 rounded-md my-6 font-bold w-[180px] text-[24px] hover:underline'
-
-            >
-            Shop Now
-          </button>
+        <div className='w-full flex justify-center items-center'>
+          <div className='w-[180px] h-[60px]'>
+            <LargeWhiteButton
+              onClick={handleClick}
+              content='Shop Now'
+            />
+          </div>
         </div>
       </div>
     </div>

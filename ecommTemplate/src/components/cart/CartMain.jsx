@@ -1,11 +1,11 @@
 import CloseIcon from '@mui/icons-material/Close';
-import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 import { useState } from 'react';
+import { QuantInput } from '../utils';
 
 const Card = ({item}) => {
   const [quant, setQuant] = useState(item.quant)
@@ -18,8 +18,8 @@ const Card = ({item}) => {
   return (
     <div className="flex border border-tertiary rounded-md mb-1">
       <img src={item.img} className='h-[160px] w-[160px] rounded-md cursor-pointer'/>
-      <div className='p-3 w-full flex flex-col justify-center'>
-        <div className='flex flex-col justify-start '>
+      <div className='p-3 w-full flex flex-col justify-between'>
+        <div className='flex flex-col justify-start'>
           <div className='flex grow-0'>
             <h2 className='text-[30px] leading-none cursor-pointer hover:underline'>{item.name}</h2>
           </div>
@@ -51,30 +51,15 @@ const Card = ({item}) => {
             In Stock
           </div>
         }
+        <div className='w-[60px] h-[40px]'>
+          <QuantInput
+            quant={quant}
+            setQuant={setQuant}
+            className='!text-[16px] !p-1'
+            buttonSize='16px'
+          />
+        </div>
 
-        <div className='w-[60px] border flex justify-center items-center bg-white rounded-md border-primary relative'>
-                <div className='flex flex-row justify-center items-center w-full'>
-                  <input 
-                    className='w-full text-center p-1 text-[16px] outline-none rounded-md' 
-                    value={quant} 
-                    onChange={(e)=> setQuant(e.target.value)}
-                    />
-                  <div className='flex flex-col'>
-                    <div className='h-[16px] w-[20px] mr-1'>
-                      <AddIcon 
-                          className='scale-75 cursor-pointer hover:scale-90'
-                          onClick={()=> setQuant(quant+1)}
-                      />
-                    </div>
-                    <div className='h-[16px] w-[20px] mr-1 text-center mb-1'>
-                      <RemoveIcon 
-                          className='scale-75 cursor-pointer hover:scale-90'
-                          onClick={()=> setQuant(quant-1)}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
       </div>
       <div className='flex flex-col justify-between p-2'>
         <div className='flex justify-end'>

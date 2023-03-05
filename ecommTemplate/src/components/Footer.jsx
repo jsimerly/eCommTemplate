@@ -1,6 +1,8 @@
 import styles from '../styles'
 import { footerInfo, footerSocialIcons } from './footer_constants'
+import { BlueButton } from './utils'
 import { main_white } from '/src/assets/images/blueElf'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 
@@ -26,13 +28,10 @@ const Footer = () => {
                 <div className='mt-6 font-semibold mb-2'> Stay Connected </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
                     <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100 '/>
-                    <div className="ml-1 bg-primary text-white rounded p-2">
-                        <svg 
-                        className='min-w-[22px] min-h-[22px] cursor-pointer'
-                        fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                        </svg>
-                    </div>
+                    <BlueButton
+                        className='!rounded-l-none group'
+                        content={<ArrowForwardIcon className='group-hover:scale-110'/>}
+                    />
                 </div>
                 <div className='text-[12px] max-w-[250px]'>
                     The Blue Elf newsletter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities. 
@@ -72,13 +71,11 @@ const Footer = () => {
             </div>
             <div className='flex flew-row p-1 text-white order-2 sm:order-3'>
                 {footerSocialIcons.map((iconInfo, index) => (
-                    <a 
-                        key={index}
-                        to={iconInfo.link}
-                        className='md: pl-3 hover:scale-125 cursor-pointer'
-                    >
-                        {iconInfo.icon}
-                    </a>
+                    <BlueButton
+                        key={'socialButton_'+index}
+                        content={iconInfo.icon}
+                        className='hover:scale-110'
+                    />
                 ))}
 
             </div>

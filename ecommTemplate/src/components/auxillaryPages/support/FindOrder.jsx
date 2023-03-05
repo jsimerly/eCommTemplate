@@ -1,4 +1,5 @@
 import React from 'react'
+import { BlueButton } from '../../utils'
 
 const UpdateOrderPage = () => {
   return (
@@ -20,9 +21,10 @@ const UpdateOrderPage = () => {
           />
         </div>
         <div className='w-full flex justify-center items-center pt-3'>
-          <button className='bg-primary rounded-md text-white py-2 px-6'>
-            Find Order
-          </button>
+          <BlueButton
+            content='Find Order'
+            className='w-1/2'
+          />
         </div>
       </div>
     </div>

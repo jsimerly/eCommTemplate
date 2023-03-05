@@ -1,4 +1,4 @@
-import React from 'react'
+import { BlueButton } from "../../../utils"
 
 const Email = () => {
   return (
@@ -15,10 +15,12 @@ const Email = () => {
                     placeholder="Compose Your Email Here."
             />
         </div>
-        <button className="w-full text-center bg-primary text-white my-2 p-2 rounded-md">
-            Send Email
-        </button>
-    </div>
+        <div className="my-2">
+            <BlueButton
+                content='Send Email'
+            />
+        </div>
+  </div>
   )
 }
 

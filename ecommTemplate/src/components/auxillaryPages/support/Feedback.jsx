@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import useDropdown from "../../../hooks/useDropdown"
 import ExpandMore from "@mui/icons-material/ExpandMore"
+import { BlueButton } from "../../utils"
 
 const feedbackOptions = [
     'Services',
@@ -59,9 +60,9 @@ const Feedback = () => {
                 <span className="bottom-2 right-2 absolute text-tertiaryTone-300"> (Max Character Count: 1000)</span>
             </div>
             <div className='flex justify-center w-full mt-3'>
-                <button className="bg-primary p-2 rounded-md w-full text-white text-center">
-                    Submit
-                </button>
+                <BlueButton
+                    content='Submit Feedback'
+                />
             </div>
         </div>
     </div>

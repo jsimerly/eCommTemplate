@@ -1,5 +1,6 @@
 import { FreqBoughtCard } from './'
 import AddIcon from '@mui/icons-material/Add';
+import { BlueButton } from '../utils';
 
 const prodPairings = ['Cooler Yeti ', 'Chair', 'Canopy', 'Four']
 
@@ -29,9 +30,11 @@ const BoughtTogether = () => {
               <p className='leading-none text-[12px]'>For 7 Days</p>
             </div>
           </div>
-          <button className='text-white bg-primary p-3 rounded-md mx-4 hover:underline'>
-            Add to Cart
-          </button>
+          <div className='ml-2'>
+            <BlueButton
+              content='Add to Cart'
+            />
+          </div>
         </div>
     </div>
   )

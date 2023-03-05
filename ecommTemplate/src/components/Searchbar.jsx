@@ -5,6 +5,7 @@ import {ShoppingContext} from '../context';
 import navigateShopping from '../hooks/navigateShopping';
 import { What, Where, When } from './tripInfo';
 import navigateSearch from '../hooks/navigateSearch';
+import { BlueButton } from './utils';
 
 
 const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
@@ -53,19 +54,16 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
                 null
                 :
                 <div className='flex justify-center itmes-center'>
-                    <button 
-                        className='rounded-md bg-primary text-white flex flex-1 justify-center items-center h-[40px] w-[40px]'
+                    <BlueButton
                         onClick={searchParamActive ? 
                             ()=>handleSearch(searchInput)
                             :
                             ()=>handleShopping()
                         }
-                    >
-                        <SearchIcon className='scale-125 hover:scale-150'/>
-                    </button>
+                        content={<SearchIcon className='scale-125 hover:scale-150'/>}
+                    />
                 </div>
             }
-
         </div>
   )
 }
