@@ -14,6 +14,7 @@ const issues = [
 const OpenTicket = () => {
     const [open, setOpen, handleClick, node] = useDropdown(false)
     const [currentIssue, setCurrentIssue] = useState('Issue Type')
+
   return (
     <div className="w-3/4 flex flex-col items-center h-full py-6">
         <div ref={node} className='w-3/4 relative z-10'>

@@ -1,3 +1,4 @@
+import { BlueButton } from "../../utils"
 
 
 const SignIn = () => {
@@ -18,10 +19,9 @@ const SignIn = () => {
                         type='password'
                     />
                 </div>
-
-                <button className="bg-primary p-2 text-white rounded-md w-full">
-                    Sign-In
-                </button>
+                <BlueButton
+                    content='Sign-In'
+                />
                 <div>
                     <p className="underline">I've Forgotten My Password</p>
                 </div>

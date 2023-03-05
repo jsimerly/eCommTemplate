@@ -100,9 +100,19 @@ const Reviews = () => {
 
   const [sortOpen, setSortOpen] = useState(false)
   const [sortBy, setSortBy] = useState('Most Recent')
-  let sortNode = useClickOutside(() => {
+
+  const sortNode = useClickOutside(() => {
     setSortOpen(false);
   })
+
+  const handleSortByClicked = () => {
+    setSortOpen((sortOpen) => !sortOpen)
+  }
+
+  const handleFilterClicked = () => {
+    setFilterOpen((filterOpen) => !filterOpen)
+  }
+
 
   return (
     <div className="w-full">
@@ -110,7 +120,7 @@ const Reviews = () => {
         <div ref={filterNode}>
           <div className="flex space-x-2">
             <WhiteButton 
-              onClick={()=> setFilterOpen((filterOpen) => !filterOpen) }
+              onClick={handleFilterClicked}
               content={
                 <div>
                   <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
@@ -153,7 +163,7 @@ const Reviews = () => {
         <div ref={sortNode}>
           <div className='h-[42px] group'>
                 <WhiteButton
-                  onClick={()=> setSortOpen((sortOpen) => !sortOpen)}
+                  onClick={handleSortByClicked}
                   content={
                     <div className='flex flex-row justify-between'>
                       Sort By: {sortBy}

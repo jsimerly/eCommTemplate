@@ -1,10 +1,15 @@
 import { useState } from "react"
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { BlueButton } from "../../utils";
 
 
 const CreateAccount = () => {
     const [updateCheck, setUpdateCheck] = useState(false)
+
+    const handleCheckClick = () =>{
+        setUpdateCheck((updateCheck) => !updateCheck)
+    }
 
     return(
         <div className="w-3/4 flex flex-col justify-center items-center">
@@ -47,18 +52,18 @@ const CreateAccount = () => {
                     {updateCheck ? 
                     <CheckBoxIcon 
                         className="text-primary hover:scale-110 cursor-pointer"
-                        onClick={()=>setUpdateCheck(!updateCheck)}
+                        onClick={handleCheckClick}
                     /> 
                     : 
                     <CheckBoxOutlineBlankIcon 
                         className="text-primary hover:scale-110 cursor-pointer"
-                        onClick={()=>setUpdateCheck(!updateCheck)}
+                        onClick={handleCheckClick}
                     />}
                     <p className="text-[12px] ml-2">I wish to receive latest news and exclusive discounts by receiving Blue Elf marketing emails.</p>
                 </div>
-                <button className="bg-primary p-2 text-white rounded-md w-full">
-                    Create Account
-                </button>
+                <BlueButton
+                    content='Create Account'
+                />
                 <div className="text-[12px]">
                     By creating your account, you agree to our <a href='/terms-and-conditions' className="underline">Terms and Conditions</a> and our <a href='/privacy' className="underline">Privacy Policy</a>.
                 </div>

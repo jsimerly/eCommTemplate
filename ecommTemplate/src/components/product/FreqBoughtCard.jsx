@@ -7,7 +7,12 @@ import { useState } from 'react';
 const FreqBoughtCard= ({header}) => {
   const itemSlug = 'my-item-slug'
   let navigate = navigateProduct({itemSlug});
+
   const [checked, setChecked] = useState(true)
+
+  const handleCheckClicked = () => {
+    setChecked((checked) => !checked)
+  }
 
   return (
 
@@ -36,12 +41,12 @@ const FreqBoughtCard= ({header}) => {
                     $16.98
                 </div>
                 <div
-                    onClick={()=> setChecked(!checked)}
+                    onClick={handleCheckClicked}
                 >
                     {checked ?                     
-                    <CheckBoxIcon className='text-primary scale-125 hover:scale-150 cursor-pointer'/> 
+                    <CheckBoxIcon className='text-primary hover:scale-110 cursor-pointer'/> 
                     :
-                    <CheckBoxOutlineBlankIcon className='text-primary scale-125 hover:scale-150 cursor-default'/>
+                    <CheckBoxOutlineBlankIcon className='text-primary hover:scale-110 cursor-pointer'/>
                     }
                 </div>
             </div>

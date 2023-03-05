@@ -3,10 +3,15 @@ import { useNavigate } from "react-router-dom"
 
 const BlogCard = ({title, date, img, link}) => {
     const navigate = useNavigate()
+    
+    const handleClick = () => {
+        navigate('/blogs/'+link)
+    }
+
     return(
         <div 
             className="bg-white rounded-md w-full my-2 sm:my-0 hover:cursor-pointer text-tertiary group"
-            onClick={()=> navigate('/blogs/'+link)}
+            onClick={handleClick}
         >
             <img src={img} className='rounded-t-md'/>
             <div className='flex flex-col justify-center items-center'>

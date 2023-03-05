@@ -3,10 +3,17 @@ import navigateShopping from '../../hooks/navigateShopping'
 import { LargeWhiteButton } from '../utils'
 
 const FreeWagon = () => {
-  let handleClick = navigateShopping()
+  let navShopping = navigateShopping()
+
+  const handleClick = () => {
+    navShopping()
+  }
 
   return (
-    <div className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl  relative'>
+    <div 
+      className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl  relative'
+      onClick={handleClick}
+    >
       <img src={wagon_banner}
       className='flex rounded-md'
       />
@@ -25,8 +32,7 @@ const FreeWagon = () => {
         <div className='absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2'>
           <div className='w-[180px]'>
             <LargeWhiteButton
-              content='Shop Now'
-              onClick={()=>handleClick()}
+              content='Shop Now' 
             />
           </div>
         </div>

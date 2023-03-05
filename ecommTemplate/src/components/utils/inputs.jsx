@@ -5,11 +5,21 @@ import { useState } from 'react';
 export const QuantInput = ({quant, setQuant, className, buttonSize}) => {
     const [selected, setSelected] = useState(false)
 
+
     const validateQuant = (quant) => {
         if (quant >= 0){
             setQuant(quant)
         }
     }
+
+    const handleClickUp = () => {
+        validateQuant(quant+1)
+    }
+
+    const handleClickDown = () => {
+        validateQuant(quant-1)
+    }
+
 
     const handleChange = (e) => {
         validateQuant(e.target.value)
@@ -38,12 +48,12 @@ export const QuantInput = ({quant, setQuant, className, buttonSize}) => {
             <AddIcon 
                 sx={{fontSize: buttonSize}}
                 className='cursor-pointer hover:scale-110'
-                onClick={()=> validateQuant(quant+1)}
+                onClick={handleClickUp}
             />
             <RemoveIcon 
                 sx={{fontSize: buttonSize}}
                 className='cursor-pointer hover:scale-110'
-                onClick={()=> validateQuant(quant-1)}
+                onClick={handleClickDown}
             />
           </div>
         </div>

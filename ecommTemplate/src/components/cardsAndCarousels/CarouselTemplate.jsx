@@ -10,8 +10,6 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
     const cardWidth = cardW + 20
     const maxLength =  (cardData.length) * cardWidth - 1280
 
-
-  
     function handleTranslate(newPosition){
       if (newPosition > 0) {
         if (newPosition < maxLength){
@@ -76,7 +74,7 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
         >
           <button 
           className={`text-white bg-primary rounded-md absolute top-1/2 z-10 ${translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
-          onClick={()=> leftButtonClick()}
+          onClick={leftButtonClick}
           >
             <ArrowBackIosNewIcon/>
           </button>
@@ -95,7 +93,7 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
           </div>
           <button 
           className={`text-white bg-primary rounded-md absolute top-1/2 right-0 z-10 mx-1 p-2 bg-opacity-20 hover:bg-opacity-50 ${translateDistance >= maxLength ? 'sm:hidden' : 'sm:block'} hidden`}
-          onClick={() => rightButtonClick()}
+          onClick={rightButtonClick}
           >
             <ArrowForwardIosIcon/>
           </button>

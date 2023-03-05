@@ -3,11 +3,16 @@ import navigateShopping from '../../hooks/navigateShopping'
 import { LargeWhiteButton, LargeBlueButton } from '../utils'
 
 const NewCustomers = () => {
+  let navShopping = navigateShopping()
 
-  let handleClick = navigateShopping()
+  const handleClick = () => {
+    navShopping()
+  }
+  
   return (
-    <div className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl relative'
-    onClick={()=>handleClick()}
+    <div 
+      className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl relative'
+      onClick={handleClick}
     >
       <img src={new_cust_banner}
       className='flex rounded-md'
@@ -23,7 +28,6 @@ const NewCustomers = () => {
         <div className='w-full flex justify-center items-center'>
           <div className='w-[180px] h-[60px]'>
             <LargeWhiteButton
-              onClick={handleClick}
               content='Shop Now'
             />
           </div>

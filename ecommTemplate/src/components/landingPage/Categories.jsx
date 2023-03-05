@@ -6,6 +6,10 @@ import { BlueButton } from '../utils'
 const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
     let navShopping = navigateShopping()
 
+    const handleCatClicked = () => {
+        navShopping(nav)
+    }
+
     return(
         <div className={`flex ${reverse ? 'flex-row-reverse' : 'flex-row'} w-full py-20`}>
             <img src={img} className='w-3/5 rounded-md'/>
@@ -21,7 +25,7 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
                         <div className='w-1/2'>
                             <BlueButton
                                 content={cta1}
-                                onClick={()=>navShopping(nav)}
+                                onClick={handleCatClicked}
                             />
                         </div>
                     </div>

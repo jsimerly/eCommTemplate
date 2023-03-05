@@ -29,7 +29,15 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
 
 
     let handleShopping= navigateShopping()
-    let handleSearch = navigateSearch()    
+    let handleSearch = navigateSearch()   
+    
+    const handleGoClick = () =>{
+        if (searchParamActive){
+            handleSearch(searchInput)
+            return
+        } 
+        handleShopping()
+    }
 
   return (
         <div 
@@ -55,11 +63,7 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
                 :
                 <div className='flex justify-center itmes-center'>
                     <BlueButton
-                        onClick={searchParamActive ? 
-                            ()=>handleSearch(searchInput)
-                            :
-                            ()=>handleShopping()
-                        }
+                        onClick={handleGoClick}
                         content={<SearchIcon className='scale-125 hover:scale-150'/>}
                     />
                 </div>
