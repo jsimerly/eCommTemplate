@@ -12,5 +12,6 @@ import Partners from "./Partners";
 import Account from "./Account";
 import BlogCard from "./BlogCard";
 import Cookies from "./Cookies";
+import SignUp from "./SignUp";
 
-export {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage,FindOrder, Feedback, Partners, Account, BlogCard, Cookies}
+export {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage,FindOrder, Feedback, Partners, Account, BlogCard, Cookies, SignUp}

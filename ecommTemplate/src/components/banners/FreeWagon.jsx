@@ -1,6 +1,9 @@
 import {wagon_banner} from '../../assets/images/banners'
+import navigateShopping from '../../hooks/navigateShopping'
 
 const FreeWagon = () => {
+  let handleClick = navigateShopping()
+
   return (
     <div className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl  relative'>
       <img src={wagon_banner}
@@ -19,7 +22,10 @@ const FreeWagon = () => {
             </div>
         </div>
         <div className='absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2'>
-            <button className='bg-white text-primary p-3 rounded-md font-bold w-[180px] text-[24px] border border-primary hover:underline'>
+            <button 
+              className='bg-white text-primary p-3 rounded-md font-bold w-[180px] text-[24px] border border-primary hover:underline'
+              onClick={()=>handleClick()}
+            >
             Shop Now
           </button>
         </div>

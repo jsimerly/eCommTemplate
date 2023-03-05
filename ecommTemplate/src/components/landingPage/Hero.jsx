@@ -1,4 +1,3 @@
-import HeroCarousel from './HeroCarousel'
 import { heroMain } from '../../constants/landingCopy'
 import navigateShopping from '../../hooks/navigateShopping'
 import { hero_banner } from '../../assets/images/banners'

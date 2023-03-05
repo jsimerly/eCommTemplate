@@ -5,6 +5,11 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import HandshakeIcon from '@mui/icons-material/Handshake';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LockResetIcon from '@mui/icons-material/LockReset';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import PsychologyIcon from '@mui/icons-material/Psychology';
 
 export const helpButtons = [
     {
@@ -44,5 +49,41 @@ export const helpButtons = [
         desc:'Partner with us at Blue Elf for special benefits and positioning.', icon:<HandshakeIcon/>,
         link:'/partner'
     }
+]
+
+export const accountButtons = [
+    {
+        title: 'Change Account Information', 
+        desc:"Update account information like your name, number, email, etc.", 
+        icon:<ManageAccountsIcon/>, 
+        link:'/'
+    },
+    {
+        title: 'Change Password', 
+        desc: 'Make updates to your password.', 
+        icon:<LockResetIcon/>, 
+        link:'/find-order'
+    },
+    {
+        title: 'Update Payment', 
+        desc: 'Add, delete, or update your payment or credit card information.', 
+        icon:<AddCardIcon/>, 
+        link:'/find-order'
+    },
+    {
+        title: 'Order management', 
+        desc: 'Manager your current and previous orders from here.', 
+        icon:<ProductionQuantityLimitsIcon/>, 
+        link:'/find-order'
+    },
+
+    {
+        title: 'Preferences', 
+        desc: 'Change your account preferences including, cookies, emailing, and prefered communication methods.', 
+        icon:<PsychologyIcon/>, 
+        link:'/find-order'
+    },
+
+
 ]
 

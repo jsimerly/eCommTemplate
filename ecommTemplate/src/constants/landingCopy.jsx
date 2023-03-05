@@ -22,7 +22,7 @@ export const heroMain = {
 }
 
 export const howToInfo = {
-    title: "Doing Nothing has Never been this Easy",
+    title: "How To Make Vacation Easy",
     steps: [
         {
             title: "Tell Us Where",
@@ -57,14 +57,14 @@ export const categories = {
             header: 'Game On',
             desc : 'Trying to stay active or just want to make things competitive on your get away?',
             cta1: 'Shop Games',
-            nav:'',
+            nav:{name:'Games', id:'0402'},
             img: gameOn,
         },
         {
             header: "Don't Kid Yourself",
             desc: 'Keeping the young ones safe and smiling can be stressful, but we can make it easy.',
             cta1: 'Shop Kids',
-            nav:'',
+            nav:{name:'Kids', id:'0500'},
             img: withKids
         }
 

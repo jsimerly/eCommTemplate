@@ -1,8 +1,13 @@
 import {new_cust_banner} from '../../assets/images/banners'
+import navigateShopping from '../../hooks/navigateShopping'
 
 const NewCustomers = () => {
+
+  let handleClick = navigateShopping()
   return (
-    <div className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl relative'>
+    <div className='flex w-full rounded-md cursor-pointer bg-gradient-to-bl relative'
+    onClick={()=>handleClick()}
+    >
       <img src={new_cust_banner}
       className='flex rounded-md'
       />
@@ -15,7 +20,10 @@ const NewCustomers = () => {
         <div className='w-full'>
         </div>
         <div className='w-full flex justify-center items-center text-white text-[48px] font-[900]'>
-          <button className='bg-white text-primary p-3 rounded-md my-6 font-bold w-[180px] text-[24px] hover:underline'>
+          <button 
+            className='bg-white text-primary p-3 rounded-md my-6 font-bold w-[180px] text-[24px] hover:underline'
+
+            >
             Shop Now
           </button>
         </div>

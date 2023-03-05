@@ -1,7 +1,7 @@
 
 import styles from '../../styles'
 
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { shoppingPageData } from '../../constants/shopping';
 import { BrowsingHistory, ItemSuggestion, ShoppingMain }  from '../shopping';
 
