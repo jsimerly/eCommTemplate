@@ -22,6 +22,7 @@ const BlogBanner = () => {
                 img={cool_blog} 
                 title={'Coolest Spots on the East Coast'}
                 date={'Jan 4, 2023'}
+                link={'coolest-spots-on-the-east-coast-01042023'}
             />
         </div>
         <div className="flex justify-center mt-6">

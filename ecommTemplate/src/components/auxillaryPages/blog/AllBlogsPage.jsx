@@ -5,24 +5,24 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const blogData = [    
-  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023'},
-  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022'},
-  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023'},
+  {title:'Coolest Spots on the East Coast', img:cool_blog, date:'Jan 4, 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023', link:'coolest-spots-on-the-east-coast-01042023'},
 
   //just repeats to speed up design
+  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023', link:'coolest-spots-on-the-east-coast-01042023'},
   {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023'},
-  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022'},
-  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023'},
-  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023'},
-  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022'},
-  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023'},
-  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023'},
-  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022'},
-  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023'},
-  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023'},
-  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022'},
-  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023'},
-  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023'},
+  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'10 Fun Beach Games', img:games_blog, date:'Dec 16, 2022', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:"How to Make your Child's First Beach Day a Success", img:kids_blog, date:'Jan 18 2023', link:'coolest-spots-on-the-east-coast-01042023'},
+  {title:'Coolest Spots on the East Cost', img:cool_blog, date:'Jan 4, 2023', link:'coolest-spots-on-the-east-coast-01042023'},
 ]
 
 const pages = [
@@ -59,10 +59,11 @@ const AllBlogsPage = () => {
         {blogData.map((blog,i) => (
           <div className='w-[300px] h-[280px] flex'>
             <BlogCard
-              key={i}
+              key={'blog_'+i}
               title={blog.title}
               img={blog.img}
               date={blog.date}
+              link={blog.link}
             />
           </div>
         ))}
@@ -74,7 +75,7 @@ const AllBlogsPage = () => {
             sx={{fontSize:'16px'}}
             />}
             {pages.map((pageInfo,i) => (
-              <div className='hover:underline cursor-pointer' key={i}>
+              <div className='hover:underline cursor-pointer' key={'page_'+i}>
                 {pageInfo.n}
               </div>
             ))}

@@ -103,7 +103,7 @@ function App() {
             <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */} 
             <Route path='/sign-up' element={<SignUp/>}/> {/* Completed */}
             <Route path='/blogs' element={<AllBlogsPage/>}/> {/* Mobile */}
-            <Route path='/blogs/:blogID' element={<BlogPage/>}/> {/* X */}
+            <Route path='/blogs/:blogId' element={<BlogPage/>}/> {/* Mobile */}
             <Route path='/privacy' element={<Privacy/>}/> {/* Mobile */}
             <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}
             <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* Mobile */}
