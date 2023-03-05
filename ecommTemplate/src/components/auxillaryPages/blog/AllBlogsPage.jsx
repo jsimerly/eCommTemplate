@@ -1,5 +1,5 @@
-import {BlogCard} from './'
-import { cool_blog, unicorn_blog, games_blog, kids_blog } from '../../assets/images/blog'
+import {BlogCard} from '..'
+import { cool_blog, unicorn_blog, games_blog, kids_blog } from '../../../assets/images/blog'
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';

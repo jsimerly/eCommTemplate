@@ -2,7 +2,7 @@
 import styles from '../../styles'
 
 import { useEffect } from "react";
-import { shoppingPageData } from '../../constants/shopping';
+import { shoppingPageData } from '../shopping/shopping_constant';
 import { BrowsingHistory, ItemSuggestion, ShoppingMain }  from '../shopping';
 
 import ShoppingHero from '../shopping/ShoppingHero';

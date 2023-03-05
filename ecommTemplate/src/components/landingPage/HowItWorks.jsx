@@ -1,5 +1,5 @@
 import { full_line_drawing } from "../../assets/images/banners"
-import { howToInfo } from "../../constants/landingCopy"
+import { howToInfo } from "./landingCopy_constant"
 import Searchbar from "../Searchbar"
 
 const StepCard = ({n, title, paragraph, index}) => (

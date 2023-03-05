@@ -6,11 +6,11 @@ import LandingPage from './components/pages/LandingPage'
 import StandardShop from './components/pages/StandardShop';
 import CartPage from './components/pages/CartPage';
 import { allDests } from './api/temp'
-import { allCategories } from './constants';
+import { allCategories } from './components/categorySelect_constants';
 import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
-import HelpPage from './components/auxillaryPages/HelpPage'
+import HelpPage from './components/auxillaryPages/HelpPage_constant'
 import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account,Partners, Cookies, SignUp} from './components/auxillaryPages'
 import AboutUs from './components/auxillaryPages/AboutUs';

@@ -7,9 +7,9 @@ import {
     rtic_white_logo,
     sony_white_logo,
     yeti_white_logo,
-}  from "../assets/images/logos"
+}  from "../../assets/images/logos"
 
-import { gameOn, layingOut, withKids} from '../assets/images/categories'
+import { gameOn, layingOut, withKids} from '../../assets/images/categories'
 
 import EditIcon from '@mui/icons-material/Edit';
 import LoopIcon from '@mui/icons-material/Loop';

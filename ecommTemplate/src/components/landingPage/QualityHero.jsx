@@ -1,4 +1,4 @@
-import { quality } from '../../constants/landingCopy'
+import { quality } from './landingCopy_constant'
 
 const QualityHeroV2 = () => {
   return (

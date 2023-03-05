@@ -1,4 +1,4 @@
-import { sandcastleBanner, chairsBanner, funBanner, homeBanner, kidsBanner, petsBanner, shelterBanner, electBanner, waterBanner, allBanner} from "../assets/images/shoppingBanners"
+import { sandcastleBanner, chairsBanner, funBanner, homeBanner, kidsBanner, petsBanner, shelterBanner, electBanner, waterBanner, allBanner} from "../../assets/images/shoppingBanners"
 
 const shoppingPageData = {
         '0100' : {

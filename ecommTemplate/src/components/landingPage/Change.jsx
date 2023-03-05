@@ -1,5 +1,5 @@
-import { easy } from '../../constants/landingCopy'
-import HelpCard from '../auxillaryPages/HelpCard'
+import { easy } from './landingCopy_constant'
+import HelpCard from '../auxillaryPages/support/HelpCard'
 
 const Change = () => {
 

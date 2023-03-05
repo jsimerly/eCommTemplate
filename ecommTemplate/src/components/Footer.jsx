@@ -1,9 +1,6 @@
 import styles from '../styles'
-import { footerInfo, footerSocialIcons } from '../constants'
-import { main_blue, main_white } from '/src/assets/images/blueElf'
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import { footerInfo, footerSocialIcons } from './footer_constants'
+import { main_white } from '/src/assets/images/blueElf'
 
 
 
