@@ -10,7 +10,7 @@ import { allCategories } from './components/categorySelect_constants';
 import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
-import HelpPage from './components/auxillaryPages/HelpPage_constant'
+import HelpPage from './components/auxillaryPages/HelpPage'
 import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account,Partners, Cookies, SignUp} from './components/auxillaryPages'
 import AboutUs from './components/auxillaryPages/AboutUs';

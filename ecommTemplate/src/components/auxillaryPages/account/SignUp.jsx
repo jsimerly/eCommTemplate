@@ -51,8 +51,6 @@ const SignUp = () => {
                 <div className="flex justify-center items-center h-[500px]">
                     {accountDict[view]}
                 </div>
-
-
             </div>
         </div>
     </div>

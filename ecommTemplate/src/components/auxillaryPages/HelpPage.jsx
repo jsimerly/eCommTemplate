@@ -1,5 +1,5 @@
 import HelpCard from "./support/HelpCard"
-import { helpButtons, accountButtons } from "./helpCopy"
+import { helpButtons, accountButtons } from "./help_constants"
 
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
