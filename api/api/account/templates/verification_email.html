@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+</head>
+<body>
+    <p>Please click the following link to verify your email address:</p>
+    {% autoescape off %}
+    http://{{domain}}{% url 'email_verification' verification_token=verification_token %}
+    {% endautoescape %}
+</body>
+</html>

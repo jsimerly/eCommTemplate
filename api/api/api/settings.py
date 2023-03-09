@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    #Libs
     'rest_framework',
+    'rest_framework_simplejwt',
+
+    #Apps
+    'account',
+    'products'
+
+
 ]
 
 MIDDLEWARE = [
@@ -69,18 +80,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'api.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -122,3 +121,38 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+AUTH_USER_MODEL = 'account.User'
+
+DATABASES = {
+
+    'default' : {
+        'ENGINE' : 'django.db.backends.postgresql',
+        'NAME' : 'BlueElf',
+        'USER' : 'postgres',
+        'PASSWORD' : 'Jake980845!',
+        'HOST' : 'localhost',
+        'PORT' : '',
+    }
+}
+
+SITE_ID = 1
+
+EMAIL_FROM_USER = 'sih.sportsbook@gmail.com'
+EMAIL_HOST_USER = 'sih.sportsbook@gmail.com'
+EMAIL_HOST_PASSWORD = 'hbggjwbaazkmvkcu'
+
+EMAIL_USE_TLS=True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT=587
