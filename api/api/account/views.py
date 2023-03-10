@@ -19,10 +19,8 @@ class CreateUserView(APIView):
         serializer = self.serialzier_class(data=request.data)
 
         if serializer.is_valid():
-            user = serializer.save()
-
             verification_token = uuid4().hex
-            user.verification_token = verification_token
+            user = serializer.save(verification_token = verification_token)
 
             send_verification(user, request, verification_token)
 
@@ -31,8 +29,9 @@ class CreateUserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class EmailVerificationView(APIView):
-    def get(self, verification_token):
-
+    def get(self, *args, **kwargs):
+        verification_token = kwargs['verification_token']
+        
         try:
             user = User.objects.get(verification_token=verification_token)
         except User.DoesNotExist:
@@ -43,4 +42,14 @@ class EmailVerificationView(APIView):
 
         user.save()
 
-        return redirect('/')
+        # return redirect('/')
+        return Response({
+            'message': 'Email verification successful.',
+            'user': {
+                'id': user.id,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'email': user.email,
+                'is_email_verified': user.is_email_verified
+            }
+        }, status=status.HTTP_200_OK)
