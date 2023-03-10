@@ -1,6 +1,7 @@
 from uuid import uuid4
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from datetime import datetime
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -17,7 +18,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_super_user(self, email, password=None, **kwargs):
+    def create_superuser(self, email, password=None, **kwargs):
         if not email:
             raise ValueError("User must have an email address")
 
@@ -26,7 +27,12 @@ class UserManager(BaseUserManager):
             **kwargs
         )
 
+        user.set_password(password)
+
+        user.date_of_birth = datetime.now()
+
         user.is_admin = True
+        user.is_staff = True
         user.save()
         return user
 
@@ -64,15 +70,44 @@ class User(AbstractBaseUser):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     #Preferences
     prefernce_recieve_emails = models.BooleanField(default=False)
 
+    objects = UserManager()
+
     #Cookies
 
-    objects = UserManager()
+    #Functnions
+    def get_full_name(self):
+        pass
+
+    def get_short_name(self):
+        pass
+
+    @property
+    def is_superuser(self):
+        return self.is_admin
+
+    @property
+    def is_staff(self):
+       return self.is_admin
+
+    def has_perm(self, perm, obj=None):
+       return self.is_admin
+
+    def has_module_perms(self, app_label):
+       return self.is_admin
+
+    @is_staff.setter
+    def is_staff(self, value):
+        self._is_staff = value
+
+
     
     def __str__(self):
         return self.email

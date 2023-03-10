@@ -11,7 +11,16 @@ User = get_user_model()
 # Create your models here.
 class Brand(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
-    name = models.CharField(max_length=60)
+
+    name = models.CharField(max_length=40)
+    full_name = models.CharField(max_length=100)
+
+    logo_path = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
@@ -21,7 +30,7 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='prod_brand')
     slug = models.CharField(max_length=32, unique=True,)
 
-    average_rating = models.FloatField()
+    average_rating = models.FloatField(null=True, blank=True)
 
     #Costs
     base_cost = models.DecimalField(decimal_places=2, max_digits=8)
@@ -32,9 +41,12 @@ class Product(models.Model):
 
     #FrontEnd
     main_img_location = models.CharField(max_length=255)
-    my_list = ArrayField(models.CharField(max_length=100), default=list)
+    my_list = ArrayField(models.CharField(max_length=255), default=list, null=True, blank=True)
 
     frequently_bought_with = models.ManyToManyField('self', blank=True)
+
+    def __str__(self):
+        return  self.brand.name + " - " + self.name
 
 class ProductMInfo(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -59,11 +71,17 @@ class ProductMInfo(models.Model):
     
     specs = JSONField()
 
-class ProductReview(models.Model):
+    def __str__(self):
+        return  self.product.brand.name + " - " + self.product.name + " Information"
+
+class ProductReview(models.Model):  
     uuid = models.UUIDField(default=uuid4, editable=False)
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
     user = models.ForeignKey(User, models.CASCADE)
     verified_purchaser = models.BooleanField(default=False)
-    date_created = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now_add=True)
 
 
     RATING_CHOICES = [(1, 1), (2, 2), (3, 3), (4, 4),(5, 5)]
@@ -74,6 +92,9 @@ class ProductReview(models.Model):
     body = models.TextField()
 
     reported = models.BooleanField(default=False)
+
+    def __str__(self):
+        return  self.product.brand.name + " - " + self.product.name + " Information"
     
 class Stock(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
