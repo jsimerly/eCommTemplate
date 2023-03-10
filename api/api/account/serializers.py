@@ -8,13 +8,17 @@ class CreateUser_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User
 
-        fields = ['uuid', 'email', 'first_name', 'last_name', 'date_of_birth', 'phone_number', 'is_email_verified', 'prefernce_recieve_emails']
+        fields = ['uuid', 'email', 'password', 'first_name', 'last_name', 'date_of_birth', 'phone_number', 'is_email_verified', 'prefernce_recieve_emails']
 
     def create(self, validated_data):
+        print(validated_data)
         password = validated_data.pop('password', None)
         user = self.Meta.model(**validated_data)
 
+        print(password)
+
         if password is not None:
+            print('here')
             user.set_password(password)
 
         user.save()

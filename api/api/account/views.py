@@ -20,9 +20,9 @@ class CreateUserView(APIView):
 
         if serializer.is_valid():
             verification_token = uuid4().hex
-            user = serializer.save(verification_token = verification_token)
+            serializer.save(verification_token = verification_token)
 
-            send_verification(user, request, verification_token)
+            # send_verification(user, request, verification_token) turn on when email server is responding again
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
@@ -46,7 +46,7 @@ class EmailVerificationView(APIView):
         return Response({
             'message': 'Email verification successful.',
             'user': {
-                'id': user.id,
+                'uuid': user.id,
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'email': user.email,
