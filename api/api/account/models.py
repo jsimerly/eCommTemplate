@@ -4,24 +4,26 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Abstra
 
 # Create your models here.
 class UserManager(BaseUserManager):
-    def create_user(self, email, password):
+    def create_user(self, email, password, **kwargs):
         if not email:
             raise ValueError("User must have an email address")
 
         user = self.model(
-            email = self.normalize_email(email),
+            email=self.normalize_email(email),
+            **kwargs
         )
-        
+
         user.set_password(password)
         user.save()
         return user
 
-    def create_super_user(self, email, password=None):
+    def create_super_user(self, email, password=None, **kwargs):
         if not email:
             raise ValueError("User must have an email address")
 
         user = self.model(
             email = self.normalize_email(email),
+            **kwargs
         )
 
         user.is_admin = True
@@ -51,7 +53,7 @@ class User(AbstractBaseUser):
 
     date_of_birth = models.DateField()
     drivers_license_id = models.CharField(max_length=30, null=True, blank=True)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
 
     username = None
 

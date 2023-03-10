@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -11,14 +10,10 @@ class CreateUser_Serializer(serializers.ModelSerializer):
         fields = ['uuid', 'email', 'password', 'first_name', 'last_name', 'date_of_birth', 'phone_number', 'is_email_verified', 'prefernce_recieve_emails']
 
     def create(self, validated_data):
-        print(validated_data)
         password = validated_data.pop('password', None)
         user = self.Meta.model(**validated_data)
 
-        print(password)
-
         if password is not None:
-            print('here')
             user.set_password(password)
 
         user.save()

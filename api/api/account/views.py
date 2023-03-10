@@ -14,7 +14,10 @@ class CreateUserView(APIView):
 
     def post(self, request, format='json'):
         data = request.data.copy()
-        data['date_of_birth'] = datetime.strptime(data['date_of_birth'], '%Y-%m-%d').date()
+        try:
+            data['date_of_birth'] = datetime.strptime(data['date_of_birth'], '%Y-%m-%d').date()
+        except Exception as error:
+            return Response({'error' : str(error)}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.serialzier_class(data=request.data)
 
@@ -25,7 +28,7 @@ class CreateUserView(APIView):
             # send_verification(user, request, verification_token) turn on when email server is responding again
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class EmailVerificationView(APIView):
