@@ -17,7 +17,7 @@ class ProductPageView(APIView):
             return Response({"error": "Product not found."}, status=404)
         
         prod_serializer = Product_Serializer(product)
-        prod_info_serializer = ProductMInfo_Serializer(product.productminfo)
+        prod_info_serializer = ProductMInfo_Serializer(product.product_info)
 
         data = {
             'prod' : prod_serializer.data,

@@ -36,7 +36,7 @@ class Product(models.Model):
     average_rating = models.FloatField(null=True, blank=True)
     n_ratings = models.PositiveIntegerField(default=0)
 
-    n_stock = models.PositiveIntegerField()
+    n_stock = models.PositiveIntegerField(default=100)
 
     #Costs
     base_cost = models.DecimalField(decimal_places=2, max_digits=8)
@@ -55,7 +55,7 @@ class Product(models.Model):
         return  self.brand.name + " - " + self.name
 
 class ProductMInfo(models.Model):
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='product_info')
 
     #Main Card
     def validate_max_desc(text):
