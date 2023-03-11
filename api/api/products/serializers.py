@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .product_models import Product, Brand, ProductMInfo, ProductReview, Stock
-from .customer_models import BrowseSession
+from .models import Product, Brand, ProductMInfo, ProductReview, Stock
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -9,8 +8,6 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ['id','name', 'logo_path']
-
-
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
@@ -130,10 +127,3 @@ class Stock_Serializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
-
-class BrowseSession_Serializer(serializers.ModelSerializer):
-    product = Product_Serializer()
-
-    class Meta:
-        model = BrowseSession
-        fields = ['id', 'user', 'product', 'timestamp']
