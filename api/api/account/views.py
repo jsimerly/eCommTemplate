@@ -3,11 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
 from uuid import uuid4
-from django.urls import reverse
-from django.shortcuts import redirect
 
 from .serializers import *
-from .email_verification import send_verification
+
 # Create your views here.
 class CreateUserView(APIView):
     serialzier_class = CreateUser_Serializer

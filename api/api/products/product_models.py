@@ -20,8 +20,6 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
-
-
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
 
@@ -30,7 +28,15 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='prod_brand')
     slug = models.CharField(max_length=32, unique=True,)
 
+    CATEGORY_CHOICES = [ ('0000', 'All Categories'), ('0100', 'All Chairs')]
+
+    category = models.CharField(max_length=4, choices=CATEGORY_CHOICES)
+    tags = ArrayField(models.CharField(max_length=30), null=True, blank=True)
+
     average_rating = models.FloatField(null=True, blank=True)
+    n_ratings = models.PositiveIntegerField(default=0)
+
+    n_stock = models.PositiveIntegerField()
 
     #Costs
     base_cost = models.DecimalField(decimal_places=2, max_digits=8)
@@ -41,7 +47,7 @@ class Product(models.Model):
 
     #FrontEnd
     main_img_location = models.CharField(max_length=255)
-    my_list = ArrayField(models.CharField(max_length=255), default=list, null=True, blank=True)
+    img_list = ArrayField(models.CharField(max_length=255), default=list, null=True, blank=True)
 
     frequently_bought_with = models.ManyToManyField('self', blank=True)
 
@@ -49,7 +55,7 @@ class Product(models.Model):
         return  self.brand.name + " - " + self.name
 
 class ProductMInfo(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
 
     #Main Card
     def validate_max_desc(text):
@@ -98,8 +104,9 @@ class ProductReview(models.Model):
     
 class Stock(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
+    name = models.CharField(max_length=60)
 
-    prodcut = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='stock')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='stock')
     sku = models.CharField(max_length=20, unique=True, editable=False)
 
     purchase_date = models.DateField()
