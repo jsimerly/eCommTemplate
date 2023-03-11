@@ -79,16 +79,18 @@ const ProductMain = ({imgList, bullets}) => {
               </div>
             </div>
             <div className='w-full mt-6'>
-              <div className='flex grow-0 cursor-pointer group'
+              <div className='flex grow-0 cursor-pointer group items-center'
                 onClick={handleInsuredClicked}
               >
                 {insured ? 
                 <CheckBoxIcon
-                  className='text-primary scale-150 group-hover:scale-110'
+                  sx={{fontSize: '35px'}}
+                  className='text-primary group-hover:scale-110'
                 /> 
                 : 
                 <CheckBoxOutlineBlankIcon
-                  className='text-primary scale-150 group-hover:scale-110'
+                  sx={{fontSize: '35px'}}
+                  className='text-primary group-hover:scale-110'
                 />}
 
                 <div className='text-[20px] ml-2 group-hover:underline'>
