@@ -1,6 +1,6 @@
 from django.db import models
 from uuid import uuid4
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.db.models import JSONField
 from django.contrib.postgres.fields import ArrayField, DateRangeField
@@ -53,14 +53,24 @@ class Product(models.Model):
 
     def __str__(self):
         return  self.brand.name + " - " + self.name
+    
+    def add_frequently_bought_with(self, product):
+        if self.frequently_bought_with.count() >= 4:
+            raise ValueError('Cannot add more than 4 frequently bought with products.')
+        self.frequently_bought_with.add(product)
+
+@receiver(post_save, sender=Product)
+def set_frequently_bought_with(sender, instance, created, **kwargs):
+    if created:
+        instance.frequently_bought_with.add(instance)
 
 class ProductMInfo(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='product_info')
 
     #Main Card
     def validate_max_desc(text):
-        if len(text) > 200:
-            raise ValueError('The max length for desciptions is 200 characters.')
+        if len(text) > 300:
+            raise ValueError('The max length for main_desc is 200 characters.')
 
     main_desc = models.TextField(validators=[validate_max_desc])
     bullets = ArrayField(models.CharField(max_length=40), default=list)
@@ -71,8 +81,8 @@ class ProductMInfo(models.Model):
     add_info_msrp = models.DecimalField(decimal_places=2, max_digits=8)
         #brand already included in Prod
     add_info_manu = models.CharField(max_length=20)
-    ranking = models.IntegerField()
-    rank_link = models.CharField(max_length=60)
+    ranking = models.IntegerField(null=True, blank=True)
+    rank_link = models.CharField(max_length=60, null=True, blank=True)
         #sku already included
     
     specs = JSONField()
@@ -100,19 +110,19 @@ class ProductReview(models.Model):
     reported = models.BooleanField(default=False)
 
     def __str__(self):
-        return  self.product.brand.name + " - " + self.product.name + " Information"
+        return  self.user.first_name + "'s Review of " + self.product.name + " - " + self.date_created.strftime('%m-%d-%Y')
     
 class Stock(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
-    name = models.CharField(max_length=60)
+    name = models.CharField(max_length=120, blank=True)
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='stock')
-    sku = models.CharField(max_length=20, unique=True, editable=False)
+    sku = models.CharField(max_length=120, unique=True, editable=False)
 
     purchase_date = models.DateField()
-    last_rented_date = models.DateField()
+    last_rented_date = models.DateField(null=True, blank=True)
 
-    current_location = models.CharField(max_length=30) #this will hookin to a Locations Model down the line
+    current_location = models.CharField(max_length=30, default="Myrtle Beach, NC") #this will hookin to a Locations Model down the line
     rented_dates = ArrayField(DateRangeField(), null=True, blank=True)
 
     CONDITION_CHOICES = (
@@ -122,19 +132,33 @@ class Stock(models.Model):
         ('G', 'Good'),
         ('N', 'New')
     )
-    condition = models.CharField(max_length=1, choices=CONDITION_CHOICES)
+    condition = models.CharField(max_length=1, choices=CONDITION_CHOICES, default='N')
     active = models.BooleanField(default=True)
 
-@receiver(pre_save, sender=Stock)
-def generate_sku_upc(sender, instance, created, **kwargs):
-    if created:
-        sku_prefix = instance.product.slug
-        sku_id = Stock.objects.filter(products=instance.product).count()
-        sku_id = f"{sku_id:04d}"
-        sku = f"{sku_prefix}-{sku_id}"
+    def __str__(self):
+        return self.sku
+    
+    def save(self, *args, **kwargs):
+        self.name = self.product.name + " " + str(self.uuid)
+        super().save(*args, **kwargs)
+    
 
-        instance.sku = sku
-        instance.save()
+@receiver(pre_save, sender=Stock)
+def generate_sku_upc(sender, instance, **kwargs):
+    if not instance.sku:
+        sku_prefix = instance.product.slug
+        sku_id = Stock.objects.filter(product=instance.product).count()
+
+        while True:
+            sku_id += 1
+            sku_id_str = f"{sku_id:04d}"
+            sku = f"{sku_prefix}-{sku_id_str}"
+            try:
+                Stock.objects.get(sku=sku)
+            except Stock.DoesNotExist:
+                instance.sku = sku
+                break
+
 
 
 
