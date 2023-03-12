@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
+from uuid import UUID
 
 from .models import Product
 
@@ -35,12 +36,26 @@ class ProductCategoryAPIView(APIView):
     
 class ProductListAPIView(APIView):
     def get(self, request):
-        uuids = request.GET.getlist('uuids')
+        uuid_strings = request.GET.getlist('uuids')
+        uuids = [UUID(uuid_string) for uuid_string in uuid_strings]
+        slug_strings = request.GET.get('slugs')
+        if slug_strings is not None:
+            slugs = slug_strings.split(',')
+        else:
+            slugs = []
+        tags = request.GET.getlist('tags')
 
-        products = Product.objects.filter(uuid__in=uuids)
+        print(slugs)
+        products = Product.objects.filter(
+            slug__in=slugs,
+        )
+
+        print(products)
 
         serializer = Product_Serializer(products, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        response = Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
+        response['Access-Control-Allow-Origin'] = '*'
+        return response
     
 class ProductSearchView(APIView):
     def get(self, request):

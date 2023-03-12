@@ -10,8 +10,12 @@ import {
     BlogBanner,
 } from '../landingPage';
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ProductCard } from '../shopping';
+import { fetchProductsByUUIDs, fetchProductsBySlugs } from '../../api/fetchProductsByUUIDs';
+import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_UUIDS, TRENDING_UUIDS } from '../../api/landingPageConstants';
+
+
 
 const data =  [
     {text: 'Test1', img: yeti45, price:'$33.33'},
@@ -58,10 +62,20 @@ const Carousel = ({head, data}) => (
 )
 
 const LandingPage = ({immediateSearch}) => {
+    const [mostPopular, setMostPopular] = useState([])
+    const [trending, setTrending] = useState([])
+    const [newArrivals, setNewArrivals] = useState([])
 
-useEffect(() => {
-    window.scrollTo(0, 0);
-    }, []);
+    useEffect(() => {
+        const most_popular_data = fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular)
+        console.log(most_popular_data)
+    }, [])
+
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        }, []);
 
   return (
     <div>

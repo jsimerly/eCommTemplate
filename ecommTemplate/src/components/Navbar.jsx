@@ -41,13 +41,13 @@ const AccountDropdown = ({open}) => {
                     <div className='w-1/2'>
                         <BlueButton
                             content='Sign-In'
-                            onClick={console.log('sign in POST')}
+                            onClick={()=>console.log('sign in POST')}
                         />
                     </div>
                     <div className='w-1/2'>
                         <WhiteButton
                             content='Register'
-                            onClick={console.log('sign in POST')}
+                            onClick={()=>console.log('sign in POST')}
                         />
                     </div>
                 </div>

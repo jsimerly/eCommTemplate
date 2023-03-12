@@ -54,7 +54,7 @@ const ProductCard = ({text, img, price}) => {
             <div className='h-full border hidden sm:block'>
               <BlueButton
                 content='Add to Cart'
-                onClick={console.log('add to cart')}
+                onClick={()=>console.log('add to cart')}
               />
             </div>
             <div className='sm:hidden'>
