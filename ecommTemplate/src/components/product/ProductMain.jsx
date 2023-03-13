@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
@@ -7,27 +7,34 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { LargeBlueButton, QuantInput } from '../utils';
+import { LargeBlueButton, QuantInput, Stars } from '../utils';
 
 
-const ProductMain = ({imgList, bullets}) => {
-    const [mainImg, setMainImg] = useState(imgList[0])
+const ProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
     const [insured, setInsured] = useState(false)
+    const [mainImg, setMainImg] = useState(mainCardInfo.mainImg)
+
+    useEffect(()=>{
+      setMainImg(mainCardInfo.mainImg)
+    }, [mainCardInfo])
 
     const handleInsuredClicked = () => {
       setInsured(!insured)
     }
 
+    const bullets = []
+    const imgList = []
   return (
 
         <div className="flex">
           <div className="flex flex-row w-2/3">
             <div className='flex max-h-[642px]'>
               <div className="w-1/5 overflow-hidden hover:overflow-y-auto scrollbar-hide">
-                {imgList.map((pic, i) => (
+                {mainCardInfo.imgList.map((pic, i) => (
                     <img
-                        key={i}
+                      onClick={()=>setMainImg(pic)}
+                      key={i}
                       src={pic}
                       className='bg-white rounded-md mb-4 cursor-pointer'
                     />
@@ -46,10 +53,10 @@ const ProductMain = ({imgList, bullets}) => {
             <div className='flex flex-row justify-between w-full'>
               <div className='flex flex-col'>
                 <h1 className='text-[40px] font-bold leading-none'>
-                  Tundra - 45 Hard Cooler
+                  {mainCardInfo.name}
                 </h1>
                 <h2 className='text-[28px] '>
-                  Yeti
+                  {mainCardInfo.brand}
                 </h2>
               </div>
               <div className='flex justify-center p-4 text-primary'>
@@ -61,20 +68,16 @@ const ProductMain = ({imgList, bullets}) => {
             <div className='flex justify-between items-center w-full mt-6'>
               <div className='text-center'>
                 <h3 className='text-[36px] leading-none font-bold'>
-                  $23.99
+                  ${mainCardInfo.price}
                 </h3>
                 <p className='leading-none'>
                   For 7 days
                 </p>
               </div>
               <div>
-                <StarIcon className='scale-125'/>
-                <StarIcon className='scale-125'/>
-                <StarIcon className='scale-125'/>
-                <StarIcon className='scale-125'/>
-                <StarHalfIcon className='scale-125'/>
+                <Stars rating={mainCardInfo.rating} size='30px'/>
                 <span className='ml-2'>
-                  (463)
+                  ({mainCardInfo.nRatings})
                 </span>
               </div>
             </div>
@@ -94,7 +97,7 @@ const ProductMain = ({imgList, bullets}) => {
                 />}
 
                 <div className='text-[20px] ml-2 group-hover:underline'>
-                  Insure for <span className='font-bold'> $6.99</span>
+                  Insure for <span className='font-bold'> ${mainCardInfo.insurance}</span>
                 </div>
               </div>
             </div>
@@ -104,10 +107,10 @@ const ProductMain = ({imgList, bullets}) => {
                   Producer Description
                 </h3>
                 <p>
-                Tall enough to chill most bottles of wine and keep the essentials fresh while you take the scenic route.
+                  {mainCardInfo.prodDesc}
                 </p>
                 <ul className='list-disc pl-10 pt-6'>
-                {bullets.map((bullet, i) => (
+                {mainCardInfo.bullets.map((bullet, i) => (
                   <li key={i}>
                     {bullet}
                   </li>

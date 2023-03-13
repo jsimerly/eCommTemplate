@@ -19,6 +19,8 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+    
+
 
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
@@ -45,7 +47,15 @@ class Product(models.Model):
     insurance_base_cost = models.DecimalField(decimal_places=2, max_digits=8)
     insurance_daily_cost = models.DecimalField(decimal_places=2, max_digits=8)
 
-    #FrontEnd
+    #Images
+    main_image = models.OneToOneField(
+        'ProductImage', 
+        null=True, 
+        blank=True, 
+        on_delete=models.SET_NULL, 
+        related_name='product_as_main'
+    )
+
     main_img_location = models.CharField(max_length=255)
     img_folder_path = models.CharField(max_length=255)
 
@@ -64,6 +74,34 @@ def set_frequently_bought_with(sender, instance, created, **kwargs):
     if created:
         instance.frequently_bought_with.add(instance)
 
+
+
+class ProductImage(models.Model):
+    uuid = models.UUIDField(default=uuid4, unique=True)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    caption = models.CharField(max_length=100, blank=True, null=True)
+
+    image = models.ImageField(upload_to='products')
+    is_main_image = models.BooleanField(default=False)
+
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.image.name
+    
+    def product_image_upload_path(instance, filename):
+        return f"products/{instance.product.brand}/{instance.product.name}/{filename}"
+    
+    def save(self, *args, **kwargs):
+        if self.is_main_image:
+            ProductImage.objects.filter(product=self.product, is_main_image=True).exclude(pk=self.pk).update(is_main_image=False)
+
+            self.product.main_image = self
+            self.image.name = self.get_upload_path(self.image.name)
+            
+            self.product.save()
+        super().save(*args, **kwargs)
+    
 class ProductMInfo(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='product_info')
 
