@@ -7,7 +7,7 @@ User = get_user_model()
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = ['id','name', 'logo_path']
+        fields = ['id','name', 'logo_path', 'full_name']
 
 class ProductImage_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -23,7 +23,8 @@ class ProductCard_Serializer(serializers.ModelSerializer):
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
-    images = ProductImage_Serializer(many=True, read_only=True)
+    main_image = ProductImage_Serializer()
+    images = ProductImage_Serializer(many=True)
 
     class Meta:
         model = Product

@@ -4,6 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
+import { create_full_image_path } from '../../assets/util';
 
 
 const ProductMain = ({mainCardInfo}) => {
@@ -18,22 +19,23 @@ const ProductMain = ({mainCardInfo}) => {
     const handleInsuredClicked = () => {
       setInsured(!insured)
     }
-
   return (
 
         <div className="flex">
           <div className="flex flex-row w-2/3">
             <div className='flex max-h-[642px]'>
               <div className="w-1/5 overflow-hidden hover:overflow-y-auto scrollbar-hide">
-                {[].imgList.map((pic, i) => (
-                    <img
-                      onClick={()=>setMainImg(pic)}
-                      key={i}
-                      src={pic}
+              {mainCardInfo.imgList && mainCardInfo.imgList.map((image, index) => 
+              { 
+                const image_path = create_full_image_path(image.image)
+                return (
+                  <img
+                      key={index}
+                      src={image_path}
+                      onClick={() => setMainImg(image_path)}
                       className='bg-white rounded-md mb-4 cursor-pointer'
-                    />
-                ))}
-            
+                  />)
+              })}
               </div>
               <div className="w-4/5 rounded-md mx-6">
                 <img
@@ -101,10 +103,10 @@ const ProductMain = ({mainCardInfo}) => {
                   Producer Description
                 </h3>
                 <p>
-                  {mainCardInfo.prodDesc}
+                  {mainCardInfo.desc}
                 </p>
                 <ul className='list-disc pl-10 pt-6'>
-                {[].map((bullet, i) => (
+                {mainCardInfo.bullets.map((bullet, i) => (
                   <li key={i}>
                     {bullet}
                   </li>

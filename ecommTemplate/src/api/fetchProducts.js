@@ -28,7 +28,6 @@ export async function fetchFullProductBySlug(slug, setterFunc){
     const response = await fetch(`${SERVER_ADDRESS}/api/products/slug/${slug}/`);
     const product = await response.json()
     setterFunc(product)
-    console.log(product)
   } catch (error) {
     throw error;
   }

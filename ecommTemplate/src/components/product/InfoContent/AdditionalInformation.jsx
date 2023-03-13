@@ -1,20 +1,25 @@
 import React from 'react'
 
-const AdditionalInformation = ({context}) => {
+const AdditionalInformation = ({categoryRank, rankLink, brand, msrp, manufactured, sku}) => {
   return (
     <div className='flex w-full justify-center'>
         <table className='table-fixed w-full border border-white rounded-md'>
             <tbody>
-                {context.map((data, i) => {
-
-                    return(
-                    <tr key={"table_key_"+i} className={`
-                            ${i%2 == 0 ? 'bg-white' : 'bg-tertiaryTone-100'} w-full`}>
-                        <td >{data.title}</td>
-                        <td className={`${data.linkable ? 'cursor-pointer underline' : ''}`}>{data.value}</td>
-                    </tr>
-                    )
-                })}
+                <tr className='bg-white'>
+                    <td>MSRP</td><td>{msrp}</td>
+                </tr>
+                <tr>
+                    <td>Brand</td><td>{brand}</td>
+                </tr>
+                <tr className='bg-white'>
+                    <td>Manufactured</td><td>{manufactured}</td>
+                </tr>
+                <tr>
+                    <td>Ranking</td><td>{categoryRank}</td>
+                </tr>
+                <tr className='bg-white'>
+                    <td>Product ID</td><td>{sku}</td>
+                </tr>
             </tbody>
         </table>
     </div>

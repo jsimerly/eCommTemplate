@@ -17,15 +17,9 @@ class ProductPageView(APIView):
         except:
             return Response({"error": "Product not found."}, status=404)
         
-        prod_serializer = Product_Serializer(product)
         prod_info_serializer = ProductMInfo_Serializer(product.product_info)
-
-        data = {
-            'prod' : prod_serializer.data,
-            'prod_info' : prod_info_serializer.data
-        }
         
-        return Response(data, status=status.HTTP_200_OK)
+        return Response(prod_info_serializer.data, status=status.HTTP_200_OK)
     
 class ProductCategoryAPIView(APIView):
     def get(self, request, category):
@@ -60,8 +54,7 @@ class ProductListAPIView(APIView):
         )
 
         serializer = ProductCard_Serializer(products, many=True)
-        response = Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
-        response['Access-Control-Allow-Origin'] = '*'
+        response = Response(serializer.data, status=status.HTTP_200_OK)
         return response
     
 class ProductSearchView(APIView):

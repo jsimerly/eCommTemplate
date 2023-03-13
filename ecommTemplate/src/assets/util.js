@@ -1,4 +1,5 @@
 import { SERVER_ADDRESS } from "../api/serverConstants";
+
 export function calculate_product_cost(base, daily, days) {
     const floatBase = parseFloat(base);
     const floatDaily = parseFloat(daily);

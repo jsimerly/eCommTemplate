@@ -1,19 +1,39 @@
 import { useEffect, useState } from 'react';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useLocation } from 'react-router-dom';
-import { yeti45 }from '../../assets/images/products'
 import Information from '../product/Information';
 import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
-import { create_full_image_path, getImagesFromFolder, calculate_product_cost } from '../../assets/util';
-
-const bullets = ['Very very tall', '86 Cans in total', 'Weighs 64oz', 'Contains actual magic']
+import { create_full_image_path, calculate_product_cost } from '../../assets/util';
 
 
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState()
-  const [mainCardInfo, setMainCardInfo] = useState({})
+  const [mainCardInfo, setMainCardInfo] = useState({
+    name: '',
+    brand: '',
+    mainImg: '',
+    imgList: [],
+    rating: 3,
+    nRatings: 0,
+    price: 0,
+    insurance: 0,
+    desc: '',
+    bullets: [],
+  })
+  const [secondaryCardInfo, setSecondardCardInfo] = useState({
+    full_desc: '',
+    highlights: [],
+    specs: {},
+    category_rank:1,
+    rankLink:'',
+    msrp: 0,
+    manufactured: '',
+    brand: '',
+    slugId: '',
+    specs:{},
+  })
 
   const location = useLocation();
   const segments = location.pathname.split('/');
@@ -21,9 +41,52 @@ const ProductPage = () => {
 
   useEffect(() => {
     fetchFullProductBySlug(slug, setProductInfo)
-
   }, [])
-  
+
+  useEffect(() => {
+    if (productInfo){
+      setMainCardInfo({
+        name: productInfo.product.name,
+        brand: productInfo.product.brand.name,
+        mainImg: create_full_image_path(productInfo.product.main_image.image),
+        imgList: productInfo.product.images,
+        rating: productInfo.product.average_rating,
+        nRatings: productInfo.product.n_ratings,
+        price: calculate_product_cost(
+          productInfo.product.base_cost,
+          productInfo.product.daily_cost,
+          7
+        ),
+        insurance: calculate_product_cost(
+          productInfo.product.insurance_base_cost,
+          productInfo.product.insurance_daily_cost,
+          7
+        ),
+        desc: productInfo.main_desc,
+        bullets: productInfo.bullets,
+      })
+
+      setSecondardCardInfo({
+        full_desc: productInfo.prod_desc,
+        highlights: productInfo.highlights,
+        specs: productInfo.specs,
+        categoryRank: productInfo.ranking,
+        rankLink: productInfo.rank_link,
+        msrp: productInfo.add_info_msrp,
+        manufactured: productInfo.add_info_manu,
+        brand: productInfo.product.brand.full_name,
+        specs:productInfo.specs,
+        sku:productInfo.product.slug
+      })
+        
+    console.log(productInfo)
+    }
+  }, [productInfo])
+
+
+
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -40,12 +103,14 @@ const ProductPage = () => {
           <ChevronRightIcon className='scale-75'/>
           <a className='hover:underline cursor-pointer'>Coolers</a>
         </div>
-        {/* <div className='mt-20 mb-24'>
+        <div className='mt-20 mb-24'>
           <ProductMain
             mainCardInfo={mainCardInfo}
           />
-        </div> */}
-        <Information/>
+        </div>
+        <Information
+          secondaryCardInfo={secondaryCardInfo}
+        />
         <BoughtTogether/>
         <KeepShopping/>
       </div>

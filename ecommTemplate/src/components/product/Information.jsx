@@ -1,24 +1,22 @@
-import { useState } from "react"
 import { SwitchComp } from "../utils"
 import {Details, ReturnDamage, Reviews, Specs} from './'
 
+const Information = ({secondaryCardInfo}) => {
 
-
-const classProps = (selected) => {
-  if (selected == true){
-    return 'underline font-semibold text-primary'
-  }
-  return ''
-}
-
-const Information = () => {
-  const [view, setView] = useState('Details')
-  
   const infoDict = {
-    'Details' : <Details/>,
+    'Details' : <Details 
+                  full_desc={secondaryCardInfo.full_desc}
+                  highlights={secondaryCardInfo.highlights}
+                  msrp={secondaryCardInfo.msrp}
+                  manufactured={secondaryCardInfo.manufactured}
+                  brand={secondaryCardInfo.brand}
+                  categoryRank={secondaryCardInfo.categoryRank}
+                  rank_link={secondaryCardInfo.rank_link}
+                  sku={secondaryCardInfo.sku}
+                />,
     'Reviews' : <Reviews/>,
     'Returns & Damages' : <ReturnDamage/>,
-    'Specifications' : <Specs/>
+    'Specifications' : <Specs specs={secondaryCardInfo.specs}/>
   }
   
   return (

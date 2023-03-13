@@ -1,10 +1,10 @@
 
 
-const Highlights = ({context}) => {
+const Highlights = ({highlights}) => {
   return (
     <div className="flex justify-center">
       <ul className='list-disc'>
-          {context.map((highlight, i) => (
+          {highlights.map((highlight, i) => (
               <li key={'highlights_'+i}>
                 {highlight}
               </li>

@@ -20,8 +20,6 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
     
-
-
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
 
@@ -77,7 +75,11 @@ def get_upload_path(instance, filename):
 
 class ProductImage(models.Model):
     uuid = models.UUIDField(default=uuid4, unique=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, 
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
     caption = models.CharField(max_length=100, blank=True, null=True)
 
     image = models.ImageField(upload_to=get_upload_path)
