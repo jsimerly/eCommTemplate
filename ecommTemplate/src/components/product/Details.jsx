@@ -52,6 +52,7 @@ const Details = () => {
         <div className="flex flex-col">
           {additionalDetails.map((detail, i) => (
             <DetailBox
+              key={'details_box_'+i}
               title={detail.title}
               Card={detail.Card}
               context={detail.context}

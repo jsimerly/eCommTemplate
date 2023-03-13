@@ -13,7 +13,7 @@ const BoughtTogether = () => {
         <div className='flex flex-row'>
           {prodPairings.map((pairing, i) => {
             return(
-              <div className='flex flex-row justify-center items-center'>
+              <div key={"productPair_"+i} className='flex flex-row justify-center items-center'>
                 <FreqBoughtCard
                   header={pairing}
                 />

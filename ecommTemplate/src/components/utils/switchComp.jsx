@@ -25,7 +25,7 @@ export const SwitchComp = ({className, compDict, defComp }) => {
             <div className='w-full h-full flex flex-col justify-center items-center '>
                 <div className="flex flex-row justify-center p-2 items-center space-x-12 text-[18px] w-full">
                     {Object.keys(compDict).map((key, index) => (
-                        <div className="justify-center flex">
+                        <div className="justify-center flex" key={'switch_comp_obj_' + index}>
                             <HeaderButton
                                 type={key}
                             />

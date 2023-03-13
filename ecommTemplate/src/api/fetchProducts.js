@@ -22,3 +22,13 @@ export async function fetchProductsBySlugs(slugs, setterFunc) {
     throw error;
   }
 }
+
+export async function fetchFullProductBySlug(slug, setterFunc){
+  try {
+    const response = await fetch(`${SERVER_ADDRESS}api/products/products/info/?slug=${slug}`);
+    const product = await response.json()
+    setterFunc(product)
+  } catch (error) {
+    throw error;
+  }
+}

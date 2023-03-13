@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-const navigateProduct = ({itemSlug}) => {
+const navigateProduct = ({slug}) => {
     const navigate = useNavigate();
 
     function handleNav(){
-        navigate(`/p/${itemSlug}`)
+        navigate(`/p/${slug}`)
     }
     return handleNav
 }   

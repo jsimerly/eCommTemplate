@@ -5,7 +5,7 @@ const Highlights = ({context}) => {
     <div className="flex justify-center">
       <ul className='list-disc'>
           {context.map((highlight, i) => (
-              <li>
+              <li key={'highlights_'+i}>
                 {highlight}
               </li>
           ))}

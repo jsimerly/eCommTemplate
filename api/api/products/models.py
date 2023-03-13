@@ -47,7 +47,7 @@ class Product(models.Model):
 
     #FrontEnd
     main_img_location = models.CharField(max_length=255)
-    img_list = ArrayField(models.CharField(max_length=255), default=list, null=True, blank=True)
+    img_folder_path = models.CharField(max_length=255)
 
     frequently_bought_with = models.ManyToManyField('self', blank=True)
 

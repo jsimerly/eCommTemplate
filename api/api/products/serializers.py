@@ -9,12 +9,18 @@ class BrandSerializer(serializers.ModelSerializer):
         model = Brand
         fields = ['id','name', 'logo_path']
 
+class ProductCard_Serializer(serializers.ModelSerializer):
+    brand = BrandSerializer()
+    class Meta:
+        model = Product
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'base_cost', 'daily_cost', 'main_img_location', 'img_folder_path']
+
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'base_cost', 'daily_cost', 'insurance_base_cost', 'insurance_daily_cost', 'main_img_location', 'img_list', 'frequently_bought_with']
+        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'base_cost', 'daily_cost', 'insurance_base_cost', 'insurance_daily_cost', 'main_img_location', 'img_folder_path', 'frequently_bought_with']
 
     def create(self, validated_data):
         brand_data = validated_data.pop('brand')

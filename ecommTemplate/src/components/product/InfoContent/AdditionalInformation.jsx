@@ -8,7 +8,7 @@ const AdditionalInformation = ({context}) => {
                 {context.map((data, i) => {
 
                     return(
-                    <tr className={`
+                    <tr key={"table_key_"+i} className={`
                             ${i%2 == 0 ? 'bg-white' : 'bg-tertiaryTone-100'} w-full`}>
                         <td >{data.title}</td>
                         <td className={`${data.linkable ? 'cursor-pointer underline' : ''}`}>{data.value}</td>

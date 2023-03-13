@@ -7,7 +7,7 @@ from uuid import UUID
 
 from .models import Product
 
-from .serializers import Product_Serializer, ProductMInfo_Serializer
+from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer
 
 # Create your views here.
 class ProductPageView(APIView):
@@ -34,25 +34,32 @@ class ProductCategoryAPIView(APIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+class ProductAPIView(APIView):
+    def get(self, request):
+
+        slug = request.GET.get('slug')
+        product = Product.objects.get(slug=slug)
+
+        serializer = Product_Serializer(product)
+
+        response = Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
+        response['Access-Control-Allow-Origin'] = '*'
+        return response
+    
 class ProductListAPIView(APIView):
     def get(self, request):
-        uuid_strings = request.GET.getlist('uuids')
-        uuids = [UUID(uuid_string) for uuid_string in uuid_strings]
+
         slug_strings = request.GET.get('slugs')
         if slug_strings is not None:
             slugs = slug_strings.split(',')
         else:
             slugs = []
-        tags = request.GET.getlist('tags')
 
-        print(slugs)
         products = Product.objects.filter(
             slug__in=slugs,
         )
 
-        print(products)
-
-        serializer = Product_Serializer(products, many=True)
+        serializer = ProductCard_Serializer(products, many=True)
         response = Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
         response['Access-Control-Allow-Origin'] = '*'
         return response

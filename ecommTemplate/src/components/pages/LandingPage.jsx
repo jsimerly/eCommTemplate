@@ -12,28 +12,8 @@ import {
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useEffect, useState } from 'react';
 import { ProductCard } from '../shopping';
-import { fetchProductsByUUIDs, fetchProductsBySlugs } from '../../api/fetchProductsByUUIDs';
-import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_UUIDS, TRENDING_UUIDS } from '../../api/landingPageConstants';
-
-
-
-const data =  [
-    {text: 'Test1', img: yeti45, price:'$33.33'},
-    {text: 'Test2', img: yeti45, price:'$33.33'},
-    {text: 'Test3', img: yeti45, price:'$33.00'},
-    {text: 'Test4', img: yeti45, price:'$33.33'},
-    {text: 'Test5', img: yeti45, price:'$33.33'},
-    {text: 'Test6', img: yeti45, price:'$33.33'},
-    {text: 'Test1', img: yeti45, price:'$33.33'},
-    {text: 'Test2', img: yeti45, price:'$33.33'},
-    {text: 'Test3', img: yeti45, price:'$33.33'},
-    {text: 'Test4', img: yeti45, price:'$33.33'},
-    {text: 'Test5', img: yeti45, price:'$33.33'},
-    {text: 'Test6', img: yeti45, price:'$33.33'},
-    {text: 'Test1', img: yeti45, price:'$33.33'},
-    {text: 'Test2', img: yeti45, price:'$33.33'},
-    {text: 'Test3', img: yeti45, price:'$33.33'},
-]
+import { fetchProductsBySlugs } from '../../api/fetchProducts';
+import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_SLUGS, TRENDING_SLUGS } from '../../api/landingPageConstants';
 
 function scrollN(){
     if (window.innerWidth < 680) {
@@ -61,14 +41,15 @@ const Carousel = ({head, data}) => (
     />
 )
 
-const LandingPage = ({immediateSearch}) => {
+const LandingPage = () => {
     const [mostPopular, setMostPopular] = useState([])
     const [trending, setTrending] = useState([])
     const [newArrivals, setNewArrivals] = useState([])
 
     useEffect(() => {
-        const most_popular_data = fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular)
-        console.log(most_popular_data)
+        fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular)
+        fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals)
+        fetchProductsBySlugs(TRENDING_SLUGS, setTrending)
     }, [])
 
 
@@ -89,11 +70,11 @@ const LandingPage = ({immediateSearch}) => {
                 <div>
                 <Carousel
                     head={header('Most Popular')}
-                    data={data}
+                    data={mostPopular}
                 />
                 <Carousel
                     head={header('Trending')}
-                    data={data}
+                    data={trending}
                 />
                 </div>
                 <div className='my-6 sm:my-16'>
@@ -102,7 +83,7 @@ const LandingPage = ({immediateSearch}) => {
                 <div className='sm:my-6'>
                 <Carousel
                     head={header('New Arrivals')}
-                    data={data}
+                    data={newArrivals}
                 />
                 </div>
                 <div className='sm:my-6'>
