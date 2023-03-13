@@ -25,6 +25,7 @@ class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
     images = ProductImage_Serializer(many=True)
+    frequently_bought_with = ProductCard_Serializer(many=True)
 
     class Meta:
         model = Product
@@ -65,7 +66,6 @@ class Product_Serializer(serializers.ModelSerializer):
 
 class ProductMInfo_Serializer(serializers.ModelSerializer):
     product = Product_Serializer()
-
     class Meta:
         model = ProductMInfo
         fields = ['product', 'main_desc', 'bullets', 'prod_desc', 'highlights', 'add_info_msrp', 'add_info_manu', 'ranking', 'rank_link', 'specs']
@@ -93,6 +93,13 @@ class UserName_Serialzier(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['uuid', 'first_name', 'last_name']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        last_name = data['last_name']
+        if last_name:
+            data['last_name'] = last_name[0]
+        return data
 
 class ProductReview_Serializer(serializers.ModelSerializer):
     user = UserName_Serialzier()

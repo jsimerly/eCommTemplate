@@ -31,4 +31,14 @@ export async function fetchFullProductBySlug(slug, setterFunc){
   } catch (error) {
     throw error;
   }
+} 
+
+export async function fetchProductReviewsBySlug(slug, setterFunc){
+  try{
+    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/${slug}/reviews/`)
+    const reviewList = await response.json()
+    setterFunc(reviewList)
+  } catch (error) {
+    throw error
+  }
 }

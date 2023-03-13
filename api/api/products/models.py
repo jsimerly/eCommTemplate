@@ -130,7 +130,7 @@ class ProductMInfo(models.Model):
 class ProductReview(models.Model):  
     uuid = models.UUIDField(default=uuid4, editable=False)
 
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
 
     user = models.ForeignKey(User, models.CASCADE)
     verified_purchaser = models.BooleanField(default=False)

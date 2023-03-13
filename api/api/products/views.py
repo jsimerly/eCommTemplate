@@ -7,7 +7,7 @@ from uuid import UUID
 
 from .models import Product
 
-from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer
+from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer
 
 # Create your views here.
 class ProductPageView(APIView):
@@ -69,5 +69,17 @@ class ProductSearchView(APIView):
         serializer = Product_Serializer(products, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ProductReviewsView(APIView):
+    def get(self, request, slug):
+        try:
+            product = Product.objects.get(slug=slug)
+        except Product.DoesNotExist:
+            return Response({'detail': 'Product not found'}, status=404)
+
+        reviews = product.reviews.all()
+        serializer = ProductReview_Serializer(reviews, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     
 
