@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     #Libs
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
 
     #Apps
     'account',
@@ -59,6 +61,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:5173',
 ]
 
 ROOT_URLCONF = 'api.urls'
@@ -148,6 +158,9 @@ DATABASES = {
 }
 
 SITE_ID = 1
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # EMAIL_FROM_USER = 'sih.sportsbook@gmail.com'
 # EMAIL_HOST_USER = 'sih.sportsbook@gmail.com'

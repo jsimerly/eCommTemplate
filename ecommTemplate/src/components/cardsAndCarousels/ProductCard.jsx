@@ -4,20 +4,21 @@ import { BlueButton, Stars } from '../utils';
 import { calculate_product_cost, create_full_image_path } from '../../assets/util';
 
 
-const ProductCard = ({name, brand, slug, average_rating, n_ratings, base_cost, daily_cost, main_img_location, img_folder_path}) => {
+const ProductCard = ({name, brand, slug, average_rating, n_ratings, base_cost, daily_cost, main_image}) => {
 
   let navigate = navigateProduct({slug});
 
-  const img = create_full_image_path(img_folder_path, main_img_location)
   const cost = calculate_product_cost(base_cost, daily_cost, 7)
 
   return (
     <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2'>
-      <img 
-        src={img} 
-        className='bg-white object-scale-down rounded-md hover:cursor-pointer'
-        onClick={navigate}
-      />
+      {main_image && (
+        <img 
+          src={create_full_image_path(main_image.image)} 
+          className='bg-white object-scale-down rounded-md hover:cursor-pointer'
+          onClick={navigate}
+        />
+      )}
       <div className='mt-2 p-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 

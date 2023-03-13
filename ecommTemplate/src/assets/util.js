@@ -1,4 +1,4 @@
-
+import { SERVER_ADDRESS } from "../api/serverConstants";
 export function calculate_product_cost(base, daily, days) {
     const floatBase = parseFloat(base);
     const floatDaily = parseFloat(daily);
@@ -13,13 +13,9 @@ export function calculate_product_cost(base, daily, days) {
     return costStr
   }
 
-export function create_full_folder_path(folder_path) {
-    return `/src/assets/images/products/${folder_path}`;
-  }
 
-export function create_full_image_path(folder_path, img_path) {
-    const full_folder_path = create_full_folder_path(folder_path);
-    return `${full_folder_path}/${img_path}`;
+export function create_full_image_path(img_path) {
+    return `${SERVER_ADDRESS}${img_path}`;
   }
 
 export function getImagesFromFolder(folderPath) {

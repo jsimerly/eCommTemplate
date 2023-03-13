@@ -13,18 +13,7 @@ const bullets = ['Very very tall', '86 Cans in total', 'Weighs 64oz', 'Contains 
 
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState()
-  const [mainCardInfo, setMainCardInfo] = useState({
-    name:'',
-    brand: '',
-    mainImg: null, 
-    imgList: [], 
-    price:0, 
-    insurance:0, 
-    rating:0, 
-    nRatings:0,
-    prodDesc:'',
-    bullets:[]
-  })
+  const [mainCardInfo, setMainCardInfo] = useState({})
 
   const location = useLocation();
   const segments = location.pathname.split('/');
@@ -32,34 +21,9 @@ const ProductPage = () => {
 
   useEffect(() => {
     fetchFullProductBySlug(slug, setProductInfo)
+
   }, [])
   
-  useEffect(() => {
-
-    if (productInfo && productInfo.main_img_location && productInfo.img_folder_path) {
-      const img = create_full_image_path(productInfo.img_folder_path, productInfo.main_img_location);
-      console.log(productInfo)
-      const prod_cost = calculate_product_cost(productInfo.base_cost,productInfo.daily_cost, 7)
-      const insurance_cost = calculate_product_cost(productInfo.insurance_base_cost, productInfo.insurance_daily_cost, 7)
-
-      setMainCardInfo(
-        {
-          name: productInfo.name,
-          brand: productInfo.brand.name,
-          mainImg: img, 
-          imgList: [yeti45, yeti45, yeti45, yeti45, yeti45, yeti45], 
-          price: prod_cost, 
-          insurance: insurance_cost, 
-          rating: productInfo.average_rating, 
-          nRatings: productInfo.n_ratings,
-          prodDesc:'Testing For Now',
-          bullets:['ABC 123', "test 2", 'test 3']
-        }
-      )
-    };
-
-  }, [productInfo]);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -76,11 +40,11 @@ const ProductPage = () => {
           <ChevronRightIcon className='scale-75'/>
           <a className='hover:underline cursor-pointer'>Coolers</a>
         </div>
-        <div className='mt-20 mb-24'>
+        {/* <div className='mt-20 mb-24'>
           <ProductMain
             mainCardInfo={mainCardInfo}
           />
-        </div>
+        </div> */}
         <Information/>
         <BoughtTogether/>
         <KeepShopping/>

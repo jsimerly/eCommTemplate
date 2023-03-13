@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import StarIcon from '@mui/icons-material/Star';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
@@ -23,15 +19,13 @@ const ProductMain = ({mainCardInfo}) => {
       setInsured(!insured)
     }
 
-    const bullets = []
-    const imgList = []
   return (
 
         <div className="flex">
           <div className="flex flex-row w-2/3">
             <div className='flex max-h-[642px]'>
               <div className="w-1/5 overflow-hidden hover:overflow-y-auto scrollbar-hide">
-                {mainCardInfo.imgList.map((pic, i) => (
+                {[].imgList.map((pic, i) => (
                     <img
                       onClick={()=>setMainImg(pic)}
                       key={i}
@@ -110,7 +104,7 @@ const ProductMain = ({mainCardInfo}) => {
                   {mainCardInfo.prodDesc}
                 </p>
                 <ul className='list-disc pl-10 pt-6'>
-                {mainCardInfo.bullets.map((bullet, i) => (
+                {[].map((bullet, i) => (
                   <li key={i}>
                     {bullet}
                   </li>

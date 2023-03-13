@@ -3,7 +3,7 @@ import { SERVER_ADDRESS } from "./serverConstants";
 export async function fetchProductsByUUIDs(uuids, setterFunc) {
 
   try {
-    const response = await fetch(`${SERVER_ADDRESS}api/products/products/list/?uuids=${uuids[0]}`);
+    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/list/?uuids=${uuids[0]}`);
     const products = await response.json();
     setterFunc(products)
     return products;
@@ -14,7 +14,7 @@ export async function fetchProductsByUUIDs(uuids, setterFunc) {
 
 export async function fetchProductsBySlugs(slugs, setterFunc) {
   try {
-    const response = await fetch(`${SERVER_ADDRESS}api/products/products/list/?slugs=${slugs.join(',')}`);
+    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}`);
     const products = await response.json();
     setterFunc(products);
     return products;
@@ -25,9 +25,10 @@ export async function fetchProductsBySlugs(slugs, setterFunc) {
 
 export async function fetchFullProductBySlug(slug, setterFunc){
   try {
-    const response = await fetch(`${SERVER_ADDRESS}api/products/products/info/?slug=${slug}`);
+    const response = await fetch(`${SERVER_ADDRESS}/api/products/slug/${slug}/`);
     const product = await response.json()
     setterFunc(product)
+    console.log(product)
   } catch (error) {
     throw error;
   }

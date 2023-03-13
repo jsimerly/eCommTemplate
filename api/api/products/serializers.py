@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Brand, ProductMInfo, ProductReview, Stock
+from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -9,18 +9,25 @@ class BrandSerializer(serializers.ModelSerializer):
         model = Brand
         fields = ['id','name', 'logo_path']
 
+class ProductImage_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ('uuid', 'image', 'caption', 'is_main_image')
+
 class ProductCard_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
+    main_image = ProductImage_Serializer()
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'base_cost', 'daily_cost', 'main_img_location', 'img_folder_path']
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'base_cost', 'daily_cost', 'main_image']
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
+    images = ProductImage_Serializer(many=True, read_only=True)
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'base_cost', 'daily_cost', 'insurance_base_cost', 'insurance_daily_cost', 'main_img_location', 'img_folder_path', 'frequently_bought_with']
+        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'base_cost', 'daily_cost', 'insurance_base_cost', 'insurance_daily_cost', 'main_image', 'images','frequently_bought_with']
 
     def create(self, validated_data):
         brand_data = validated_data.pop('brand')

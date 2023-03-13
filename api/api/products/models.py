@@ -56,9 +56,6 @@ class Product(models.Model):
         related_name='product_as_main'
     )
 
-    main_img_location = models.CharField(max_length=255)
-    img_folder_path = models.CharField(max_length=255)
-
     frequently_bought_with = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
@@ -75,32 +72,32 @@ def set_frequently_bought_with(sender, instance, created, **kwargs):
         instance.frequently_bought_with.add(instance)
 
 
+def get_upload_path(instance, filename):
+    return f"products/{instance.product.brand}/{instance.product.slug}/{filename}"
 
 class ProductImage(models.Model):
     uuid = models.UUIDField(default=uuid4, unique=True)
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     caption = models.CharField(max_length=100, blank=True, null=True)
 
-    image = models.ImageField(upload_to='products')
+    image = models.ImageField(upload_to=get_upload_path)
     is_main_image = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.image.name
-    
-    def product_image_upload_path(instance, filename):
-        return f"products/{instance.product.brand}/{instance.product.name}/{filename}"
-    
+        
     def save(self, *args, **kwargs):
         if self.is_main_image:
             ProductImage.objects.filter(product=self.product, is_main_image=True).exclude(pk=self.pk).update(is_main_image=False)
-
+            print(self.product)
             self.product.main_image = self
-            self.image.name = self.get_upload_path(self.image.name)
-            
-            self.product.save()
+
         super().save(*args, **kwargs)
+        
+        if self.is_main_image:
+            self.product.save()
     
 class ProductMInfo(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='product_info')
