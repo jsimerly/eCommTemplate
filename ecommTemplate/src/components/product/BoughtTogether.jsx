@@ -2,22 +2,21 @@ import { FreqBoughtCard } from './'
 import AddIcon from '@mui/icons-material/Add';
 import { BlueButton } from '../utils';
 
-const prodPairings = ['Cooler Yeti ', 'Chair', 'Canopy', 'Four']
 
-const BoughtTogether = () => {
+const BoughtTogether = ({frequentlyBought}) => {
   return (
     <div className='my-6 bg-white rounded-md pb-6 px-16 text-tertiary justify-center flex flex-col items-center'>
         <h1 className="text-[30px] py-4">
             Frequently Bought Together
         </h1>
         <div className='flex flex-row'>
-          {prodPairings.map((pairing, i) => {
+          {frequentlyBought.map((item, i) => {
             return(
               <div key={"productPair_"+i} className='flex flex-row justify-center items-center'>
                 <FreqBoughtCard
-                  header={pairing}
+                  item={item}
                 />
-                {prodPairings.length-1 == i ? '' : <AddIcon/>}
+                {frequentlyBought.length-1 == i ? '' : <AddIcon/>}
               </div>
             )
           })}

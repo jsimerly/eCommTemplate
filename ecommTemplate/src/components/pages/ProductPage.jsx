@@ -34,6 +34,7 @@ const ProductPage = () => {
     slugId: '',
     specs:{},
   })
+  const [frequentlyBought, setFrequentlyBought] = useState([])
 
   const location = useLocation();
   const segments = location.pathname.split('/');
@@ -41,7 +42,8 @@ const ProductPage = () => {
 
   useEffect(() => {
     fetchFullProductBySlug(slug, setProductInfo)
-  }, [])
+    window.scrollTo(0, 0);
+  }, [slug])
 
   useEffect(() => {
     if (productInfo){
@@ -78,18 +80,12 @@ const ProductPage = () => {
         specs:productInfo.specs,
         sku:productInfo.product.slug
       })
+
+      setFrequentlyBought(productInfo.product.frequently_bought_with)
         
     console.log(productInfo)
     }
   }, [productInfo])
-
-
-
-
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="flex justify-center items-center">
@@ -111,7 +107,9 @@ const ProductPage = () => {
         <Information
           secondaryCardInfo={secondaryCardInfo}
         />
-        <BoughtTogether/>
+        <BoughtTogether
+          frequentlyBought={frequentlyBought}
+        />
         <KeepShopping/>
       </div>
     </div>

@@ -1,26 +1,28 @@
-import { yeti45 }from '../../assets/images/products/'
 import navigateProduct from '../../hooks/navigateProduct';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useState } from 'react';
+import { calculate_product_cost, create_full_image_path } from '../../assets/util';
+import { useNavigate } from 'react-router-dom';
 
-const FreqBoughtCard= ({header}) => {
-  const itemSlug = 'my-item-slug'
-  let navigate = navigateProduct({itemSlug});
+const FreqBoughtCard= ({item}) => {
+  console.log(item.slug)
+  let navigate =useNavigate()
 
   const [checked, setChecked] = useState(true)
 
   const handleCheckClicked = () => {
     setChecked((checked) => !checked)
   }
+  const cost = calculate_product_cost(item.base_cost, item.daily_cost, 7)
 
   return (
 
     <div className='w-[150px] h-[260px] sm:h-[320px] sm:w-[240px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col m-2'>
       <img 
-        src={yeti45} 
+        src={create_full_image_path(item.main_image.image)} 
         className='bg-white object-scale-down rounded-md hover:cursor-pointer'
-        onClick={navigate}
+        onClick={()=> navigate(`/p/${item.slug}`)}
       />
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col'>
@@ -28,17 +30,17 @@ const FreqBoughtCard= ({header}) => {
                 className='font-bold text-[16px] sm:text-[18px] sm:truncate hover:cursor-pointer hover:underline leading-none' 
                 onClick={navigate}
             >
-                {header}
+                {item.name}
             </h3>
             <h4 className='text-[12px] sm:text-[14px] tracking-wide'>
-                Yeti
+                {item.brand.name}
             </h4>
         </div>
         </div>
         <div className='flex flex-col flex-1 w-full justify-center items-center'>
             <div className='flex justify-between w-full items-center pb-2'>
                 <div className='font-semibold sm:text-[18px] leading-none'>
-                    $16.98
+                    ${cost}
                 </div>
                 <div
                     onClick={handleCheckClicked}
