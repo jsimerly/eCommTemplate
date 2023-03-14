@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage
+from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -8,6 +8,19 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ['id','name', 'logo_path', 'full_name']
+
+class Category_Serializer(serializers.ModelSerializer):
+    parent = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = ['fe_id', 'name', 'parent']
+
+    def get_parent(self, obj):
+        if obj.parent is None:
+            return None
+        serializer = self.__class__(obj.parent)
+        return serializer.data
 
 class ProductImage_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -25,6 +38,7 @@ class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
     images = ProductImage_Serializer(many=True)
+    category = Category_Serializer()
     frequently_bought_with = ProductCard_Serializer(many=True)
 
     class Meta:

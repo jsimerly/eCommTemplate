@@ -20,6 +20,17 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
     
+class Category(models.Model):
+    uuid = models.UUIDField(default=uuid4, editable=False)
+
+    fe_id = models.CharField(max_length=4)
+    name = models.CharField(max_length=40)
+
+    parent = models.ForeignKey('self',null=True, blank=True, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
+    
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
 
@@ -28,9 +39,7 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='prod_brand')
     slug = models.CharField(max_length=32, unique=True,)
 
-    CATEGORY_CHOICES = [ ('0000', 'All Categories'), ('0100', 'All Chairs')]
-
-    category = models.CharField(max_length=4, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, default=None)
     tags = ArrayField(models.CharField(max_length=30), null=True, blank=True)
 
     average_rating = models.FloatField(null=True, blank=True)

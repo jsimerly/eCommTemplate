@@ -11,7 +11,7 @@ const BoughtTogether = ({frequentlyBought}) => {
   const [totalCost, setTotalCost] = useState(0)
 
   function calculateTotalCost(checkedItems) {
-    console.log(checkedItems)
+
     let newCost = 0
     checkedItems.map((item, i) => {
       newCost += parseFloat(calculate_product_cost(item.base_cost, item.daily_cost, 7))

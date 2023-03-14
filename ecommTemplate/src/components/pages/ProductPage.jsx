@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Information from '../product/Information';
 import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
 import { create_full_image_path, calculate_product_cost } from '../../assets/util';
+import { shoppingPageData } from '../shopping/shopping_constant';
 
 
 const ProductPage = () => {
@@ -82,20 +83,49 @@ const ProductPage = () => {
       })
 
       setFrequentlyBought(productInfo.product.frequently_bought_with)
+      console.log(productInfo.product.category)
+
+      setCategory(productInfo.product.category)
     }
   }, [productInfo])
+
+  const [category, setCategory] = useState()
+
+  const LinkPath = ({category}) => {
+    const categoryPath = [];
+
+    let currentCategory = category;
+    let chev = false
+    while (currentCategory) {
+      categoryPath.push(
+        <div key={currentCategory.fe_id}>
+          <a href={`/categories/${currentCategory.slug}`} className='hover:underline cursor-pointer'>{currentCategory.name}</a>
+          {chev && <ChevronRightIcon className='scale-75' />}
+        </div>
+      );
+      currentCategory = currentCategory.parent;
+      chev = true
+    }
+
+    categoryPath.push(
+      <div key="home">
+        <a href="/" className='hover:underline cursor-pointer'>Home</a>
+        <ChevronRightIcon className='scale-75' />
+      </div>
+    );
+
+    return (
+      <>
+        {categoryPath.reverse()}
+      </>
+      );
+    }
 
   return (
     <div className="flex justify-center items-center">
       <div className="max-w-[1280px] w-full">
-        <div className='my-4 text-[12px] text-tertiary'>
-          <a className='hover:underline cursor-pointer'>Home</a>
-          <ChevronRightIcon className='scale-75'/>
-          <a className='hover:underline cursor-pointer'>All Categories</a>
-          <ChevronRightIcon className='scale-75'/>
-          <a className='hover:underline cursor-pointer'>On the Beach</a>
-          <ChevronRightIcon className='scale-75'/>
-          <a className='hover:underline cursor-pointer'>Coolers</a>
+        <div className='my-4 text-[12px] text-tertiary flex flex-row'>
+          <LinkPath category={category}/>
         </div>
         <div className='mt-20 mb-24'>
           <ProductMain
