@@ -82,8 +82,6 @@ const ProductPage = () => {
       })
 
       setFrequentlyBought(productInfo.product.frequently_bought_with)
-        
-    console.log(productInfo)
     }
   }, [productInfo])
 

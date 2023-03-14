@@ -1,19 +1,15 @@
 import navigateProduct from '../../hooks/navigateProduct';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { calculate_product_cost, create_full_image_path } from '../../assets/util';
 import { useNavigate } from 'react-router-dom';
+import { el } from 'date-fns/locale';
 
-const FreqBoughtCard= ({item}) => {
-  console.log(item.slug)
-  let navigate =useNavigate()
+const FreqBoughtCard= ({item, handleCheckClicked, checked}) => {
 
-  const [checked, setChecked] = useState(true)
+  let navigate = useNavigate()
 
-  const handleCheckClicked = () => {
-    setChecked((checked) => !checked)
-  }
   const cost = calculate_product_cost(item.base_cost, item.daily_cost, 7)
 
   return (
@@ -45,10 +41,10 @@ const FreqBoughtCard= ({item}) => {
                 <div
                     onClick={handleCheckClicked}
                 >
-                    {checked ?                     
-                    <CheckBoxIcon className='text-primary hover:scale-110 cursor-pointer'/> 
-                    :
-                    <CheckBoxOutlineBlankIcon className='text-primary hover:scale-110 cursor-pointer'/>
+                    {checked ?        
+                      <CheckBoxIcon className='text-primary hover:scale-110 cursor-pointer'/> 
+                      :
+                      <CheckBoxOutlineBlankIcon className='text-primary hover:scale-110 cursor-pointer'/>  
                     }
                 </div>
             </div>

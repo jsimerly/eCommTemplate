@@ -19,7 +19,4 @@ export function create_full_image_path(img_path) {
     return `${SERVER_ADDRESS}${img_path}`;
   }
 
-export function getImagesFromFolder(folderPath) {
-    const folder = create_full_folder_path(folderPath)
-  }
   

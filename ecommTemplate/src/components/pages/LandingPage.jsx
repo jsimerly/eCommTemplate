@@ -1,5 +1,4 @@
 import styles from '../../styles';
-import { yeti45 } from '../../assets/images/products';
 import { NewCustomers, FreeWagon } from '../banners';
 import {
     Hero,
@@ -50,13 +49,9 @@ const LandingPage = () => {
         fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular)
         fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals)
         fetchProductsBySlugs(TRENDING_SLUGS, setTrending)
+        window.scrollTo(0, 0);
     }, [])
 
-
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        }, []);
 
   return (
     <div>
