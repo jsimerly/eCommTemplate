@@ -51,7 +51,6 @@ const ProductPage = () => {
     const dateChange = selectedDateRange.first
 
     fetchFullProductBySlug(slug, setProductInfo, startDate, endDate, dateChange)
-    window.scrollTo(0, 0);
   }, [slug, selectedDateRange])
 
   useEffect(() => {

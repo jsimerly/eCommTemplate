@@ -2,7 +2,6 @@ import { FreqBoughtCard } from './'
 import { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { BlueButton } from '../utils';
-import { calculate_product_cost } from '../../assets/util';
 import { isDictInList } from '../utils'
 
 
@@ -38,9 +37,11 @@ const BoughtTogether = ({frequentlyBought}) => {
   }, [checkedItems])
 
   useEffect(()=> {
-    setCheckedItems(frequentlyBought.map(item => item))
-    if (frequentlyBought[0].days){
-      setDays(frequentlyBought[0].days)
+    if (frequentlyBought && frequentlyBought.length > 0) {
+      setCheckedItems(frequentlyBought.map(item => item));
+      if (frequentlyBought[0].days) {
+        setDays(frequentlyBought[0].days);
+      }
     }
   }, [frequentlyBought])
 
