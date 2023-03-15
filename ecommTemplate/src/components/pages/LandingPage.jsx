@@ -59,7 +59,6 @@ const LandingPage = () => {
             fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular, startDate, endDate, dateChange)
             fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals, startDate, endDate, dateChange)
             fetchProductsBySlugs(TRENDING_SLUGS, setTrending, startDate, endDate, dateChange)
-            window.scrollTo(0, 0);
     }, [selectedDateRange])
 
 

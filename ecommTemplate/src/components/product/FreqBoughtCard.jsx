@@ -10,8 +10,6 @@ const FreqBoughtCard= ({item, handleCheckClicked, checked}) => {
 
   let navigate = useNavigate()
 
-  const cost = calculate_product_cost(item.base_cost, item.daily_cost, 7)
-
   return (
 
     <div className='w-[150px] h-[260px] sm:h-[320px] sm:w-[240px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col m-2'>
@@ -36,7 +34,7 @@ const FreqBoughtCard= ({item, handleCheckClicked, checked}) => {
         <div className='flex flex-col flex-1 w-full justify-center items-center'>
             <div className='flex justify-between w-full items-center pb-2'>
                 <div className='font-semibold sm:text-[18px] leading-none'>
-                    ${cost}
+                    ${item.total_cost.toFixed(2)}
                 </div>
                 <div
                     onClick={handleCheckClicked}

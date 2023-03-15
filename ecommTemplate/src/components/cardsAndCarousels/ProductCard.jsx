@@ -1,13 +1,12 @@
 import AddIcon from '@mui/icons-material/Add';
 import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
-import { calculate_product_cost, create_full_image_path } from '../../assets/util';
+import {create_full_image_path } from '../../assets/util';
 
 
-const ProductCard = ({name, brand, slug, average_rating, n_ratings, base_cost, daily_cost, main_image}) => {
+const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost}) => {
 
   let navigate = navigateProduct({slug});
-  const cost = calculate_product_cost(base_cost, daily_cost, 7)
 
   return (
     <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2'>
@@ -42,7 +41,7 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings, base_cost, d
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
               <div className='font-semibold sm:text-[26px] leading-none'>
-                ${cost}
+                ${total_cost.toFixed(2)}
               </div>
               <p className='leading-none text-[12px] text-center'>
                 For 7 Days

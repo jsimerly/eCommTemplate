@@ -49,7 +49,7 @@ class ProductCard_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'base_cost', 'daily_cost', 'main_image', 'total_cost', 'days']
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'total_cost', 'days']
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
@@ -57,10 +57,34 @@ class Product_Serializer(serializers.ModelSerializer):
     images = ProductImage_Serializer(many=True)
     category = Category_Serializer()
     frequently_bought_with = ProductCard_Serializer(many=True)
+    total_cost = serializers.SerializerMethodField()
+    insurance_total_cost = serializers.SerializerMethodField()
+    days = serializers.SerializerMethodField()
+
+    def get_total_cost(self, obj):
+        if 'days' in self.context:
+            days = self.context['days']
+            total_cost = obj.base_cost + (obj.daily_cost * days)
+            return total_cost
+        else:
+
+            return None
+    
+    def get_insurance_total_cost(self,obj):
+        if 'days' in self.context:
+            days = self.context['days']
+            total_insurance_cost = obj.insurance_base_cost + (obj.insurance_daily_cost * days)
+            return total_insurance_cost
+        else:
+            return None
+        
+    def get_days(self, obj):
+        return self.context['days']
+
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'base_cost', 'daily_cost', 'insurance_base_cost', 'insurance_daily_cost', 'main_image', 'images','frequently_bought_with']
+        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'total_cost', 'days', 'insurance_total_cost', 'main_image', 'images','frequently_bought_with']
 
     def create(self, validated_data):
         brand_data = validated_data.pop('brand')

@@ -14,7 +14,7 @@ const BoughtTogether = ({frequentlyBought}) => {
 
     let newCost = 0
     checkedItems.map((item, i) => {
-      newCost += parseFloat(calculate_product_cost(item.base_cost, item.daily_cost, 7))
+      newCost += parseFloat(item.total_cost)
     })
     return newCost
   }

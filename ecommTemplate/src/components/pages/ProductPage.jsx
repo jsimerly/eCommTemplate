@@ -55,16 +55,8 @@ const ProductPage = () => {
         imgList: productInfo.product.images,
         rating: productInfo.product.average_rating,
         nRatings: productInfo.product.n_ratings,
-        price: calculate_product_cost(
-          productInfo.product.base_cost,
-          productInfo.product.daily_cost,
-          7
-        ),
-        insurance: calculate_product_cost(
-          productInfo.product.insurance_base_cost,
-          productInfo.product.insurance_daily_cost,
-          7
-        ),
+        price: productInfo.product.total_cost,
+        insurance: productInfo.product.insurance_total_cost,
         desc: productInfo.main_desc,
         bullets: productInfo.bullets,
       })
@@ -83,8 +75,6 @@ const ProductPage = () => {
       })
 
       setFrequentlyBought(productInfo.product.frequently_bought_with)
-      console.log(productInfo.product.category)
-
       setCategory(productInfo.product.category)
     }
   }, [productInfo])

@@ -64,7 +64,7 @@ const ProductMain = ({mainCardInfo}) => {
             <div className='flex justify-between items-center w-full mt-6'>
               <div className='text-center'>
                 <h3 className='text-[36px] leading-none font-bold'>
-                  ${mainCardInfo.price}
+                  ${mainCardInfo.price.toFixed(2)}
                 </h3>
                 <p className='leading-none'>
                   For 7 days
@@ -93,7 +93,7 @@ const ProductMain = ({mainCardInfo}) => {
                 />}
 
                 <div className='text-[20px] ml-2 group-hover:underline'>
-                  Insure for <span className='font-bold'> ${mainCardInfo.insurance}</span>
+                  Insure for <span className='font-bold'> ${mainCardInfo.insurance.toFixed(2)}</span>
                 </div>
               </div>
             </div>

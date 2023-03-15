@@ -11,6 +11,28 @@ from .models import Product
 
 from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer
 
+def getDateContext(request):
+    date_changed = request.GET.get('dateChange')
+
+    if date_changed:
+        start_date_str = request.GET.get('startDate')
+        end_date_str = request.GET.get('endDate')
+
+        start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+
+        delta = end_date - start_date
+        days = delta.days + 1
+        context = {
+            'days': days
+        }
+    else:
+        context = {
+            'days' : 7
+        }
+
+    return context
+
 # Create your views here.
 class ProductPageView(APIView):
     def get(self, request, slug,):
@@ -19,8 +41,10 @@ class ProductPageView(APIView):
         except:
             return Response({"error": "Product not found."}, status=404)
         
-        prod_info_serializer = ProductMInfo_Serializer(product.product_info)
+        context = getDateContext(request)
         
+        prod_info_serializer = ProductMInfo_Serializer(product.product_info, context=context)
+
         return Response(prod_info_serializer.data, status=status.HTTP_200_OK)
     
 class ProductCategoryAPIView(APIView):
@@ -43,14 +67,9 @@ class ProductAPIView(APIView):
     
 class ProductListAPIView(APIView):
     def get(self, request):
-
         slug_strings = request.GET.get('slugs')
-        start_date_str = request.GET.get('startDate')
-        end_date_str = request.GET.get('endDate')
-        date_changed_str = request.GET.get('dateChange')
 
-        start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-        end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+        context = getDateContext(request)
 
         if slug_strings is not None:
             slugs = slug_strings.split(',')
@@ -59,15 +78,7 @@ class ProductListAPIView(APIView):
 
         products = Product.objects.filter(
             slug__in=slugs,
-        )
-
-
-        if start_date and end_date:
-            delta = end_date - start_date
-            days = delta.days + 1
-            context = {
-                'days': days
-            }      
+        ) 
 
         serializer = ProductCard_Serializer(products, context=context, many=True)
         response = Response(serializer.data, status=status.HTTP_200_OK)

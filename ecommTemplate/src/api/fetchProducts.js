@@ -1,5 +1,13 @@
 import { SERVER_ADDRESS } from "./serverConstants";
 
+function parseDates(startDate, endDate){
+  return [startDate.toISOString().slice(0,10), endDate.toISOString().slice(0,10)]
+}
+
+function datesUrlString(startDate, endDate, dateChange){
+  return `startDate=${startDate}&endDate=${endDate}&dateChange=${dateChange}`
+}
+
 export async function fetchProductsByUUIDs(uuids, setterFunc) {
 
   try {
@@ -13,14 +21,12 @@ export async function fetchProductsByUUIDs(uuids, setterFunc) {
 }
 
 export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate, dateChange) {
-  console.log(startDate)
-  const start = startDate.toISOString().slice(0,10)
-  const end = endDate.toISOString().slice(0,10)
+  const [start, end] = parseDates(startDate, endDate)
+
   try {
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}&startDate=${start}&endDate=${end}&dateChange=${dateChange}`);
+    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}&${datesUrlString(start,end,dateChange)}`);
 
     const products = await response.json();
-    console.log(products)
     setterFunc(products);
     return products;
   } catch (error) {
