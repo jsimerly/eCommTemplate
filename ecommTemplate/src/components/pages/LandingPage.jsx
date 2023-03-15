@@ -9,10 +9,11 @@ import {
     BlogBanner,
 } from '../landingPage';
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ProductCard } from '../shopping';
 import { fetchProductsBySlugs } from '../../api/fetchProducts';
 import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_SLUGS, TRENDING_SLUGS } from '../../api/landingPageConstants';
+import { ShoppingContext } from '../../context';
 
 function scrollN(){
     if (window.innerWidth < 680) {
@@ -45,12 +46,21 @@ const LandingPage = () => {
     const [trending, setTrending] = useState([])
     const [newArrivals, setNewArrivals] = useState([])
 
+    const {selectedDateRange, selectedDestination} = useContext(ShoppingContext)
+
     useEffect(() => {
-        fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular)
-        fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals)
-        fetchProductsBySlugs(TRENDING_SLUGS, setTrending)
-        window.scrollTo(0, 0);
-    }, [])
+            const startDate = selectedDateRange.startDate
+            const endDate = selectedDateRange.endDate
+            const dateChange = selectedDateRange.first
+    
+            console.log(1)
+            console.log(selectedDateRange.startDate)
+    
+            fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular, startDate, endDate, dateChange)
+            fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals, startDate, endDate, dateChange)
+            fetchProductsBySlugs(TRENDING_SLUGS, setTrending, startDate, endDate, dateChange)
+            window.scrollTo(0, 0);
+    }, [selectedDateRange])
 
 
   return (

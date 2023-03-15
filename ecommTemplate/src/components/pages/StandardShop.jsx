@@ -31,8 +31,9 @@ const StandardShop = () => {
         <div className={`${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <div className={`flex justify-between items-center w-full mt-4`}>
-              <div >
+              <div className='w-full'>
                 <ShoppingMain
+                  categoryId={categoryId}
                   filterData={shoppingData['checkboxOptions']}
                   relatedCategories={shoppingData['relatedCategories']}
                 />

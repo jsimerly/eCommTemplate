@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
-from uuid import UUID
+from django.db.models import F, ExpressionWrapper, DecimalField
+from datetime import datetime
+
 
 from .models import Product
 
@@ -23,8 +25,8 @@ class ProductPageView(APIView):
     
 class ProductCategoryAPIView(APIView):
     def get(self, request, category):
-        products = Product.objects.filter(category=category)
-        serializer = Product_Serializer(products, many=True)
+        products = Product.objects.filter(category__fe_id=category)
+        serializer = ProductCard_Serializer(products, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -36,14 +38,20 @@ class ProductAPIView(APIView):
 
         serializer = Product_Serializer(product)
 
-        response = Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
-        response['Access-Control-Allow-Origin'] = '*'
+        response = Response(serializer.data, status=status.HTTP_200_OK)
         return response
     
 class ProductListAPIView(APIView):
     def get(self, request):
 
         slug_strings = request.GET.get('slugs')
+        start_date_str = request.GET.get('startDate')
+        end_date_str = request.GET.get('endDate')
+        date_changed_str = request.GET.get('dateChange')
+
+        start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+
         if slug_strings is not None:
             slugs = slug_strings.split(',')
         else:
@@ -53,7 +61,15 @@ class ProductListAPIView(APIView):
             slug__in=slugs,
         )
 
-        serializer = ProductCard_Serializer(products, many=True)
+
+        if start_date and end_date:
+            delta = end_date - start_date
+            days = delta.days + 1
+            context = {
+                'days': days
+            }      
+
+        serializer = ProductCard_Serializer(products, context=context, many=True)
         response = Response(serializer.data, status=status.HTTP_200_OK)
         return response
     

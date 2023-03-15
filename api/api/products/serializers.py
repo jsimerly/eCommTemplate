@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category
 from django.contrib.auth import get_user_model
+from decimal import Decimal
 
 User = get_user_model()
 
@@ -30,9 +31,25 @@ class ProductImage_Serializer(serializers.ModelSerializer):
 class ProductCard_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
+    total_cost = serializers.SerializerMethodField()
+    days = serializers.SerializerMethodField()
+
+    def get_total_cost(self, obj):
+        if 'days' in self.context:
+            days = self.context['days']
+            total_cost = obj.base_cost + (obj.daily_cost * days)
+            return total_cost
+        else:
+
+            return None
+        
+    def get_days(self, obj):
+        return self.context['days']
+
+
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'base_cost', 'daily_cost', 'main_image']
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'base_cost', 'daily_cost', 'main_image', 'total_cost', 'days']
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()

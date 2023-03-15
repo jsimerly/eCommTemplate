@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     #Libs
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders',
+
 
     #Apps
     'account',
@@ -56,20 +56,26 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'api.middleware.CorsMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:5173',
-]
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOW_HEADERS = ['*']
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',
+    'http://120.0.0.1:8000',
+    'http://120.0.0.1:5173',
+)
 
 ROOT_URLCONF = 'api.urls'
 

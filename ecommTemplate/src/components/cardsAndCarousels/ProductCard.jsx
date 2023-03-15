@@ -7,7 +7,6 @@ import { calculate_product_cost, create_full_image_path } from '../../assets/uti
 const ProductCard = ({name, brand, slug, average_rating, n_ratings, base_cost, daily_cost, main_image}) => {
 
   let navigate = navigateProduct({slug});
-
   const cost = calculate_product_cost(base_cost, daily_cost, 7)
 
   return (

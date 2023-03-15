@@ -10,9 +10,7 @@ import useOpenAndClose from '../../hooks/useOpenAndClose';
 import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
-
-
-const ShoppingMain = ({filterData, relatedCategories}) => {
+const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
   //Filter Related
   const filterData_copy = JSON.parse(JSON.stringify(filterData))
   const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
@@ -66,7 +64,7 @@ const ShoppingMain = ({filterData, relatedCategories}) => {
 
   return (
     <div>
-    <div className='flex flex-row justify-between min-h-[80px]'>
+    <div className='flex flex-row justify-between min-h-[80px] w-full'>
               <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
                   <WhiteButton 
@@ -140,7 +138,7 @@ const ShoppingMain = ({filterData, relatedCategories}) => {
             </div>
               
             </div>
-            <div className='flex flex-row mt-2'>
+            <div className='flex flex-row mt-2 w-full'>
               <div className={`${filterOpen ? '' : 'hidden'} mr-2`}>
                 <Filter
                   closeFunc={setFilterOpen}
@@ -150,7 +148,9 @@ const ShoppingMain = ({filterData, relatedCategories}) => {
                 />
               </div>
               <div className='flex flex-1 w-full'>
-                <Items/>
+                <Items
+                  categoryId={categoryId}
+                />
               </div>
             </div>
     </div>
