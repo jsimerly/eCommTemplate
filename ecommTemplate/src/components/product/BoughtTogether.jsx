@@ -9,6 +9,7 @@ import { isDictInList } from '../utils'
 const BoughtTogether = ({frequentlyBought}) => {
   const [checkedItems, setCheckedItems] = useState([]);
   const [totalCost, setTotalCost] = useState(0)
+  const [days, setDays] = useState(7)
 
   function calculateTotalCost(checkedItems) {
 
@@ -30,6 +31,7 @@ const BoughtTogether = ({frequentlyBought}) => {
     }
   };
 
+
   useEffect(()=> {
     const newTotalCost = calculateTotalCost(checkedItems)
     setTotalCost(newTotalCost)
@@ -37,6 +39,9 @@ const BoughtTogether = ({frequentlyBought}) => {
 
   useEffect(()=> {
     setCheckedItems(frequentlyBought.map(item => item))
+    if (frequentlyBought[0].days){
+      setDays(frequentlyBought[0].days)
+    }
   }, [frequentlyBought])
 
   return (
@@ -63,7 +68,7 @@ const BoughtTogether = ({frequentlyBought}) => {
             <p>Subtotal: </p>
             <div className='flex flex-col items-center justify-start ml-1'>
               <p ><span className='font-semibold text-[18px]'> ${totalCost.toFixed(2)}</span> (4 items)</p>
-              <p className='leading-none text-[12px]'>For 7 Days</p>
+              <p className='leading-none text-[12px]'>For {days} Days</p>
             </div>
           </div>
           <div className='ml-2' >

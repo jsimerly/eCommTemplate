@@ -4,7 +4,7 @@ import { BlueButton, Stars } from '../utils';
 import {create_full_image_path } from '../../assets/util';
 
 
-const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost}) => {
+const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days}) => {
 
   let navigate = navigateProduct({slug});
 
@@ -44,7 +44,7 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
                 ${total_cost.toFixed(2)}
               </div>
               <p className='leading-none text-[12px] text-center'>
-                For 7 Days
+                For {days} Days
               </p>
             </div>
             <div className='h-full border hidden sm:block'>

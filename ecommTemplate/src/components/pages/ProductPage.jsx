@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link, useLocation } from 'react-router-dom';
 import Information from '../product/Information';
@@ -6,7 +6,7 @@ import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
 import { create_full_image_path, calculate_product_cost } from '../../assets/util';
-import { shoppingPageData } from '../shopping/shopping_constant';
+import { ShoppingContext } from '../../context';
 
 
 const ProductPage = () => {
@@ -34,6 +34,7 @@ const ProductPage = () => {
     brand: '',
     slugId: '',
     specs:{},
+    days: 6,
   })
   const [frequentlyBought, setFrequentlyBought] = useState([])
 
@@ -41,10 +42,17 @@ const ProductPage = () => {
   const segments = location.pathname.split('/');
   const slug = segments[segments.length - 1];
 
+
+  const {selectedDateRange, selectedDestination} = useContext(ShoppingContext)
+
   useEffect(() => {
-    fetchFullProductBySlug(slug, setProductInfo)
+    const startDate = selectedDateRange.startDate
+    const endDate = selectedDateRange.endDate
+    const dateChange = selectedDateRange.first
+
+    fetchFullProductBySlug(slug, setProductInfo, startDate, endDate, dateChange)
     window.scrollTo(0, 0);
-  }, [slug])
+  }, [slug, selectedDateRange])
 
   useEffect(() => {
     if (productInfo){
@@ -59,6 +67,7 @@ const ProductPage = () => {
         insurance: productInfo.product.insurance_total_cost,
         desc: productInfo.main_desc,
         bullets: productInfo.bullets,
+        days: productInfo.product.days,
       })
 
       setSecondardCardInfo({

@@ -53,9 +53,6 @@ const LandingPage = () => {
             const endDate = selectedDateRange.endDate
             const dateChange = selectedDateRange.first
     
-            console.log(1)
-            console.log(selectedDateRange.startDate)
-    
             fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular, startDate, endDate, dateChange)
             fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals, startDate, endDate, dateChange)
             fetchProductsBySlugs(TRENDING_SLUGS, setTrending, startDate, endDate, dateChange)

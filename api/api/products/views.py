@@ -13,6 +13,7 @@ from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCar
 
 def getDateContext(request):
     date_changed = request.GET.get('dateChange')
+    print(request)
 
     if date_changed:
         start_date_str = request.GET.get('startDate')
@@ -42,16 +43,18 @@ class ProductPageView(APIView):
             return Response({"error": "Product not found."}, status=404)
         
         context = getDateContext(request)
-        
+        print(context)
+
         prod_info_serializer = ProductMInfo_Serializer(product.product_info, context=context)
 
         return Response(prod_info_serializer.data, status=status.HTTP_200_OK)
     
 class ProductCategoryAPIView(APIView):
     def get(self, request, category):
-        products = Product.objects.filter(category__fe_id=category)
-        serializer = ProductCard_Serializer(products, many=True)
+        context = getDateContext(request)
 
+        products = Product.objects.filter(category__fe_id=category)
+        serializer = ProductCard_Serializer(products, context=context, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class ProductAPIView(APIView):

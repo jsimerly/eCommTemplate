@@ -2,8 +2,6 @@ import { useEffect, useState } from "react"
 import { ProductCard } from "."
 import { fetchProductsByCategory } from "../../api/fetchProducts"
 
-const items = []
-
 const Items = ({categoryId}) => {
     const [productList, setProductList]= useState([])
 
@@ -28,8 +26,8 @@ const Items = ({categoryId}) => {
                     slug={item.slug}
                     average_rating={item.average_rating}
                     n_ratings={item.n_ratings}
-                    base_cost={item.base_cost}
-                    daily_cost={item.daily_cost}
+                    total_cost={item.total_cost}
+                    days={item.days}
                     main_image={item.main_image}
                 />
             ))}

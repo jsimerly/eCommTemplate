@@ -34,9 +34,10 @@ export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate
   }
 }
 
-export async function fetchFullProductBySlug(slug, setterFunc){
+export async function fetchFullProductBySlug(slug, setterFunc, startDate, endDate, dateChange){
+  const [start, end] = parseDates(startDate, endDate)
   try {
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/slug/${slug}/`);
+    const response = await fetch(`${SERVER_ADDRESS}/api/products/slug/${slug}/?${datesUrlString(start,end,dateChange)}`);
     const product = await response.json()
     setterFunc(product)
   } catch (error) {

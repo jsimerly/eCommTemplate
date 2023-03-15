@@ -67,7 +67,7 @@ const ProductMain = ({mainCardInfo}) => {
                   ${mainCardInfo.price.toFixed(2)}
                 </h3>
                 <p className='leading-none'>
-                  For 7 days
+                  For {mainCardInfo.days} days
                 </p>
               </div>
               <div>
