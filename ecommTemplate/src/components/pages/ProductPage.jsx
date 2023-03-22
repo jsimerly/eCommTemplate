@@ -5,7 +5,7 @@ import Information from '../product/Information';
 import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
-import { create_full_image_path, calculate_product_cost } from '../../assets/util';
+import { create_full_image_path} from '../../assets/util';
 import { ShoppingContext } from '../../context';
 
 
@@ -33,7 +33,6 @@ const ProductPage = () => {
     manufactured: '',
     brand: '',
     slugId: '',
-    specs:{},
     days: 6,
   })
   const [frequentlyBought, setFrequentlyBought] = useState([])

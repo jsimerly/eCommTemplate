@@ -12,8 +12,23 @@ import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
 import SearchPage from './components/pages/SearchPage'
-import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account,Partners, Cookies, SignUp} from './components/auxillaryPages'
+import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account, Partners, Cookies, SignUp} from './components/auxillaryPages'
 import AboutUs from './components/auxillaryPages/AboutUs';
+
+function getCookie(name){
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== ''){
+    const cookie = document.cookie.split(';')
+    for (let i = 0; i < cookie.length; i++){
+      const cookie = cookie[i].trim()
+      if (cookie.substring(0, name.length + 1) === (name + '=')){
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+        break
+      }
+    }
+  }
+  return cookieValue
+}
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')

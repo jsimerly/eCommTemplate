@@ -18,7 +18,7 @@ class Customer(models.Model):
             name = self.device
         return str(name)
 
-class BrowseSession(models.Model):
+class BrowserHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
 
