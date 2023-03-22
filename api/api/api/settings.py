@@ -57,7 +57,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
+    'api.middleware.DeviceCookieMiddleware',
     'api.middleware.CorsMiddleware',
+    
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
