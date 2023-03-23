@@ -13,6 +13,16 @@ export function getCookie(name){
     return cookieValue
   }
 
+function fetchWrapper(url, options){
+    return fetch(url, options)
+        .then(response => {
+            const setCookieHeader = response.headers.get('Set-Cookie');
+            if (setCookieHeader){
+                const cookieValue = setCookieHeader.split(';')[0].split('=')[1];
+                document.cookie = `COOKIE=${cookieValue}`
+            }
+        })
+}
   
   
   
