@@ -13,15 +13,20 @@ export function getCookie(name){
     return cookieValue
   }
 
-function fetchWrapper(url, options){
-    return fetch(url, options)
-        .then(response => {
-            const setCookieHeader = response.headers.get('Set-Cookie');
-            if (setCookieHeader){
-                const cookieValue = setCookieHeader.split(';')[0].split('=')[1];
-                document.cookie = `COOKIE=${cookieValue}`
-            }
-        })
+export async function fetchWrapper(url, options){
+    const deviceCookie = getCookie('device');
+    const headers = options && options.headers ? options.headers : {}
+    if (deviceCookie){
+        headers['Cookie'] = `device=${deviceCookie}`
+    }
+
+    const requestOptions = {
+        ...options,
+        headers: headers
+    }
+
+    const response = await fetch(url, requestOptions);
+    return response
 }
   
   

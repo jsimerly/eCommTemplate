@@ -15,6 +15,7 @@ class CorsMiddleware(object):
             response["Access-Control-Max-Age"] = 86400
         response["Access-Control-Allow-Origin"] = "http://127.0.0.1:5173"
         response["Access-Control-Allow-Methods"] = "DELETE, GET, OPTIONS, PATCH, POST, PUT"
+        response['Access-Control-Allow-Credentials'] = 'true'
         response["Access-Control-Allow-Headers"] = "accept, accept-encoding, authorization, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with"
 
         return response
@@ -36,14 +37,8 @@ class DeviceCookieMiddleware(object):
                 response['Access-Control-Expose-Headers'] += ', Set-Cookie'
             else:
                 response['Access-Control-Expose-Headers'] = 'Set-Cookie'
-
-        if 'Origin' in request.headers:
-            response['Access-Control-Allow-Origin'] = request.headers['Origin']
-            response['Access-Control-Allow-Credentials'] = 'true'
-
-
+    
         request.new_customer = new_customer
-        print(response.headers)
         return response
         
         

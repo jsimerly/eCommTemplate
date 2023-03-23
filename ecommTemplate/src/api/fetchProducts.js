@@ -1,5 +1,5 @@
 import { SERVER_ADDRESS } from "./serverConstants";
-import { getCookie } from "./cookies";
+import { fetchWrapper } from "./cookies";
 
 function parseDates(startDate, endDate){
   return [startDate.toISOString().slice(0,10), endDate.toISOString().slice(0,10)]
@@ -25,13 +25,11 @@ export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate
   const [start, end] = parseDates(startDate, endDate)
 
   try {
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}&${datesUrlString(start,end,dateChange)}`, {
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}&${datesUrlString(start,end,dateChange)}`, {
       credentials: 'include'
     });
 
     const cookies = response.headers.get('Set-Cookie')
-    console.log(cookies)
-    console.log(response.headers)
     const products = await response.json();
 
     setterFunc(products);
