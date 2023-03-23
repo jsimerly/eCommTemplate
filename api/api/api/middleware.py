@@ -31,7 +31,7 @@ class DeviceCookieMiddleware(object):
         if 'device' not in request.COOKIES:
             new_customer = Customer.objects.create()
 
-            response.set_cookie('device', new_customer.device, max_age=5000, httponly=True)
+            response.set_cookie('device', new_customer.device, max_age=5000, httponly=True, secure=True)
 
             if 'Access-Control-Expose-Headers' in response:
                 response['Access-Control-Expose-Headers'] += ', Set-Cookie'

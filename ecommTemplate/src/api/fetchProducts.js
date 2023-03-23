@@ -29,11 +29,10 @@ export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate
       credentials: 'include'
     });
 
-    const cookies = response.headers.get('Set-Cookie')
     const products = await response.json();
-
     setterFunc(products);
     return products;
+    
   } catch (error) {
     throw error;
   }
