@@ -32,7 +32,7 @@ export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate
     const products = await response.json();
     setterFunc(products);
     return products;
-    
+
   } catch (error) {
     throw error;
   }

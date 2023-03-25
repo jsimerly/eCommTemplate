@@ -54,31 +54,22 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'api.middleware.DeviceCookieMiddleware',
-    'api.middleware.CorsMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
+    'api.middleware.SessionCookieMiddleware',
     'django.middleware.common.CommonMiddleware',
+    
+    'api.middleware.CorsMiddleware',
+    'api.middleware.DeviceCookieMiddleware', 
+    
     'django.middleware.csrf.CsrfViewMiddleware',
+    'api.middleware.CsrfCookieMiddleware',
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
 ]
 
-
-CORS_ORIGIN_ALLOW_ALL = False
-
-CORS_ALLOW_HEADERS = ['*']
-
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8000',
-    'http://120.0.0.1:8000',
-    'http://120.0.0.1:5173',
-)
 
 ROOT_URLCONF = 'api.urls'
 

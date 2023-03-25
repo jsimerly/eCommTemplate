@@ -11,7 +11,9 @@ class Customer(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.CharField(max_length=200, null=True, blank=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
+
     device = models.UUIDField(default=uuid4, unique=True, null=True, blank=True)
+    session_id = models.CharField(max_length=100, null=True, blank=True)    
 
     def __str__(self):
         if self.name:
