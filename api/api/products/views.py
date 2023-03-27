@@ -12,8 +12,11 @@ from .models import Product
 from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer
 
 def getDateContext(request):
-    date_changed = request.GET.get('dateChange')
-    print(request)
+    date_changed_str = request.GET.get('dateChange')
+    if date_changed_str:
+        date_changed = date_changed_str.lower() == 'true'
+    else:
+        date_changed=False
 
     if date_changed:
         start_date_str = request.GET.get('startDate')

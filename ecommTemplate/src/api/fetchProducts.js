@@ -60,8 +60,10 @@ export async function fetchProductReviewsBySlug(slug, setterFunc){
 }
 
 export async function fetchProductsByCategory(category, setterFunc){
-  try{
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/category/${category}`)
+  try {
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category/${category}/`, {
+      credentials: 'include'
+    });
     const productList = await response.json()
     setterFunc(productList)
   } catch (error) {
