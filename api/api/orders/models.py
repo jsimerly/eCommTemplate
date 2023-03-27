@@ -1,8 +1,8 @@
 from django.db import models
 from uuid import uuid4
 from products.models import Product, Stock
+from customer.models import Customer
 from django.contrib.postgres.fields import DateRangeField
-from django.utils import timezone
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -43,8 +43,11 @@ class Cart(models.Model):
         User, 
         on_delete=models.CASCADE
     )
-
-    items = models.ManyToManyField(Stock)
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     sub_total = models.DecimalField(decimal_places=2, max_digits=8)
     insurance_total = models.DecimalField(decimal_places=2, max_digits=8)
@@ -61,8 +64,23 @@ class CartItems(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
     user = models.ForeignKey(
         User, 
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
     )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        null=True
+    )
+
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='items'
+    )
+
 
     base_cost = models.DecimalField(decimal_places=2, max_digits=8)
     daily_cost = models.DecimalField(decimal_places=2, max_digits=8)
@@ -78,7 +96,12 @@ class CartItems(models.Model):
 
     total_cost = models.DecimalField(decimal_places=2, max_digits=8)
 
-    items = models.ManyToManyField(Stock)
+    item = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=True
+    )
+    stock = models.ManyToManyField(Stock)
 
     def __str__(self):
         return self.uuid
@@ -89,7 +112,12 @@ class ItemFavorited(models.Model):
         User, 
         models.CASCADE, 
         null=True, 
-        blank=True
+        blank=True,
+    )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        null=True
     )
 
     items = models.ManyToManyField(Stock)
