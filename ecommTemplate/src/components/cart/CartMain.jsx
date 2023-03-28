@@ -78,21 +78,9 @@ const Card = ({item, updateCartItem}) => {
   )
 }
 
-const get_total = (items) => {
-  let totalPrice = 0
-  if (items){
-    for (let item of items){
-      totalPrice += item.item.item_cost * item.quantity;
-      if (item.insurance_purchased){
-        totalPrice += item.item.insurance_cost * item.quantity
-      }
-    }
-  }
 
-  return totalPrice
-}
 
-const CartMain = ({items, updateCartItem, countItems}) => {
+const CartMain = ({items, updateCartItem, itemCount, totalCost}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
@@ -106,7 +94,7 @@ const CartMain = ({items, updateCartItem, countItems}) => {
             />
           ))}
         <div className='w-full flex justify-center items-center'>
-          <div className='pt-2 px-3 text-[24px] '> Subtotal ({countItems(items)} items): <span className='font-bold'> ${get_total(items).toFixed(2)}</span> </div>
+          <div className='pt-2 px-3 text-[24px] '> Total ({itemCount} items): <span className='font-bold'> ${totalCost.toFixed(2)}</span> </div>
         </div>
     </div>
   )

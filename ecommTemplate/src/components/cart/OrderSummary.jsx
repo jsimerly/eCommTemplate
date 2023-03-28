@@ -9,7 +9,7 @@ import { LargeBlueButton } from '../utils';
 
 
 
-const OrderSummary = () => {
+const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
     const [openPromos, setOpenPromos] = useState(false)
     const [promoCode, setPromoCode] = useState()
     const [activePromos, setActivePromos] = useState([])
@@ -75,9 +75,9 @@ const OrderSummary = () => {
         </div>
         <div className='mt-2'>
             <div className='flex flex-row justify-between'>
-                <h3 className=''>Subtotal ({3} items)</h3>
+                <h3 className=''>Subtotal ({itemCount} items)</h3>
                 <div>
-                    <p> $125.55</p>
+                    <p> ${subTotal.toFixed(2)}</p>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@ const OrderSummary = () => {
             <div className='flex flex-row justify-between'>
                 <h3 className=''>Insurance</h3>
                 <div>
-                    <p> $12.35</p>
+                    <p> ${insuranceTotal.toFixed(2)}</p>
                 </div>
             </div>
         </div>

@@ -25,15 +25,7 @@ const favorites = [
   {text: 'Test5', img: yeti45, price:'$33.33'},
   {text: 'Test610', img: yeti45, price:'$33.33'},
 ]
-const countItems = (items) => {
-    let itemCount = 0
-    if (items){
-        for (let item of items){
-            itemCount += item.quantity
-        }
-    }
-    return itemCount
-}
+
 const CartPage = () => {
 
     const [cart, setCart] = useState([])
@@ -60,6 +52,54 @@ const CartPage = () => {
     useEffect(() => {
         setItems(cart.items)
       }, [cart])
+
+    const get_total = (items) => {
+        let totalPrice = 0
+        if (items){
+          for (let item of items){
+            totalPrice += item.item.item_cost * item.quantity;
+            if (item.insurance_purchased){
+              totalPrice += item.item.insurance_cost * item.quantity
+            }
+          }
+        }
+      
+        return totalPrice
+      }
+
+    const get_subTotal = (items) => {
+        let totalPrice = 0
+        if (items){
+          for (let item of items){
+            totalPrice += item.item.item_cost * item.quantity;
+          }
+        }
+      
+        return totalPrice
+    }
+
+    const get_insurance_total = (items) => {
+        let totalPrice = 0
+        if (items){
+          for (let item of items){
+            if (item.insurance_purchased){
+              totalPrice += item.item.insurance_cost * item.quantity
+            }
+          }
+        }
+      
+        return totalPrice
+    }
+
+    const countItems = (items) => {
+        let itemCount = 0
+        if (items){
+            for (let item of items){
+                itemCount += item.quantity
+            }
+        }
+        return itemCount
+    }
     
   return (
     <div className='flex justify-center items-center text-tertiary'>
@@ -88,13 +128,18 @@ const CartPage = () => {
                             <CartMain
                                 items={items}
                                 updateCartItem={updateCartItem}
-                                countItems={countItems}
+                                itemCount={countItems(items)}
+                                totalCost={get_total(items)}
                             />
                         </div>
 
                     </div>
                     <div className='w-2/5 ml-3'>
-                        <OrderSummary/>
+                        <OrderSummary
+                            subTotal={get_subTotal(items)}
+                            insuranceTotal={get_insurance_total(items)}
+                            itemCount={countItems(items)}
+                        />
                     </div>
                 </div>
             </div>
