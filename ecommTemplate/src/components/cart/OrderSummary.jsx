@@ -91,7 +91,7 @@ const OrderSummary = () => {
         </div>
         <div className='mt-2'>
             <div className='flex flex-row justify-between'>
-                <h3 className=''>Sales Tax</h3>
+                <h3 className=''>Estimated Tax</h3>
                 <div>
                     <p> $17.03</p>
                 </div>

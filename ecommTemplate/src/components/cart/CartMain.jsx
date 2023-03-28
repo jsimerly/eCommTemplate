@@ -7,7 +7,7 @@ import { QuantInput } from '../utils';
 import { create_full_image_path } from '../../assets/util';
 
 
-const Card = ({item}) => {
+const Card = ({item, updateCartItem}) => {
   const [quant, setQuant] = useState(1)
   const [insured, setInsured] = useState(false)
 
@@ -17,9 +17,9 @@ const Card = ({item}) => {
   }, [item])
 
   const handleInsuredClicked = () => {
-    setInsured(!insured)
+    updateCartItem(item.uuid, {insurance_purchased: !item.insurance_purchased})
   }
-  console.log(item)
+
   return (
     <div className="flex border border-tertiary rounded-md mb-1">
       <img src={create_full_image_path(item.item.main_image.image)} className='h-[160px] w-[160px] rounded-md cursor-pointer'/>
@@ -32,7 +32,7 @@ const Card = ({item}) => {
             <div className='flex grow-0 cursor-pointer group'
               onClick={handleInsuredClicked}
             >
-              {insured ? 
+              {item.insurance_purchased ? 
               <CheckBoxIcon
                 className='text-primary group-hover:scale-110'
               /> 
@@ -42,7 +42,7 @@ const Card = ({item}) => {
               />}
             
             <div className='ml-1 group-hover:underline'>
-               Insure for <span className='font-bold'> $6.99</span>
+               Insure for <span className='font-bold'> ${item.item.insurance_cost.toFixed(2)}</span>
             </div>
             </div>
           </div>
@@ -78,21 +78,35 @@ const Card = ({item}) => {
   )
 }
 
-const CartMain = ({cart}) => {
-  
+const get_total = (items) => {
+  let totalPrice = 0
+  if (items){
+    for (let item of items){
+      totalPrice += item.item.item_cost * item.quantity;
+      if (item.insurance_purchased){
+        totalPrice += item.item.insurance_cost * item.quantity
+      }
+    }
+  }
+
+  return totalPrice
+}
+
+const CartMain = ({items, updateCartItem}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
           Great choices! However, please note that adding an item to your cart doesn't guarantee availability. We recommend checking out now before it's sold out.
         </h3>
-          {cart.items && cart.items.map((item, i) => (
+          {items && items.map((item, i) => (
             <Card
               item={item}
+              updateCartItem={updateCartItem}
               key={i}
             />
           ))}
         <div className='w-full flex justify-center items-center'>
-          <div className='pt-2 px-3 text-[24px] '> Subtotal (3 items): <span className='font-bold'> $99.99</span> </div>
+          <div className='pt-2 px-3 text-[24px] '> Subtotal (3 items): <span className='font-bold'> ${get_total(items).toFixed(2)}</span> </div>
         </div>
     </div>
   )
