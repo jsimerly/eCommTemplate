@@ -38,21 +38,21 @@ export const QuantInput = ({quant, setQuant, className, buttonSize}) => {
         <div className={`${selected ? 'outline outline-1 outline-primary' : null  }  w-full h-full flex bg-white rounded-md border border-primary text-[24px]`}>
         <div className='flex flex-row justify-center items-center w-full'>
           <input 
-            className={`${className} w-full text-center border text-[24px] outline-none`} 
+            className={`${className} w-[55%] text-end text-[24px] outline-none`} 
             value={quant} 
             onChange={handleChange}
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             />
-          <div className={`${className} flex flex-col border`}>
+          <div className={`${className} flex flex-col w-[50%] justify-end items-end`}>
             <AddIcon 
                 sx={{fontSize: buttonSize}}
-                className='cursor-pointer hover:scale-110 border'
+                className='cursor-pointer hover:scale-110'
                 onClick={handleClickUp}
             />
             <RemoveIcon 
                 sx={{fontSize: buttonSize}}
-                className='cursor-pointer hover:scale-110 border'
+                className='cursor-pointer hover:scale-110'
                 onClick={handleClickDown}
             />
           </div>
