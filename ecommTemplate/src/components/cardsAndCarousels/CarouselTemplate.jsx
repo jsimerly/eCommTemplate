@@ -83,6 +83,7 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
             style={{ transform: 'translateX(-'+translateDistance+'px)'}}
             >
             {cardData.map((data, index) => {
+              console.log(data)
               return (
                 <Card
                     key={index}

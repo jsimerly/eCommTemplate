@@ -5,31 +5,45 @@ import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
 import {create_full_image_path } from '../../assets/util';
 import { fetchItemsToCart, fetchItemFavorited } from '../../api/fetchCart';
+import { useEffect, useState } from 'react';
 
 
 const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days, favorited}) => {
+  const [itemFavorited, setFavorited] = useState(false)
 
   let navigate = navigateProduct({slug});
 
-  const handleFavoriteClicked = (slug) => {
-    response = fetchItemFavorited(slug)
-    
+  const handleFavoriteClicked = async () => {
+      const response = await fetchItemFavorited(slug)
+      const resp = await response.json()
+      setFavorited(resp.favorited)
   }
+
+  useEffect(()=> {
+    setFavorited(favorited)
+  }, [favorited])
+
+  console.log(favorited)
 
   return (
     <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2 relative group'>
       {main_image && (
         <>
           <img 
-            src={create_full_image_path(main_image.image)} 
+            src={main_image.image} 
             className='bg-white object-scale-down rounded-md hover:cursor-pointer'
             onClick={navigate}
           />
           <div 
-            className='absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer hidden group-hover:block'
-            onClick={()=> fetchItemFavorited(slug)}
+            className={`absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer ${itemFavorited? 'block' : 'hidden'} group-hover:block`}
+            onClick={handleFavoriteClicked}
           >
-            <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
+            {itemFavorited ? 
+              <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
+              :
+              <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
+            }
+            
           </div>
 
         </>

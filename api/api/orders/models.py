@@ -112,7 +112,8 @@ class ItemFavorited(models.Model):
     item = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        related_name='favorited_items'
     )
 
     def __str__(self):

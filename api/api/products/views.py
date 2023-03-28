@@ -46,11 +46,17 @@ class ProductPageView(APIView):
             return Response({"error": "Product not found."}, status=404)
         
         context = getDateContext(request)
-        print(context)
 
         prod_info_serializer = ProductMInfo_Serializer(product.product_info, context=context)
 
-        return Response(prod_info_serializer.data, status=status.HTTP_200_OK)
+        is_favorited = product.favorited_items.filter(customer=request.customer).exists()
+        
+        resp_data = {
+            **prod_info_serializer.data,
+            'favorited': is_favorited,
+        }
+
+        return Response(resp_data, status=status.HTTP_200_OK)
     
 class ProductCategoryAPIView(APIView):
     def get(self, request, category):
@@ -68,14 +74,24 @@ class ProductAPIView(APIView):
 
         serializer = Product_Serializer(product)
 
-        response = Response(serializer.data, status=status.HTTP_200_OK)
+        is_favorited = product.favorited_items.filter(customer=request.customer).exists()
+        
+        resp_data = {
+            **Product_Serializer.data,
+            'favorited': is_favorited,
+        }
+
+        response = Response(resp_data, status=status.HTTP_200_OK)
         return response
     
 class ProductListAPIView(APIView):
     def get(self, request):
         slug_strings = request.GET.get('slugs')
 
-        context = getDateContext(request)
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
 
         if slug_strings is not None:
             slugs = slug_strings.split(',')
@@ -88,6 +104,7 @@ class ProductListAPIView(APIView):
 
         serializer = ProductCard_Serializer(products, context=context, many=True)
         response = Response(serializer.data, status=status.HTTP_200_OK)
+
         return response
     
 class ProductSearchView(APIView):

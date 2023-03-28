@@ -93,8 +93,8 @@ class AddFavoritedItem(APIView):
         item_favorited, created = ItemFavorited.objects.get_or_create(customer=customer,item=product)
         
         if created:
-            return Response({'message' : 'Item Added to Favorites'},status=status.HTTP_200_OK)
+            return Response({'message' : 'Item Added to Favorites', 'favorited':True},status=status.HTTP_200_OK)
 
         item_favorited.delete()
-        return Response({'message' : 'Item Removed from Favorites'},status=status.HTTP_200_OK)
+        return Response({'message' : 'Item Removed from Favorites', 'favorited':False},status=status.HTTP_200_OK)
 

@@ -33,6 +33,7 @@ class ProductCard_Serializer(serializers.ModelSerializer):
     main_image = ProductImage_Serializer()
     total_cost = serializers.SerializerMethodField()
     days = serializers.SerializerMethodField()
+    favorited = serializers.SerializerMethodField()
 
     def get_total_cost(self, obj):
         if 'days' in self.context:
@@ -45,11 +46,15 @@ class ProductCard_Serializer(serializers.ModelSerializer):
         
     def get_days(self, obj):
         return self.context['days']
-
+    
+    def get_favorited(self, obj):
+        customer = self.context.get('request').customer
+        is_favorited = obj.favorited_items.filter(customer=customer).exists()
+        return is_favorited
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'base_cost', 'daily_cost', 'total_cost', 'days']
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'base_cost', 'daily_cost', 'total_cost', 'days', 'favorited']
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()

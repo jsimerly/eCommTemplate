@@ -56,6 +56,7 @@ export async function fetchItemFavorited(slug){
     }
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/favorite-item/${slug}/`, requestOptions)
+        return response
     } catch (error){
         throw error;
     }
