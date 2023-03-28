@@ -1,7 +1,7 @@
 from products.serializers import ProductCard_Serializer, ProductImage_Serializer
 
 from rest_framework import serializers
-from orders.models import Cart, CartItems, Stock
+from orders.models import Cart, CartItems, Stock, ItemFavorited
 from products.models import Product
 
 class CartCard_Serializer(serializers.ModelSerializer):
@@ -47,14 +47,8 @@ class Cart_Serializer(serializers.ModelSerializer):
     def get_days(self, obj):
         return self.context['days']
 
-    def create(self, validated_data):
-        cart_items_data = validated_data.pop('items')
-        cart = Cart.objects.create(**validated_data)
-        for cart_item_data in cart_items_data:
-            items_data = cart_item_data.pop('items')
-            cart_item = CartItems.objects.create(cart=cart, **cart_item_data)
-            for item_data in items_data:
-                stock_id = item_data.pop('id')
-                stock = Stock.objects.get(id=stock_id)
-                cart_item.item.add(stock, **item_data)
-        return cart
+    
+class AddFavorite_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemFavorited
+        fields = ['uuid', 'user', 'customer', 'item']

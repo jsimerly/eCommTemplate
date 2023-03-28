@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from orders.models import Cart, CartItems
+from orders.models import Cart, CartItems, ItemFavorited
 from products.models import Product
 from .serializers import Cart_Serializer, CartItem_Serializer
 from products.views import getDateContext
@@ -84,4 +84,17 @@ class CartView(APIView):
         
         serializer = Cart_Serializer(cart, context=context)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class AddFavoritedItem(APIView):
+    def post(self, request, slug):
+        customer = request.customer
+        product = Product.objects.get(slug=slug)
+
+        item_favorited, created = ItemFavorited.objects.get_or_create(customer=customer,item=product)
+        
+        if created:
+            return Response({'message' : 'Item Added to Favorites'},status=status.HTTP_200_OK)
+
+        item_favorited.delete()
+        return Response({'message' : 'Item Removed from Favorites'},status=status.HTTP_200_OK)
 

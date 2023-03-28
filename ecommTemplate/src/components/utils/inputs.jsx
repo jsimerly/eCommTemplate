@@ -44,7 +44,7 @@ export const QuantInput = ({quant, setQuant, className, buttonSize}) => {
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             />
-          <div className={`${className} flex flex-col w-[50%] justify-end items-end`}>
+          <div className={`${className} flex flex-col w-[50%] justify-end items-end pr-1`}>
             <AddIcon 
                 sx={{fontSize: buttonSize}}
                 className='cursor-pointer hover:scale-110'

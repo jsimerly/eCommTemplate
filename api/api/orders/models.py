@@ -109,7 +109,11 @@ class ItemFavorited(models.Model):
         null=True
     )
 
-    items = models.ManyToManyField(Stock)
+    item = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     def __str__(self):
         return self.uuid

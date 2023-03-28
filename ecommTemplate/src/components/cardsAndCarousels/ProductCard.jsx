@@ -1,22 +1,38 @@
 import AddIcon from '@mui/icons-material/Add';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
 import {create_full_image_path } from '../../assets/util';
-import { fetchItemsToCart } from '../../api/fetchCart';
+import { fetchItemsToCart, fetchItemFavorited } from '../../api/fetchCart';
 
 
-const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days}) => {
+const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days, favorited}) => {
 
   let navigate = navigateProduct({slug});
 
+  const handleFavoriteClicked = (slug) => {
+    response = fetchItemFavorited(slug)
+    
+  }
+
   return (
-    <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2'>
+    <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2 relative group'>
       {main_image && (
-        <img 
-          src={create_full_image_path(main_image.image)} 
-          className='bg-white object-scale-down rounded-md hover:cursor-pointer'
-          onClick={navigate}
-        />
+        <>
+          <img 
+            src={create_full_image_path(main_image.image)} 
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer'
+            onClick={navigate}
+          />
+          <div 
+            className='absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer hidden group-hover:block'
+            onClick={()=> fetchItemFavorited(slug)}
+          >
+            <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
+          </div>
+
+        </>
       )}
       <div className='mt-2 p-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>

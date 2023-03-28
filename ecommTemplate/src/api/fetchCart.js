@@ -46,3 +46,17 @@ export async function fetchCart(setterFunc){
     }
 }
 
+export async function fetchItemFavorited(slug){
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFTOKEN' : getCookie('csrftoken'),
+        },
+    }
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/favorite-item/${slug}/`, requestOptions)
+    } catch (error){
+        throw error;
+    }
+}
