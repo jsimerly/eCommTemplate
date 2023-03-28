@@ -8,16 +8,16 @@ import { create_full_image_path } from '../../assets/util';
 
 
 const Card = ({item, updateCartItem}) => {
-  const [quant, setQuant] = useState(1)
-  const [insured, setInsured] = useState(false)
-
-  useEffect(() => {
-    setQuant(item.quantity)
-    setInsured(item.insurance_purchased)
-  }, [item])
+  const handleQuantChanged = (quantValue) => {
+    updateCartItem(item.uuid, {quantity: quantValue})
+  }
 
   const handleInsuredClicked = () => {
     updateCartItem(item.uuid, {insurance_purchased: !item.insurance_purchased})
+  }
+
+  const getCost = () => {
+    return item.item.item_cost * item.quantity
   }
 
   return (
@@ -58,8 +58,8 @@ const Card = ({item, updateCartItem}) => {
         }
         <div className='w-[60px] h-[40px]'>
           <QuantInput
-            quant={quant}
-            setQuant={setQuant}
+            quant={item.quantity}
+            setQuant={handleQuantChanged}
             className='!text-[16px] !p-1'
             buttonSize='16px'
           />
@@ -71,7 +71,7 @@ const Card = ({item, updateCartItem}) => {
           <CloseIcon className='cursor-pointer'/>
         </div>
           <div className='flex flex-col leading-none'>
-            <span className='font-bold text-[24px]'> ${item.item.item_cost.toFixed(2)}</span>
+            <span className='font-bold text-[24px]'> ${getCost().toFixed(2)}</span>
           </div>
       </div>
     </div>
@@ -92,7 +92,7 @@ const get_total = (items) => {
   return totalPrice
 }
 
-const CartMain = ({items, updateCartItem}) => {
+const CartMain = ({items, updateCartItem, countItems}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
@@ -106,7 +106,7 @@ const CartMain = ({items, updateCartItem}) => {
             />
           ))}
         <div className='w-full flex justify-center items-center'>
-          <div className='pt-2 px-3 text-[24px] '> Subtotal (3 items): <span className='font-bold'> ${get_total(items).toFixed(2)}</span> </div>
+          <div className='pt-2 px-3 text-[24px] '> Subtotal ({countItems(items)} items): <span className='font-bold'> ${get_total(items).toFixed(2)}</span> </div>
         </div>
     </div>
   )

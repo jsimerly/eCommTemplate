@@ -88,6 +88,7 @@ const CartPage = () => {
                             <CartMain
                                 items={items}
                                 updateCartItem={updateCartItem}
+                                countItems={countItems}
                             />
                         </div>
 
