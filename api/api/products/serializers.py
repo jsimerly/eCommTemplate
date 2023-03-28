@@ -181,11 +181,11 @@ class ProductReview_Serializer(serializers.ModelSerializer):
     
 
 class Stock_Serializer(serializers.ModelSerializer):
-    prodcut = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
 
     class Meta:
         model = Stock
-        fields = ['uuid', 'name', 'sku', 'purchase_date', 'last_rented_date', 'current_location', 'rented_dates', 'condition', 'active']
+        fields = ['uuid', 'name', 'sku', 'purchase_date', 'last_rented_date', 'current_location', 'rented_dates', 'condition', 'active', 'product']
 
     def create(self, validated_data):
         return Stock.objects.create(**validated_data)

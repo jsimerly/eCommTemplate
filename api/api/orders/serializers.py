@@ -8,7 +8,7 @@ class CartItem_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItems
-        fields = ['uuid', 'base_cost', 'daily_cost', 'insurance_purchased', 'insurance_base_cost', 'insurance_daily_cost', 'promos', 'item']
+        fields = ['uuid', 'base_cost', 'daily_cost', 'insurance_purchased', 'insurance_base_cost', 'insurance_daily_cost', 'item']
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')

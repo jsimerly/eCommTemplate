@@ -2,6 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
 import {create_full_image_path } from '../../assets/util';
+import { fetchItemsToCart } from '../../api/fetchCart';
 
 
 const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days}) => {
@@ -50,7 +51,7 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
             <div className='h-full border hidden sm:block'>
               <BlueButton
                 content='Add to Cart'
-                onClick={()=>console.log('add to cart')}
+                onClick={()=>fetchItemsToCart([slug])}
               />
             </div>
             <div className='sm:hidden'>

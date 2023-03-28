@@ -16,15 +16,16 @@ export function getCookie(name){
 export async function fetchWrapper(url, options){
     const deviceCookie = getCookie('device');
     const headers = options && options.headers ? options.headers : {}
+
     if (deviceCookie){
         headers['Cookie'] = `device=${deviceCookie}`
     }
 
     const requestOptions = {
         ...options,
-        headers: headers
+        headers: headers,
+        credentials: 'include'
     }
-
     const response = await fetch(url, requestOptions);
     return response
 }

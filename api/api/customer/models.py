@@ -20,7 +20,7 @@ class Customer(models.Model):
             name = self.name
         else:
             name = self.device
-        return str(name)
+        return str(name) + " - Customer Object"
 
 class BrowseHistory(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)

@@ -12,7 +12,7 @@ function datesUrlString(startDate, endDate, dateChange){
 export async function fetchProductsByUUIDs(uuids, setterFunc) {
 
   try {
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/list/?uuids=${uuids[0]}`);
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/products/list/?uuids=${uuids[0]}`);
     const products = await response.json();
     setterFunc(products)
     return products;
@@ -25,9 +25,7 @@ export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate
   const [start, end] = parseDates(startDate, endDate)
 
   try {
-    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}&${datesUrlString(start,end,dateChange)}`, {
-      credentials: 'include'
-    });
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/products/list/?slugs=${slugs.join(',')}&${datesUrlString(start,end,dateChange)}`);
 
     const products = await response.json();
     setterFunc(products);
@@ -41,7 +39,7 @@ export async function fetchProductsBySlugs(slugs, setterFunc, startDate, endDate
 export async function fetchFullProductBySlug(slug, setterFunc, startDate, endDate, dateChange){
   const [start, end] = parseDates(startDate, endDate)
   try {
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/slug/${slug}/?${datesUrlString(start,end,dateChange)}`);
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/slug/${slug}/?${datesUrlString(start,end,dateChange)}`);
     const product = await response.json()
     setterFunc(product)
   } catch (error) {
@@ -51,7 +49,7 @@ export async function fetchFullProductBySlug(slug, setterFunc, startDate, endDat
 
 export async function fetchProductReviewsBySlug(slug, setterFunc){
   try{
-    const response = await fetch(`${SERVER_ADDRESS}/api/products/products/${slug}/reviews/`)
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/products/${slug}/reviews/`)
     const reviewList = await response.json()
     setterFunc(reviewList)
   } catch (error) {
@@ -61,9 +59,7 @@ export async function fetchProductReviewsBySlug(slug, setterFunc){
 
 export async function fetchProductsByCategory(category, setterFunc){
   try {
-    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category/${category}/`, {
-      credentials: 'include'
-    });
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category/${category}/`);
     const productList = await response.json()
     setterFunc(productList)
   } catch (error) {

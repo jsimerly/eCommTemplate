@@ -41,21 +41,22 @@ class Cart(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
     user = models.ForeignKey(
         User, 
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
-        null=True
+        null=False
     )
 
-    sub_total = models.DecimalField(decimal_places=2, max_digits=8)
-    insurance_total = models.DecimalField(decimal_places=2, max_digits=8)
-    tax_total = models.DecimalField(decimal_places=2, max_digits=8)
+    sub_total = models.DecimalField(decimal_places=2, max_digits=8, default=0)
+    insurance_total = models.DecimalField(decimal_places=2, max_digits=8, default=0)
+    tax_total = models.DecimalField(decimal_places=2, max_digits=8, default=0)
 
-    promos = models.ForeignKey(Promo, on_delete=models.CASCADE)
+    promos = models.ForeignKey(Promo, on_delete=models.CASCADE, null=True, blank=True)
 
-    total_cost = models.DecimalField(decimal_places=2, max_digits=8)
+    total_cost = models.DecimalField(decimal_places=2, max_digits=8, default=0)
 
     def __str__(self):
         return self.uuid
@@ -89,19 +90,11 @@ class CartItems(models.Model):
     insurance_base_cost = models.DecimalField(decimal_places=2, max_digits=8)
     insurance_daily_cost = models.DecimalField(decimal_places=2, max_digits=8)
 
-    promos = models.ForeignKey(
-        Promo, 
-        on_delete=models.CASCADE
-    )
-
-    total_cost = models.DecimalField(decimal_places=2, max_digits=8)
-
     item = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         null=True
     )
-    stock = models.ManyToManyField(Stock)
 
     def __str__(self):
         return self.uuid
