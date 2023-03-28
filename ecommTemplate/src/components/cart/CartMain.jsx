@@ -2,12 +2,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-import { useEffect, useState } from 'react';
+import { fetchItemDeleteCart } from '../../api/fetchCart';
 import { QuantInput } from '../utils';
 import { create_full_image_path } from '../../assets/util';
 
 
-const Card = ({item, updateCartItem}) => {
+const Card = ({item, updateCartItem, deleteCartItem}) => {
   const handleQuantChanged = (quantValue) => {
     updateCartItem(item.uuid, {quantity: quantValue})
   }
@@ -18,6 +18,11 @@ const Card = ({item, updateCartItem}) => {
 
   const getCost = () => {
     return item.item.item_cost * item.quantity
+  }
+
+  const handleDeleteClicked = () =>{
+    fetchItemDeleteCart(item.uuid)
+    deleteCartItem(item.uuid)
   }
 
   return (
@@ -68,7 +73,10 @@ const Card = ({item, updateCartItem}) => {
       </div>
       <div className='flex flex-col justify-between p-2'>
         <div className='flex justify-end'>
-          <CloseIcon className='cursor-pointer'/>
+          <CloseIcon 
+            className='cursor-pointer'
+            onClick={handleDeleteClicked}
+          />
         </div>
           <div className='flex flex-col leading-none'>
             <span className='font-bold text-[24px]'> ${getCost().toFixed(2)}</span>
@@ -80,7 +88,7 @@ const Card = ({item, updateCartItem}) => {
 
 
 
-const CartMain = ({items, updateCartItem, itemCount, totalCost}) => {
+const CartMain = ({items, updateCartItem, itemCount, totalCost, deleteCartItem}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
@@ -90,6 +98,7 @@ const CartMain = ({items, updateCartItem, itemCount, totalCost}) => {
             <Card
               item={item}
               updateCartItem={updateCartItem}
+              deleteCartItem={deleteCartItem}
               key={i}
             />
           ))}

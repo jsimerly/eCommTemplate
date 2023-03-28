@@ -58,6 +58,8 @@ class CartItemAddView(APIView):
 class CartItemDeleteView(APIView):
     def delete(self, request, uuid):
         try:
+            print(uuid)
+            print(request.customer)
             cart_item = CartItems.objects.get(uuid=uuid, customer=request.customer)
         except CartItems.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)

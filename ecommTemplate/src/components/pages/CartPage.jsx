@@ -32,7 +32,6 @@ const CartPage = () => {
     const [items, setItems] = useState([])
 
     const updateCartItem = (itemUUID, updateProperties) => {
-        console.log(itemUUID)
         setItems((items) => {
             const updatedItems = [...items]
             const itemIndex = updatedItems.findIndex((item) => item.uuid === itemUUID)
@@ -42,6 +41,16 @@ const CartPage = () => {
                 updatedItems[itemIndex] = updatedItem
             }
         return updatedItems
+        })
+    }
+
+    const deleteCartItem = (itemUUID) => {
+        setItems((items) => {
+            const updatedItems = [...items]
+            const itemIndex = updatedItems.findIndex((item) => item.uuid === itemUUID)
+            updatedItems.splice(itemIndex, 1)
+
+            return updatedItems
         })
     }
 
@@ -130,6 +139,7 @@ const CartPage = () => {
                                 updateCartItem={updateCartItem}
                                 itemCount={countItems(items)}
                                 totalCost={get_total(items)}
+                                deleteCartItem={deleteCartItem}
                             />
                         </div>
 

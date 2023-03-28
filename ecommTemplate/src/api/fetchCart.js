@@ -20,6 +20,22 @@ export async function fetchItemsToCart(itemSlugs){
     }
 }
 
+export async function fetchItemDeleteCart(uuid){
+    const requestOptions = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFTOKEN' : getCookie('csrftoken'),
+        },
+    }
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/items/${uuid}/`, requestOptions)
+        return response
+    } catch (error) {
+        throw (error)
+    }
+}
+
 export async function fetchCart(setterFunc){
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart/`)
@@ -29,3 +45,4 @@ export async function fetchCart(setterFunc){
         throw error;
     }
 }
+
