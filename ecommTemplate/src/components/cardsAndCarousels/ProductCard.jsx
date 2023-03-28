@@ -3,7 +3,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
-import {create_full_image_path } from '../../assets/util';
 import { fetchItemsToCart, fetchItemFavorited } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
 

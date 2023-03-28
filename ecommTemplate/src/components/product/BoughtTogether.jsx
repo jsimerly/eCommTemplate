@@ -51,7 +51,7 @@ const BoughtTogether = ({frequentlyBought}) => {
             Frequently Bought Together
         </h1>
         <div className='flex flex-row'>
-          {frequentlyBought.map((item, i) => {
+          {frequentlyBought && frequentlyBought.map((item, i) => {
             return(
               <div key={"productPair_"+i} className='flex flex-row justify-center items-center'>
                 <FreqBoughtCard

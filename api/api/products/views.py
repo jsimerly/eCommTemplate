@@ -45,7 +45,10 @@ class ProductPageView(APIView):
         except:
             return Response({"error": "Product not found."}, status=404)
         
-        context = getDateContext(request)
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
 
         prod_info_serializer = ProductMInfo_Serializer(product.product_info, context=context)
 
@@ -60,7 +63,10 @@ class ProductPageView(APIView):
     
 class ProductCategoryAPIView(APIView):
     def get(self, request, category):
-        context = getDateContext(request)
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
 
         products = Product.objects.filter(category__fe_id=category)
         serializer = ProductCard_Serializer(products, context=context, many=True)
@@ -77,7 +83,7 @@ class ProductAPIView(APIView):
         is_favorited = product.favorited_items.filter(customer=request.customer).exists()
         
         resp_data = {
-            **Product_Serializer.data,
+            **serializer.data,
             'favorited': is_favorited,
         }
 

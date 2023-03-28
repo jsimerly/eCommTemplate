@@ -1,24 +1,33 @@
 import { useEffect, useState } from 'react';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
-import { create_full_image_path } from '../../assets/util';
-
+import { fetchItemFavorited } from '../../api/fetchCart';
 
 const ProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
     const [insured, setInsured] = useState(false)
     const [mainImg, setMainImg] = useState(mainCardInfo.mainImg)
+    const [itemFavorited, setFavorited] = useState(false)
 
     useEffect(()=>{
       setMainImg(mainCardInfo.mainImg)
+      setFavorited(mainCardInfo.favorited)
     }, [mainCardInfo])
 
     const handleInsuredClicked = () => {
       setInsured(!insured)
     }
+
+    const handleFavoriteClicked = async () => {
+      const response = await fetchItemFavorited(mainCardInfo.slug)
+      const resp = await response.json()
+      setFavorited(resp.favorited)
+    }
+
   return (
 
         <div className="flex">
@@ -27,7 +36,7 @@ const ProductMain = ({mainCardInfo}) => {
               <div className="w-1/5 overflow-hidden hover:overflow-y-auto scrollbar-hide">
               {mainCardInfo.imgList && mainCardInfo.imgList.map((image, index) => 
               { 
-                const image_path = create_full_image_path(image.image)
+                const image_path = image.image
                 return (
                   <img
                       key={index}
@@ -55,11 +64,17 @@ const ProductMain = ({mainCardInfo}) => {
                   {mainCardInfo.brand}
                 </h2>
               </div>
-              <div className='flex justify-center p-4 text-primary'>
-                  <FavoriteBorderIcon
-                    className='scale-125 hover:cursor-pointer hover:scale-150'
-                  />
+              <div 
+                className='cursor-pointer hover:scale-110'
+                onClick={handleFavoriteClicked}
+              >
+                {itemFavorited ? 
+                  <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
+                  :
+                  <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
+                }
               </div>
+
             </div>
             <div className='flex justify-between items-center w-full mt-6'>
               <div className='text-center'>

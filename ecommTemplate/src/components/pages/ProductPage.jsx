@@ -57,7 +57,7 @@ const ProductPage = () => {
       setMainCardInfo({
         name: productInfo.product.name,
         brand: productInfo.product.brand.name,
-        mainImg: create_full_image_path(productInfo.product.main_image.image),
+        mainImg: productInfo.product.main_image.image,
         imgList: productInfo.product.images,
         rating: productInfo.product.average_rating,
         nRatings: productInfo.product.n_ratings,
@@ -66,6 +66,8 @@ const ProductPage = () => {
         desc: productInfo.main_desc,
         bullets: productInfo.bullets,
         days: productInfo.product.days,
+        favorited: productInfo.favorited,
+        slug: productInfo.product.slug
       })
 
       setSecondardCardInfo({
@@ -80,7 +82,6 @@ const ProductPage = () => {
         specs:productInfo.specs,
         sku:productInfo.product.slug
       })
-
       setFrequentlyBought(productInfo.product.frequently_bought_with)
       setCategory(productInfo.product.category)
     }
