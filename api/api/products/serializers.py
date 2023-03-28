@@ -49,7 +49,7 @@ class ProductCard_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'total_cost', 'days']
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'base_cost', 'daily_cost', 'total_cost', 'days']
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()

@@ -49,8 +49,6 @@ function getCategory(){
 }
 
 function App() {
-  let cartCookie = getCookie('device')
-
   const [selectedDestination, setSelectedDestination] = useState(getDestination())
   const [selectedDateRange, setSelectedDateRange] = useState(getDateRange())
 

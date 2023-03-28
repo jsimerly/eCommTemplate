@@ -4,6 +4,7 @@ from rest_framework import status
 from orders.models import Cart, CartItems
 from products.models import Product
 from .serializers import Cart_Serializer, CartItem_Serializer
+from products.views import getDateContext
 from django.contrib.auth.models import AnonymousUser
 
 
@@ -15,34 +16,39 @@ class CartItemAddView(APIView):
         cart, _ = Cart.objects.get_or_create(customer=customer)
 
         cart_items_data = request.data
-
         cart_items = []
+
         for cart_item_data in cart_items_data:
             product = Product.objects.get(slug=cart_item_data['slug'])
+            quantity = cart_item_data.get('quantity') or 1
 
-            serializer = CartItem_Serializer(data=cart_item_data)
-            if isinstance(request.user, AnonymousUser):
-                request.user = None
+            existing_cart_item = cart.items.filter(item=product).first()
 
-            try:
-                cart_item = CartItems.objects.create(
-                    user=request.user,
-                    customer=customer,
-                    cart = cart,
+
+            if existing_cart_item:
+                existing_cart_item.quantity += quantity
+                existing_cart_item.save()
+                cart_items.append(existing_cart_item)
+               
+            else:
+                if isinstance(request.user, AnonymousUser):
+                    request.user = None
+
+                try:
+                    cart_item = CartItems.objects.create(
+                        user=request.user,
+                        customer=customer,
+
+                        cart = cart,
                     
-                    base_cost = product.base_cost,
-                    daily_cost = product.daily_cost,
-
-                    insurance_purchased = True,
-                    insurance_base_cost = product.insurance_base_cost,
-                    insurance_daily_cost = product.insurance_daily_cost,
-
-                    item = product
-                )
-                cart_items.append(cart_item)
-            except Exception as e:
-                 print(e)
-                 return Response(status=status.HTTP_400_BAD_REQUEST)               
+                        insurance_purchased = True,
+                        item = product,
+                        quantity = quantity,
+                    )
+                    cart_items.append(cart_item)
+                except Exception as e:
+                    print(e)
+                    return Response(status=status.HTTP_400_BAD_REQUEST)               
 
         cart.items.add(*cart_items)
         cart.save()
@@ -68,7 +74,12 @@ class CartItemDeleteView(APIView):
     
 class CartView(APIView):
     def get(self, request):
-        cart_items = Cart.objects.filter(user=request.user).prefetch_related('items__item')
-        serializer = Cart_Serializer(cart_items, many=True)
+        context = getDateContext(request)
+        
+        cart, created = Cart.objects.get_or_create(customer=request.customer)
+        if created:
+            return Response({'error' : 'Your Cart is Empty'}, status=status.HTTP_204_NO_CONTENT)
+        
+        serializer = Cart_Serializer(cart, context=context)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

@@ -19,3 +19,13 @@ export async function fetchItemsToCart(itemSlugs){
         throw (error)
     }
 }
+
+export async function fetchCart(setterFunc){
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart/`)
+        const cart = await response.json()
+        setterFunc(cart)
+    } catch (error) {
+        throw error;
+    }
+}

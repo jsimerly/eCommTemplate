@@ -82,19 +82,15 @@ class CartItems(models.Model):
         related_name='items'
     )
 
-
-    base_cost = models.DecimalField(decimal_places=2, max_digits=8)
-    daily_cost = models.DecimalField(decimal_places=2, max_digits=8)
-
     insurance_purchased = models.BooleanField(default=False)
-    insurance_base_cost = models.DecimalField(decimal_places=2, max_digits=8)
-    insurance_daily_cost = models.DecimalField(decimal_places=2, max_digits=8)
 
     item = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         null=True
     )
+
+    quantity = models.PositiveIntegerField()
 
     def __str__(self):
         return self.uuid
