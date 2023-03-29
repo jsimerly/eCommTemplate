@@ -4,8 +4,9 @@ from rest_framework import status
 from orders.models import Cart, CartItems, ItemFavorited
 from products.models import Product
 from django.db.models import Count
-from .serializers import Cart_Serializer, CartItem_Serializer
+from orders.serializers import Cart_Serializer, CartItem_Serializer
 from products.views import getDateContext
+from products.serializers import ProductCard_Serializer
 from django.contrib.auth.models import AnonymousUser
 
 
@@ -61,8 +62,6 @@ class CartItemDeleteView(APIView):
         customer = request.customer
 
         try:
-            print(uuid)
-            print(request.customer)
             cart_item = CartItems.objects.get(uuid=uuid, customer=customer)
         except CartItems.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -75,8 +74,6 @@ class CartItemDeleteView(APIView):
         cart_size = CartItems.objects.filter(customer=customer).aggregate(size=Count('id'))['size'] or 0
         print(cart_size)
         return Response({'cart_size' : cart_size},status=status.HTTP_200_OK)
-
-
     
 class CartView(APIView):
     def get(self, request):
@@ -101,6 +98,34 @@ class AddFavoritedItemView(APIView):
 
         item_favorited.delete()
         return Response({'message' : 'Item Removed from Favorites', 'favorited':False},status=status.HTTP_200_OK)
+    
+class FavoritedItemsView(APIView):
+    def get(self, request):
+        customer = request.customer 
+
+        items_favorited = ItemFavorited.objects.filter(customer=customer).prefetch_related('item')
+        products = [favorite.item for favorite in items_favorited]
+
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
+
+        serializer = ProductCard_Serializer(products, context=context, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class FavoriteItemDeleteView(APIView):
+    def delete(self, request, uuid):
+        customer = request.customer
+
+        try:
+            favorited_item = ItemFavorited.objects.get(uuid=uuid, customer=customer)
+        except:
+            return Response(status=status.HTTP_404_BAD_REQUEST)
+        
+        favorited_item.delete()
+        return Response(status=status.HTTP_200_OK)
+
     
 class CartSizeView(APIView):
     def get(self, request):

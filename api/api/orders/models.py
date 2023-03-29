@@ -117,7 +117,7 @@ class ItemFavorited(models.Model):
     )
 
     def __str__(self):
-        return self.uuid
+        return str(self.item.name) + str(self.customer.pk)
 
 def generate_order_id():
     unique_id = uuid4().hex[:6]

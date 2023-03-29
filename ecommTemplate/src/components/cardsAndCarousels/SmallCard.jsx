@@ -16,6 +16,8 @@ const SmallCard = ({text, img, price}) => {
     }
   }
 
+  console.log(price)
+
   return (
   
     <div className="bg-tertiaryTone-100 m-1 p-2 flex flex-col rounded-md">
@@ -25,12 +27,12 @@ const SmallCard = ({text, img, price}) => {
           src={img}
         />
       </div>
-      <div className="mb-2 min-h-[45px] max-w-[160px] text-[14px] hover:underline cursor-pointer font-semibold">
+      <div className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold">
         {text}
       </div>
       <div className="flex flex-row justify-between">
         <div>
-          {price}
+          ${price.toFixed(2)}
         </div>
         <div className='text-white bg-primary rounded-md cursor-pointer'>
           <AddIcon

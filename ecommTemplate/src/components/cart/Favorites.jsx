@@ -1,6 +1,7 @@
 import { SmallCard } from '../shopping'
-import { yeti45 } from '../../assets/images/products'
 import CloseIcon from '@mui/icons-material/Close';
+import { fetchAllFavorited } from '../../api/fetchCart';
+import { useEffect, useState } from 'react';
 
 const CustomCard = ({item, img, price}) => (
   <div className='relative'>
@@ -8,14 +9,24 @@ const CustomCard = ({item, img, price}) => (
       <CloseIcon className='cursor-pointer hover:scale-110'/>
     </div>
     <SmallCard
-      text={item}
-      img={img}
-      price={price}
+      text={item.name}
+      img={item.main_image.image}
+      price={item.total_cost}
     />
   </div>
 )
 
-const Favorites = ({favorites}) => {
+const Favorites = () => {
+  const [favorites, setFavorites] = useState([])
+
+  useEffect(()=>{
+    fetchAllFavorited(setFavorites)
+  },[])
+
+  useEffect(()=>{
+    console.log(favorites)
+  }, [favorites])
+
   return (
     <div className='mt-2'>
       <h2 className='text-[30px] font-bold '>
@@ -26,9 +37,8 @@ const Favorites = ({favorites}) => {
         <div className='flex flex-wrap justify-start items-center'>
           {favorites.map((item, i) => (
             <CustomCard
-              item={item.text}
-              img={item.img}
-              price={item.price}
+              item={item}
+              key={'favorites_card_'+i}
             />
           ))}
         </div>

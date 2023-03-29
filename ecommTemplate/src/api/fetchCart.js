@@ -63,6 +63,32 @@ export async function fetchItemFavorited(slug){
     }
 }
 
+export async function fetchAllFavorited(setterFunc){
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/all-favorites/`)
+        const favorites = await response.json()
+        setterFunc(favorites)
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function fetchFavoriteDelete(uuid){
+    const requestOptions = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFTOKEN' : getCookie('csrftoken'),
+        },
+    }
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/remove-favorite/${uuid}/`, requestOptions)
+        return response
+    } catch (error) {
+        throw (error)
+    }
+}
+
 export async function fetchCartSize(setterFunc){
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart-size/`)
