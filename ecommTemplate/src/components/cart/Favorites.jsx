@@ -1,23 +1,52 @@
 import { SmallCard } from '../shopping'
 import CloseIcon from '@mui/icons-material/Close';
-import { fetchAllFavorited } from '../../api/fetchCart';
+import { fetchAllFavorited, fetchFavoriteDelete } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
 
-const CustomCard = ({item, img, price}) => (
-  <div className='relative'>
-    <div className='absolute right-0 top-0 p-3'>
-      <CloseIcon className='cursor-pointer hover:scale-110'/>
+const CustomCard = ({item, deleteFavorite}) => {
+
+  const handleDeleteClicked = () => {
+    console.log('here')
+    try{
+
+      fetchFavoriteDelete(item.uuid)
+      deleteFavorite(item.uuid)
+
+    } catch (error){
+      throw (error)
+    }
+  }
+
+  return (
+    <div className='relative'>
+      <div 
+        className='absolute right-0 top-0 p-3'
+        onClick={handleDeleteClicked}
+      >
+        <CloseIcon className='cursor-pointer hover:scale-110'/>
+      </div>
+      <SmallCard
+        text={item.name}
+        img={item.main_image.image}
+        price={item.total_cost}
+      />
     </div>
-    <SmallCard
-      text={item.name}
-      img={item.main_image.image}
-      price={item.total_cost}
-    />
-  </div>
-)
+  )
+}
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([])
+
+  const deleteFavorite = (itemUUID) => {
+    setFavorites((favorites) => {
+      const updateFavorites = [...favorites];
+      const itemIndex = updateFavorites.findIndex((item) => item.uuid === itemUUID)
+      if (itemIndex !== -1){
+        updateFavorites.splice(itemIndex, 1)
+      }
+      return updateFavorites
+    })
+  }
 
   useEffect(()=>{
     fetchAllFavorited(setFavorites)
@@ -38,6 +67,7 @@ const Favorites = () => {
           {favorites.map((item, i) => (
             <CustomCard
               item={item}
+              deleteFavorite={deleteFavorite}
               key={'favorites_card_'+i}
             />
           ))}

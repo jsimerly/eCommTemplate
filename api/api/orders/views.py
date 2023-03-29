@@ -119,9 +119,9 @@ class FavoriteItemDeleteView(APIView):
         customer = request.customer
 
         try:
-            favorited_item = ItemFavorited.objects.get(uuid=uuid, customer=customer)
+            favorited_item = ItemFavorited.objects.get(item__uuid=uuid, customer=customer)
         except:
-            return Response(status=status.HTTP_404_BAD_REQUEST)
+            return Response(status=status.HTTP_404_NOT_FOUND)
         
         favorited_item.delete()
         return Response(status=status.HTTP_200_OK)

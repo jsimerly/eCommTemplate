@@ -5,27 +5,6 @@ import { fetchCart } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
 
 
-const favorites = [
-  {text: 'Test1', img: yeti45, price:'$33.33'},
-  {text: 'Test2', img: yeti45, price:'$33.33'},
-  {text: 'Test3', img: yeti45, price:'$33.33'},
-  {text: 'Test4', img: yeti45, price:'$33.33'},
-  {text: 'Test5', img: yeti45, price:'$33.33'},
-  {text: 'Test6', img: yeti45, price:'$33.33'},
-  {text: 'Test1', img: yeti45, price:'$33.33'},
-  {text: 'Test2', img: yeti45, price:'$33.33'},
-  {text: 'Test3', img: yeti45, price:'$33.33'},
-  {text: 'Test4', img: yeti45, price:'$33.33'},
-  {text: 'Test5', img: yeti45, price:'$33.33'},
-  {text: 'Test6', img: yeti45, price:'$33.33'},
-  {text: 'Test1', img: yeti45, price:'$33.33'},
-  {text: 'Test2', img: yeti45, price:'$33.33'},
-  {text: 'Test3', img: yeti45, price:'$33.33'},
-  {text: 'Test4', img: yeti45, price:'$33.33'},
-  {text: 'Test5', img: yeti45, price:'$33.33'},
-  {text: 'Test610', img: yeti45, price:'$33.33'},
-]
-
 const CartPage = () => {
 
     const [cart, setCart] = useState([])
@@ -153,9 +132,7 @@ const CartPage = () => {
                 </div>
             </div>
             <div>
-                <Favorites
-                    favorites={favorites}
-                />
+                <Favorites/>
             </div>
             <div>
                 <BrowsingHistory/>
