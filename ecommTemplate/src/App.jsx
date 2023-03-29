@@ -14,7 +14,7 @@ import HelpPage from './components/auxillaryPages/HelpPage'
 import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account, Partners, Cookies, SignUp} from './components/auxillaryPages'
 import AboutUs from './components/auxillaryPages/AboutUs';
-import { getCookie } from './api';
+import { fetchCartSize } from './api/fetchCart';
 
 
 
@@ -73,13 +73,21 @@ function App() {
     sessionStorage.setItem('category', JSON.stringify(selectedCategory) )
   }, [selectedDateRange, selectedDestination, selectedCategory])  
 
+  const [cartSize, setCartSize] = useState(0)
+
+  useEffect(()=>{
+      fetchCartSize(setCartSize)
+  },[])
+
   return (
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
         <ShoppingContext.Provider value={
           {selectedDateRange, setSelectedDateRange, 
             selectedDestination, setSelectedDestination, 
             selectedCategory, setSelectedCategory,
-            allDests, allCategories}}
+            allDests, allCategories,
+            cartSize, setCartSize
+          }}
         >
           <Navbar
             immediateSearch={immediateSearch}
@@ -87,6 +95,7 @@ function App() {
             setSearchInput={setSearchInput}
             searchParamActive={searchParamActive}
             setSearchParamActive={setSearchParamActive}
+            cartSize={cartSize}
           />
           <div className='h-[80px]'/>
           <Routes>

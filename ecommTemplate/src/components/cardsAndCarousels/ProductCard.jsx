@@ -5,11 +5,23 @@ import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
 import { fetchItemsToCart, fetchItemFavorited } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
-
+import { useContext } from 'react';
+import { ShoppingContext } from '../../context';
 
 const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days, favorited}) => {
   const [itemFavorited, setFavorited] = useState(false)
+  const {setCartSize} = useContext(ShoppingContext)
 
+  const handleAddItemClicked = async () =>{
+    try{
+      const response = await fetchItemsToCart([slug])
+      const data = await response.json()
+      setCartSize(data['cart_size'])
+    } catch (error){
+      throw (error)
+    }
+  }
+  
   let navigate = navigateProduct({slug});
 
   const handleFavoriteClicked = async () => {
@@ -21,8 +33,6 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
   useEffect(()=> {
     setFavorited(favorited)
   }, [favorited])
-
-  console.log(favorited)
 
   return (
     <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2 relative group'>
@@ -80,7 +90,7 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
             <div className='h-full border hidden sm:block'>
               <BlueButton
                 content='Add to Cart'
-                onClick={()=>fetchItemsToCart([slug])}
+                onClick={handleAddItemClicked}
               />
             </div>
             <div className='sm:hidden'>

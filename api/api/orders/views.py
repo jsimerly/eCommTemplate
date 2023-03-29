@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from orders.models import Cart, CartItems, ItemFavorited
 from products.models import Product
+from django.db.models import Count
 from .serializers import Cart_Serializer, CartItem_Serializer
 from products.views import getDateContext
 from django.contrib.auth.models import AnonymousUser
@@ -41,7 +42,6 @@ class CartItemAddView(APIView):
 
                         cart = cart,
                     
-                        insurance_purchased = True,
                         item = product,
                         quantity = quantity,
                     )
@@ -52,15 +52,18 @@ class CartItemAddView(APIView):
 
         cart.items.add(*cart_items)
         cart.save()
+        cart_size = CartItems.objects.filter(customer=customer).aggregate(size=Count('id'))['size'] or 0
 
-        return Response(status=status.HTTP_201_CREATED)
+        return Response({'cart_size' : cart_size},status=status.HTTP_201_CREATED)
     
 class CartItemDeleteView(APIView):
     def delete(self, request, uuid):
+        customer = request.customer
+
         try:
             print(uuid)
             print(request.customer)
-            cart_item = CartItems.objects.get(uuid=uuid, customer=request.customer)
+            cart_item = CartItems.objects.get(uuid=uuid, customer=customer)
         except CartItems.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -69,8 +72,9 @@ class CartItemDeleteView(APIView):
         cart.save()
 
         cart_item.delete()
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        cart_size = CartItems.objects.filter(customer=customer).aggregate(size=Count('id'))['size'] or 0
+        print(cart_size)
+        return Response({'cart_size' : cart_size},status=status.HTTP_200_OK)
 
 
     
@@ -85,7 +89,7 @@ class CartView(APIView):
         serializer = Cart_Serializer(cart, context=context)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-class AddFavoritedItem(APIView):
+class AddFavoritedItemView(APIView):
     def post(self, request, slug):
         customer = request.customer
         product = Product.objects.get(slug=slug)
@@ -97,4 +101,11 @@ class AddFavoritedItem(APIView):
 
         item_favorited.delete()
         return Response({'message' : 'Item Removed from Favorites', 'favorited':False},status=status.HTTP_200_OK)
+    
+class CartSizeView(APIView):
+    def get(self, request):
+        customer = request.customer
+        cart_size = CartItems.objects.filter(customer=customer).aggregate(size=Count('id'))['size'] or 0
+        return Response({'cart_size': cart_size}, status=status.HTTP_200_OK)
+
 

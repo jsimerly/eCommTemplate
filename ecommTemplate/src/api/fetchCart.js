@@ -1,6 +1,7 @@
 import { SERVER_ADDRESS } from "./serverConstants";
 import { fetchWrapper, getCookie } from "./cookies";
 
+
 export async function fetchItemsToCart(itemSlugs){
     const requestOptions = {
         method: 'POST',
@@ -56,6 +57,17 @@ export async function fetchItemFavorited(slug){
     }
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/favorite-item/${slug}/`, requestOptions)
+        return response
+    } catch (error){
+        throw error;
+    }
+}
+
+export async function fetchCartSize(setterFunc){
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart-size/`)
+        const data = await response.json()
+        setterFunc(data.cart_size)
         return response
     } catch (error){
         throw error;

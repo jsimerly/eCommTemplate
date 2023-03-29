@@ -5,9 +5,13 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { fetchItemDeleteCart } from '../../api/fetchCart';
 import { QuantInput } from '../utils';
 import { create_full_image_path } from '../../assets/util';
+import { useContext } from 'react';
+import { ShoppingContext } from '../../context';
 
 
 const Card = ({item, updateCartItem, deleteCartItem}) => {
+  const {setCartSize} = useContext(ShoppingContext)
+
   const handleQuantChanged = (quantValue) => {
     updateCartItem(item.uuid, {quantity: quantValue})
   }
@@ -20,9 +24,15 @@ const Card = ({item, updateCartItem, deleteCartItem}) => {
     return item.item.item_cost * item.quantity
   }
 
-  const handleDeleteClicked = () =>{
-    fetchItemDeleteCart(item.uuid)
-    deleteCartItem(item.uuid)
+  const handleDeleteClicked = async () =>{
+    try{
+      const response = await fetchItemDeleteCart(item.uuid)
+      const data = await response.json()
+      setCartSize(data['cart_size'])
+      deleteCartItem(item.uuid)
+    } catch (error){
+      throw error
+    }
   }
 
   return (

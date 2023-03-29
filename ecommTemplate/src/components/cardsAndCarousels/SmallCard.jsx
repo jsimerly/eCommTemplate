@@ -1,8 +1,21 @@
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from '@mui/icons-material/Add';
+import { fetchItemsToCart } from '../../api/fetchCart';
+import { useContext } from 'react';
+import { ShoppingContext } from '../../context';
 
 const SmallCard = ({text, img, price}) => {
+  const {setCartSize} = useContext(ShoppingContext)
+
+  const handleAddItemClicked = async () =>{
+    try{
+      const response = await fetchItemsToCart([slug])
+      const data = await response.json()
+      setCartSize(data['cart_size'])
+    } catch (error){
+      throw (error)
+    }
+  }
+
   return (
   
     <div className="bg-tertiaryTone-100 m-1 p-2 flex flex-col rounded-md">
@@ -20,7 +33,9 @@ const SmallCard = ({text, img, price}) => {
           {price}
         </div>
         <div className='text-white bg-primary rounded-md cursor-pointer'>
-          <AddIcon/>
+          <AddIcon
+            onClick={handleAddItemClicked}
+          />
         </div>
       </div>
     </div>

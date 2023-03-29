@@ -7,11 +7,15 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
 import { BlueButton, WhiteButton } from './utils/buttons';
+import { useEffect, useState } from 'react';
+import { fetchCartSize } from '../api/fetchCart';
 
 
 const itemsInCart = 3
 
 const AccountDropdown = ({open}) => {
+
+
     return (
         <div className={`${open ?  '' : 'hidden'} absolute top-[76px] -left-6 z-10 bg-white shadow-md rounded-md w-[240px] text-tertiary p-4`}>
             <h3 className='p-2 font-bold'>
@@ -57,7 +61,7 @@ const AccountDropdown = ({open}) => {
     )
 }
 
-const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
+const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive, cartSize}) => {
     const [openAccount, setOpenAccount, handleClickAccount, node] = useDropdown(false)
 
   return (
@@ -103,9 +107,9 @@ const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive
                                 className='hover:scale-110 m-3'
                                 sx={{fontSize:'36px'}}
                             />
-                            <div className='absolute top-1 right-1 leading-none rounded-full flex justify-center items-center text-[12px] text-white bg-primary p-1'>
+                            <div className={`absolute top-1 right-1 leading-none rounded-full flex justify-center items-center text-[12px] text-white bg-primary p-1 ${cartSize === 0 ? 'hidden' : null}`}>
                                 <div className='text-[12px] text-white text-center'>
-                                        {itemsInCart}
+                                    {cartSize}
                                 </div>
                             </div>
                         </div>
