@@ -49,6 +49,19 @@ const isValidDate = (dateString) => {
     return emailPattern.test(emailString);
   }
 
+  const convertDateFormat = (dateString) => {
+    const dateParts = dateString.split("-");
+    const month = parseInt(dateParts[0], 10);
+    const day = parseInt(dateParts[1], 10);
+    const year = parseInt(dateParts[2], 10);
+  
+    const newDate = new Date(year, month - 1, day);
+  
+    const formattedDate = `${newDate.getFullYear()}-${String(newDate.getMonth() + 1).padStart(2, '0')}-${String(newDate.getDate()).padStart(2, '0')}`;
+  
+    return formattedDate;
+  };
+
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
@@ -134,6 +147,7 @@ const CreateAccount = () => {
         } else {
             setDateOfBirthError(false)
         }
+
         const phoneNumberPattern = /^\d{3}-\d{3}-\d{4}$/;
         if(!phoneNumber){
             errors.push('Please fill in the Phone Number field.')
@@ -156,7 +170,7 @@ const CreateAccount = () => {
               password,
               firstName,
               lastName,
-              dateOfBirth,
+              dateOfBirth: convertDateFormat(dateOfBirth),
               phoneNumber,
               recieveEmails
             };

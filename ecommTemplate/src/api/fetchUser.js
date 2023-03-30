@@ -8,9 +8,9 @@ export async function createUser(userData){
         password: userData.password,
         first_name : userData.firstName,
         last_name : userData.lastName,
-        dob : userData.dateOfBirth,
+        date_of_birth : userData.dateOfBirth,
         phone_number: userData.phoneNumber,
-        recieve_emails : userData.recieveEmails
+        prefernce_recieve_emails : userData.recieveEmails
     }
 
     try {
