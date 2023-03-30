@@ -51,7 +51,7 @@ export async function fetchLoginUser(email, password){
         const resp = await response.json()
         console.log(resp)
         setCookie('access_token', resp.access, 60);
-        setCookie('refresh_token', resp.refresh, 60 * 24);
+        setCookie('refresh_token', resp.refresh, 60 * 24 * 30);
         return resp
     } catch (error) {
         throw (error)
