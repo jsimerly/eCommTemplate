@@ -39,7 +39,7 @@ module.exports = {
 
           },
 
-          secondaryHover: ""
+          errorRed: "#C76C63",
         },
         fontFamily: {
           roboto : ['Roboto', 'serif'],

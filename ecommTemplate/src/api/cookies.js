@@ -14,12 +14,12 @@ export function getCookie(name){
   }
 
 export async function fetchWrapper(url, options){
-    const deviceCookie = getCookie('device');
+    // const deviceCookie = getCookie('device');
     const headers = options && options.headers ? options.headers : {}
 
-    if (deviceCookie){
-        headers['Cookie'] = `device=${deviceCookie}`
-    }
+    // if (deviceCookie){
+    //     headers['Cookie'] = `device=${deviceCookie}`
+    // }
 
     const requestOptions = {
         ...options,

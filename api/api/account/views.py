@@ -24,6 +24,7 @@ class CreateUserView(APIView):
             serializer.save(verification_token = verification_token)
 
             # send_verification(user, request, verification_token) turn on when email server is responding again
+            print('usually send email verification here, currently commented out')
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
