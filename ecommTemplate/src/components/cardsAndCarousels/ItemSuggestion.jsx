@@ -3,18 +3,15 @@ import { SmallCard} from "../shopping"
 import CarouselTemplate from "./CarouselTemplate"
 
 const suggestions = [
-  {text: 'Test1', img: yeti45, price:'$33.33'},
-  {text: 'Test2', img: yeti45, price:'$33.33'},
-  {text: 'Test3', img: yeti45, price:'$33.33'},
-  {text: 'Test4', img: yeti45, price:'$33.33'},
-  {text: 'Test5', img: yeti45, price:'$33.33'},
-  {text: 'Test6', img: yeti45, price:'$33.33'},
-  {text: 'Test4', img: yeti45, price:'$33.33'},
-  {text: 'Test5', img: yeti45, price:'$33.33'},
-  {text: 'Test6', img: yeti45, price:'$33.33'},
-  {text: 'Test4', img: yeti45, price:'$33.33'},
-  {text: 'Test11', img: yeti45, price:'$33.33'},
-  {text: 'Test12', img: yeti45, price:'$33.33'},//12
+  {text: 'Test1', img: yeti45, price:33.33},
+  {text: 'Test2', img: yeti45, price:33.33},
+  {text: 'Test3', img: yeti45, price:33.33},
+  {text: 'Test4', img: yeti45, price: 33.33},
+  {text: 'Test1', img: yeti45, price:33.33},
+  {text: 'Test2', img: yeti45, price:33.33},
+  {text: 'Test3', img: yeti45, price:33.33},
+  {text: 'Test4', img: yeti45, price: 33.33},
+  {text: 'Test4', img: yeti45, price: 33.33},
 ]
 
 

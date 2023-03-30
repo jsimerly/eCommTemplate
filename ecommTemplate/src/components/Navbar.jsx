@@ -7,14 +7,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
 import { BlueButton, WhiteButton } from './utils/buttons';
-import { useEffect, useState } from 'react';
-import { fetchCartSize } from '../api/fetchCart';
-
-
-const itemsInCart = 3
+import { useNavigate } from 'react-router-dom';
 
 const AccountDropdown = ({open}) => {
-
+    const navigate = useNavigate()
 
     return (
         <div className={`${open ?  '' : 'hidden'} absolute top-[76px] -left-6 z-10 bg-white shadow-md rounded-md w-[240px] text-tertiary p-4`}>
@@ -51,7 +47,7 @@ const AccountDropdown = ({open}) => {
                     <div className='w-1/2'>
                         <WhiteButton
                             content='Register'
-                            onClick={()=>console.log('sign in POST')}
+                            onClick={()=>navigate('/sign-up')}
                         />
                     </div>
                 </div>
