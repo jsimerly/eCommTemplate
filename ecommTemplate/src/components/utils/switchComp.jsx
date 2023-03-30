@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export const SwitchComp = ({className, compDict, defComp }) => {
+export const SwitchComp = ({className, compDict, defComp,}) => {
     const [view, setView] = useState(defComp)
 
     const classProps = (selected) => {

@@ -5,7 +5,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import MaskedInput from "react-text-mask";
 import { BlueButton } from "../../utils";
-import { createUser } from "../../../api/fetchUser";
+import { fetchCreateUser } from "../../../api/fetchUser";
 
 const isValidDate = (dateString) => {
     const datePattern = /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4}$/;
@@ -175,8 +175,12 @@ const CreateAccount = () => {
               recieveEmails
             };
 
-            const response = await createUser(userData)
-            console.log(response)
+            const response = await fetchCreateUser(userData)
+
+            if (response.email && response.email.length > 0){
+                setEmailError(response.password)
+                setErrorMessages(response.email)
+            }
         } catch (error) {
             throw error
         }
@@ -250,7 +254,7 @@ const CreateAccount = () => {
                     <div className="text-errorRed text-[14px] text-center">
                         <ul className="list-disc list-inside">
                         {errorMessages.map((error, i) => (
-                            <li key={i}>{error}</li>
+                            <li key={i}>{error.charAt(0).toUpperCase() + error.slice(1)}</li>
                         ))}
                         </ul>
                     </div>

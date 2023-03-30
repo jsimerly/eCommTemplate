@@ -1,9 +1,9 @@
 import { SERVER_ADDRESS } from "./serverConstants";
 import { fetchWrapper, getCookie } from "./cookies";
 
-export async function createUser(userData){
+export async function fetchCreateUser(userData){
     
-    const useData={
+    const data={
         email : userData.email,
         password: userData.password,
         first_name : userData.firstName,
@@ -20,14 +20,37 @@ export async function createUser(userData){
                 'Content-Type': 'application/json',
                 'X-CSRFTOKEN' : getCookie('csrftoken'),
             },
-            body: JSON.stringify(useData),
+            body: JSON.stringify(data),
         });
-
 
         const resp = await response.json()
         return resp
 
     } catch (error) {
         throw error
+    }
+}
+
+export async function fetchLoginUser(email, password){
+    const userData ={
+        email : email,
+        password: password,
+    }
+
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/token/`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN' : getCookie('csrftoken'),
+            },
+            body: JSON.stringify(userData),
+        })
+        
+        const resp = await response.json()
+        return resp
+    } catch (error) {
+        throw (error)
     }
 }
