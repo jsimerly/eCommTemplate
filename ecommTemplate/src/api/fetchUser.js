@@ -1,5 +1,5 @@
 import { SERVER_ADDRESS } from "./serverConstants";
-import { fetchWrapper, getCookie } from "./cookies";
+import { fetchWrapper, getCookie, setCookie } from "./cookies";
 
 export async function fetchCreateUser(userData){
     
@@ -49,6 +49,9 @@ export async function fetchLoginUser(email, password){
         })
         
         const resp = await response.json()
+        console.log(resp)
+        setCookie('access_token', resp.access, 60);
+        setCookie('refresh_token', resp.refresh, 60 * 24);
         return resp
     } catch (error) {
         throw (error)

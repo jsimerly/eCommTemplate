@@ -93,6 +93,7 @@ class ProductAPIView(APIView):
 class ProductListAPIView(APIView):
     def get(self, request):
         slug_strings = request.GET.get('slugs')
+        print(request.user)
 
         context = {
             'request' : request,
