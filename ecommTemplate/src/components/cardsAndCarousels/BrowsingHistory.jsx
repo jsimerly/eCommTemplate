@@ -1,6 +1,6 @@
 import CarouselTemplate from "./CarouselTemplate"
 import { SmallCard } from "../shopping"
-import { fetchAllFavorited, } from '../../api/fetchCart';
+import { fetchAllFavorited, fetchBrowseHistory} from '../../api/fetchCart';
 
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
@@ -26,7 +26,7 @@ const BrowsingHistory = () => {
   const [browsingHistory, setBrowsingHistory] = useState([])
 
   useEffect(()=>{
-    fetchAllFavorited(setBrowsingHistory, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+    fetchBrowseHistory(setBrowsingHistory, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
   },[selectedDateRange])
   
 

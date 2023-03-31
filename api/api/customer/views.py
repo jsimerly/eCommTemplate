@@ -5,8 +5,9 @@ from django.db.models import Q
 
 from products.models import Product
 from products.serializers import Product_Serializer
-from serializers import BrowseSession_Serializer
-from models import Customer, BrowseHistory
+from customer.serializers import BrowseSession_Serializer
+from customer.models import Customer, BrowseHistory
+from products.views import getDateContext
 # Create your views here.
 
     
@@ -21,13 +22,17 @@ def get_or_create_customer(request):
     return (customer, created)
 class BrowsingHistoryView(APIView):
     def get(self, request):
-        customer, created = get_or_create_customer(request)
-
+        customer = request.customer
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
+        
         history = BrowseHistory.objects.filter(customer=customer).order_by('-timestamp')[:15]
+        product_ids = history.values_list('product_id', flat=True)
+        products = Product.objects.filter(id__in=product_ids)
 
-        serializer = BrowseSession_Serializer(history, many=True)
-        response = Response(serializer.data, status=status.HTTP_200_OK)
-        response.set_cookie('device', customer.device, max_age=30*24*60*60, secure=True, httponly=True)
+        serializer = Product_Serializer(products, many=True, context=context)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
     
