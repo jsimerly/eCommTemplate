@@ -1,11 +1,11 @@
 import { SERVER_ADDRESS } from "./serverConstants";
 import { fetchWrapper } from "./cookies";
 
-function parseDates(startDate, endDate){
+export function parseDates(startDate, endDate){
   return [startDate.toISOString().slice(0,10), endDate.toISOString().slice(0,10)]
 }
 
-function datesUrlString(startDate, endDate, dateChange){
+export function datesUrlString(startDate, endDate, dateChange){
   return `startDate=${startDate}&endDate=${endDate}&dateChange=${dateChange}`
 }
 

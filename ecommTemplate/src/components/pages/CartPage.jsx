@@ -1,12 +1,16 @@
 import { Favorites, CartMain, OrderSummary } from "../cart"
 import { BrowsingHistory} from "../shopping"
-import { yeti45 } from '../../assets/images/products'
+
 import { fetchCart } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
+
+import { useContext } from "react";
+import { ShoppingContext } from "../../context";
 
 
 const CartPage = () => {
 
+    const {selectedDateRange} = useContext(ShoppingContext)
     const [cart, setCart] = useState([])
     const [items, setItems] = useState([])
 
@@ -34,20 +38,37 @@ const CartPage = () => {
     }
 
     useEffect(() => {
-      fetchCart(setCart)
-    }, [])
+    const startDate = selectedDateRange.startDate
+    const endDate = selectedDateRange.endDate
+    const dateChange = selectedDateRange.first
+
+      fetchCart(setCart, startDate, endDate, dateChange)
+    }, [selectedDateRange])
 
     useEffect(() => {
         setItems(cart.items)
       }, [cart])
 
+    const getCost = (item) => {
+    const itemTotalCost = (parseFloat(item.item.base_cost) + (parseFloat(item.item.daily_cost) * parseInt(item.days)))
+    const totalCost = item.quantity * itemTotalCost
+
+    return  totalCost
+    }
+    
+    const getInsurance = (item) => {
+    const itemTotalCost = parseFloat(item.item.insurance_base_cost) + (parseFloat(item.item.insurance_daily_cost) * parseInt(item.days))
+    const totalCost = item.quantity * itemTotalCost
+    return  totalCost
+    }
+
     const get_total = (items) => {
         let totalPrice = 0
         if (items){
           for (let item of items){
-            totalPrice += item.item.item_cost * item.quantity;
+            totalPrice += getCost(item)
             if (item.insurance_purchased){
-              totalPrice += item.item.insurance_cost * item.quantity
+              totalPrice += getInsurance(item)
             }
           }
         }
@@ -119,6 +140,8 @@ const CartPage = () => {
                                 itemCount={countItems(items)}
                                 totalCost={get_total(items)}
                                 deleteCartItem={deleteCartItem}
+                                getCost={getCost}
+                                getInsurance={getInsurance}
                             />
                         </div>
                     </div>

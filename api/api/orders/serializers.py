@@ -5,31 +5,24 @@ from orders.models import Cart, CartItems, Stock, ItemFavorited
 from products.models import Product
 
 class CartCard_Serializer(serializers.ModelSerializer):
-    main_image = ProductImage_Serializer()
-    item_cost = serializers.SerializerMethodField()
-    insurance_cost = serializers.SerializerMethodField()
-
-
-    def get_item_cost(self, obj):
-        item_cost = obj.base_cost + (obj.daily_cost * self.context['days'])
-        return item_cost
-    def get_insurance_cost(self, obj):
-        insurance_cost = obj.insurance_base_cost + (obj.insurance_daily_cost * self.context['days'])
-        return insurance_cost
-        
+    main_image = ProductImage_Serializer()        
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug', 'main_image', 'item_cost', 'insurance_cost',]
+        fields = ['uuid', 'name', 'brand', 'slug', 'main_image', 'daily_cost', 'base_cost', 'insurance_base_cost', 'insurance_daily_cost']
 
 class CartItem_Serializer(serializers.ModelSerializer):
     item = serializers.SerializerMethodField('get_item')
+    days = serializers.SerializerMethodField()    
     class Meta:
         model = CartItems
-        fields = ['uuid', 'insurance_purchased', 'item', 'quantity']
+        fields = ['uuid', 'insurance_purchased', 'item', 'quantity', 'days']
 
     def get_item(self, obj):
         serializer = CartCard_Serializer(obj.item, context=self.context)
         return serializer.data
+    
+    def get_days(self, obj):
+        return self.context['days']
 
 class Cart_Serializer(serializers.ModelSerializer):
     items = serializers.SerializerMethodField('get_items')

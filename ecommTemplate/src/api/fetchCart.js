@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from "./serverConstants";
 import { fetchWrapper, getCookie } from "./cookies";
+import { parseDates, datesUrlString } from "./fetchProducts";
 
 
 export async function fetchItemsToCart(itemSlugs){
@@ -37,9 +38,11 @@ export async function fetchItemDeleteCart(uuid){
     }
 }
 
-export async function fetchCart(setterFunc){
+export async function fetchCart(setterFunc, startDate, endDate, dateChange){
+    const [start, end] = parseDates(startDate, endDate)
+
     try{
-        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart/`)
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart/?${datesUrlString(start, end, dateChange)}`)
         const cart = await response.json()
         setterFunc(cart)
     } catch (error) {

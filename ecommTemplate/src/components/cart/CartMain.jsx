@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 
 
-const Card = ({item, updateCartItem, deleteCartItem}) => {
+const Card = ({item, updateCartItem, deleteCartItem, getInsurance, getCost}) => {
   const {setCartSize} = useContext(ShoppingContext)
 
   const handleQuantChanged = (quantValue) => {
@@ -20,9 +20,6 @@ const Card = ({item, updateCartItem, deleteCartItem}) => {
     updateCartItem(item.uuid, {insurance_purchased: !item.insurance_purchased})
   }
 
-  const getCost = () => {
-    return item.item.item_cost * item.quantity
-  }
 
   const handleDeleteClicked = async () =>{
     try{
@@ -57,13 +54,13 @@ const Card = ({item, updateCartItem, deleteCartItem}) => {
               />}
             
             <div className='ml-1 group-hover:underline'>
-               Insure for <span className='font-bold'> ${item.item.insurance_cost.toFixed(2)}</span>
+               Insure for <span className='font-bold'> ${getInsurance(item).toFixed(2)}</span>
             </div>
             </div>
           </div>
         </div>
         {item.stock < 10 ? 
-          <div className='text-[#C76C63]'>
+          <div className='text-errorRed'>
             Only {item.stock} left in stock - order soon.
           </div>
           :
@@ -89,7 +86,7 @@ const Card = ({item, updateCartItem, deleteCartItem}) => {
           />
         </div>
           <div className='flex flex-col leading-none'>
-            <span className='font-bold text-[24px]'> ${getCost().toFixed(2)}</span>
+            <span className='font-bold text-[24px]'> ${getCost(item).toFixed(2)}</span>
           </div>
       </div>
     </div>
@@ -98,7 +95,7 @@ const Card = ({item, updateCartItem, deleteCartItem}) => {
 
 
 
-const CartMain = ({items, updateCartItem, itemCount, totalCost, deleteCartItem}) => {
+const CartMain = ({items, updateCartItem, itemCount, totalCost, deleteCartItem, getInsurance, getCost}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
@@ -109,6 +106,8 @@ const CartMain = ({items, updateCartItem, itemCount, totalCost, deleteCartItem})
               item={item}
               updateCartItem={updateCartItem}
               deleteCartItem={deleteCartItem}
+              getCost={getCost}
+              getInsurance={getInsurance}
               key={i}
             />
           ))}
