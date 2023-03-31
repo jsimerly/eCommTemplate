@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState, useContext } from 'react';
+import { ShoppingContext } from "../../context";
 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -14,10 +15,24 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
     const [promoCode, setPromoCode] = useState()
     const [activePromos, setActivePromos] = useState([])
 
+    const {selectedDestination} = useContext(ShoppingContext)
+
     const handlePromoAdded = (code) => {
         let newActives = activePromos
         newActives.push(code)
         setActivePromos([...newActives])
+    } 
+
+    const getTax = (preTaxTotal) => {
+        const taxRate = selectedDestination ? selectedDestination.taxRate : 0.07
+        const total_taxes = preTaxTotal * ( taxRate )
+        return Math.ceil(total_taxes * 100) / 100
+    }
+
+    const getTotal = (preTaxTotal) => {
+        const taxes = getTax(preTaxTotal)
+        const total = taxes + preTaxTotal
+        return Math.ceil(total * 100) / 100
     }
 
 
@@ -89,7 +104,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
             <div className='flex flex-row justify-between'>
                 <h3 className=''>Estimated Tax</h3>
                 <div>
-                    <p> $17.03</p>
+                    <p> ${getTax(insuranceTotal + subTotal).toFixed(2)}</p>
                 </div>
             </div>
         </div>
@@ -97,7 +112,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
             <div className='flex flex-row justify-between'>
                 <h3 className='font-bold'>Total Cost</h3>
                 <div className='font-bold'>
-                    <p> $154.93</p>
+                    <p> ${getTotal(insuranceTotal + subTotal)}</p>
                 </div>
             </div>
         </div>

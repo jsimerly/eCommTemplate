@@ -1,7 +1,8 @@
 import { useContext } from "react";
+import { ShoppingContext } from "../../context";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-import { ShoppingContext } from "../../context";
+
 import FormTemplate from "./FormTemplate";
 import useDropdown from "../../hooks/useDropdown";
 
@@ -43,7 +44,7 @@ const Where = () => {
         setOpen(false)
     }
 
-    const destText = selectedDestination ? selectedDestination.text : ''
+    const destText = selectedDestination ? selectedDestination.city : ''
 
   return (
     <div className="w-full">
