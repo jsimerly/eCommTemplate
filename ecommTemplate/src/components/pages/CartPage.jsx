@@ -80,7 +80,7 @@ const CartPage = () => {
         let totalPrice = 0
         if (items){
           for (let item of items){
-            totalPrice += item.item.item_cost * item.quantity;
+            totalPrice += getCost(item)
           }
         }
       
@@ -92,7 +92,7 @@ const CartPage = () => {
         if (items){
           for (let item of items){
             if (item.insurance_purchased){
-              totalPrice += item.item.insurance_cost * item.quantity
+              totalPrice += getInsurance(item)
             }
           }
         }
