@@ -24,7 +24,7 @@ class Customer(models.Model):
 
 class BrowseHistory(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)

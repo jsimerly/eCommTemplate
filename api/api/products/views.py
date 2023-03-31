@@ -3,8 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
-from django.db.models import F, ExpressionWrapper, DecimalField
+from customer.models import BrowseHistory
 from datetime import datetime
+from django.utils import timezone
 
 
 from .models import Product
@@ -40,10 +41,22 @@ def getDateContext(request):
 # Create your views here.
 class ProductPageView(APIView):
     def get(self, request, slug,):
+
         try:
             product = Product.objects.get(slug=slug)
         except:
             return Response({"error": "Product not found."}, status=404)
+        
+        customer = request.customer
+        if customer:
+            try:
+                history_item, created = BrowseHistory.objects.get_or_create(customer=customer, product=product)
+                if not created:
+                    history_item.timestamp = timezone.now()
+                    history_item.save()
+
+            except Exception as e:
+                print(f'Error trying to create browsing history: {e}')
         
         context = {
             'request' : request,

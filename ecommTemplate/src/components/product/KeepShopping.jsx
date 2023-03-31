@@ -1,21 +1,10 @@
 import CarouselTemplate  from "../cardsAndCarousels/CarouselTemplate"
-import { yeti45 } from "../../assets/images/products"
-import { SmallCard} from "../shopping"
 
-const suggestions = [
-    {text: 'Test1', img: yeti45, price:'$33.33'},
-    {text: 'Test2', img: yeti45, price:'$33.33'},
-    {text: 'Test3', img: yeti45, price:'$33.33'},
-    {text: 'Test4', img: yeti45, price:'$33.33'},
-    {text: 'Test5', img: yeti45, price:'$33.33'},
-    {text: 'Test6', img: yeti45, price:'$33.33'},
-    {text: 'Test4', img: yeti45, price:'$33.33'},
-    {text: 'Test5', img: yeti45, price:'$33.33'},
-    {text: 'Test6', img: yeti45, price:'$33.33'},
-    {text: 'Test4', img: yeti45, price:'$33.33'},
-    {text: 'Test11', img: yeti45, price:'$33.33'},
-    {text: 'Test12', img: yeti45, price:'$33.33'},//12
-  ]
+import { SmallCard} from "../shopping"
+import { fetchAllFavorited, } from '../../api/fetchCart';
+
+import { useContext, useEffect, useState } from 'react';
+import { ShoppingContext } from '../../context';
 
 function scrollN(){
     if (window.innerWidth < 680) {
@@ -28,6 +17,13 @@ function scrollN(){
   }
 
 const KeepShopping = () => {
+  const {selectedDateRange} = useContext(ShoppingContext)
+  const [suggestions, setSuggestions] = useState([])
+
+  //replace this fetch with KeepShopping endpoint
+  useEffect(()=>{
+    fetchAllFavorited(setSuggestions, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+  },[selectedDateRange])
 
     const header = ( 
         <div className=" bg-white rounded-t-md pt-4 flex justify-center items-center text-tertiary">
