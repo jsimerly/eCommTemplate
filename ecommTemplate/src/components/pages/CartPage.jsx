@@ -38,9 +38,9 @@ const CartPage = () => {
     }
 
     useEffect(() => {
-    const startDate = selectedDateRange.startDate
-    const endDate = selectedDateRange.endDate
-    const dateChange = selectedDateRange.first
+        const startDate = selectedDateRange.startDate
+        const endDate = selectedDateRange.endDate
+        const dateChange = selectedDateRange.first
 
       fetchCart(setCart, startDate, endDate, dateChange)
     }, [selectedDateRange])
@@ -161,7 +161,7 @@ const CartPage = () => {
                 />
             </div>
             <div>
-                {/* <BrowsingHistory/> */}
+                <BrowsingHistory/>
             </div>
         </div>
     </div>

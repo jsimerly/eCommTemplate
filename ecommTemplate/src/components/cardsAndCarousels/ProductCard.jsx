@@ -8,9 +8,10 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 
-const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image, total_cost, days, favorited}) => {
+const ProductCard = ({item}) => {
   const [itemFavorited, setFavorited] = useState(false)
   const {setCartSize} = useContext(ShoppingContext)
+  const slug = item.slug
 
   const handleAddItemClicked = async () =>{
     try{
@@ -25,21 +26,21 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
   let navigate = navigateProduct({slug});
 
   const handleFavoriteClicked = async () => {
-      const response = await fetchItemFavorited(slug)
+      const response = await fetchItemFavorited(item.slug)
       const resp = await response.json()
       setFavorited(resp.favorited)
   }
 
   useEffect(()=> {
-    setFavorited(favorited)
-  }, [favorited])
+    setFavorited(item.favorited)
+  }, [item.favorited])
 
   return (
     <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2 relative group'>
-      {main_image && (
+      {item.main_image && (
         <>
           <img 
-            src={main_image.image} 
+            src={item.main_image.image} 
             className='bg-white object-scale-down rounded-md hover:cursor-pointer'
             onClick={navigate}
           />
@@ -63,17 +64,17 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
             className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'
             onClick={navigate}
           >
-           {name}
+           {item.name}
           </h3>
           <h4 className='text-[12px] sm:text-[18px] tracking-wide'>
-            {brand.name}
+            {item.brand.name}
           </h4>
         </div>
         <div className='hidden sm:block'>
           <div className='flex flex-row mt-2 hover:cursor-pointer'>
-            <Stars rating={average_rating}/>
+            <Stars rating={item.average_rating}/>
             <div className='ml-1 sm:text-[16px]'>
-             ({n_ratings})
+             ({item.n_ratings})
             </div>
           </div>
         </div>
@@ -81,10 +82,10 @@ const ProductCard = ({name, brand, slug, average_rating, n_ratings,  main_image,
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
               <div className='font-semibold sm:text-[26px] leading-none'>
-                ${total_cost.toFixed(2)}
+                ${item.total_cost.toFixed(2)}
               </div>
               <p className='leading-none text-[12px] text-center'>
-                For {days} Days
+                For {item.days} Days
               </p>
             </div>
             <div className='h-full border hidden sm:block'>

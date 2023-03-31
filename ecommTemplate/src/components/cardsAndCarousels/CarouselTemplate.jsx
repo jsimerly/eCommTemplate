@@ -3,6 +3,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
+
     const [translateDistance, setTranslateDistance] = useState(0)
     const [isDragging, setIsDragging] = useState(false)
     const [startX, setStartX] = useState(null)
@@ -86,7 +87,7 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
               return (
                 <Card
                     key={index}
-                    {...data}
+                    item={data}
                 />
               )
             })}

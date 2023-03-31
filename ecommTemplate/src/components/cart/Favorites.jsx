@@ -17,7 +17,6 @@ const CustomCard = ({item, deleteFavorite}) => {
   }
 
 
-
   return (
     <div className='relative'>
       <div 
@@ -49,6 +48,7 @@ const Favorites = ({getCost, selectedDateRange}) => {
 
   useEffect(()=>{
     fetchAllFavorited(setFavorites, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+    console.log('erharaer324')
   },[selectedDateRange])
 
   return (
