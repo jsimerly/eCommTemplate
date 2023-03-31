@@ -21,14 +21,7 @@ const Items = ({categoryId}) => {
             {productList.map((item, i) => (
                 <ProductCard 
                     key={i}
-                    name={item.name}
-                    brand={item.brand.name}
-                    slug={item.slug}
-                    average_rating={item.average_rating}
-                    n_ratings={item.n_ratings}
-                    total_cost={item.total_cost}
-                    days={item.days}
-                    main_image={item.main_image}
+                    item={item}
                 />
             ))}
         </div>

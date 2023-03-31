@@ -20,7 +20,6 @@ const Card = ({item, updateCartItem, deleteCartItem, getInsurance, getCost}) => 
     updateCartItem(item.uuid, {insurance_purchased: !item.insurance_purchased})
   }
 
-
   const handleDeleteClicked = async () =>{
     try{
       const response = await fetchItemDeleteCart(item.uuid)

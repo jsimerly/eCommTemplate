@@ -1,19 +1,9 @@
-import { yeti45 } from "../../assets/images/products"
 import { SmallCard} from "../shopping"
 import CarouselTemplate from "./CarouselTemplate"
 
-const suggestions = [
-  {text: 'Test1', img: yeti45, price:33.33},
-  {text: 'Test2', img: yeti45, price:33.33},
-  {text: 'Test3', img: yeti45, price:33.33},
-  {text: 'Test4', img: yeti45, price: 33.33},
-  {text: 'Test1', img: yeti45, price:33.33},
-  {text: 'Test2', img: yeti45, price:33.33},
-  {text: 'Test3', img: yeti45, price:33.33},
-  {text: 'Test4', img: yeti45, price: 33.33},
-  {text: 'Test4', img: yeti45, price: 33.33},
-]
-
+import { useContext, useEffect, useState } from 'react';
+import { ShoppingContext } from '../../context';
+import { fetchAllFavorited, } from '../../api/fetchCart';
 
 const header = (
 <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8 '>
@@ -33,6 +23,14 @@ function scrollN(){
 
 
 const ItemSuggestion = () => {
+  const {selectedDateRange} = useContext(ShoppingContext)
+  const [suggestions, setSuggestions] = useState([])
+
+  //replace this fetch with ItemSuggestion endpoint
+  useEffect(()=>{
+    fetchAllFavorited(setSuggestions, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+  },[selectedDateRange])
+
   return (
     <CarouselTemplate
       Card={SmallCard}

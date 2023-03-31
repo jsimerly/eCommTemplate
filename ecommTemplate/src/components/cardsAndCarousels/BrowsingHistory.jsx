@@ -29,6 +29,8 @@ const BrowsingHistory = () => {
     fetchAllFavorited(setBrowsingHistory, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
   },[selectedDateRange])
   
+
+  //replace this fetch with BrowsingHistory endpoint
   return (
     <CarouselTemplate
       Card={SmallCard}
