@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -14,21 +14,30 @@ const When = () => {
     const {setSelectedDateRange, selectedDateRange,} = useContext(ShoppingContext)
     const [open, setOpen, handleClick, node] = useDropdown()
 
+    const [dateRangeHolder, setDateRangeHolder] = useState(selectedDateRange)
+    const [focusedRangeHolder, setFocusedRange] = useState([0,1])
+
     const handleRangeChange = (focusedRange) => {
-        if (focusedRange[1] == 0) {
-            setOpen(false)
-        }
+        setFocusedRange(focusedRange)
+
     }
 
     function handleDateSelection(ranges){
         const { selection } = ranges;
         selection.first = true;
-        setSelectedDateRange(selection)
+        setDateRangeHolder(selection)
     }
+
+    useEffect(()=>{
+        if (focusedRangeHolder[1] == 0){
+            setSelectedDateRange(dateRangeHolder)
+            setOpen(false)
+        }
+    },[dateRangeHolder])
 
     const dropdown = () => (
         <DateRange
-            ranges={[selectedDateRange]}
+            ranges={[dateRangeHolder]}
             showMonthAndYearPickers={false}
             onChange={handleDateSelection}
             minDate={new Date()}

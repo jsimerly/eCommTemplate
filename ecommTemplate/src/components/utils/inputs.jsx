@@ -7,7 +7,7 @@ export const QuantInput = ({quant, setQuant, className, buttonSize}) => {
 
 
     const validateQuant = (quant) => {
-        if (quant >= 0){
+        if (quant >= 1){
             setQuant(quant)
         }
     }

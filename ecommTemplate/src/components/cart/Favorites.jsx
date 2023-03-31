@@ -16,6 +16,8 @@ const CustomCard = ({item, deleteFavorite}) => {
     }
   }
 
+
+
   return (
     <div className='relative'>
       <div 
@@ -25,15 +27,13 @@ const CustomCard = ({item, deleteFavorite}) => {
         <CloseIcon className='cursor-pointer hover:scale-110'/>
       </div>
       <SmallCard
-        text={item.name}
-        img={item.main_image.image}
-        price={item.total_cost}
+        item={item}
       />
     </div>
   )
 }
 
-const Favorites = () => {
+const Favorites = ({getCost, selectedDateRange}) => {
   const [favorites, setFavorites] = useState([])
 
   const deleteFavorite = (itemUUID) => {
@@ -48,8 +48,8 @@ const Favorites = () => {
   }
 
   useEffect(()=>{
-    fetchAllFavorited(setFavorites)
-  },[])
+    fetchAllFavorited(setFavorites, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+  },[selectedDateRange])
 
   return (
     <div className='mt-2'>
@@ -62,6 +62,7 @@ const Favorites = () => {
           {favorites.map((item, i) => (
             <CustomCard
               item={item}
+              getCost={getCost}
               deleteFavorite={deleteFavorite}
               key={'favorites_card_'+i}
             />

@@ -66,9 +66,11 @@ export async function fetchItemFavorited(slug){
     }
 }
 
-export async function fetchAllFavorited(setterFunc){
+export async function fetchAllFavorited(setterFunc, startDate, endDate, dateChange){
+    const [start, end] = parseDates(startDate, endDate)
+
     try{
-        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/all-favorites/`)
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/all-favorites/?${datesUrlString(start, end, dateChange)}`)
         const favorites = await response.json()
         setterFunc(favorites)
     } catch (error) {

@@ -3,17 +3,26 @@ import { fetchItemsToCart } from '../../api/fetchCart';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 
-const SmallCard = ({text, img, price}) => {
+const SmallCard = ({item}) => {
   const {setCartSize} = useContext(ShoppingContext)
 
   const handleAddItemClicked = async () =>{
     try{
-      const response = await fetchItemsToCart([slug])
+
+      const response = await fetchItemsToCart([item.slug])
       const data = await response.json()
       setCartSize(data['cart_size'])
     } catch (error){
       throw (error)
     }
+  }
+
+  const getCost = (item) => {
+
+    const itemTotalCost = (parseFloat(item.base_cost) + (parseFloat(item.daily_cost) * parseInt(item.days)))
+    const totalCost = itemTotalCost
+
+    return  totalCost
   }
 
   return (
@@ -22,15 +31,15 @@ const SmallCard = ({text, img, price}) => {
       <div className="w-[150px] h-[150px] mb-2 cursor-pointer">
         <img
           className="bg-white object-scale-down rounded-md"
-          src={img}
+          src={item.main_image.image}
         />
       </div>
       <div className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold">
-        {text}
+        {item.name}
       </div>
       <div className="flex flex-row justify-between">
         <div>
-          ${price.toFixed(2)}
+          ${getCost(item).toFixed(2)}
         </div>
         <div className='text-white bg-primary rounded-md cursor-pointer'>
           <AddIcon

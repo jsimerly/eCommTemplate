@@ -155,10 +155,13 @@ const CartPage = () => {
                 </div>
             </div>
             <div>
-                <Favorites/>
+                <Favorites
+                    getCost={getCost}
+                    selectedDateRange={selectedDateRange}
+                />
             </div>
             <div>
-                <BrowsingHistory/>
+                {/* <BrowsingHistory/> */}
             </div>
         </div>
     </div>
