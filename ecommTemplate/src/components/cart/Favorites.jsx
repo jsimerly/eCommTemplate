@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 const CustomCard = ({item, deleteFavorite}) => {
 
   const handleDeleteClicked = () => {
-    console.log('here')
     try{
 
       fetchFavoriteDelete(item.uuid)
@@ -51,10 +50,6 @@ const Favorites = () => {
   useEffect(()=>{
     fetchAllFavorited(setFavorites)
   },[])
-
-  useEffect(()=>{
-    console.log(favorites)
-  }, [favorites])
 
   return (
     <div className='mt-2'>

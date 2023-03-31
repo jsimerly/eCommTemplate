@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import { ShoppingContext } from "../../context";
-import useClickOutside from "../../hooks/useClickOutside";
 import FormTemplate from "./FormTemplate";
 import useDropdown from "../../hooks/useDropdown";
 
@@ -27,7 +26,7 @@ const Where = () => {
                                 <li
                                     key={i}
                                     className='hover:underline pl-4 cursor-pointer'
-                                    onClick={() => handleSelect(city.city)}
+                                    onClick={() => handleSelect(city)}
                                 >
                                     {city.text}
                                 </li>
@@ -44,7 +43,7 @@ const Where = () => {
         setOpen(false)
     }
 
-    const destText = selectedDestination === '' ? '' : selectedDestination
+    const destText = selectedDestination ? selectedDestination.text : ''
 
   return (
     <div className="w-full">

@@ -40,7 +40,7 @@ function getDateRange(){
 
 function getDestination(){
   const sessionDest = sessionStorage.getItem('destination')
-  return sessionDest ? sessionDest : ''
+  return sessionDest ? JSON.parse(sessionDest) : ''
 }
 
 function getCategory(){
@@ -68,7 +68,7 @@ function App() {
   }, [location])
 
   useEffect(() => {
-    sessionStorage.setItem('destination', selectedDestination);
+    sessionStorage.setItem('destination', JSON.stringify(selectedDestination));
     sessionStorage.setItem('date_range', JSON.stringify(selectedDateRange));
     sessionStorage.setItem('category', JSON.stringify(selectedCategory) )
   }, [selectedDateRange, selectedDestination, selectedCategory])  

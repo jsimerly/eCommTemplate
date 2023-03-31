@@ -6,56 +6,7 @@ import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
-import { BlueButton, WhiteButton } from './utils/buttons';
-import { useNavigate } from 'react-router-dom';
-
-const AccountDropdown = ({open}) => {
-    const navigate = useNavigate()
-
-    return (
-        <div className={`${open ?  '' : 'hidden'} absolute top-[76px] -left-6 z-10 bg-white shadow-md rounded-md w-[240px] text-tertiary p-4`}>
-            <h3 className='p-2 font-bold'>
-                My Account
-            </h3>
-            <ul className='px-4'>
-                <li className='hover:underline cursor-pointer'> Account Details </li>
-                <li className='hover:underline cursor-pointer'> Orders </li>
-                <li className='hover:underline cursor-pointer'> Favorites </li>
-                <li className='hover:underline cursor-pointer'> Preferences </li>
-            </ul>
-            <div className='border border-primary m-2'/>
-            <div className='px-2 space-y-1 flex flex-col justify-center items-center'>
-                <h3 className='w-full font-bold hover:underline'>
-                    Sign-In or Register
-                </h3>
-                <input 
-                    className='w-full border border-primary rounded-md pl-2 outline-primary p-1'
-                    placeholder='Email or Phone Number'
-                />
-                <input 
-                    className='w-full border border-primary rounded-md pl-2 p-1 outline-primary'
-                    placeholder='Password'
-                    type='password'
-                />
-                <div className='flex w-full justify-around space-x-1 pt-1'>
-                    <div className='w-1/2'>
-                        <BlueButton
-                            content='Sign-In'
-                            onClick={()=>console.log('sign in POST')}
-                        />
-                    </div>
-                    <div className='w-1/2'>
-                        <WhiteButton
-                            content='Register'
-                            onClick={()=>navigate('/sign-up')}
-                        />
-                    </div>
-                </div>
-                <span className='text-[12px] underline'> Forgot Password </span>
-            </div>
-        </div>
-    )
-}
+import AccountDropdown from './navBar/AccountDropdown'
 
 const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive, cartSize}) => {
     const [openAccount, setOpenAccount, handleClickAccount, node] = useDropdown(false)

@@ -14,10 +14,6 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
     const [promoCode, setPromoCode] = useState()
     const [activePromos, setActivePromos] = useState([])
 
-    useEffect(() => {
-        
-    }, [activePromos])
-
     const handlePromoAdded = (code) => {
         let newActives = activePromos
         newActives.push(code)

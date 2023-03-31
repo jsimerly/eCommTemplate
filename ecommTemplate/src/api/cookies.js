@@ -13,7 +13,7 @@ export function getCookie(name){
       }
     }
     return cookieValue
-  }
+}
 
 export function setCookie(name, value, minutes) {
     let expires = "";
@@ -23,7 +23,11 @@ export function setCookie(name, value, minutes) {
       expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
-  }
+}
+
+export function deleteCookie(name){
+  document.cookie = `${name}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`;
+}
 
 async function refreshAccessToken(refreshToken) {
     const response = await fetch(`${SERVER_ADDRESS}/api/account/token/refresh/`, {
@@ -43,7 +47,7 @@ async function refreshAccessToken(refreshToken) {
     const data = await response.json();
     setCookie('access_token', data.access,  60);
     return data.access;
-  }
+}  
 
 export async function fetchWrapper(url, options){
 

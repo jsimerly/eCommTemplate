@@ -28,6 +28,10 @@ class CreateUser_Serializer(serializers.ModelSerializer):
         user.save()
         return user
 
+class UserInformation_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['uuid', 'email', 'first_name', 'last_name', 'date_of_birth', 'drivers_license_id', 'phone_number', 'is_email_verified', 'prefernce_recieve_emails']
 
             
        

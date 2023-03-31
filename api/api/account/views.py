@@ -55,3 +55,13 @@ class EmailVerificationView(APIView):
                 'is_email_verified': user.is_email_verified
             }
         }, status=status.HTTP_200_OK)
+    
+class UserInformationView(APIView):
+    serializer_class = UserInformation_Serializer
+    def get(self, request):
+        if request.user.is_authenticated:
+            serializer = self.serializer_class(request.user)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response({'message': 'Unauthorized'}, status=401)

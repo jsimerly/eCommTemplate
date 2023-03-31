@@ -16,8 +16,6 @@ const SmallCard = ({text, img, price}) => {
     }
   }
 
-  console.log(price)
-
   return (
   
     <div className="bg-tertiaryTone-100 m-1 p-2 flex flex-col rounded-md">

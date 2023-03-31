@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { SwitchComp } from "../../utils"
 import CreateAccount from "./CreateAccount"
 import SignIn from "./SignIn"

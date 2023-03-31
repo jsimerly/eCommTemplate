@@ -1,5 +1,5 @@
 import { SERVER_ADDRESS } from "./serverConstants";
-import { fetchWrapper, getCookie, setCookie } from "./cookies";
+import { deleteCookie, fetchWrapper, getCookie, setCookie } from "./cookies";
 
 export async function fetchCreateUser(userData){
     
@@ -56,4 +56,22 @@ export async function fetchLoginUser(email, password){
     } catch (error) {
         throw (error)
     }
+}
+
+export async function fetchUserInformation(){
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/user-information`)
+        return response
+
+    } catch (error) {
+
+        throw error
+    }
+}
+
+export function handleLogout(){
+    deleteCookie('access_token');
+    deleteCookie('refresh_token')
+
+    window.location.reload()
 }

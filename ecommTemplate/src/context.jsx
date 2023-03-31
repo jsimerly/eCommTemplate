@@ -1,4 +1,4 @@
-import { createContext} from 'react'
+import { createContext } from 'react'
 
 const ShoppingContext = createContext();
 const SearchContext = createContext();
