@@ -5,7 +5,7 @@ import { ShoppingContext } from '../../context';
 
 const SmallCard = ({item}) => {
   const {setCartSize} = useContext(ShoppingContext)
-
+  console.log(item)
   const handleAddItemClicked = async () =>{
     try{
 

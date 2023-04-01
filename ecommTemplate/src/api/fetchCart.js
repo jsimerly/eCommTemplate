@@ -111,7 +111,6 @@ export async function fetchBrowseHistory(setterFunc, startDate, endDate, dateCha
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/customer/history/?${datesUrlString(start, end, dateChange)}`)
         const data = await response.json()
-        console.log(data)
         setterFunc(data)
         return response
     } catch (error) {

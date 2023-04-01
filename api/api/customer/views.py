@@ -4,8 +4,7 @@ from rest_framework import status
 from django.db.models import Q
 
 from products.models import Product
-from products.serializers import Product_Serializer
-from customer.serializers import BrowseSession_Serializer
+from products.serializers import ProductCard_Serializer
 from customer.models import Customer, BrowseHistory
 from products.views import getDateContext
 # Create your views here.
@@ -29,10 +28,9 @@ class BrowsingHistoryView(APIView):
         }
         
         history = BrowseHistory.objects.filter(customer=customer).order_by('-timestamp')[:15]
-        product_ids = history.values_list('product_id', flat=True)
-        products = Product.objects.filter(id__in=product_ids)
+        products = [item.product for item in history]
 
-        serializer = Product_Serializer(products, many=True, context=context)
+        serializer = ProductCard_Serializer(products, many=True, context=context)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
     

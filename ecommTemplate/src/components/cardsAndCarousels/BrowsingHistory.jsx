@@ -29,7 +29,7 @@ const BrowsingHistory = () => {
     fetchBrowseHistory(setBrowsingHistory, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
   },[selectedDateRange])
   
-
+  console.log(browsingHistory)
   //replace this fetch with BrowsingHistory endpoint
   return (
     <CarouselTemplate
