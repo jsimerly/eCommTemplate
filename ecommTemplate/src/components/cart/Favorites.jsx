@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { fetchAllFavorited, fetchFavoriteDelete } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
 
-const CustomCard = ({item, deleteFavorite}) => {
+const CustomCard = ({item, deleteFavorite, handleFetchCart}) => {
 
   const handleDeleteClicked = () => {
     try{
@@ -27,12 +27,13 @@ const CustomCard = ({item, deleteFavorite}) => {
       </div>
       <SmallCard
         item={item}
+        addExtraFunction={handleFetchCart}
       />
     </div>
   )
 }
 
-const Favorites = ({getCost, selectedDateRange}) => {
+const Favorites = ({getCost, selectedDateRange, handleFetchCart}) => {
   const [favorites, setFavorites] = useState([])
 
   const deleteFavorite = (itemUUID) => {
@@ -64,6 +65,7 @@ const Favorites = ({getCost, selectedDateRange}) => {
               getCost={getCost}
               deleteFavorite={deleteFavorite}
               key={'favorites_card_'+i}
+              handleFetchCart={handleFetchCart}
             />
           ))}
         </div>

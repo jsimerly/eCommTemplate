@@ -37,12 +37,16 @@ const CartPage = () => {
         })
     }
 
-    useEffect(() => {
+    const handleFetchCart = () => {
         const startDate = selectedDateRange.startDate
         const endDate = selectedDateRange.endDate
         const dateChange = selectedDateRange.first
 
       fetchCart(setCart, startDate, endDate, dateChange)
+    }
+
+    useEffect(() => {
+        handleFetchCart()
     }, [selectedDateRange])
 
     useEffect(() => {
@@ -158,6 +162,7 @@ const CartPage = () => {
                 <Favorites
                     getCost={getCost}
                     selectedDateRange={selectedDateRange}
+                    handleFetchCart={handleFetchCart}
                 />
             </div>
             <div>

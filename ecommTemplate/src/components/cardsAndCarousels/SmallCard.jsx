@@ -2,16 +2,21 @@ import AddIcon from '@mui/icons-material/Add';
 import { fetchItemsToCart } from '../../api/fetchCart';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
+import navigateProduct from '../../hooks/navigateProduct';
 
-const SmallCard = ({item}) => {
+const SmallCard = ({item, addExtraFunction}) => {
+  const slug = item.slug
   const {setCartSize} = useContext(ShoppingContext)
-  console.log(item)
+
+  let navigate = navigateProduct({slug});
+
   const handleAddItemClicked = async () =>{
     try{
 
       const response = await fetchItemsToCart([item.slug])
       const data = await response.json()
       setCartSize(data['cart_size'])
+      addExtraFunction()
     } catch (error){
       throw (error)
     }
@@ -32,9 +37,13 @@ const SmallCard = ({item}) => {
         <img
           className="bg-white object-scale-down rounded-md"
           src={item.main_image.image}
+          onClick={navigate}
         />
       </div>
-      <div className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold">
+      <div 
+        className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold"
+        onClick={navigate}
+      >
         {item.name}
       </div>
       <div className="flex flex-row justify-between">

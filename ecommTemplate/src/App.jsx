@@ -15,6 +15,7 @@ import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account, Partners, Cookies, SignUp} from './components/auxillaryPages'
 import AboutUs from './components/auxillaryPages/AboutUs';
 import { fetchCartSize } from './api/fetchCart';
+import NotificationBar from './components/navBar/NotificationBar';
 
 
 
@@ -79,6 +80,19 @@ function App() {
       fetchCartSize(setCartSize)
   },[])
 
+  const [notifcationOpen, setNotification] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState('')
+
+  const handleNotification = (message) => {
+    setNotificationMessage(message)
+    setNotification(true)
+    const timer = setTimeout(()=> {
+      setNotification(false)
+    }, 5000)
+
+    return () => clearTimeout(timer);
+  }
+
   return (
       <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
         <ShoppingContext.Provider value={
@@ -86,7 +100,8 @@ function App() {
             selectedDestination, setSelectedDestination, 
             selectedCategory, setSelectedCategory,
             allDests, allCategories,
-            cartSize, setCartSize
+            cartSize, setCartSize,
+            handleNotification
           }}
         >
           <Navbar
@@ -96,6 +111,11 @@ function App() {
             searchParamActive={searchParamActive}
             setSearchParamActive={setSearchParamActive}
             cartSize={cartSize}
+          />
+          <NotificationBar
+            message={notificationMessage}
+            showPopup={notifcationOpen}
+            setNotification={setNotification}
           />
           <div className='h-[80px]'/>
           <Routes>

@@ -10,7 +10,7 @@ import { ShoppingContext } from '../../context';
 
 const ProductCard = ({item}) => {
   const [itemFavorited, setFavorited] = useState(false)
-  const {setCartSize} = useContext(ShoppingContext)
+  const {setCartSize, handleNotification} = useContext(ShoppingContext)
   const slug = item.slug
 
   const handleAddItemClicked = async () =>{
@@ -18,6 +18,7 @@ const ProductCard = ({item}) => {
       const response = await fetchItemsToCart([slug])
       const data = await response.json()
       setCartSize(data['cart_size'])
+      handleNotification(`${item.name} has been added to your cart.`)
     } catch (error){
       throw (error)
     }

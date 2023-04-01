@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
 import AccountDropdown from './navBar/AccountDropdown'
+import NotificationBar from './navBar/NotificationBar';
 
 const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive, cartSize}) => {
     const [openAccount, setOpenAccount, handleClickAccount, node] = useDropdown(false)
@@ -63,6 +64,7 @@ const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive
                     </div>
                 </div>
             </div>
+            <NotificationBar/>
         </nav>
   )
 }
