@@ -5,6 +5,7 @@ from django.middleware.csrf import get_token
 import jwt
 from api.settings import SECRET_KEY
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 
 User = get_user_model()
 
@@ -53,6 +54,7 @@ class DeviceCookieMiddleware(MiddlewareMixin):
 
     def __call__(self, request):
         
+        user = AnonymousUser()
         if 'Authorization' in request.headers:
             token = request.headers['Authorization'].split()[1]
             try:
@@ -68,7 +70,6 @@ class DeviceCookieMiddleware(MiddlewareMixin):
                 pass
 
         cookie = request.COOKIES.get('device')
-        print(cookie)
         created = False
 
         if user.is_authenticated:
