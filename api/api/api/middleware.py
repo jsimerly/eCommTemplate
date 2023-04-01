@@ -2,6 +2,11 @@ from django import http
 from customer.models import Customer
 from django.utils.deprecation import MiddlewareMixin
 from django.middleware.csrf import get_token
+import jwt
+from api.settings import SECRET_KEY
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class CsrfCookieMiddleware:
     def __init__(self, get_response):
@@ -47,24 +52,42 @@ class DeviceCookieMiddleware(MiddlewareMixin):
         self.get_response = get_response
 
     def __call__(self, request):
+        
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization'].split()[1]
+            try:
+                payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+                user_id = payload['user_id']
+                user = User.objects.get(id=user_id)
+
+            except jwt.exceptions.DecodeError:
+                pass
+            except User.DoesNotExist:
+                pass
+            except:
+                pass
 
         cookie = request.COOKIES.get('device')
-        
-        if cookie:
-            customer, created = Customer.objects.get_or_create(device=cookie)
+        print(cookie)
+        created = False
+
+        if user.is_authenticated:
+            try:
+                customer = user.customer
+            except Customer.DoesNotExist:
+                customer, created = Customer.objects.get_or_create(device=cookie)
+                customer.user = user
+                customer.save()
+                # Handle the case where the customer does not exist
+                pass
         else:
-            session = request.session.session_key
-            if session:
-                customer, created = Customer.objects.get_or_create(session_id=session)
-            else:
-                created = True
-                customer = Customer.objects.create()
+            customer, created = Customer.objects.get_or_create(device=cookie)
 
         request.customer = customer
 
         response = self.get_response(request)
 
-        if created:
+        if created or cookie == None:
             self.attach_cookie_to_response(response, customer.device)
 
         return response
