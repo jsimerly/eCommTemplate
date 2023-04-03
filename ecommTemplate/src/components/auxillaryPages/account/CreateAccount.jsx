@@ -8,22 +8,27 @@ import { BlueButton } from "../../utils";
 import { fetchCreateUser } from "../../../api/fetchUser";
 import AccountValidator from "./validation";
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD } from "./validation";
+import ErrorMessages from "../../utils/ErrorMessages";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [recieveEmails, setRecieveEmails] = useState(true)
-
     const [firstNameError, setFirstNameError] = useState(false);
     const [lastNameError, setLastNameError] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [dateOfBirthError, setDateOfBirthError] = useState(false);
     const [phoneNumberError, setPhoneNumberError] = useState(false);
+
+    const [recieveEmails, setRecieveEmails] = useState(true)
+
+    const [errorMessages, setErrorMessages] = useState([])
 
     const [showPassword, setShowPassword] = useState(false)
     const togglePasswordVisibility = () => {
@@ -37,9 +42,7 @@ const CreateAccount = () => {
     const handleDateOfBirthChange = (e) => setDateOfBirth(e.target.value);
     const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
     const handleCheckClick = () => setRecieveEmails((recieveEmails) => !recieveEmails)
-
-    const [errorMessages, setErrorMessages] = useState([])
-
+    
     let accountValidator = new AccountValidator()
 
     const handleCreateAccount = async () => {
@@ -146,15 +149,7 @@ const CreateAccount = () => {
                     type="text"
                     />
                 </div>
-                {errorMessages.length > 0 && (
-                    <div className="text-errorRed text-[14px] text-center">
-                        <ul className="list-disc list-inside">
-                        {errorMessages.map((error, i) => (
-                            <li key={i}>{error.charAt(0).toUpperCase() + error.slice(1)}</li>
-                        ))}
-                        </ul>
-                    </div>
-                )}
+                <ErrorMessages errorMessages={errorMessages}/>
                 <div className="w-full flex flex-row items-center">
                     {recieveEmails ? 
                     <CheckBoxIcon 

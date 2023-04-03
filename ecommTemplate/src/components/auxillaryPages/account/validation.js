@@ -149,6 +149,18 @@ export default class AccountValidator {
         }
     }
 
+    validateDriverLicense = (driverLicense, errorSetter) => {
+        const driverLicensePattern = /^[A-Z]{1,2}\d{2}\s?\d{2}\s?\d{2,4}$/;
+        if (!driverLicensePattern.test(driverLicense)) {
+            this.errors.push('Invalid driver\'s license, please enter it in the format: AB12 34 56')
+            errorSetter(true);
+        } else {
+            errorSetter(false);
+        }
+    }
+
+
+
     resetErrors = () => {
         this.errors = []
     }

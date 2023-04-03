@@ -49,7 +49,7 @@ export async function fetchLoginUser(email, password){
         })
         
         const resp = await response.json()
-        console.log(resp)
+
         setCookie('access_token', resp.access, 60);
         setCookie('refresh_token', resp.refresh, 60 * 24 * 30);
         return resp
@@ -61,7 +61,7 @@ export async function fetchLoginUser(email, password){
 export async function fetchUserInformation(){
     try {
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/user-information/`)
-        console.log(response)
+
         return response
 
     } catch (error) {

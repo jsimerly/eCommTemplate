@@ -6,22 +6,37 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useEffect, useState } from "react";
 import { fetchUserInformation, updateUserInformation } from '../../../api/fetchUser';
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD, convertDateFormat_YYYYMMYDD_to_MDDYY } from './validation';
+import AccountValidator from './validation';
+import ErrorMessages from '../../utils/ErrorMessages';
 
 
 const AccountInformation = () => {
+  const updateAccountValidator = new AccountValidator()
 
-  const [fisrtName, setFirstName] = useState('')
+  const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [openNames, setOpenNames] = useState(false)
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setLastNameError] = useState(false);
+  const [errorMessages_name, setErrorMessages_name] = useState([])
+
 
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [newPassword_1, setNewPassword_1 ] = useState('')
   const [newPassword_2, setNewPassword_2] = useState('')
   const [passwordOpen, setPasswordOpen] = useState('')
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [errorMessages_account, setErrorMessages_account] = useState([])
 
   const [dob, setDob] = useState('')
   const [dln, setDln] = useState('')
+  const [dateOfBirthError, setDateOfBirthError] = useState(false);
+  const [driversLicenseError, setDriverLicenseError] = useState(false);
+  const [errorMessages_personal, setErrorMessages_personal] = useState([])
+
   const [newsletter, setNewsletter] = useState(false)
   const [marketing, setMarketing] = useState(false)
 
@@ -41,12 +56,9 @@ const AccountInformation = () => {
         setDob(dateOfBirth)
       }
       if (data.drivers_license_id) {setDln(data.drivers_license_id)}
-      console.log(data)
 
       if(data.prefernce_newsletter){setNewsletter(data.prefernce_newsletter)}
       if (data.prefernce_recieve_emails){setMarketing(data.prefernce_recieve_emails)}
-      
-
 
       return data
     }
@@ -72,8 +84,15 @@ const AccountInformation = () => {
   const handleNewsletterClick = () => setNewsletter((newsletter) => !newsletter)
 
   const handleNameSaveClick = async () => {
+    updateAccountValidator.resetErrors()
+
+    updateAccountValidator.validateFirstName(firstName, setFirstNameError)
+    updateAccountValidator.validateLastName(lastName, setLastNameError)
+
+    setErrorMessages_name(updateAccountValidator.errors)
+
     const response = await updateUserInformation({
-      first_name : fisrtName,
+      first_name : firstName,
       last_name : lastName,      
     },
     'name')
@@ -89,7 +108,18 @@ const AccountInformation = () => {
   }
 
   const handleAccountUpdateClick = async () => {
+    updateAccountValidator.resetErrors()
+
+    updateAccountValidator.validateEmail(email, setEmailError)
+    updateAccountValidator.validatePhoneNumber(phone, setPhoneError)
+    //updateAccountValidator.validatePassword(password, setPasswordError)
     //validate the passwords match
+
+    setErrorMessages_account(updateAccountValidator.errors)
+    if (updateAccountValidator.errors.length > 0){
+      return
+    }
+
     const response = await updateUserInformation({
       email : email,
       phone_number : phone,
@@ -107,6 +137,17 @@ const AccountInformation = () => {
   }
 
   const handlePersonalUpdateClick = async () => {
+    updateAccountValidator.resetErrors()
+
+    updateAccountValidator.validateDateOfBirth(dob, setDateOfBirthError)
+    // updateAccountValidator.validateDriverLicense(dln, setDriverLicenseError)
+    // can update above once we account for the state, different id's per state
+
+    setErrorMessages_personal(updateAccountValidator.errors)
+    if (updateAccountValidator.errors.length > 0){
+      return
+    }
+
     const response = await updateUserInformation({
       date_of_birth : convertDateFormat_MMDDYYY_to_YYYYMMDD(dob),
       drivers_license_id : dln,      
@@ -128,6 +169,7 @@ const AccountInformation = () => {
       prefernce_newsletter : newsletter,      
     },
     'preferences')
+    
 
     if (response.ok){
       const data = await response.json()
@@ -141,7 +183,7 @@ const AccountInformation = () => {
 
   const handleForgotPassword = async () => {
     const response = await updateUserInformation({
-      first_name : fisrtName,
+      first_name : firstName,
       last_name : lastName,      
     },
     'account')
@@ -178,7 +220,7 @@ const AccountInformation = () => {
                         <input
                           className='p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary'
                           placeholder='First Name'
-                          value={fisrtName}
+                          value={firstName}
                           onChange={handleFirstNameChange}
                         />
                         <input
@@ -197,7 +239,7 @@ const AccountInformation = () => {
                     : 
                     <>
                       <h3 className="text-[30px] font-bold">
-                        {fisrtName} {lastName}
+                        {firstName} {lastName}
                       </h3> 
                       <div 
                         className='ml-2 cursor-pointer hover:scale-110'
@@ -210,6 +252,7 @@ const AccountInformation = () => {
 
                 </div>
                 <span>Account Owner</span>
+                <ErrorMessages errorMessages={errorMessages_name}/>
               </div>
 
               <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
@@ -277,6 +320,7 @@ const AccountInformation = () => {
                     Forgot My Password
                   </h3>
                 </div>
+              <ErrorMessages errorMessages={errorMessages_account}/>
               <div className="ml-4 w-1/5 mb-2">
                   <BlueButton
                     content='Update'
@@ -311,6 +355,7 @@ const AccountInformation = () => {
                       onChange={handleDlnChange}
                     />
                   </div>
+                  <ErrorMessages errorMessages={errorMessages_personal}/>
                   <div className="w-1/5 mt-4">
                     <BlueButton
                       content='Update'
