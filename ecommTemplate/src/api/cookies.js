@@ -60,8 +60,6 @@ export async function fetchWrapper(url, options){
     else {
       const refresh_token = getCookie('refresh_token')
       if (refresh_token){
-        console.log('here')
-        console.log(refresh_token)
         const access_resp = await refreshAccessToken(refresh_token)
         if (access_resp){
           headers.Authorization = `Bearer ${access_resp}`

@@ -68,15 +68,58 @@ class UserInformationView(APIView):
 
         return Response({'message': 'Unauthorized'}, status=401)
 
-class UpdateUserView(APIView):
+class UpdateNameView(APIView):
     def put(self, request):
         user = request.user
-        serializer = CreateUser_Serializer(user, data=request.data)
+        serializer = UpdateName_Serializer(user, data=request.data)
+
         if serializer.is_valid():
             serializer.save()
-
+            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UpdateAccountView(APIView):
+    def put(self, request):
+        print(request.data)
+        user = request.user
+        serializer = UpdateAccount_Serializer(user, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UpdatePersonalView(APIView):
+    def put(self, request):
+        user = request.user
+        serializer = UpdatePersonal_Serializer(user, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UpdatePreferencesView(APIView):
+    def put(self, request):
+        user = request.user
+        print(request.data)
+        serializer = UpdatePreferences_Serializer(user, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ResetPasswordView(APIView):

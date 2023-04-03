@@ -60,7 +60,8 @@ export async function fetchLoginUser(email, password){
 
 export async function fetchUserInformation(){
     try {
-        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/user-information`)
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/user-information/`)
+        console.log(response)
         return response
 
     } catch (error) {
@@ -75,10 +76,10 @@ export function handleLogout(){
     window.location.reload()
 }
 
-export async function updateUserInformation(userData){
+export async function updateUserInformation(userData, type){
 
     try {
-        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/update-user`,
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/update-user/${type}/`,
         {
             method: 'PUT',
             headers: {
@@ -87,6 +88,7 @@ export async function updateUserInformation(userData){
             },
             body: JSON.stringify(userData),
         })
+        return response
         
     } catch (error) {
         throw error

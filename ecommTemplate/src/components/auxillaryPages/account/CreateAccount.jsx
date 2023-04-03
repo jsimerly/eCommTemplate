@@ -7,19 +7,7 @@ import MaskedInput from "react-text-mask";
 import { BlueButton } from "../../utils";
 import { fetchCreateUser } from "../../../api/fetchUser";
 import AccountValidator from "./validation";
-
-const convertDateFormat = (dateString) => {
-    const dateParts = dateString.split("-");
-    const month = parseInt(dateParts[0], 10);
-    const day = parseInt(dateParts[1], 10);
-    const year = parseInt(dateParts[2], 10);
-  
-    const newDate = new Date(year, month - 1, day);
-  
-    const formattedDate = `${newDate.getFullYear()}-${String(newDate.getMonth() + 1).padStart(2, '0')}-${String(newDate.getDate()).padStart(2, '0')}`;
-  
-    return formattedDate;
-  };
+import { convertDateFormat_MMDDYYY_to_YYYYMMDD } from "./validation";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
@@ -78,7 +66,7 @@ const CreateAccount = () => {
               password,
               firstName,
               lastName,
-              dateOfBirth: convertDateFormat(dateOfBirth),
+              dateOfBirth: convertDateFormat_MMDDYYY_to_YYYYMMDD(dateOfBirth),
               phoneNumber,
               recieveEmails
             };

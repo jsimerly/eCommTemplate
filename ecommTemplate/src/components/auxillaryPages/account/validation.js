@@ -50,6 +50,26 @@ export const validateFirstName = (value, errorSetter) => {
     return null
 }
 
+export const convertDateFormat_MMDDYYY_to_YYYYMMDD = (dateString) => {
+    const dateParts = dateString.split("-");
+    const month = parseInt(dateParts[0], 10);
+    const day = parseInt(dateParts[1], 10);
+    const year = parseInt(dateParts[2], 10);
+  
+    const newDate = new Date(year, month - 1, day);
+  
+    const formattedDate = `${newDate.getFullYear()}-${String(newDate.getMonth() + 1).padStart(2, '0')}-${String(newDate.getDate()).padStart(2, '0')}`;
+  
+    return formattedDate;
+  };
+
+export const convertDateFormat_YYYYMMYDD_to_MDDYY = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1;
+    const day = date.getUTCDate();
+    const year = date.getFullYear();
+    return `${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}-${year}`;
+  }
 export default class AccountValidator {
     constructor() {
       this.errors = [];

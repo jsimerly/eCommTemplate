@@ -4,19 +4,11 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import SaveIcon from '@mui/icons-material/Save';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { fetchUserInformation } from '../../../api/fetchUser';
+import { fetchUserInformation, updateUserInformation } from '../../../api/fetchUser';
+import { convertDateFormat_MMDDYYY_to_YYYYMMDD, convertDateFormat_YYYYMMYDD_to_MDDYY } from './validation';
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const month = date.getMonth() + 1;
-  const day = date.getUTCDate();
-  const year = date.getFullYear();
-  return `${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}-${year}`;
-}
 
 const AccountInformation = () => {
-  const navigate = useNavigate()
 
   const [fisrtName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -45,11 +37,17 @@ const AccountInformation = () => {
       if (data.phone_number) {setPhone(data.phone_number)}
   
       if (data.date_of_birth) {
-        const dateOfBirth = formatDate(data.date_of_birth)
+        const dateOfBirth = convertDateFormat_YYYYMMYDD_to_MDDYY(data.date_of_birth)
         setDob(dateOfBirth)
       }
       if (data.drivers_license_id) {setDln(data.drivers_license_id)}
       console.log(data)
+
+      if(data.prefernce_newsletter){setNewsletter(data.prefernce_newsletter)}
+      if (data.prefernce_recieve_emails){setMarketing(data.prefernce_recieve_emails)}
+      
+
+
       return data
     }
   
@@ -62,7 +60,7 @@ const AccountInformation = () => {
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
+  const handlePhoneNumberChange = (e) => setPhone(e.target.value);
   const handlePasswordOpenClick = ()=> setPasswordOpen((passwordOpen) => !passwordOpen)
   const handlePassword_1_Change = (e) => setNewPassword_1(e.target.value)
   const handlePassword_2_Change = (e) => setNewPassword_2(e.target.value)
@@ -73,24 +71,89 @@ const AccountInformation = () => {
   const handleMarketingClick = () => setMarketing((marketing) => !marketing)
   const handleNewsletterClick = () => setNewsletter((newsletter) => !newsletter)
 
-  const handleNameSaveClick = () => {
+  const handleNameSaveClick = async () => {
+    const response = await updateUserInformation({
+      first_name : fisrtName,
+      last_name : lastName,      
+    },
+    'name')
 
+    if (response.ok){
+      const data = await response.json()
+      setFirstName(data.first_name)
+      setLastName(data.last_name)
+      setOpenNames(false)
+    } else {
+      // notification there was an error
+    }
   }
 
-  const handleForgotPassword = () => {
+  const handleAccountUpdateClick = async () => {
+    //validate the passwords match
+    const response = await updateUserInformation({
+      email : email,
+      phone_number : phone,
+      password : newPassword_1, 
+    },
+    'account')
 
+    if (response.ok){
+      const data = await response.json()
+      setEmail(data.email)
+      setPhone(data.phone_number)
+    } else {
+      // notification there was an error
+    }
   }
 
-  const handleAccountUpdateClick = () => {
+  const handlePersonalUpdateClick = async () => {
+    const response = await updateUserInformation({
+      date_of_birth : convertDateFormat_MMDDYYY_to_YYYYMMDD(dob),
+      drivers_license_id : dln,      
+    },
+    'personal')
 
+    if (response.ok){
+      const data = await response.json()
+      setFirstName(data.date_of_birth)
+      setLastName(data.drivers_license_id)
+    } else {
+      // notification there was an error
+    }
   }
 
-  const handlePersonalUpdateClick = () => {
-    
+  const handlePreferencesUpdateClick = async () => {
+    const response = await updateUserInformation({
+      prefernce_recieve_emails : marketing,
+      prefernce_newsletter : newsletter,      
+    },
+    'preferences')
+
+    if (response.ok){
+      const data = await response.json()
+      setFirstName(data.first_name)
+      setLastName(data.last_name)
+      setOpenNames(false)
+    } else {
+      // notification there was an error
+    }
   }
 
-  const handlePreferencesUpdateClick = () => {
-    
+  const handleForgotPassword = async () => {
+    const response = await updateUserInformation({
+      first_name : fisrtName,
+      last_name : lastName,      
+    },
+    'account')
+
+    if (response.ok){
+      const data = await response.json()
+      setFirstName(data.first_name)
+      setLastName(data.last_name)
+      setOpenNames(false)
+    } else {
+      // notification there was an error
+    }
   }
 
   return (
@@ -126,7 +189,7 @@ const AccountInformation = () => {
                         />
                       <div 
                         className='ml-2 cursor-pointer hover:scale-110'
-                        onClick={handleOpenNamesClick}
+                        onClick={handleNameSaveClick}
                       >
                         <SaveIcon sx={{fontSize:20}}/>
                       </div>
@@ -134,7 +197,7 @@ const AccountInformation = () => {
                     : 
                     <>
                       <h3 className="text-[30px] font-bold">
-                        Jacob Simerly
+                        {fisrtName} {lastName}
                       </h3> 
                       <div 
                         className='ml-2 cursor-pointer hover:scale-110'
@@ -209,7 +272,7 @@ const AccountInformation = () => {
                 <div className="ml-4 pb-4">
                   <h3 
                     className='hover:underline cursor-pointer font-bold'
-                    onClick={()=> console.log('fetch reset password')}
+                    onClick={handleForgotPassword}
                   >
                     Forgot My Password
                   </h3>
@@ -217,6 +280,7 @@ const AccountInformation = () => {
               <div className="ml-4 w-1/5 mb-2">
                   <BlueButton
                     content='Update'
+                    onClick={handleAccountUpdateClick}
                   />
                 </div>
 
@@ -250,6 +314,7 @@ const AccountInformation = () => {
                   <div className="w-1/5 mt-4">
                     <BlueButton
                       content='Update'
+                      onClick={handlePersonalUpdateClick}
                     />
                   </div>
                 </div>
@@ -289,6 +354,7 @@ const AccountInformation = () => {
                   <div className="w-1/5 mt-4">
                     <BlueButton
                       content='Update'
+                      onClick={handlePreferencesUpdateClick}
                     />
                   </div>
                 </div>
