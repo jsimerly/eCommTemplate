@@ -12,7 +12,7 @@ import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
 import SearchPage from './components/pages/SearchPage'
-import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, Account, Partners, Cookies, SignUp} from './components/auxillaryPages'
+import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, AccountInformation, Partners, Cookies, SignUp, ResetPassword} from './components/auxillaryPages'
 import AboutUs from './components/auxillaryPages/AboutUs';
 import { fetchCartSize } from './api/fetchCart';
 import NotificationBar from './components/navBar/NotificationBar';
@@ -119,26 +119,28 @@ function App() {
           />
           <div className='h-[80px]'/>
           <Routes>
-            <Route exact path='/' element={ <LandingPage/>}/> {/* Mobile */}
-            <Route path='/about-us' element={<AboutUs/>}/> {/* On hold until Business Model */}
-            <Route path='/shopping/' element={<StandardShop/>}/> {/* Mobile */}
-            <Route path='/search' element={<SearchPage/>}/> {/* Mobile */}
+            <Route exact path='/' element={ <LandingPage/>}/> 
+            <Route path='/about-us' element={<AboutUs/>}/> 
+            <Route path='/shopping/' element={<StandardShop/>}/> 
+            <Route path='/search' element={<SearchPage/>}/> 
             <Route path='/p/:slug' element= {<ProductPage/>} 
-            /> {/* Mobile */}
-            <Route path='/cart' element={<CartPage/>}/> {/* Mobile */}
+            /> 
+            <Route path='/cart' element={<CartPage/>}/> 
             <Route path='/help' element={<HelpPage/>} 
-            /> {/* Mobile */}
-            <Route path='/contact-support' element={<ContactSupport/>}/> {/* Mobile */}
+            /> 
+            <Route path='/contact-support' element={<ContactSupport/>}/> 
             <Route path='/FAQ' element={<FAQ/>}/> {/* On Hold until Business Model */}
-            <Route path='/find-order' element={<FindOrder/>}/> {/* Mobile */}
-            <Route path='/feedback' element={<Feedback/>}/> {/* Mobile */}
+            <Route path='/find-order' element={<FindOrder/>}/> 
+            <Route path='/feedback' element={<Feedback/>}/> 
             <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */} 
-            <Route path='/sign-up' element={<SignUp/>}/> {/* Completed */}
-            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* Mobile */}
-            <Route path='/blogs/:blogId' element={<BlogPage/>}/> {/* Mobile */}
-            <Route path='/privacy' element={<Privacy/>}/> {/* Mobile */}
+            <Route path='/sign-up' element={<SignUp/>}/> 
+            <Route path='/account-information' element={<AccountInformation/>}/>
+            <Route path='/reset-password' element={<ResetPassword/>}/>
+            <Route path='/blogs' element={<AllBlogsPage/>}/> 
+            <Route path='/blogs/:blogId' element={<BlogPage/>}/> 
+            <Route path='/privacy' element={<Privacy/>}/> 
             <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}
-            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* Mobile */}
+            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> 
           </Routes>
           <div className='flex justify-center items-center'>
             <Footer/>

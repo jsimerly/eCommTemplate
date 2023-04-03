@@ -64,7 +64,6 @@ export async function fetchUserInformation(){
         return response
 
     } catch (error) {
-
         throw error
     }
 }
@@ -74,4 +73,23 @@ export function handleLogout(){
     deleteCookie('refresh_token')
 
     window.location.reload()
+}
+
+export async function updateUserInformation(userData){
+
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/update-user`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN' : getCookie('csrftoken'),
+            },
+            body: JSON.stringify(userData),
+        })
+        
+    } catch (error) {
+        throw error
+    }
+
 }

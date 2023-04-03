@@ -23,6 +23,10 @@ const LoggedInComp = ({userInfo}) => {
         navigate('/cart')
     }
 
+    const handleAccountClicked = () => {
+        navigate('/account-information')
+    }
+
     return(
         <div className='flex flex=row justify-between pt-2'>
             <div className={`${open ?  '' : 'hidden'} bg-white w-full text-tertiary`}>
@@ -32,7 +36,7 @@ const LoggedInComp = ({userInfo}) => {
                 <ul className='px-4'>
                     <li 
                         className='hover:underline cursor-pointer'
-                        
+                        onClick={handleAccountClicked}
                     > Account Details </li>
                     <li 
                         className='hover:underline cursor-pointer'

@@ -13,5 +13,7 @@ import Account from "./account/Account";
 import BlogCard from "./blog/BlogCard";
 import Cookies from "./legal/Cookies";
 import SignUp from "./account/SignUp";
+import AccountInformation from "./account/AccountInformation.jsx";
+import ResetPassword from "./account/ResetPassword";
 
-export {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage,FindOrder, Feedback, Partners, Account, BlogCard, Cookies, SignUp}
+export {AllBlogsPage, BlogPage, ContactSupport, DisputeDamages, ExchangeItem, FAQ, Privacy, TermsConditionsPage,FindOrder, Feedback, Partners, Account, BlogCard, Cookies, SignUp, AccountInformation, ResetPassword}

@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from datetime import datetime
 from uuid import uuid4
+import json
 
-from .serializers import *
+from account.verification import send_email_verification
+from account.serializers import *
 
 # Create your views here.
 class CreateUserView(APIView):
@@ -65,3 +67,32 @@ class UserInformationView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response({'message': 'Unauthorized'}, status=401)
+
+class UpdateUserView(APIView):
+    def put(self, request):
+        user = request.user
+        serializer = CreateUser_Serializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class ResetPasswordView(APIView):
+    seralizer_class = ResetPassword_Serializer
+
+    def post(self, request):
+        serializer = self.seralizer_class(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            try:
+                user = User.objects.get(email=email)
+                send_email_verification(user, request)
+
+            except User.DoesNotExist:
+                return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class ResetPasswordValidationView(APIView):
+    pass

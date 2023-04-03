@@ -77,6 +77,7 @@ class User(AbstractBaseUser):
 
     #Preferences
     prefernce_recieve_emails = models.BooleanField(default=False)
+    prefernce_newsletter = models.BooleanField(default=False)
 
     objects = UserManager()
 

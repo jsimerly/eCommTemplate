@@ -33,5 +33,9 @@ class UserInformation_Serializer(serializers.ModelSerializer):
         model = User
         fields = ['uuid', 'email', 'first_name', 'last_name', 'date_of_birth', 'drivers_license_id', 'phone_number', 'is_email_verified', 'prefernce_recieve_emails']
 
+
+class ResetPassword_Serializer(serializers.Serializer):
+    email = serializers.EmailField()
+
             
        
