@@ -3,33 +3,96 @@ import { BlueButton } from "../../utils";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import SaveIcon from '@mui/icons-material/Save';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { fetchUserInformation } from '../../../api/fetchUser';
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const month = date.getMonth() + 1;
+  const day = date.getUTCDate();
+  const year = date.getFullYear();
+  return `${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}-${year}`;
+}
 
 const AccountInformation = () => {
-  const [fisrtName, setFirstName] = useState()
-  const [lastName, setLastName] = useState()
+  const navigate = useNavigate()
+
+  const [fisrtName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [openNames, setOpenNames] = useState(false)
 
-  const [email, setEmail] = useState()
-  const [phone, setPhone] = useState()
-  const [newPassword_1, setNewPassword_1 ] = useState()
-  const [newPassword_2, setNewPassword_2] = useState()
-  const [passwordOpen, setPasswordOpen] = useState()
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [newPassword_1, setNewPassword_1 ] = useState('')
+  const [newPassword_2, setNewPassword_2] = useState('')
+  const [passwordOpen, setPasswordOpen] = useState('')
 
-  const [dob, setDob] = useState()
-  const [dln, setDln] = useState()
+  const [dob, setDob] = useState('')
+  const [dln, setDln] = useState('')
   const [newsletter, setNewsletter] = useState(false)
   const [marketing, setMarketing] = useState(false)
 
+  useEffect(() => {
+    const fetchInfo = async () => {
+      const response = await fetchUserInformation()
+      const data = await response.json();
+        
+      if (data.first_name) {setFirstName(data.first_name)}
+      if (data.last_name) {setLastName(data.last_name)}
+
+      if (data.email) {setEmail(data.email)}
+      if (data.phone_number) {setPhone(data.phone_number)}
+  
+      if (data.date_of_birth) {
+        const dateOfBirth = formatDate(data.date_of_birth)
+        setDob(dateOfBirth)
+      }
+      if (data.drivers_license_id) {setDln(data.drivers_license_id)}
+      console.log(data)
+      return data
+    }
+  
+    fetchInfo();
+  }, []);
+
   const handleOpenNamesClick = () => setOpenNames((openNames) => !openNames)
 
+  const handleFirstNameChange = (e) => setFirstName(e.target.value);
+  const handleLastNameChange = (e) => setLastName(e.target.value);
+
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
   const handlePasswordOpenClick = ()=> setPasswordOpen((passwordOpen) => !passwordOpen)
+  const handlePassword_1_Change = (e) => setNewPassword_1(e.target.value)
+  const handlePassword_2_Change = (e) => setNewPassword_2(e.target.value)
+
+  const handleDobChange = (e) => setDob(e.target.value);
+  const handleDlnChange = (e) => setDln(e.target.value);
 
   const handleMarketingClick = () => setMarketing((marketing) => !marketing)
   const handleNewsletterClick = () => setNewsletter((newsletter) => !newsletter)
 
+  const handleNameSaveClick = () => {
 
-  //MOVE ALL OF THE VALIDATION TO IT's OWN FOLDER SO YOU CAN EXPORT IT HERE FOR VALIDATIOn
+  }
+
+  const handleForgotPassword = () => {
+
+  }
+
+  const handleAccountUpdateClick = () => {
+
+  }
+
+  const handlePersonalUpdateClick = () => {
+    
+  }
+
+  const handlePreferencesUpdateClick = () => {
+    
+  }
+
   return (
     <div className='flex w-full justify-center'>
       <div className='w-[1280px] h-full flex flex-col justify-center items-center text-tertiary'>
@@ -52,10 +115,14 @@ const AccountInformation = () => {
                         <input
                           className='p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary'
                           placeholder='First Name'
+                          value={fisrtName}
+                          onChange={handleFirstNameChange}
                         />
                         <input
                           className='p-2 ml-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary'
                           placeholder='Last Name'
+                          value={lastName}
+                          onChange={handleLastNameChange}
                         />
                       <div 
                         className='ml-2 cursor-pointer hover:scale-110'
@@ -91,7 +158,7 @@ const AccountInformation = () => {
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Email"
                       value={email}
-                      onChange={null}
+                      onChange={handleEmailChange}
                     />
                   </div>
                 </div>
@@ -102,7 +169,7 @@ const AccountInformation = () => {
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Phone"
                       value={phone}
-                      onChange={null}
+                      onChange={handlePhoneNumberChange}
                     />
                   </div>
                 </div>
@@ -123,7 +190,7 @@ const AccountInformation = () => {
                         className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                         placeholder="Password"
                         value={newPassword_1}
-                        onChange={null}
+                        onChange={handlePassword_1_Change}
                       />
                     </div>
                   </div>
@@ -134,7 +201,7 @@ const AccountInformation = () => {
                         className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                         placeholder="Password"
                         value={newPassword_2}
-                        onChange={null}
+                        onChange={handlePassword_2_Change}
                       />
                     </div>
                   </div>
@@ -165,7 +232,7 @@ const AccountInformation = () => {
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Date of Birth"
                       value={dob}
-                      onChange={null}
+                      onChange={handleDobChange}
                     />
                   </div>
                 </div>
@@ -177,7 +244,7 @@ const AccountInformation = () => {
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Driver's License ID"
                       value={dln}
-                      onChange={null}
+                      onChange={handleDlnChange}
                     />
                   </div>
                   <div className="w-1/5 mt-4">
