@@ -8,7 +8,7 @@ import { fetchUserInformation, updateUserInformation } from '../../../api/fetchU
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD, convertDateFormat_YYYYMMYDD_to_MDDYY } from './validation';
 import AccountValidator from './validation';
 import ErrorMessages from '../../utils/ErrorMessages';
-import { PhoneNumberInput, DateOfBirthInput } from './Inputs';
+import { PhoneNumberInput, DateOfBirthInput, PasswordInput } from './Inputs';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../../context';
 
@@ -119,8 +119,8 @@ const AccountInformation = () => {
 
     updateAccountValidator.validateEmail(email, setEmailError)
     updateAccountValidator.validatePhoneNumber(phone, setPhoneError)
-    //updateAccountValidator.validatePassword(password, setPasswordError)
-    //validate the passwords match
+    updateAccountValidator.verifyPasswordsMatch(newPassword_1, newPassword_2)
+    updateAccountValidator.validatePassword(newPassword_1, setPasswordError)
 
     setErrorMessages_account(updateAccountValidator.errors)
     if (updateAccountValidator.errors.length > 0){
@@ -300,23 +300,21 @@ const AccountInformation = () => {
                   <div className="ml-4 pb-4">
                     <h3 >New Password</h3>
                     <div className="relative w-1/2">
-                      <input
-                        className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
-                        placeholder="Password"
+                      <PasswordInput
                         value={newPassword_1}
                         onChange={handlePassword_1_Change}
+                        error={passwordError}
                       />
                     </div>
                   </div>
                   <div className="ml-4 pb-4">
                     <h3 >New Password</h3>
                     <div className="relative w-1/2">
-                      <input
-                        className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
-                        placeholder="Password"
-                        value={newPassword_2}
-                        onChange={handlePassword_2_Change}
-                      />
+                      <PasswordInput
+                          value={newPassword_2}
+                          onChange={handlePassword_2_Change}
+                          error={passwordError}
+                        />
                     </div>
                   </div>
                 </div>

@@ -54,7 +54,10 @@ class UpdateAccount_Serializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         for key, value in validated_data.items():
             if value:
-                setattr(instance, key, value)
+                if key=='password':
+                    instance.set_password(value)
+                else:
+                    setattr(instance, key, value)
         instance.save()
         return instance
     

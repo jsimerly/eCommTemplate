@@ -159,7 +159,11 @@ export default class AccountValidator {
         }
     }
 
-
+    verifyPasswordsMatch = (password1, password2) => {
+        if(password1 !== password2){
+            this.errors.push('Passwords do not match.')
+        }
+    }
 
     resetErrors = () => {
         this.errors = []

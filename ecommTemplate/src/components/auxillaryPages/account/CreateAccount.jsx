@@ -8,7 +8,7 @@ import { fetchCreateUser } from "../../../api/fetchUser";
 import AccountValidator from "./validation";
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD } from "./validation";
 import ErrorMessages from "../../utils/ErrorMessages";
-import { DateOfBirthInput, PhoneNumberInput } from "./Inputs";
+import { DateOfBirthInput, PasswordInput, PhoneNumberInput } from "./Inputs";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
@@ -31,9 +31,8 @@ const CreateAccount = () => {
     const [errorMessages, setErrorMessages] = useState([])
 
     const [showPassword, setShowPassword] = useState(false)
-    const togglePasswordVisibility = () => {
-        setShowPassword((showPassword) => !showPassword);
-      };
+    const togglePasswordVisibility = () => setShowPassword((showPassword) => !showPassword);
+    
 
     const handleFirstNameChange = (e) => setFirstName(e.target.value);
     const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -112,35 +111,31 @@ const CreateAccount = () => {
                         onChange={handleEmailChange}
                     />
                     <div className="relative">
-                        <input
-                            className={`border border-primary rounded-md pl-2 outline-primary p-2 w-full ${passwordError ? 'border-errorRed' : null}`}
-                            placeholder="Password" 
-                            type={showPassword ? 'text' : 'password'}
+                        <PasswordInput
                             value={password}
                             onChange={handlePasswordChange}
+                            error={passwordError}
                         />
+
                         <button 
                             className="absolute top-1/2 right-2 transform -translate-y-1/2"
                             onClick={togglePasswordVisibility}
                         >
-                            <div>
-                            {showPassword ? <VisibilityOffIcon/> : <VisibilityIcon/>}
-                            </div>
                         </button>
                     </div>
                 </div>
                 <div className="flex flex-row justify-between w-full gap-2">
                     <div className="w-1/2">
                         <DateOfBirthInput
-                            dateOfBirth={dateOfBirth}
-                            handleDateOfBirthChange={handleDateOfBirthChange}
+                            value={dateOfBirth}
+                            onChange={handleDateOfBirthChange}
                             error={dateOfBirthError}
                         />
                     </div>
                     <div className="w-1/2">
                         <PhoneNumberInput 
-                            phoneNumber={phoneNumber}
-                            handlePhoneNumberChange={handlePhoneNumberChange}
+                            value={phoneNumber}
+                            onChange={handlePhoneNumberChange}
                             error={phoneNumberError}
                         />
                     </div>
