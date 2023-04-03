@@ -9,6 +9,7 @@ import { fetchCreateUser } from "../../../api/fetchUser";
 import AccountValidator from "./validation";
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD } from "./validation";
 import ErrorMessages from "../../utils/ErrorMessages";
+import { DateOfBirthInput, PhoneNumberInput } from "./Inputs";
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
@@ -130,24 +131,20 @@ const CreateAccount = () => {
                     </div>
                 </div>
                 <div className="flex flex-row justify-between w-full gap-2">
-                    <MaskedInput
-                        mask={[/\d/, /\d/, "-", /\d/, /\d/,  "-", /\d/, /\d/, /\d/, /\d/,]}
-                        guide={false}
-                        value={dateOfBirth}
-                        onChange={handleDateOfBirthChange}
-                        className={`w-1/2 border border-primary rounded-md pl-2 outline-primary p-2 ${dateOfBirthError ? 'border-errorRed' : null}`}
-                        placeholder="Date of Birth"
-                        type="text"
-                    />
-                    <MaskedInput
-                    mask={[/\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-                    guide={false}
-                    value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                    className={`w-1/2 border border-primary rounded-md pl-2 outline-primary p-2 ${phoneNumberError? 'border-errorRed' : null}`}
-                    placeholder="Phone Number"
-                    type="text"
-                    />
+                    <div className="w-1/2">
+                        <DateOfBirthInput
+                            dateOfBirth={dateOfBirth}
+                            handleDateOfBirthChange={handleDateOfBirthChange}
+                            error={dateOfBirthError}
+                        />
+                    </div>
+                    <div className="w-1/2">
+                        <PhoneNumberInput 
+                            phoneNumber={phoneNumber}
+                            handlePhoneNumberChange={handlePhoneNumberChange}
+                            error={phoneNumberError}
+                        />
+                    </div>
                 </div>
                 <ErrorMessages errorMessages={errorMessages}/>
                 <div className="w-full flex flex-row items-center">
