@@ -65,6 +65,7 @@ class User(AbstractBaseUser):
 
     is_email_verified = models.BooleanField(default=False)
     verification_token = models.CharField(max_length=255, null=True, blank=True)
+    password_reset_verification_token = models.CharField(max_length=255, null=True, blank=True)
     
     is_active = models.BooleanField(default=True)
 

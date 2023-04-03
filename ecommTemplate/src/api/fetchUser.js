@@ -23,8 +23,7 @@ export async function fetchCreateUser(userData){
             body: JSON.stringify(data),
         });
 
-        const resp = await response.json()
-        return resp
+        return response
 
     } catch (error) {
         throw error
@@ -93,5 +92,22 @@ export async function updateUserInformation(userData, type){
     } catch (error) {
         throw error
     }
+}
 
+export async function fetchResetPassword(email){
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/reset-password/`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN' : getCookie('csrftoken'),
+            },
+            body: JSON.stringify({email: email}),
+        })
+        return response
+        
+    } catch (error) {
+        throw error
+    }
 }

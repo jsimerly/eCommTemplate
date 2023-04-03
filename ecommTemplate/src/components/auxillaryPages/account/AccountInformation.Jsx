@@ -4,7 +4,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import SaveIcon from '@mui/icons-material/Save';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useEffect, useState } from "react";
-import { fetchUserInformation, updateUserInformation } from '../../../api/fetchUser';
+import { fetchResetPassword, fetchUserInformation, updateUserInformation } from '../../../api/fetchUser';
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD, convertDateFormat_YYYYMMYDD_to_MDDYY } from './validation';
 import AccountValidator from './validation';
 import ErrorMessages from '../../utils/ErrorMessages';
@@ -191,19 +191,9 @@ const AccountInformation = () => {
   }
 
   const handleForgotPassword = async () => {
-    const response = await updateUserInformation({
-      first_name : firstName,
-      last_name : lastName,      
-    },
-    'account')
-
+    const response = await fetchResetPassword(email)
     if (response.ok){
-      const data = await response.json()
-      setFirstName(data.first_name)
-      setLastName(data.last_name)
-      setOpenNames(false)
-    } else {
-      // notification there was an error
+      handleNotification(`An email has been sent to ${email}. From there you will be able to reset your password.`)
     }
   }
 

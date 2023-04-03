@@ -1,16 +1,20 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { BlueButton } from "../../utils";
 import { fetchCreateUser } from "../../../api/fetchUser";
 import AccountValidator from "./validation";
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD } from "./validation";
 import ErrorMessages from "../../utils/ErrorMessages";
 import { DateOfBirthInput, PasswordInput, PhoneNumberInput } from "./Inputs";
+import { useNavigate } from 'react-router-dom';
+
+import { ShoppingContext } from '../../../context';
 
 const CreateAccount = () => {
+    const navigate = useNavigate()
+    const {handleNotification} = useContext(ShoppingContext)
+  
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [firstNameError, setFirstNameError] = useState(false);
@@ -29,11 +33,7 @@ const CreateAccount = () => {
     const [recieveEmails, setRecieveEmails] = useState(true)
 
     const [errorMessages, setErrorMessages] = useState([])
-
-    const [showPassword, setShowPassword] = useState(false)
-    const togglePasswordVisibility = () => setShowPassword((showPassword) => !showPassword);
     
-
     const handleFirstNameChange = (e) => setFirstName(e.target.value);
     const handleLastNameChange = (e) => setLastName(e.target.value);
     const handleEmailChange = (e) => setEmail(e.target.value);
@@ -75,10 +75,16 @@ const CreateAccount = () => {
 
             const response = await fetchCreateUser(userData)
 
-            if (response.email && response.email.length > 0){
-                setEmailError(response.password)
-                setErrorMessages(response.email)
+            if (response.ok){
+                navigate('/')
+                handleNotification('Your account has been created, Welcome to Blue Elf. Please Remeber to verify your email address.')
+                return
+            } else if (response.status === 400){
+                const resp = await response.json()
+                setErrorMessages(resp.email)
             }
+
+
         } catch (error) {
             throw error
         }

@@ -19,14 +19,13 @@ def send_email_verification(user, request, token):
 
     send_mail(SUBJECT, body, FROM_EMAIL, recipient_list)
 
-def send_password_reset_verification(user, request):
-    token = uuid4().hex
+def send_password_reset_verification(user, request, token):
 
     SUBJECT = 'Reset Password: Blue Elf'
     FROM_EMAIL = 'activate@goblueelf.com'
     
     current_site = get_current_site(request)
-    body = render_to_string('verify_password_email', {
+    body = render_to_string('verify_password_email.html', {
         'domain' : current_site,
         'verification_token' : token
     })
