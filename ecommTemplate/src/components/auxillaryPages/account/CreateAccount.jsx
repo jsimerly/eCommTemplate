@@ -3,7 +3,6 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import MaskedInput from "react-text-mask";
 import { BlueButton } from "../../utils";
 import { fetchCreateUser } from "../../../api/fetchUser";
 import AccountValidator from "./validation";

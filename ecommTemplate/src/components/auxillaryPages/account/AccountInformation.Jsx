@@ -8,6 +8,10 @@ import { fetchUserInformation, updateUserInformation } from '../../../api/fetchU
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD, convertDateFormat_YYYYMMYDD_to_MDDYY } from './validation';
 import AccountValidator from './validation';
 import ErrorMessages from '../../utils/ErrorMessages';
+import { PhoneNumberInput, DateOfBirthInput } from './Inputs';
+import { useContext } from 'react';
+import { ShoppingContext } from '../../../context';
+
 
 
 const AccountInformation = () => {
@@ -39,6 +43,8 @@ const AccountInformation = () => {
 
   const [newsletter, setNewsletter] = useState(false)
   const [marketing, setMarketing] = useState(false)
+
+  const {handleNotification} = useContext(ShoppingContext)
 
   useEffect(() => {
     const fetchInfo = async () => {
@@ -102,6 +108,7 @@ const AccountInformation = () => {
       setFirstName(data.first_name)
       setLastName(data.last_name)
       setOpenNames(false)
+      handleNotification('Your name has been updated.')
     } else {
       // notification there was an error
     }
@@ -131,6 +138,7 @@ const AccountInformation = () => {
       const data = await response.json()
       setEmail(data.email)
       setPhone(data.phone_number)
+      handleNotification('Your account information has been updated.')
     } else {
       // notification there was an error
     }
@@ -156,8 +164,10 @@ const AccountInformation = () => {
 
     if (response.ok){
       const data = await response.json()
-      setFirstName(data.date_of_birth)
-      setLastName(data.drivers_license_id)
+
+      setDob(convertDateFormat_YYYYMMYDD_to_MDDYY(data.date_of_birth))
+      setDln(data.drivers_license_id)
+      handleNotification('Your personal information has been updated.')
     } else {
       // notification there was an error
     }
@@ -170,12 +180,11 @@ const AccountInformation = () => {
     },
     'preferences')
     
-
     if (response.ok){
       const data = await response.json()
-      setFirstName(data.first_name)
-      setLastName(data.last_name)
-      setOpenNames(false)
+      setMarketing(data.prefernce_recieve_emails)
+      setNewsletter(data.prefernce_newsletter)
+      handleNotification('Your preferences have been updated.')
     } else {
       // notification there was an error
     }
@@ -218,13 +227,13 @@ const AccountInformation = () => {
                   {openNames ? 
                     <div className='flex flex-row w-1/2 items-center mt-1'>
                         <input
-                          className='p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary'
+                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ${firstNameError? 'border-errorRed' : null}`}
                           placeholder='First Name'
                           value={firstName}
                           onChange={handleFirstNameChange}
                         />
                         <input
-                          className='p-2 ml-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary'
+                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ml-2 ${lastNameError? 'border-errorRed' : null}`}
                           placeholder='Last Name'
                           value={lastName}
                           onChange={handleLastNameChange}
@@ -261,7 +270,7 @@ const AccountInformation = () => {
                   <h3 >Email Address</h3>
                   <div className="relative w-1/2">
                     <input
-                      className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
+                      className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${emailError? 'border-errorRed' : null }`}
                       placeholder="Email"
                       value={email}
                       onChange={handleEmailChange}
@@ -271,11 +280,10 @@ const AccountInformation = () => {
                 <div className="ml-4 py-4">
                   <h3 >Phone Number</h3>
                   <div className="relative w-1/2">
-                    <input
-                      className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
-                      placeholder="Phone"
+                    <PhoneNumberInput
                       value={phone}
                       onChange={handlePhoneNumberChange}
+                      error={phoneError}
                     />
                   </div>
                 </div>
@@ -336,20 +344,20 @@ const AccountInformation = () => {
                 <div className="ml-4 pt-4">
                   <h3 >Date Of Birth</h3>
                   <div className="relative w-1/2">
-                    <input
-                      className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
-                      placeholder="Date of Birth"
+                    <DateOfBirthInput
                       value={dob}
                       onChange={handleDobChange}
+                      error={dateOfBirthError}
                     />
                   </div>
                 </div>
                 <div className="ml-4 py-4">
                   <h3 >Drivers License ID</h3>
                   <p className="text-[12px]"> We need a Driver License ID to confirm identify for larger purchases.</p>
-                  <div className="relative w-1/2">
+                  <div className="w-1/2">
+
                     <input
-                      className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
+                      className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${driversLicenseError ? 'border-errorRed' : null}`}
                       placeholder="Driver's License ID"
                       value={dln}
                       onChange={handleDlnChange}
