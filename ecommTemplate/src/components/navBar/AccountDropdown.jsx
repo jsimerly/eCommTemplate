@@ -68,7 +68,7 @@ const LoggedInComp = ({userInfo}) => {
 const UnauthedComp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
+    const navigate = useNavigate()    
 
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -80,6 +80,10 @@ const UnauthedComp = () => {
 
     const handleSignUp = () => {
         navigate('/sign-up')
+    }
+
+    const handleForgotPasswordClicked = () => {
+        navigate('/reset-password')
     }
 
 
@@ -115,7 +119,7 @@ const UnauthedComp = () => {
                     />
                 </div>
             </div>
-            <span className='text-[12px] underline'> Forgot Password </span>
+            <a onClick={handleForgotPasswordClicked} className='text-[12px] underline'> Forgot Password </a>
         </div>
     )
 }

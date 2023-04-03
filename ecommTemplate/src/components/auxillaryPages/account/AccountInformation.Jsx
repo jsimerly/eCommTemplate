@@ -81,6 +81,7 @@ const AccountInformation = () => {
                 </div>
                 <span>Account Owner</span>
               </div>
+
               <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
                 <h2 className="font-bold">Account Information</h2>
                 <div className="ml-4 pt-4">
@@ -89,7 +90,7 @@ const AccountInformation = () => {
                     <input
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Email"
-                      value={1}
+                      value={email}
                       onChange={null}
                     />
                   </div>
@@ -100,7 +101,7 @@ const AccountInformation = () => {
                     <input
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Phone"
-                      value={1}
+                      value={phone}
                       onChange={null}
                     />
                   </div>
@@ -121,7 +122,7 @@ const AccountInformation = () => {
                       <input
                         className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                         placeholder="Password"
-                        value={1}
+                        value={newPassword_1}
                         onChange={null}
                       />
                     </div>
@@ -132,7 +133,7 @@ const AccountInformation = () => {
                       <input
                         className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                         placeholder="Password"
-                        value={1}
+                        value={newPassword_2}
                         onChange={null}
                       />
                     </div>
@@ -163,7 +164,7 @@ const AccountInformation = () => {
                     <input
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Date of Birth"
-                      value={1}
+                      value={dob}
                       onChange={null}
                     />
                   </div>
@@ -175,7 +176,7 @@ const AccountInformation = () => {
                     <input
                       className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                       placeholder="Driver's License ID"
-                      value={1}
+                      value={dln}
                       onChange={null}
                     />
                   </div>

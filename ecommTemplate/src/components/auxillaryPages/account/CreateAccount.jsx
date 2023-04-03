@@ -6,50 +6,9 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import MaskedInput from "react-text-mask";
 import { BlueButton } from "../../utils";
 import { fetchCreateUser } from "../../../api/fetchUser";
+import AccountValidator from "./validation";
 
-const isValidDate = (dateString) => {
-    const datePattern = /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4}$/;
-  
-    if (!datePattern.test(dateString)) {
-      return false;
-    }
-  
-    const dateParts = dateString.split("-");
-    const month = parseInt(dateParts[0], 10);
-    const day = parseInt(dateParts[1], 10);
-    const year = parseInt(dateParts[2], 10);
-  
-    if (month < 1 || month > 12) {
-      return false;
-    }
-  
-    const maxDaysInMonth = new Date(year, month, 0).getDate();
-    if (day < 1 || day > maxDaysInMonth) {
-      return false;
-    }
-  
-    return true;
-  };
-
-  const isOver18 = (dateString) => {
-    const dateParts = dateString.split("-");
-    const month = parseInt(dateParts[0], 10);
-    const day = parseInt(dateParts[1], 10);
-    const year = parseInt(dateParts[2], 10);
-    const userDateOfBirth = new Date(year, month - 1, day);
-  
-    const currentDate = new Date();
-    const date18YearsAgo = new Date(currentDate.setFullYear(currentDate.getFullYear() - 18));
-  
-    return userDateOfBirth <= date18YearsAgo;
-  };
-
-  const isValidEmail = (emailString) => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(emailString);
-  }
-
-  const convertDateFormat = (dateString) => {
+const convertDateFormat = (dateString) => {
     const dateParts = dateString.split("-");
     const month = parseInt(dateParts[0], 10);
     const day = parseInt(dateParts[1], 10);
@@ -61,7 +20,6 @@ const isValidDate = (dateString) => {
   
     return formattedDate;
   };
-
 
 const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
@@ -94,73 +52,23 @@ const CreateAccount = () => {
 
     const [errorMessages, setErrorMessages] = useState([])
 
+    let accountValidator = new AccountValidator()
+
     const handleCreateAccount = async () => {
-        let errors = []
+        accountValidator.resetErrors()
 
-        if(!firstName){
-            errors.push('Please fill in the First Name field.')
-            setFirstNameError(true)
-        } else {
-            setFirstNameError(false)
-        }
+        accountValidator.validateFirstName(firstName, setFirstNameError)
+        accountValidator.validateLastName(lastName, setLastNameError)
+        accountValidator.validateEmail(email, setEmailError)
+        accountValidator.validatePassword(password, setPasswordError)
+        accountValidator.validateDateOfBirth(dateOfBirth, setDateOfBirthError)
+        accountValidator.validatePhoneNumber(phoneNumber, setPhoneNumberError)
 
-        if(!lastName){
-            errors.push('Please fill in the Last Name field.')
-            setLastNameError(true)
-        } else {
-            setLastNameError(false)
-        }
+        console.log(accountValidator.errors)
 
+        setErrorMessages(accountValidator.errors)
 
-        if(!email){
-            errors.push('Please fill in the Email field.')
-            setEmailError(true)
-        } else if (!isValidEmail(email)){
-            errors.push('Please enter a valid email address.')
-            setEmailError(true)
-        } else {
-            setEmailError(false)
-        }
-
-        const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
-        if(!password){
-            errors.push('Please fill in the Password field.')
-            setPasswordError(true)
-        } else if (!passwordPattern.test(password)) {
-            errors.push(
-              "Password must contain at least 1 uppercase letter and 1 special character."
-            );
-            setPasswordError(true)
-        } else {
-            setPasswordError(false)
-        }
-
-        if(!dateOfBirth){
-            errors.push('Please fill in the Date of Birth field.')
-            setDateOfBirthError(true)
-        } else if (!isValidDate(dateOfBirth)){
-            errors.push('Invalid date format, please enter your date of birth in MM-DD-YYYY format.')
-            setDateOfBirthError(true)
-        } else if (!isOver18(dateOfBirth)) {
-            errors.push('You must be at least 18 years old to create and account and order from Blue Elf. This will be verified upon delivery or pick up.');
-            setDateOfBirthError(true)
-        } else {
-            setDateOfBirthError(false)
-        }
-
-        const phoneNumberPattern = /^\d{3}-\d{3}-\d{4}$/;
-        if(!phoneNumber){
-            errors.push('Please fill in the Phone Number field.')
-            setPhoneNumberError(true)
-        } else if (!phoneNumberPattern.test(phoneNumber)) {
-            errors.push('Invalid phone number, please enter it in 555-555-5555 format.')
-            setPhoneNumberError(true)
-        } else {
-            setPhoneNumberError(false)
-        }
-        setErrorMessages(errors)
-
-        if (errors.length > 0){
+        if (accountValidator.errors.length > 0){
             return
         }
 
