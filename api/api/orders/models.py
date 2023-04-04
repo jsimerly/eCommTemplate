@@ -4,6 +4,7 @@ from products.models import Product, Stock
 from customer.models import Customer
 from django.contrib.postgres.fields import DateRangeField
 from django.contrib.auth import get_user_model
+from orders import promo_validators
 
 User = get_user_model()
 
@@ -22,20 +23,22 @@ class Promo(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
     name = models.CharField(max_length=60)
     description = models.TextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    code = models.CharField(max_length=20)
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
+    code = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    auto_apply = models.BooleanField(default=False)
 
-    free_item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
-    flat_discount = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
-    percentage_discont = models.DecimalField(decimal_places=2, max_digits=2, null=True, blank=True)
+    free_item = models.ForeignKey(Product, on_delete=models.CASCADE, default=None)
+    flat_discount = models.DecimalField(decimal_places=2, max_digits=8, default=0)
+    percentage_discount = models.DecimalField(decimal_places=2, max_digits=2, default=.0)
+    stacks_with_other_promos = models.BooleanField(default=False)
 
-    validation_function_name = models.CharField(max_length=60) #use getattr and run this
+    validation_function_name = models.CharField(max_length=100) #use getattr and run this
 
-    def is_valid_for_cart(self, *args, **kwargs):
-        #go to promos.py to search for the promos
-        pass
-
+    def get_validation_function(self):
+        validation_function = getattr(promo_validators, self.validation_function_name)
+        return validation_function
+    
     def __str__(self):
         return self.name
     
@@ -50,19 +53,18 @@ class Cart(models.Model):
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
-        null=False
+        null=False,
+        related_name='cart'
     )
 
     sub_total = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     insurance_total = models.DecimalField(decimal_places=2, max_digits=8, default=0)
     tax_total = models.DecimalField(decimal_places=2, max_digits=8, default=0)
 
-    promos = models.ForeignKey(Promo, on_delete=models.CASCADE, null=True, blank=True)
-
     total_cost = models.DecimalField(decimal_places=2, max_digits=8, default=0)
 
     def __str__(self):
-        return self.uuid
+        return str(self.uuid) + ' - Cart Obj'
 
 class CartItems(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
@@ -96,7 +98,7 @@ class CartItems(models.Model):
     quantity = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.uuid
+        return str(self.uuid) + ' - Cart Item Obj'
 
 class ItemFavorited(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
@@ -128,6 +130,20 @@ def generate_order_id():
 
 class FullOrder(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='orders'
+    )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='orders'
+    )
+
     order_id = models.CharField(max_length=20, default=generate_order_id, unique=True)
 
     user = models.ForeignKey(User, models.CASCADE, blank=True)

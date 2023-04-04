@@ -117,3 +117,14 @@ export async function fetchBrowseHistory(setterFunc, startDate, endDate, dateCha
         throw error
     }
 }
+
+export async function fetchPromoCode(code, startDate, endDate, dateChange){
+    const [start, end] = parseDates(startDate, endDate)
+
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/promo-validation/${code}/?${datesUrlString(start, end, dateChange)}`)
+        return response
+    } catch (error) {
+        throw (error)
+    }
+}

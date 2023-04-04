@@ -1,10 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from orders.models import Cart, CartItems, ItemFavorited
+from orders.models import Cart, CartItems, ItemFavorited, Promo
 from products.models import Product
 from django.db.models import Count
-from orders.serializers import Cart_Serializer, CartItem_Serializer
+from orders.serializers import Cart_Serializer, Promo_Serializer
 from products.views import getDateContext
 from products.serializers import ProductCard_Serializer
 from django.contrib.auth.models import AnonymousUser
@@ -132,5 +132,27 @@ class CartSizeView(APIView):
         customer = request.customer
         cart_size = CartItems.objects.filter(customer=customer).aggregate(size=Count('id'))['size'] or 0
         return Response({'cart_size': cart_size}, status=status.HTTP_200_OK)
+
+class PromoCodeView(APIView):
+    serializer = Promo_Serializer()
+
+    def get(self, request, code):
+        context = getDateContext(request)
+        customer = request.customer
+        try:
+            promo = Promo.objects.get(code=code)
+            cart = Cart.objects.get(customer=customer)
+
+            validator_function = promo.get_validation_function()
+            is_validated = validator_function(cart=cart, user=request.user, context=context)
+
+            if is_validated:
+                serializer = Promo_Serializer(promo, context=context)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            
+            return Response({'error' : 'Your current cart does not qualify for this promotion.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        except Promo.DoesNotExist:
+            return Response({'error': 'Promo not found'}, status=status.HTTP_404_NOT_FOUND)
 
 

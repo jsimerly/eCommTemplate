@@ -1,7 +1,7 @@
 from products.serializers import ProductCard_Serializer, ProductImage_Serializer
 
 from rest_framework import serializers
-from orders.models import Cart, CartItems, Stock, ItemFavorited
+from orders.models import Cart, CartItems, Promo, ItemFavorited
 from products.models import Product
 
 class CartCard_Serializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class Cart_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = ['uuid', 'user', 'customer', 'sub_total', 'insurance_total', 'tax_total', 'promos', 'total_cost', 'items', 'days']
+        fields = ['uuid', 'user', 'customer', 'sub_total', 'insurance_total', 'tax_total', 'total_cost', 'items', 'days']
 
     def get_items(self, obj):
         items = CartItems.objects.all().filter(cart=obj)
@@ -40,8 +40,19 @@ class Cart_Serializer(serializers.ModelSerializer):
     def get_days(self, obj):
         return self.context['days']
 
-    
 class AddFavorite_Serializer(serializers.ModelSerializer):
     class Meta:
         model = ItemFavorited
         fields = ['uuid', 'user', 'customer', 'item']
+
+class Promo_Serializer(serializers.ModelSerializer):
+    free_item = serializers.SerializerMethodField('get_free_item')
+    class Meta:
+        model = Promo
+        fields = ['uuid', 'name', 'description', 'code', 'free_item', 'flat_discount', 'percentage_discount']
+
+    def get_free_item(self, obj):
+        serializer = CartCard_Serializer(obj.free_item, context=self.context)
+        return serializer.data
+
+

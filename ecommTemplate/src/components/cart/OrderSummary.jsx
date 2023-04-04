@@ -7,6 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { payment } from '../../assets/svg'
 import { Where, When } from '../tripInfo';
 import { LargeBlueButton } from '../utils';
+import { fetchPromoCode } from '../../api/fetchCart';
 
 
 
@@ -15,13 +16,21 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
     const [promoCode, setPromoCode] = useState()
     const [activePromos, setActivePromos] = useState([])
 
-    const {selectedDestination} = useContext(ShoppingContext)
+    const {selectedDestination, selectedDateRange} = useContext(ShoppingContext)
 
-    const handlePromoAdded = (code) => {
+    const handlePromoAdded = async (code) => {
+        const response = await fetchPromoCode(code, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+        const resp = await response.json()
+
         let newActives = activePromos
-        newActives.push(code)
+        newActives.push(resp.name)
         setActivePromos([...newActives])
     } 
+
+    const handlePromoCodeChange = (e) => {
+        console.log(e.target.value.toUpperCase())
+        setPromoCode(e.target.value.toUpperCase())
+    }
 
     const getTax = (preTaxTotal) => {
         const taxRate = selectedDestination ? selectedDestination.taxRate : 0.07
@@ -34,7 +43,6 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
         const total = taxes + preTaxTotal
         return Math.ceil(total * 100) / 100
     }
-
 
   return (
     <div className='bg-white rounded-md w-full flex flex-col px-6 py-6'>
@@ -73,7 +81,8 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
                     <input 
                         className='border border-primary p-2 rounded-md outline-primary flex'
                         placeholder='PROMO CODE'
-                        onChange={(e)=>setPromoCode(e.target.value)}
+                        value={promoCode}
+                        onChange={handlePromoCodeChange}
                     />
                     <div className='p-2 bg-primary rounded-md ml-1 cursor-pointer group'>
                         <AddIcon

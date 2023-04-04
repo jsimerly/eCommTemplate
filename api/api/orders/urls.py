@@ -9,5 +9,6 @@ urlpatterns = [
     name='favorite_item'),
     path('cart-size/', CartSizeView.as_view(), name='cart_size'),
     path('remove-favorite/<uuid:uuid>/', FavoriteItemDeleteView.as_view(), name='remove_favorite'),
-    path('all-favorites/', FavoritedItemsView.as_view(), name='all_favorites')
+    path('all-favorites/', FavoritedItemsView.as_view(), name='all_favorites'),
+    path('promo-validation/<code>/', PromoCodeView.as_view(), name='promo_code_validation')
 ]
