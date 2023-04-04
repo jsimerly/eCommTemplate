@@ -6,16 +6,20 @@ import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import { useEffect, useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ErrorBoundry from '../utils/ErrorBoundry';
 
 const LoggedInComp = ({userInfo}) => {
     const {handleNotification} = useContext(ShoppingContext)
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[navigate])
     
     const handleOrdersClicked = () => {
         navigate('/find-order')
-        setTimeout(function() {
-            handleNotification("You don't appear to have any orders, try searching for an order you may have made before you created your account.")
-          }, 123);
+        handleNotification("You don't appear to have any orders, try searching for an order you may have made before you created your account.")
+
 
     }
 
@@ -28,6 +32,7 @@ const LoggedInComp = ({userInfo}) => {
     }
 
     return(
+        <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
         <div className='flex flex=row justify-between pt-2'>
             <div className={`${open ?  '' : 'hidden'} bg-white w-full text-tertiary`}>
                 <h3 className='pb-1 font-bold'>
@@ -37,15 +42,15 @@ const LoggedInComp = ({userInfo}) => {
                     <li 
                         className='hover:underline cursor-pointer'
                         onClick={handleAccountClicked}
-                    > Account Details </li>
+                        > Account Details </li>
                     <li 
                         className='hover:underline cursor-pointer'
                         onClick={handleOrdersClicked}
-                    > Orders </li>
+                        > Orders </li>
                     <li
                         className='hover:underline cursor-pointer'
                         onClick={handleFavoritesClicked}
-                    > Favorites </li>
+                        > Favorites </li>
 
                 </ul>
                 <div className='border border-primary m-2'/>
@@ -56,12 +61,13 @@ const LoggedInComp = ({userInfo}) => {
                     <div 
                         className='hover:scale-110'
                         onClick={handleLogout}
-                    >
+                        >
                         <LogoutIcon/>
                     </div>
                 </div>
             </div>
         </div>
+        </ErrorBoundry>
     )
 }
 

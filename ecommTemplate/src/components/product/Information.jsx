@@ -1,4 +1,5 @@
 import { SwitchComp } from "../utils"
+import ErrorBoundry from "../utils/ErrorBoundry"
 import {Details, ReturnDamage, Reviews, Specs} from './'
 
 const Information = ({secondaryCardInfo}) => {
@@ -20,6 +21,7 @@ const Information = ({secondaryCardInfo}) => {
   }
   
   return (
+    <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
     <div className="bg-white rounded-md flex flex-col justify-center items-center mt-20 text-tertiary">
         <h1 className="text-[30px] pt-4">
             Product Information
@@ -29,9 +31,10 @@ const Information = ({secondaryCardInfo}) => {
               compDict={infoDict}
               defComp={'Details'}
               className='!border-none'
-            />
+              />
         </div>
     </div>
+    </ErrorBoundry>
   )
 }
 

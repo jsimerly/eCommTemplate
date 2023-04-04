@@ -3,6 +3,7 @@ import { fetchItemsToCart } from '../../api/fetchCart';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import navigateProduct from '../../hooks/navigateProduct';
+import ErrorBoundry from '../utils/ErrorBoundry';
 
 const SmallCard = ({item, addExtraFunction}) => {
   const slug = item.slug
@@ -31,19 +32,19 @@ const SmallCard = ({item, addExtraFunction}) => {
   }
 
   return (
-  
+    <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
     <div className="bg-tertiaryTone-100 m-1 p-2 flex flex-col rounded-md">
       <div className="w-[150px] h-[150px] mb-2 cursor-pointer">
         <img
           className="bg-white object-scale-down rounded-md"
           src={item.main_image.image}
           onClick={navigate}
-        />
+          />
       </div>
       <div 
         className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold"
         onClick={navigate}
-      >
+        >
         {item.name}
       </div>
       <div className="flex flex-row justify-between">
@@ -57,6 +58,7 @@ const SmallCard = ({item, addExtraFunction}) => {
         </div>
       </div>
     </div>
+    </ErrorBoundry>
   )
 }
 

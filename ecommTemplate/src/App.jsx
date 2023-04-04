@@ -17,6 +17,8 @@ import AboutUs from './components/auxillaryPages/AboutUs';
 import { fetchCartSize } from './api/fetchCart';
 import NotificationBar from './components/navBar/NotificationBar';
 import navigateCart from './hooks/navigateCart';
+import ErrorBoundry from './components/utils/ErrorBoundry';
+import Empty from './components/utils/Empty';
 
 
 
@@ -120,6 +122,7 @@ function App() {
             setNotification={setNotification}
           />
           <div className='h-[80px]'/>
+          <ErrorBoundry fallback={<Empty className='my-[200px]'/>}>
           <Routes>
             <Route exact path='/' element={ <LandingPage/>}/> 
             <Route path='/about-us' element={<AboutUs/>}/> 
@@ -144,11 +147,13 @@ function App() {
             <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}
             <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> 
           </Routes>
+          </ErrorBoundry>
           <div className='flex justify-center items-center'>
             <Footer/>
           </div>
         </ShoppingContext.Provider>
       </div>
+      
   )
 }
 

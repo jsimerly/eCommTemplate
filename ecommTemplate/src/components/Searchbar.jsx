@@ -6,6 +6,7 @@ import navigateShopping from '../hooks/navigateShopping';
 import { What, Where, When } from './tripInfo';
 import navigateSearch from '../hooks/navigateSearch';
 import { BlueButton } from './utils';
+import ErrorBoundry from './utils/ErrorBoundry';
 
 
 const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
@@ -40,35 +41,37 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
     }
 
   return (
-        <div 
-        className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
-        >
+    <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
+    <div 
+    className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
+    >
 
-            <div className='w-1/4 h-[40px] flex'>
-                <Where/>
-            </div>
-            <div className='w-1/4 h-[40px] flex'>
-                <When/> 
-            </div>
-            <div className='w-1/4 h-[40px] flex'>
-                <What
-                    searchInput={searchInput}
-                    setSearchInput={setSearchInput}
-                    searchParamActive={searchParamActive}
-                    setSearchParamActive={setSearchParamActive}
-                />
-            </div>
-            {immediateSearch ? 
-                null
-                :
-                <div className='flex justify-center itmes-center'>
-                    <BlueButton
-                        onClick={handleGoClick}
-                        content={<SearchIcon className='scale-125 hover:scale-150'/>}
-                    />
-                </div>
-            }
+        <div className='w-1/4 h-[40px] flex'>
+            <Where/>
         </div>
+        <div className='w-1/4 h-[40px] flex'>
+            <When/> 
+        </div>
+        <div className='w-1/4 h-[40px] flex'>
+            <What
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                searchParamActive={searchParamActive}
+                setSearchParamActive={setSearchParamActive}
+                />
+        </div>
+        {immediateSearch ? 
+            null
+            :
+            <div className='flex justify-center itmes-center'>
+                <BlueButton
+                    onClick={handleGoClick}
+                    content={<SearchIcon className='scale-125 hover:scale-150'/>}
+                    />
+            </div>
+        }
+    </div>
+    </ErrorBoundry>
   )
 }
 

@@ -9,7 +9,6 @@ import { ShoppingContext } from "../../context";
 
 
 const CartPage = () => {
-
     const {selectedDateRange} = useContext(ShoppingContext)
     const [cart, setCart] = useState([])
     const [items, setItems] = useState([])

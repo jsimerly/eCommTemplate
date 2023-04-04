@@ -11,6 +11,7 @@ import ErrorMessages from '../../utils/ErrorMessages';
 import { PhoneNumberInput, DateOfBirthInput, PasswordInput } from './Inputs';
 import { ShoppingContext } from '../../../context';
 import { useNavigate } from 'react-router-dom';
+import ErrorBoundry from '../../utils/ErrorBoundry';
 
 const AccountInformation = () => {
   const navigate = useNavigate()
@@ -216,6 +217,8 @@ const AccountInformation = () => {
              Manage Your Profile
             </h2>
             <div>
+              <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
+
               <div className="bg-tertiaryTone-100 rounded-md p-6 w-full">
                 <div className='flex flex-row items-center'>
                   {openNames ? 
@@ -225,17 +228,17 @@ const AccountInformation = () => {
                           placeholder='First Name'
                           value={firstName}
                           onChange={handleFirstNameChange}
-                        />
+                          />
                         <input
                           className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ml-2 ${lastNameError? 'border-errorRed' : null}`}
                           placeholder='Last Name'
                           value={lastName}
                           onChange={handleLastNameChange}
-                        />
+                          />
                       <div 
                         className='ml-2 cursor-pointer hover:scale-110'
                         onClick={handleNameSaveClick}
-                      >
+                        >
                         <SaveIcon sx={{fontSize:20}}/>
                       </div>
                     </div>
@@ -247,7 +250,7 @@ const AccountInformation = () => {
                       <div 
                         className='ml-2 cursor-pointer hover:scale-110'
                         onClick={handleOpenNamesClick}
-                      >
+                        >
                         <EditIcon sx={{fontSize:16}}/>
                       </div>
                     </>
@@ -257,7 +260,9 @@ const AccountInformation = () => {
                 <span>Account Owner</span>
                 <ErrorMessages errorMessages={errorMessages_name}/>
               </div>
+              </ErrorBoundry>
 
+              <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">  
               <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
                 <h2 className="font-bold">Account Information</h2>
                 <div className="ml-4 pt-4">
@@ -268,7 +273,7 @@ const AccountInformation = () => {
                       placeholder="Email"
                       value={email}
                       onChange={handleEmailChange}
-                    />
+                      />
                   </div>
                 </div>
                 <div className="ml-4 py-4">
@@ -278,7 +283,7 @@ const AccountInformation = () => {
                       value={phone}
                       onChange={handlePhoneNumberChange}
                       error={phoneError}
-                    />
+                      />
                   </div>
                 </div>
                 <div className="ml-4 pb-4">
@@ -298,7 +303,7 @@ const AccountInformation = () => {
                         value={newPassword_1}
                         onChange={handlePassword_1_Change}
                         error={passwordError}
-                      />
+                        />
                     </div>
                   </div>
                   <div className="ml-4 pb-4">
@@ -308,7 +313,7 @@ const AccountInformation = () => {
                           value={newPassword_2}
                           onChange={handlePassword_2_Change}
                           error={passwordError}
-                        />
+                          />
                     </div>
                   </div>
                 </div>
@@ -316,7 +321,7 @@ const AccountInformation = () => {
                   <h3 
                     className='hover:underline cursor-pointer font-bold'
                     onClick={handleForgotPassword}
-                  >
+                    >
                     Forgot My Password
                   </h3>
                 </div>
@@ -325,92 +330,93 @@ const AccountInformation = () => {
                   <BlueButton
                     content='Update'
                     onClick={handleAccountUpdateClick}
-                  />
+                    />
                 </div>
+            </div>
+            </ErrorBoundry>
 
-          </div>
-
-
-              <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
-                <h2 className="font-bold">Personal Information</h2>
-                <div className="ml-4 pt-4">
-                  <h3 >Date Of Birth</h3>
-                  <div className="relative w-1/2">
-                    <DateOfBirthInput
-                      value={dob}
-                      onChange={handleDobChange}
-                      error={dateOfBirthError}
+            <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
+            <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
+              <h2 className="font-bold">Personal Information</h2>
+              <div className="ml-4 pt-4">
+                <h3 >Date Of Birth</h3>
+                <div className="relative w-1/2">
+                  <DateOfBirthInput
+                    value={dob}
+                    onChange={handleDobChange}
+                    error={dateOfBirthError}
                     />
-                  </div>
-                </div>
-                <div className="ml-4 py-4">
-                  <h3 >Drivers License ID</h3>
-                  <p className="text-[12px]"> We need a Driver License ID to confirm identify for larger purchases.</p>
-                  <div className="w-1/2">
-
-                    <input
-                      className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${driversLicenseError ? 'border-errorRed' : null}`}
-                      placeholder="Driver's License ID"
-                      value={dln}
-                      onChange={handleDlnChange}
-                    />
-                  </div>
-                  <ErrorMessages errorMessages={errorMessages_personal}/>
-                  <div className="w-1/5 mt-4">
-                    <BlueButton
-                      content='Update'
-                      onClick={handlePersonalUpdateClick}
-                    />
-                  </div>
                 </div>
               </div>
+              <div className="ml-4 py-4">
+                <h3 >Drivers License ID</h3>
+                <p className="text-[12px]"> We need a Driver License ID to confirm identify for larger purchases.</p>
+                <div className="w-1/2">
 
-              <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
-                <h2 className="font-bold">Preferences</h2>
-                <div className="ml-4 py-4">
-                  <div className="flex flex-row pb-3">
-                    <div className="text-primary cursor-pointer hover:scale-110">
-                      {newsletter ? 
+                  <input
+                    className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${driversLicenseError ? 'border-errorRed' : null}`}
+                    placeholder="Driver's License ID"
+                    value={dln}
+                    onChange={handleDlnChange}
+                    />
+                </div>
+                <ErrorMessages errorMessages={errorMessages_personal}/>
+                <div className="w-1/5 mt-4">
+                  <BlueButton
+                    content='Update'
+                    onClick={handlePersonalUpdateClick}
+                    />
+                </div>
+              </div>
+            </div>
+            </ErrorBoundry>
+
+            <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something."> 
+            <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
+              <h2 className="font-bold">Preferences</h2>
+              <div className="ml-4 py-4">
+                <div className="flex flex-row pb-3">
+                  <div className="text-primary cursor-pointer hover:scale-110">
+                    {newsletter ? 
+                      <CheckBoxIcon 
+                      onClick={handleNewsletterClick}
+                      />
+                      :
+                      <CheckBoxOutlineBlankIcon
+                      onClick={handleNewsletterClick}
+                      />
+                    }
+                  </div>
+                  <p className="pl-2">Recieve Blue Elf's bi-weekly newsletter.</p>
+                </div>
+                <div className="flex flex-row">
+                  <div className="text-primary cursor-pointer hover:scale-110">
+                      {marketing ? 
                         <CheckBoxIcon 
-                          onClick={handleNewsletterClick}
+                        onClick={handleMarketingClick}
                         />
                         :
                         <CheckBoxOutlineBlankIcon
-                          onClick={handleNewsletterClick}
+                        onClick={handleMarketingClick}
                         />
                       }
-                    </div>
-                    <p className="pl-2">Recieve Blue Elf's bi-weekly newsletter.</p>
                   </div>
-                  <div className="flex flex-row">
-                    <div className="text-primary cursor-pointer hover:scale-110">
-                        {marketing ? 
-                          <CheckBoxIcon 
-                            onClick={handleMarketingClick}
-                          />
-                          :
-                          <CheckBoxOutlineBlankIcon
-                            onClick={handleMarketingClick}
-                          />
-                        }
-                    </div>
-                    <p className="pl-2">Recieve regular marketing and discount emails.</p>
-                  </div>
-                  <div className="w-1/5 mt-4">
-                    <BlueButton
-                      content='Update'
-                      onClick={handlePreferencesUpdateClick}
-                    />
-                  </div>
+                  <p className="pl-2">Recieve regular marketing and discount emails.</p>
                 </div>
-
+                <div className="w-1/5 mt-4">
+                  <BlueButton
+                    content='Update'
+                    onClick={handlePreferencesUpdateClick}
+                    />
+                </div>
               </div>
             </div>
+            </ErrorBoundry>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
   )
 }
 

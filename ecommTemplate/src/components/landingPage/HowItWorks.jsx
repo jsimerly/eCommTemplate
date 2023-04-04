@@ -1,8 +1,8 @@
 import { full_line_drawing } from "../../assets/images/banners"
 import { howToInfo } from "./landingCopy_constant"
-import Searchbar from "../Searchbar"
 
 const StepCard = ({n, title, paragraph, index}) => (
+
     <div className='flex flex-col sm:items-center mx-4 flex-1'>
         <div className='flex justify-start sm:justify-end items-center sm:min-h-[80px] mt-3 sm:mt-0 ml-16 sm:ml-0'>
             <div className='rounded-full min-w-[42px] min-h-[40px] flex justify-center items-center border-4 border-primary text-[24px] text-primary font-bold'>
@@ -29,13 +29,13 @@ const HowItWorksV2 = () => {
                 {howToInfo.steps.map((step, index) => {
                     return (
                         <StepCard 
-                            n={index+1}
-                            title={step.title}
-                            paragraph={step.paragraph}
-                            key={index}
+                        n={index+1}
+                        title={step.title}
+                        paragraph={step.paragraph}
+                        key={index}
                         />
-                    )
-                })}
+                        )
+                    })}
             </div>
             <div className='w-full flex justify-center my-6 order-2 sm:order-3'>
                 <img src={full_line_drawing}/>

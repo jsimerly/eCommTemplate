@@ -2,6 +2,7 @@ import { SmallCard } from '../shopping'
 import CloseIcon from '@mui/icons-material/Close';
 import { fetchAllFavorited, fetchFavoriteDelete } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
+import Empty from '../utils/Empty';
 
 const CustomCard = ({item, deleteFavorite, handleFetchCart}) => {
 
@@ -59,7 +60,12 @@ const Favorites = ({getCost, selectedDateRange, handleFetchCart}) => {
       <div className='bg-white rounded-md py-6 px-6'>
         <p className='pb-3'>Something missing from you cart? Maybe it's one of your favorites. Add items from your favorites list to the cart.</p>
         <div className='flex flex-wrap justify-start items-center'>
-          {favorites.map((item, i) => (
+          {favorites.length === 0 ? 
+          <div className='flex w-full justify-center p-4'>
+              <Empty/>
+          </div>
+          :
+          favorites.map((item, i) => (
             <CustomCard
               item={item}
               getCost={getCost}

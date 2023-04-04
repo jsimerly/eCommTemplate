@@ -5,7 +5,7 @@ const BlogCard = ({title, date, img, link}) => {
     const navigate = useNavigate()
     
     const handleClick = () => {
-        navigate('/blogs/'+link)
+        navigate('/blogs/'+ link)
     }
 
     return(

@@ -7,6 +7,7 @@ import { fetchItemsToCart, fetchItemFavorited } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
+import ErrorBoundry from '../utils/ErrorBoundry';
 
 const ProductCard = ({item}) => {
   const [itemFavorited, setFavorited] = useState(false)
@@ -37,6 +38,8 @@ const ProductCard = ({item}) => {
   }, [item.favorited])
 
   return (
+    <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
+
     <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2 relative group'>
       {item.main_image && (
         <>
@@ -44,11 +47,11 @@ const ProductCard = ({item}) => {
             src={item.main_image.image} 
             className='bg-white object-scale-down rounded-md hover:cursor-pointer'
             onClick={navigate}
-          />
+            />
           <div 
             className={`absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer ${itemFavorited? 'block' : 'hidden'} group-hover:block`}
             onClick={handleFavoriteClicked}
-          >
+            >
             {itemFavorited ? 
               <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
               :
@@ -64,7 +67,7 @@ const ProductCard = ({item}) => {
           <h3 
             className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'
             onClick={navigate}
-          >
+            >
            {item.name}
           </h3>
           <h4 className='text-[12px] sm:text-[18px] tracking-wide'>
@@ -93,18 +96,19 @@ const ProductCard = ({item}) => {
               <BlueButton
                 content='Add to Cart'
                 onClick={handleAddItemClicked}
-              />
+                />
             </div>
             <div className='sm:hidden'>
               <BlueButton
                 className='!p-1'
                 content={<AddIcon/>}
-              />
+                />
             </div>
           </div>
         </div>
       </div>
     </div>
+    </ErrorBoundry>
   )
 }
 

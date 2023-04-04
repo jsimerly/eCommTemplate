@@ -1,4 +1,6 @@
 import { cool_blog, unicorn_blog, games_blog, kids_blog } from '../../../assets/images/blog'
+import * as fun_beach_games_images from '../../../assets/images/blog/beach games'
+import * as east_coast_places_images from '../../../assets/images/blog/places'
 
 export const blogData = {
     'coolest-spots-on-the-east-coast-01042023' : {
@@ -176,4 +178,206 @@ export const blogData = {
             },
         ]   
     },
+
+
+
+
+
+
+    "10-fun-beach-games-12162022" : {
+        img: games_blog,
+        title: "10 Fun Beach Games",
+        date: "Dec 16, 2022",
+        body: [
+            {
+                type:'p',
+                content:"Going to the beach is a fun-filled activity for people of all ages. Whether you're looking to relax and unwind, or have some fun in the sun, the beach offers a wide variety of activities to choose from. One of the most popular activities at the beach is playing games. Here are ten fun games to play at the beach that will keep you and your friends entertained for hours:"
+            },
+            {type:'h2', content: "1. Beach Volleyball"},
+            {type: "img", content: fun_beach_games_images.volleyball,},
+            {
+                type:"p",
+                content:"This classic beach game is a great way to get some exercise while having fun in the sun. All you need is a volleyball and a net, and you're ready to go. Volleyball can be played with any number of players, and can be adapted for different skill levels."
+            },
+
+            {type:"h2", content: "2. Beach Frisbee"},
+            {type: "img", content: fun_beach_games_images.frisbee,},
+            {
+                type:"p",
+                content:"Frisbee is a fun and easy game to play at the beach. All you need is a Frisbee and some open space. You can play catch with a partner or play a game of ultimate Frisbee with a group."
+            },
+
+            {type:"h2", content: "3. Beach Soccer"},
+            {type: "img", content: fun_beach_games_images.soccer,},
+            {
+                type:"p",
+                content:"Soccer is a popular sport that can be played on the beach. All you need is a soccer ball and some friends. You can play a game of one-on-one or organize a full-on soccer match with teams."
+            },
+
+            {type:"h2", content: "4. Sandcastle Building"},
+            {type: "img", content: fun_beach_games_images.sandcastle ,},
+            {
+                type:"p",
+                content:"Building sandcastles is a classic beach activity that can be enjoyed by all ages. All you need is some sand, water, and a bucket, and you're ready to start building. You can compete with friends to see who can build the best sandcastle."
+            },
+
+            {type:"h2", content: "5. Beach Bocce Ball"},
+            {type: "img", content: fun_beach_games_images.bocce_ball },
+            {
+                type:"p",
+                content:"Bocce ball is a fun game that can be played on the beach. It's a game of skill and strategy, and can be played with any number of players."
+            },
+
+            {type:"h2", content: "6. Beach Dodgeball"},
+            {
+                type:"p",
+                content:"Dodgeball is a fun and exciting game that can be played on the beach. All you need is a ball and some friends. You can play one-on-one or organize a full-on dodgeball tournament with teams."
+            },
+
+            {type:"h2", content: "7. Beach Cornhole"},
+            {type: "img", content: fun_beach_games_images.cornhole },
+            {
+                type:"p",
+                content:"Cornhole is a fun and easy game to play on the beach. All you need is a cornhole set and some friends. You can play one-on-one or organize a tournament with teams."
+            },
+
+            {type:"h2", content: "8. Beach Kitesurfing"},
+            {type: "img", content: fun_beach_games_images.kitesurfing },
+            {
+                type:"p",
+                content:"Kitesurfing is a thrilling water sport that can be enjoyed at the beach. All you need is a kite and a board, and you're ready to go. Kitesurfing requires some skill and practice, but it's a great way to enjoy the water and the wind."
+            },
+
+            {type:"h2", content: "9. Beach Treasure Hunt"},
+            {type: "img", content: fun_beach_games_images.treasure},
+            {
+                type:"p",
+                content:"A treasure hunt is a fun activity for kids and adults alike. You can hide objects in the sand and have everyone search for them. You can also create a map and clues to make the treasure hunt more challenging."
+            },
+
+            {type:"h2", content: "10. Beach Yoga"},
+            {type: "img", content: fun_beach_games_images.yoga},
+            {
+                type:"p",
+                content:"Yoga is a great way to relax and unwind at the beach. You can practice yoga on the sand, with the sound of the waves in the background. Yoga is a great way to connect with nature and find inner peace."
+            },
+            {
+                type:"p",
+                content: "The beach offers a wide variety of games and activities that can be enjoyed by people of all ages. Whether you're looking for a high-energy sport or a relaxing activity, the beach has something for everyone. So the next time you head to the beach, grab some friends and try out one of these fun games."
+            },
+        ]
+    },
+
+
+
+    'How-to-make-your-childs-first-beach-day-a-success-01182023' :{
+        img: kids_blog,
+        title: "How to make your child's first beach day a success",
+        date:'Jan 18, 2023',
+        body: [
+         {   type:'p', 
+            content:"Taking your child to the beach for the first time can be an exciting experience for both you and your little one. However, it can also be overwhelming and a bit nerve-wracking. The sun, sand, and sea can be a sensory overload for young children, and it's important to be prepared to make their first beach day a success. Here are some tips to help you and your child have a fun and safe time at the beach:"
+        },
+
+        {type:'h2', content: 'Plan Your Visit'},
+        {
+            type:'p', 
+            content: "The beach is an ideal spot for a fun day out, but proper planning can make all the difference between a good day and a great one. One important consideration is the time of day that you'll be visiting. Early mornings and late afternoons tend to be the best times to hit the beach, particularly if you're with young children. During these times, the sun is not as intense, and there are generally fewer crowds, providing more space to play and relax. In contrast, midday sun can be harsh, and there may be a large number of people, making it hard to find a suitable spot."
+        },
+        {
+            type:'p', 
+            content: "Weather can also make or break a beach day, so it's important to check the forecast ahead of time. This will help you pack appropriately and bring any necessary rain gear or umbrellas. Additionally, if there is a chance of thunderstorms or strong winds, it might be best to reschedule your beach trip. Being prepared for different weather conditions can make your day more comfortable and enjoyable."
+        },
+        {
+            type:'p', 
+            content: "Finally, consider any additional factors that may impact your day at the beach. Check if there are any specific beach rules or regulations, such as no glass bottles, no dogs allowed, or no bonfires. This will help you avoid any unexpected surprises and ensure a smooth, hassle-free day. Additionally, think about the activities you want to do and the items you'll need. For instance, if you plan to swim, bring along sunscreen, towels, and a change of clothes. Similarly, if you want to build sandcastles or play beach volleyball, pack some shovels, buckets, and balls. Proper planning will help ensure that you have everything you need for a fun, memorable day at the beach."
+        },
+
+        {type:'h2', content: 'Pack the Essentials'},
+        {
+            type:'p', 
+            content: "In addition to planning ahead and packing the necessary items, it's important to practice beach safety. Make sure you and your family are aware of any potential hazards such as strong currents, jellyfish, or sharp objects in the sand. If you're not a strong swimmer, it's best to stay close to shore and consider using a life jacket. Keep an eye on young children at all times, and designate a meeting spot in case anyone gets separated.."
+        },
+        {
+            type:'p', 
+            content: "Consider bringing along some fun beach activities to keep everyone entertained throughout the day. This could include sandcastle building supplies, a Frisbee, or a beach ball. Encourage your children to explore and discover new things in the sand and water. Remember to respect the environment by cleaning up any trash you create and leaving the beach as you found it."
+        },
+        {
+            type:'p', 
+            content: "By following these tips, you can help ensure a safe and enjoyable beach day for the whole family. Planning ahead, packing appropriately, practicing beach safety, and bringing fun activities will set you up for a successful day at the beach."
+        },
+
+        {type:'h2', content: 'Stay Safe in the Sun'},
+        {
+            type:'p', 
+            content: "The sun is a major factor to consider when planning a beach day with young children. Sunburn can not only be painful and uncomfortable, but it can also increase the risk of skin cancer in the future. Therefore, it is important to take adequate measures to protect your child's skin from the sun's harmful rays. In addition to applying sunscreen, make sure your child wears a hat and protective clothing to cover as much skin as possible. Sunglasses can also help protect your child's eyes from the sun's glare."
+        },
+        {
+            type:'p', 
+            content: "Aside from sunscreen and sun protection, it's important to keep your child hydrated during the day. Bring plenty of water and healthy snacks to keep your child fueled and energized. Dehydration can lead to fatigue and can be dangerous for young children. Make sure your child takes frequent breaks in the shade to rest and recharge. If your child is playing in the water, make sure they take regular breaks to drink water and reapply sunscreen."
+        },
+        {
+            type:'p', 
+            content: "Finally, it's a good idea to bring along some form of shelter to provide a shaded area for your child to rest and play. A beach umbrella, beach tent, or pop-up shelter can offer a cool and comfortable space to relax and enjoy the beach. This is especially important during the hottest parts of the day when the sun's rays are the strongest. With proper planning and preparation, you and your child can enjoy a safe and fun-filled day at the beach."
+        },
+
+        {type:'h2', content: 'Play it Safe in the Water'},
+        {
+            type:'p', 
+            content: "Water safety is paramount when visiting the beach with young children. The importance of adult supervision cannot be overstated. It is recommended that children under the age of five be supervised by an adult within arm's reach at all times. For older children, it's important to establish clear guidelines and rules before entering the water. Make sure they understand the importance of staying in designated swim areas and avoiding areas with strong currents or rip tides."
+        },
+        {
+            type:'p', 
+            content: "In addition to supervision, it's important to ensure that your child is properly equipped for the water. For young children or non-swimmers, flotation devices are a must. These devices can provide added support and give children the confidence to enjoy the water. Make sure the device fits your child properly and is approved by the Coast Guard. Life jackets can be particularly useful for toddlers or children who are not yet confident swimmers."
+        },
+        {
+            type:'p', 
+            content: "It's also important to be aware of changing water conditions. Tides and currents can quickly change, even on seemingly calm days. Before entering the water, take note of any posted signs or warnings. Make sure to swim within the designated areas and avoid any areas where you may be at risk of getting pulled out to sea. With proper supervision, equipment, and awareness, you can ensure that your child stays safe while enjoying the water at the beach."
+        },
+
+        {type:'h2', content: 'Take Breaks'},
+        {
+            type:'p', 
+            content: "Spending time at the beach can be an exciting and tiring experience for young children. While it's important to keep them engaged and active, it's equally important to ensure they get the rest and nourishment they need to keep going. Plan regular breaks throughout the day where your child can take a break from playing and have a snack or drink. This will give them a chance to rest and refuel, preventing exhaustion and dehydration. Encourage your child to drink plenty of water throughout the day to stay hydrated and avoid heat-related illnesses."
+        },
+        {
+            type:'p', 
+            content: "When packing snacks for the beach, choose healthy options that are easy to eat and won't spoil quickly in the sun. Fresh fruits such as watermelon, grapes, or berries are a great option to keep your child cool and hydrated, while also providing essential vitamins and minerals. Other healthy snack options include trail mix, popcorn, or granola bars. Avoid sugary drinks and snacks as they can cause a sugar crash and make your child feel tired and sluggish."
+        },
+        {
+            type:'p', 
+            content: "Finally, make sure your child has a comfortable spot to rest during breaks. Bring a beach towel or a beach chair where your child can sit and relax while they have their snack or drink. This will give them a chance to cool off and rest their legs, while also providing a shaded spot to escape the sun. By taking regular breaks and providing healthy snacks and drinks, you can ensure your child stays energized and happy throughout the day at the beach."
+        },
+
+        {type:'h2', content: 'Bring Beach Toys and Games'},
+        {
+            type:'p', 
+            content: "Bringing along some beach toys and games can be a great way to keep your child entertained and engaged during your beach day. With so many different options available, you can choose toys and games that will appeal to your child's interests and age group. For younger children, buckets, shovels, and sand molds can provide hours of fun in the sand. They can use them to build sandcastles, dig holes, or make other creative shapes. Older children may enjoy playing with balls, frisbees, or kites, which can be a great way to get some exercise and enjoy the outdoors. You can also encourage your child to play games like catch or volleyball, which can be fun for the whole family to join in."
+        },
+        {
+            type:'p', 
+            content: "In addition to traditional beach toys, you can also bring along some board games or card games to play in the shade or under a beach tent. This can be a great way to take a break from the sun and heat while still enjoying the beach atmosphere. Games like Uno, Go Fish, or even a simple deck of cards can be easy to pack and provide hours of entertainment for your child. You can also bring along some puzzle books or coloring books to keep your child occupied and relaxed during downtime."
+        },
+        {
+            type:'p', 
+            content: "When packing your beach toys and games, be sure to consider the size and weight of each item, as well as the space available in your beach bag or cooler. You may also want to bring along a beach blanket or towel to provide a clean and comfortable surface for your child to play on. With the right toys and games, you can help your child have a fun and memorable beach day."
+        },
+
+        {type:'h2', content: 'Have Fun!'},
+        {
+            type:'p', 
+            content: "The beach offers an opportunity for children to explore and learn about the environment. Take a walk along the shoreline and look for interesting shells, rocks, or creatures that your child can observe and learn about. You can also teach your child about beach safety and the importance of protecting the environment by avoiding littering and keeping the beach clean. Encourage your child to appreciate the beauty of nature and take care of it for future generations."
+        },
+        {
+            type:'p', 
+            content: "Lastly, the beach is a great place to unwind and relax with your child. Bring along a good book, some music, or a magazine and enjoy some downtime while your child plays in the sand or swims in the water. You can also pack a picnic lunch or some snacks and enjoy a meal together. Remember that spending quality time with your child is the most important aspect of the beach day, so make sure to take the time to connect and bond with your child in a fun and relaxing environment."
+        },
+        { type:'p', content:''},
+
+        {
+            type:'p', 
+            content: "A child's first beach day can be a memorable and fun experience for the whole family. By following these tips, you can help ensure a successful and safe trip to the beach. Remember to plan ahead, pack the"
+        },
+        ]
+    }
 }

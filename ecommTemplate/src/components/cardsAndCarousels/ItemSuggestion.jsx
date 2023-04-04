@@ -21,7 +21,6 @@ function scrollN(){
   }
 }
 
-
 const ItemSuggestion = () => {
   const {selectedDateRange} = useContext(ShoppingContext)
   const [suggestions, setSuggestions] = useState([])

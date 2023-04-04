@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom"
+import ErrorBoundry from "../../utils/ErrorBoundry"
 import { blogData } from "./blogs_constant"
 
 const Header = ({text}) => (
@@ -18,6 +19,7 @@ const BlogPage = () => {
   const blog = blogData[blogId]
 
   return (
+    <ErrorBoundry fallback="Oops, Sorry! We seem to be missing something here.">
     <div className="flex justify-center items-center text-tertiary">
       <div className="max-w-[1280px] w-full flex flex-col items-center p-6">
         <div className="p-6">
@@ -25,7 +27,7 @@ const BlogPage = () => {
           <p className="ml-6">{blog.date}</p>
         </div>
         <img src={blog.img} className='rounded-md'/>
-        <div className="w-3/4 flex flex-col justify-center items-center">
+        <div className="w-3/4 flex flex-col justify-center items-center mt-10">
           {blog.body.map((piece, i)=>{
             if (piece.type === 'p'){
               return( <Paragraph key={'blog_p_'+i} text={piece.content}/>)
@@ -40,6 +42,7 @@ const BlogPage = () => {
         </div>
       </div>
     </div>
+    </ErrorBoundry>
   )
 }
 

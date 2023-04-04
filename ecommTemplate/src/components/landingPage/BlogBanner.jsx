@@ -3,7 +3,7 @@ import { BlogCard } from '../auxillaryPages'
 
 const BlogBanner = () => {
   return (
-    <div>
+    <>
         <h1 className="text-center text-[36px] text-tertiary mb-2">
             Our Blogs
         </h1>
@@ -12,11 +12,13 @@ const BlogBanner = () => {
                 img={games_blog} 
                 title={'10 Fun Beach Games'}
                 date={'Dec 16, 2022'}
+                link={"10-fun-beach-games-12162022"}                
             />
             <BlogCard 
                 img={kids_blog} 
                 title={"How to make your child's first beach day a success"}
                 date={'Jan 18, 2023'}
+                link={'How-to-make-your-childs-first-beach-day-a-success-01182023'}
             />
             <BlogCard 
                 img={cool_blog} 
@@ -28,7 +30,7 @@ const BlogBanner = () => {
         <div className="flex justify-center mt-6">
            <a href='/blogs' className='hover:underline hover:cursor-pointer text-tertiary'> View All Blogs </a>
         </div>
-    </div>
+    </>
 
   )
 }
