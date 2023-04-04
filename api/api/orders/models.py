@@ -21,15 +21,18 @@ class Address(models.Model):
 class Promo(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
     name = models.CharField(max_length=60)
+    description = models.TextField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     code = models.CharField(max_length=20)
 
-    free_item = models.ForeignKey(Product, on_delete=models.CASCADE)
-    flat_discount = models.DecimalField(decimal_places=2, max_digits=8)
-    percentage_discont = models.DecimalField(decimal_places=2, max_digits=2)
+    free_item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    flat_discount = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
+    percentage_discont = models.DecimalField(decimal_places=2, max_digits=2, null=True, blank=True)
 
     validation_function_name = models.CharField(max_length=60) #use getattr and run this
 
-    def validate_promo(self, *args, **kwargs):
+    def is_valid_for_cart(self, *args, **kwargs):
         #go to promos.py to search for the promos
         pass
 

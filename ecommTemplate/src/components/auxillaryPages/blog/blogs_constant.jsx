@@ -12,7 +12,7 @@ export const blogData = {
                 content:"If you're looking for a beach vacation, the East Coast of the United States is home to some of the coolest beach destinations in the world. From lively boardwalks to pristine coastlines, these destinations offer an endless array of things to see and do. Here are seven of the coolest beach spots on the East Coast that you won't want to miss."
             },
             {type:'h2', content: '1. Panama City Beach'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.pcb},
             {
                 type:'p', 
                 content: 'Firstly, PCB is located along the Gulf of Mexico in the Florida Panhandle and is known for its stunning white-sand beaches and crystal-clear emerald waters. The city boasts 27 miles of shoreline, offering ample opportunities for visitors to swim, sunbathe, snorkel, and engage in various water sports such as kayaking, parasailing, and paddleboarding. In addition to its beaches, PCB has several state parks and nature reserves that offer visitors the chance to explore the local flora and fauna, go hiking or birdwatching, or take guided tours.'
@@ -26,7 +26,7 @@ export const blogData = {
                 content: "Lastly, PCB has a thriving culinary scene that showcases the region's diverse cuisine. The city has numerous restaurants, cafes, and food trucks that offer visitors a chance to sample everything from fresh seafood to international cuisine. The local cuisine is heavily influenced by the Gulf of Mexico, and visitors can enjoy dishes such as gumbo, fried shrimp, and oysters. Additionally, PCB is home to several farmers' markets and food festivals, such as the Panama City Beach Food Truck and Craft Beer Festival, which provide visitors with a chance to sample the region's locally sourced produce and craft beers."
             },
             {type:'h2', content: '2. Myrtle Beach, South Carolina'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.myrtle_beach},
             {
                 type:'p', 
                 content: 'Myrtle Beach is a beautiful city located in South Carolina, United States, that offers something for everyone. Its wide and sandy beaches are the main attraction, attracting millions of visitors each year. The area is known for its beautiful shoreline, which stretches over 60 miles and offers a range of recreational activities such as swimming, sunbathing, and surfing. Visitors can also enjoy various water activities like jet skiing, parasailing, and boating, making it a perfect destination for adventure enthusiasts.'
@@ -40,7 +40,7 @@ export const blogData = {
                 content: 'Myrtle Beach is also a foodie’s paradise, with an incredible range of dining options. From seafood to steaks and everything in between, the city has something to satisfy every palate. Visitors can sample fresh seafood at one of the many beachside restaurants, indulge in Southern comfort food, or try the local barbecue. The city has a lively nightlife scene, with bars, clubs, and live music venues, making it an excellent place to unwind after a long day at the beach. With so much to offer, Myrtle Beach is a must-visit destination for anyone looking for a fun-filled vacation.'
             },
             {type:'h2', content: '3. Virginia Beach, Virginia'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.virgina_beach},
             {
                 type:'p', 
                 content: "Virginia Beach is a top tourist destination and for good reason. Situated in the heart of Virginia, the city boasts over 35 miles of beautiful coastline, making it the perfect spot for beach lovers. Visitors can enjoy a variety of outdoor activities, such as swimming, surfing, and boating, or simply take a leisurely stroll along the boardwalk. With so much natural beauty to explore, it's easy to see why Virginia Beach is a great city to visit."
@@ -54,7 +54,7 @@ export const blogData = {
                 content: "Finally, Virginia Beach is known for its thriving culinary scene, with an abundance of restaurants serving up fresh seafood and other local specialties. Visitors can savor traditional dishes like clam chowder or crab cakes, or try something new like Virginia-style ham or oysters. Whether you're in the mood for casual dining or a fine dining experience, Virginia Beach has something for everyone. With its stunning natural beauty, diverse attractions, and delicious cuisine, Virginia Beach is definitely a city worth visiting."
             },
             {type:'h2', content: '4. Outer Banks, North Carolina'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.outer_banks},
             {
                 type:'p', 
                 content: 'The Outer Banks of North Carolina is a fantastic vacation spot for people who love the beach and water sports. There are many public beaches along the coast where visitors can relax and sunbathe while enjoying the ocean views. The waters in the Outer Banks are also great for swimming, surfing, windsurfing, kiteboarding, kayaking, and stand-up paddleboarding, making it a paradise for water sports enthusiasts.'
@@ -68,7 +68,7 @@ export const blogData = {
                 content: "Finally, the Outer Banks offers visitors a chance to experience nature up close and personal. The area is home to many nature preserves, wildlife refuges, and state parks, where visitors can hike, bike, and observe wildlife in their natural habitat. The Cape Hatteras National Seashore is a must-visit destination for nature lovers, offering miles of undeveloped coastline, sand dunes, and marshes to explore. Whether you're looking for relaxation, adventure, history, or nature, the Outer Banks has something for everyone."
             },
             {type:'h2', content: '5. St. Augustine, Florida'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.st_augustine},
             {
                 type:'p', 
                 content: "St. Augustine is a historic city located on the east coast of Florida. Founded in 1565 by Spanish explorers, it is the oldest continuously inhabited European-established city in the United States. St. Augustine has a rich history and is home to many significant landmarks and attractions that make it a great city to visit. Visitors can explore the many museums, historic sites, and landmarks that tell the story of the city's rich history."
@@ -82,7 +82,7 @@ export const blogData = {
                 content: "In addition to its history and beaches, St. Augustine is home to many art galleries, shops, and restaurants. Visitors can explore the city's vibrant arts scene, browse local boutiques and shops, and dine on fresh seafood and other local cuisine. With so much to see and do, St. Augustine is a great city to visit for anyone looking for a unique and exciting travel destination."
             },
             {type:'h2', content: '6. Daytona Beach, Florida'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.daytona},
             {
                 type:'p', 
                 content: 'Daytona Beach is a coastal city located in central Florida, known for its beautiful beaches and thrilling motorsports events. There are numerous reasons why Daytona Beach is a great city to visit, and it attracts tourists from all around the world. With its 23 miles of sandy white beaches, visitors can relax and soak up the sun, swim in the clear blue ocean, and participate in various water activities such as surfing, parasailing, and jet skiing.'
@@ -96,7 +96,7 @@ export const blogData = {
                 content: "Finally, Daytona Beach is also a fantastic place to shop, dine and enjoy the nightlife. The city has a wide range of restaurants, bars, and nightclubs that cater to all tastes and preferences. Visitors can also shop till they drop in the various retail shops, boutiques, and specialty stores scattered throughout the city. Whether you're looking for a relaxed beach vacation, an adrenaline-fueled racing event, or a cultural and culinary experience, Daytona Beach has something for everyone."
             },
             {type:'h2', content: '7. Hilton Head Island, South Carolina'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.hilton_head},
             {
                 type:'p', 
                 content: 'Hilton Head Island is a popular resort town located in South Carolina, known for its beautiful beaches, golf courses, and outdoor activities. The island has something for everyone, from families looking for a relaxing beach vacation to adventure seekers looking for outdoor thrills. With over 12 miles of pristine beaches and warm weather throughout the year, Hilton Head Island is an ideal destination for those seeking some fun in the sun.'
@@ -110,7 +110,7 @@ export const blogData = {
                 content: "Hilton Head Island is a paradise for outdoor enthusiasts. Visitors can enjoy a wide range of activities, from fishing, kayaking, and paddleboarding to hiking and biking. There are numerous water sports operators on the island that offer rental equipment and guided tours, providing visitors with the opportunity to explore the island's waterways and enjoy the natural beauty of the area. The island also has several bike trails that run through the island's forests and alongside its stunning beaches, making it easy for visitors to explore the island on two wheels."
             },
             {type:'h2', content: '8. Charleston, South Carolina'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.charleston},
             {
                 type:'p', 
                 content: "Charleston, South Carolina, is a city rich in history, culture, and Southern charm. It's no wonder why it's considered one of the best cities to visit in the United States. Visitors can explore the historic downtown area, which is home to stunning architecture, quaint cobblestone streets, and a variety of shops and restaurants. From historic landmarks to stunning gardens, there's plenty to see and do in Charleston."
@@ -128,7 +128,7 @@ export const blogData = {
                 content: "Finally, Charleston is a city that's easy to fall in love with. From the friendly locals to the beautiful scenery, there's something for everyone in this charming Southern city. Whether you're exploring the historic downtown area, strolling through the gardens, or enjoying a meal at one of the many restaurants, Charleston is a city that will leave a lasting impression on you."
             },
             {type:'h2', content: '9. Bar Harbor, Maine'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.bar_harbor},
             {
                 type:'p', 
                 content: "Bar Harbor, Maine is a charming coastal town located on Mount Desert Island. It is a popular destination for outdoor enthusiasts due to its proximity to Acadia National Park, which offers breathtaking views of the Atlantic Ocean, granite cliffs, and dense forests. Visitors can enjoy a variety of outdoor activities such as hiking, biking, kayaking, and whale watching."
@@ -142,7 +142,7 @@ export const blogData = {
                 content: "Bar Harbor has something to offer visitors all year round. In the summer, the town is alive with festivals and events, and visitors can enjoy fresh seafood and local produce at the farmers' markets. In the fall, the foliage is spectacular and visitors can take scenic drives to see the leaves changing colors. In the winter, visitors can go skiing, snowshoeing, and ice fishing, and in the spring, the town comes to life with blooming flowers and the return of migratory birds."
             },
             {type:'h2', content: '10. Asheville, North Carolina'},
-            {type:'img', content: kids_blog},
+            {type:'img', content: east_coast_places_images.asheville},
             {
                 type:'p', 
                 content: "Asheville, NC is a hidden gem located in the Blue Ridge Mountains. With its scenic beauty and vibrant culture, it's no wonder that it's become a popular destination for travelers from all over the world. Here are just a few reasons why Asheville is a great city to visit."
