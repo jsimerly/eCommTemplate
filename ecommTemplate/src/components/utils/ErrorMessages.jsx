@@ -1,6 +1,5 @@
 
 const ErrorMessages = ({errorMessages}) => {
-    console.log(errorMessages)
     if (!errorMessages || errorMessages.length === 0) {
         return null;
     }

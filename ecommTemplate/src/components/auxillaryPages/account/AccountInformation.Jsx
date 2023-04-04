@@ -3,18 +3,18 @@ import { BlueButton } from "../../utils";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import SaveIcon from '@mui/icons-material/Save';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchResetPassword, fetchUserInformation, updateUserInformation } from '../../../api/fetchUser';
 import { convertDateFormat_MMDDYYY_to_YYYYMMDD, convertDateFormat_YYYYMMYDD_to_MDDYY } from './validation';
 import AccountValidator from './validation';
 import ErrorMessages from '../../utils/ErrorMessages';
 import { PhoneNumberInput, DateOfBirthInput, PasswordInput } from './Inputs';
-import { useContext } from 'react';
 import { ShoppingContext } from '../../../context';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const AccountInformation = () => {
+  const navigate = useNavigate()
+  
   const updateAccountValidator = new AccountValidator()
 
   const [firstName, setFirstName] = useState('')
@@ -49,6 +49,10 @@ const AccountInformation = () => {
   useEffect(() => {
     const fetchInfo = async () => {
       const response = await fetchUserInformation()
+      if (response.status === 401){
+        navigate('/sign-up')
+      }
+
       const data = await response.json();
         
       if (data.first_name) {setFirstName(data.first_name)}

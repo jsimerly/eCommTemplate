@@ -16,6 +16,7 @@ import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPag
 import AboutUs from './components/auxillaryPages/AboutUs';
 import { fetchCartSize } from './api/fetchCart';
 import NotificationBar from './components/navBar/NotificationBar';
+import navigateCart from './hooks/navigateCart';
 
 
 
@@ -50,6 +51,7 @@ function getCategory(){
 }
 
 function App() {
+
   const [selectedDestination, setSelectedDestination] = useState(getDestination())
   const [selectedDateRange, setSelectedDateRange] = useState(getDateRange())
 

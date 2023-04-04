@@ -1,8 +1,11 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+import re
 
 User = get_user_model()
 
+password_pattern = re.compile(r'^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$')
 class CreateUser_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -28,6 +31,8 @@ class CreateUser_Serializer(serializers.ModelSerializer):
                 setattr(user, key, value)
         user.save()
         return user
+    
+
 class UserInformation_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -60,6 +65,7 @@ class UpdateAccount_Serializer(serializers.ModelSerializer):
                     setattr(instance, key, value)
         instance.save()
         return instance
+
     
 class UpdatePersonal_Serializer(serializers.ModelSerializer):
     drivers_license_id = serializers.CharField(required=False, allow_blank=True)

@@ -74,8 +74,19 @@ const UnauthedComp = () => {
     const handlePasswordChange = (e) => setPassword(e.target.value);
 
     const handleLogin = async () => {
-        await fetchLoginUser(email, password)
-        window.location.reload()
+        try {
+                const response = await fetchLoginUser(email, password)
+                console.log(response.status)
+            if (response.ok){
+                navigate('/')
+                window.location.reload()
+            } else {
+                navigate('/sign-up')
+                setErrorMessages(['Invalid credentials. Please check your email and password and try again.'])
+            }
+         } catch (error) { 
+                throw error
+         }
     }
 
     const handleSignUp = () => {
@@ -86,39 +97,46 @@ const UnauthedComp = () => {
         navigate('/reset-password')
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        document.getElementById('signInButtonNav').click()
+    }
 
     return (
         <div className='px-2 space-y-1 flex flex-col justify-center items-center'>
             <h3 className='w-full font-bold hover:underline'>
                 Sign-In or Register
             </h3>
-            <input 
-                className='w-full border border-primary rounded-md pl-2 outline-primary p-1'
-                placeholder='Email or Phone Number'
-                value={email}
-                onChange={handleEmailChange}
-            />
-            <input 
-                className='w-full border border-primary rounded-md pl-2 p-1 outline-primary'
-                placeholder='Password'
-                type='password'
-                value={password}
-                onChange={handlePasswordChange}
-            />
-            <div className='flex w-full justify-around space-x-1 pt-1'>
-                <div className='w-1/2'>
-                    <BlueButton
-                        content='Sign-In'
-                        onClick={handleLogin}
-                    />
+            <form className='flex flex-col gap-1 w-full' onSubmit={handleSubmit}>
+                <input 
+                    className='w-full border border-primary rounded-md pl-2 outline-primary p-1'
+                    placeholder='Email or Phone Number'
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+                <input 
+                    className='w-full border border-primary rounded-md pl-2 p-1 outline-primary'
+                    placeholder='Password'
+                    type='password'
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+                <div className='flex w-full justify-around space-x-1'>
+                    <div className='w-1/2'>
+                        <BlueButton
+                            content='Sign-In'
+                            onClick={handleLogin}
+                            id='signInButtonNav'
+                        />
+                    </div>
+                    <div className='w-1/2'>
+                        <WhiteButton
+                            content='Register'
+                            onClick={handleSignUp}
+                        />
+                    </div>
                 </div>
-                <div className='w-1/2'>
-                    <WhiteButton
-                        content='Register'
-                        onClick={handleSignUp}
-                    />
-                </div>
-            </div>
+            </form>
             <a onClick={handleForgotPasswordClicked} className='text-[12px] underline'> Forgot Password </a>
         </div>
     )
@@ -134,7 +152,6 @@ const AccountDropdown = ({open}) => {
             if (response.ok){
                 const resp = await response.json()
                 setUserInfo(resp)
-                
                 return 
             } 
             setUserInfo(null)

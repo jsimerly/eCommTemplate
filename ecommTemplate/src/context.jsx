@@ -1,8 +1,5 @@
 import { createContext } from 'react'
 
-const ShoppingContext = createContext();
+export const ShoppingContext = createContext();
 
 
-export {
-    ShoppingContext
-}

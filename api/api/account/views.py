@@ -4,10 +4,12 @@ from rest_framework import status
 from datetime import datetime
 from uuid import uuid4
 
+
 from account.verification import send_email_verification, send_password_reset_verification
 from account.serializers import *
 
 # Create your views here.
+
 class CreateUserView(APIView):
     serialzier_class = CreateUser_Serializer
 
@@ -30,6 +32,9 @@ class CreateUserView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
     
 class EmailVerificationView(APIView):
     def get(self, *args, **kwargs):

@@ -5,6 +5,7 @@ const navigateProduct = ({slug}) => {
 
     function handleNav(){
         navigate(`/p/${slug}`)
+        window.scrollTo(0, 0);
     }
     return handleNav
 }   

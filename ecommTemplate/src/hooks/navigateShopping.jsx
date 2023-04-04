@@ -26,6 +26,7 @@ const navigateShopping = () => {
         let params = `?destination=${dest}&startDate=${start}&endDate=${end}&categoryId=${cat.id}&dateChange=${change}`
 
         navigate(`/shopping${params}`)
+        window.scrollTo(0, 0);
     }
     
     return handleNav

@@ -4,7 +4,7 @@ import full_line_drawing  from './FullLineDraw.avif'
 import polariod_banner from './polariodBanner16_9.avif'
 import wagon_banner from './WagonBanner.avif'
 import new_cust_banner from './banner_flamingo.avif'
-import hero_banner from './hero.avif'
+import hero_banner from './hero_main.avif'
 
 
 export {

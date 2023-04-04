@@ -122,12 +122,6 @@ const CreateAccount = () => {
                             onChange={handlePasswordChange}
                             error={passwordError}
                         />
-
-                        <button 
-                            className="absolute top-1/2 right-2 transform -translate-y-1/2"
-                            onClick={togglePasswordVisibility}
-                        >
-                        </button>
                     </div>
                 </div>
                 <div className="flex flex-row justify-between w-full gap-2">

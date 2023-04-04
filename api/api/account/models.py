@@ -2,6 +2,9 @@ from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from datetime import datetime
+import re
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -108,6 +111,13 @@ class User(AbstractBaseUser):
     @is_staff.setter
     def is_staff(self, value):
         self._is_staff = value
+
+    def clean_password(self):
+        password = self.password
+        if not re.search('[A-Z]', password):
+            raise ValidationError(_('The password must contain at least one uppercase letter.'), code='invalid_password')
+        if not re.search('[!@#$%^&*]', password):
+            raise ValidationError(_('The password must contain at least one special character.'), code='invalid_password')
 
 
     
