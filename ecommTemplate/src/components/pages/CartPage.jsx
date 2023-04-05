@@ -10,8 +10,9 @@ import { ShoppingContext } from "../../context";
 
 const CartPage = () => {
     const {selectedDateRange} = useContext(ShoppingContext)
-    const [cart, setCart] = useState([])
-    const [items, setItems] = useState([])
+    const [cart, setCart] = useState([]) //cart object
+    const [items, setItems] = useState([]) //items from the cart object, but can include free items.
+    const [freeItems, setFreeItems] = useState([])
 
     const updateCartItem = (itemUUID, updateProperties) => {
         setItems((items) => {
@@ -60,9 +61,14 @@ const CartPage = () => {
     }
     
     const getInsurance = (item) => {
-    const itemTotalCost = parseFloat(item.item.insurance_base_cost) + (parseFloat(item.item.insurance_daily_cost) * parseInt(item.days))
-    const totalCost = item.quantity * itemTotalCost
-    return  totalCost
+        console.log(item)
+        console.log(item.quantity)
+        console.log(item.item.insurance_base_cost)
+        console.log(item.item.insurance_daily_cost)
+        console.log(item.days)
+        const itemTotalCost = parseFloat(item.item.insurance_base_cost) + (parseFloat(item.item.insurance_daily_cost) * parseInt(item.days))
+        const totalCost = item.quantity * itemTotalCost
+        return  totalCost
     }
 
     const get_total = (items) => {
@@ -139,6 +145,7 @@ const CartPage = () => {
                         <div className='grow-0'>
                             <CartMain
                                 items={items}
+                                freeItems={freeItems}
                                 updateCartItem={updateCartItem}
                                 itemCount={countItems(items)}
                                 totalCost={get_total(items)}
@@ -153,6 +160,7 @@ const CartPage = () => {
                             subTotal={get_subTotal(items)}
                             insuranceTotal={get_insurance_total(items)}
                             itemCount={countItems(items)}
+                            setFreeItems={setFreeItems}
                         />
                     </div>
                 </div>

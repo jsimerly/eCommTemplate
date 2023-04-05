@@ -1,7 +1,7 @@
 from products.serializers import ProductCard_Serializer, ProductImage_Serializer
 
 from rest_framework import serializers
-from orders.models import Cart, CartItems, Promo, ItemFavorited
+from orders.models import Cart, CartItems, Promo, ItemFavorited, FreeItemPromo
 from products.models import Product
 
 class CartCard_Serializer(serializers.ModelSerializer):
@@ -33,7 +33,7 @@ class Cart_Serializer(serializers.ModelSerializer):
         fields = ['uuid', 'user', 'customer', 'sub_total', 'insurance_total', 'tax_total', 'total_cost', 'items', 'days']
 
     def get_items(self, obj):
-        items = CartItems.objects.all().filter(cart=obj)
+        items = CartItems.objects.filter(cart=obj)
         serializer = CartItem_Serializer(items, many=True, context=self.context)
         return serializer.data
     
@@ -45,14 +45,32 @@ class AddFavorite_Serializer(serializers.ModelSerializer):
         model = ItemFavorited
         fields = ['uuid', 'user', 'customer', 'item']
 
+class FreeItem_Serializer(serializers.ModelSerializer):
+    item = serializers.SerializerMethodField('get_item')
+    days = serializers.SerializerMethodField()
+    class Meta:
+        model = FreeItemPromo
+        fields = ['promo', 'item', 'quantity', 'days']
+
+    def get_item(self, obj):
+        serializer = CartCard_Serializer(obj.item, context=self.context)
+        return serializer.data
+    
+    def get_days(self, obj):
+        return self.context['days']
+    
+
 class Promo_Serializer(serializers.ModelSerializer):
-    free_item = serializers.SerializerMethodField('get_free_item')
+    free_items = serializers.SerializerMethodField('get_free_items')
     class Meta:
         model = Promo
-        fields = ['uuid', 'name', 'description', 'code', 'free_item', 'flat_discount', 'percentage_discount']
+        fields = ['uuid', 'name', 'description', 'code', 'free_items', 'flat_discount', 'percentage_discount']
 
-    def get_free_item(self, obj):
-        serializer = CartCard_Serializer(obj.free_item, context=self.context)
+    def get_free_items(self, obj):
+        free_items = FreeItemPromo.objects.filter(promo=obj)
+        serializer = FreeItem_Serializer(free_items, many=True, context=self.context)
         return serializer.data
+    
+
 
 

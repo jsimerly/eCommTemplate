@@ -3,32 +3,95 @@ import { ShoppingContext } from "../../context";
 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { payment } from '../../assets/svg'
 import { Where, When } from '../tripInfo';
 import { LargeBlueButton } from '../utils';
 import { fetchPromoCode } from '../../api/fetchCart';
 
+const PromoCard = ({promo, handlePromoRemove}) => {
+    const [showDescription, setShowDescription] = useState(false);
+    
+    const handleMouseEnter = () => {
+        setShowDescription(true)
+    }
 
+    const handleMouseLeave = () => {
+        setShowDescription(false)
+    }
 
-const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
+    const handleRemoveClicked = () => {
+        handlePromoRemove(promo)
+    }
+ 
+    return (
+        <div className='flex flex-row w-full justify-between items-center border my-1 rounded-md border-primary bg-primaryLight cursor-help relative'>
+            <div
+                className='flex flex-row w-full items-center'
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <div 
+                    className='text-[20px] ml-2 p-1'
+                >
+                    {promo.name}
+                </div>
+                <div className='flex-1 mx-2 text-[12px]'>
+                    {showDescription && (
+                        <div className="">
+                            {promo.description}
+                        </div>
+                    )}
+                </div>
+            </div>
+            <div 
+                className='hover:scale-110 cursor-pointer p-1'
+                onClick={handleRemoveClicked}
+            >
+                <CloseIcon/>
+            </div>
+        </div>
+    )
+}
+
+const OrderSummary = ({subTotal, itemCount, insuranceTotal, getInsurance, setFreeItems}) => {
+    const {handleNotification} = useContext(ShoppingContext)
+
     const [openPromos, setOpenPromos] = useState(false)
-    const [promoCode, setPromoCode] = useState()
+    const [promoCode, setPromoCode] = useState('')
     const [activePromos, setActivePromos] = useState([])
 
     const {selectedDestination, selectedDateRange} = useContext(ShoppingContext)
 
     const handlePromoAdded = async (code) => {
         const response = await fetchPromoCode(code, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
-        const resp = await response.json()
+        const resp = await response.json()        
 
         let newActives = activePromos
-        newActives.push(resp.name)
-        setActivePromos([...newActives])
+        const existingIndex = newActives.findIndex(promo => promo.uuid === resp.uuid)
+
+        if (existingIndex === -1){
+            newActives.push(resp)
+            setFreeItems(resp.free_items)
+            setActivePromos([...newActives])
+        } else {
+            handleNotification('You have already added that promotion.')
+        }
     } 
 
+    const handlePromoRemove = (removePromo) => {
+        let newActives = activePromos
+        const existingIndex = newActives.findIndex(promo => promo.uuid == removePromo.uuid)
+        if (existingIndex !== -1){
+            newActives.splice(existingIndex, 1)
+            setActivePromos([...newActives])
+        } else {
+            handleNotification('We had an issue removing your promotion. Please refresh the page.')
+        }
+    }
+
     const handlePromoCodeChange = (e) => {
-        console.log(e.target.value.toUpperCase())
         setPromoCode(e.target.value.toUpperCase())
     }
 
@@ -70,16 +133,18 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal}) => {
 
                     </div>
                 </div>
-                <div>
+                <div className='w-full'>
                     {activePromos.map((promo, i) => (
-                        <div key={i}>
-                            {promo}
-                        </div>
+                        <PromoCard
+                            key={'promo_card_'+i}
+                            promo={promo}
+                            handlePromoRemove={handlePromoRemove}
+                        />
                     ))}
                 </div>
                 <div className={`${openPromos ? '' : 'hidden'} flex flex-row w-1/2`}>
                     <input 
-                        className='border border-primary p-2 rounded-md outline-primary flex'
+                        className='border border-primary p-1 pl-3 rounded-md outline-primary flex'
                         placeholder='PROMO CODE'
                         value={promoCode}
                         onChange={handlePromoCodeChange}
