@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ShoppingContext } from "../../context";
 
 import AddIcon from '@mui/icons-material/Add';
@@ -61,6 +61,29 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
     const [openPromos, setOpenPromos] = useState(false)
     const [promoCode, setPromoCode] = useState('')
     const [activePromos, setActivePromos] = useState([])
+    const [flatDiscounts, setFlatDiscounts] = useState([])
+    const [percentDiscounts, setPercentDiscounts] = useState([])
+    const [totalDiscount, setTotalDiscount] = useState(0)
+
+    useEffect(()=>{
+        let flat = []
+        let percent = []
+        activePromos.map((promo) => {
+            if (promo.flat_discount !== "0.00"){
+                flat.push(promo.flat_discount)
+            }
+            if (promo.percentage_discount !== '0.00'){
+                percent.push(promo.percentage_discount)
+            }
+
+        })
+        setFlatDiscounts(flat)
+        setPercentDiscounts(percent)
+    }, [activePromos])
+
+    useEffect(()=>{
+        getTotalDiscount(subTotal)
+    }, [subTotal, flatDiscounts, percentDiscounts])
 
     const {selectedDestination, selectedDateRange} = useContext(ShoppingContext)
 
@@ -80,6 +103,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
             } else {
                 handleNotification('You have already added that promotion.')
             }
+            setOpenPromos(false)
         }
     } 
 
@@ -111,9 +135,40 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
     }
 
     const getTotal = (preTaxTotal) => {
-        const taxes = getTax(preTaxTotal)
-        const total = taxes + preTaxTotal
+        const afterDiscount = preTaxTotal - totalDiscount
+        const taxes = getTax(afterDiscount)
+        const total = taxes + afterDiscount
         return Math.ceil(total * 100) / 100
+    }
+
+    const getFlatDiscount = () => {
+        let flatDiscount = 0
+        flatDiscounts.map((discount) => {
+            flatDiscount += discount
+        })
+       
+        return flatDiscount
+    }
+
+    const getAfterPercentDiscount = () => {
+        let percentAfterDiscount = 1
+        percentDiscounts.map((discount) => {
+            percentAfterDiscount = percentAfterDiscount * (1-discount)
+        })
+
+        return percentAfterDiscount
+    }
+
+    const getTotalDiscount = (subtotal) => {
+        if (!subtotal){
+            setTotalDiscount(0)
+        }
+
+        const flatDiscount = getFlatDiscount(subtotal)
+        const percentAfterDiscount = getAfterPercentDiscount(subtotal)
+        subtotal = (subtotal * (1 - percentAfterDiscount)) + flatDiscount
+
+        setTotalDiscount(subtotal)
     }
 
   return (
@@ -175,6 +230,17 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
                 </div>
             </div>
         </div>
+        {totalDiscount !== 0 ?
+            <div className='mt-2'>
+                <div className='flex flex-row justify-between'>
+                    <h3 className=''>Discount</h3>
+                    <div>
+                        <p className='text-primary'> - ${totalDiscount.toFixed(2)}</p>
+                    </div>
+                </div>
+            </div>
+            : null
+        }
         <div className='mt-2'>
             <div className='flex flex-row justify-between'>
                 <h3 className=''>Insurance</h3>

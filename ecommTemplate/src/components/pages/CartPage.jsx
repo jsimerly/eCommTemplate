@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { useContext } from "react";
 import { ShoppingContext } from "../../context";
 
-
 const CartPage = () => {
     const {selectedDateRange} = useContext(ShoppingContext)
     const [cart, setCart] = useState([]) //cart object
