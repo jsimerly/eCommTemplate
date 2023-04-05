@@ -1,10 +1,10 @@
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-const FreeItemCard = ({item, updateCartItem, getInsurance,}) => {
+const FreeItemCard = ({item, updateFreeItem, getInsurance,}) => {
     //updateCartItem need to change to handle freeItems
     const handleInsuredClicked = () => {
-      updateCartItem(item.uuid, {insurance_purchased: !item.insurance_purchased})
+        updateFreeItem(item, {insurance_purchased: !item.insurance_purchased})
     }
       
     return (

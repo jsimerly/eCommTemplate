@@ -14,7 +14,7 @@ const CartPage = () => {
     const [items, setItems] = useState([]) //items from the cart object
     const [freeItems, setFreeItems] = useState([])
 
-    const create_updated_items = (item, updateProperties) => {
+    const create_updated_items = (item, items, updateProperties) => {
         const updatedItems = [...items]
             const itemIndex = updatedItems.findIndex((find_item) => find_item.uuid === item.uuid)
     
@@ -25,7 +25,7 @@ const CartPage = () => {
         return updatedItems
     }
 
-    const create_deleted_items = (item) => {
+    const create_deleted_items = (item, items) => {
         const updatedItems = [...items]
         const itemIndex = updatedItems.findIndex((find_item) => find_item.uuid === item.uuid)
         updatedItems.splice(itemIndex, 1)
@@ -34,19 +34,19 @@ const CartPage = () => {
     }
 
     const updateCartItem = (item, updateProperties) => {
-        setItems(create_updated_items(item, updateProperties))
+        setItems(create_updated_items(item, items, updateProperties))
     }
 
     const deleteCartItem = (item) => {
-        setItems(create_deleted_items(item))
+        setItems(create_deleted_items(item, items))
     }
 
     const updateFreeItem = (freeItem, updateProperties) => {
-        setFreeItems(create_updated_items(freeItem, updateProperties))
+        setFreeItems(create_updated_items(freeItem, freeItems, updateProperties))
     }
 
-    const deleteFreeItem = (item) => {
-        setFreeItems(create_deleted_items(item))
+    const deleteFreeItem = (freeItem) => {
+        setFreeItems(create_deleted_items(freeItem, freeItems))
     }
 
     const handleFetchCart = () => {
@@ -78,7 +78,7 @@ const CartPage = () => {
         return  totalCost
     }
 
-    const get_total = (items) => {
+    const get_total = () => {
         let totalPrice = 0
         if (items){
           for (let item of items){
@@ -87,24 +87,33 @@ const CartPage = () => {
               totalPrice += getInsurance(item)
             }
           }
+        }
+
+        if (freeItems){
+            for (let freeItem of freeItems){
+                if (freeItem.insurance_purchased){
+                    totalPrice += getInsurance(freeItem)
+                }
+            }
         }
       
         return totalPrice
       }
 
-    const get_subTotal = (items) => {
+    const get_subTotal = () => {
         let totalPrice = 0
         if (items){
           for (let item of items){
             totalPrice += getCost(item)
           }
         }
-      
+
         return totalPrice
     }
 
-    const get_insurance_total = (items) => {
+    const get_insurance_total = () => {
         let totalPrice = 0
+
         if (items){
           for (let item of items){
             if (item.insurance_purchased){
@@ -112,7 +121,15 @@ const CartPage = () => {
             }
           }
         }
-      
+
+        if (freeItems){
+            for ( let freeItem of freeItems){
+                if (freeItem.insurance_purchased){
+                    totalPrice += getInsurance(freeItem)
+                }
+            }
+        }
+        
         return totalPrice
     }
 
@@ -159,7 +176,7 @@ const CartPage = () => {
                                 deleteCartItem={deleteCartItem}
 
                                 itemCount={countItems(items)}
-                                totalCost={get_total(items)}
+                                totalCost={get_total()}
                                 getCost={getCost}
                                 getInsurance={getInsurance}
 
@@ -168,8 +185,8 @@ const CartPage = () => {
                     </div>
                     <div className='w-2/5 ml-3'>
                         <OrderSummary
-                            subTotal={get_subTotal(items)}
-                            insuranceTotal={get_insurance_total(items)}
+                            subTotal={get_subTotal()}
+                            insuranceTotal={get_insurance_total()}
                             itemCount={countItems(items)}
                             setFreeItems={setFreeItems}
                             deleteFreeItem={deleteFreeItem}

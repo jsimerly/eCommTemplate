@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
 import { QuantInput } from '../utils';
 import { create_full_image_path } from '../../assets/util';
@@ -11,8 +11,14 @@ import { fetchItemDeleteCart, fetchUpdateQuantity } from '../../api/fetchCart';
 
 const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCost}) => {
     const {setCartSize} = useContext(ShoppingContext)
+    const [isMounted, setIsMounted] = useState(false)
 
     useEffect(()=>{
+      if (!isMounted){
+        setIsMounted(true)
+        return
+      }
+      
       const delayDebounce = setTimeout(
         async () => {
           const response = await fetchUpdateQuantity(item.uuid, item.quantity);
