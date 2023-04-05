@@ -2,22 +2,31 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ShoppingContext } from '../../context';
 import { QuantInput } from '../utils';
 import { create_full_image_path } from '../../assets/util';
-import { fetchItemDeleteCart } from '../../api/fetchCart';
+import { fetchItemDeleteCart, fetchUpdateQuantity } from '../../api/fetchCart';
+
 
 const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCost}) => {
     const {setCartSize} = useContext(ShoppingContext)
-  
+
+    useEffect(()=>{
+      const delayDebounce = setTimeout(
+        async () => {
+          const response = await fetchUpdateQuantity(item.uuid, item.quantity);
+          console.log(response)
+        }, 2000)
+      return () => clearTimeout(delayDebounce)
+    },[item.quantity])
   
     const handleQuantChanged = (quantValue) => {
-      updateCartItem(item.uuid, {quantity: quantValue})
+      updateCartItem(item, {quantity: quantValue})
     }
-  
+
     const handleInsuredClicked = () => {
-      updateCartItem(item.uuid, {insurance_purchased: !item.insurance_purchased})
+      updateCartItem(item, {insurance_purchased: !item.insurance_purchased})
     }
   
     const handleDeleteClicked = async () =>{
@@ -25,7 +34,7 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
         const response = await fetchItemDeleteCart(item.uuid)
         const data = await response.json()
         setCartSize(data['cart_size'])
-        deleteCartItem(item.uuid)
+        deleteCartItem(item)
       } catch (error){
         throw error
       }

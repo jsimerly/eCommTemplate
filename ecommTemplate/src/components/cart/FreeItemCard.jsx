@@ -1,7 +1,6 @@
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-
 const FreeItemCard = ({item, updateCartItem, getInsurance,}) => {
     //updateCartItem need to change to handle freeItems
     const handleInsuredClicked = () => {
@@ -45,7 +44,7 @@ const FreeItemCard = ({item, updateCartItem, getInsurance,}) => {
             </div>
           }
           <div className='w-[60px] h-[40px]'>
-            Qty: {item.item.quantity}
+            Qty: {item.quantity}
           </div>
         </div>
         <div className='flex flex-col justify-end p-2'>

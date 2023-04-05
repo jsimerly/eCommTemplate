@@ -10,7 +10,7 @@ import { Where, When } from '../tripInfo';
 import { LargeBlueButton } from '../utils';
 import { fetchPromoCode } from '../../api/fetchCart';
 
-const PromoCard = ({promo, handlePromoRemove}) => {
+const PromoCard = ({promo, handlePromoRemove, }) => {
     const [showDescription, setShowDescription] = useState(false);
     
     const handleMouseEnter = () => {
@@ -55,7 +55,7 @@ const PromoCard = ({promo, handlePromoRemove}) => {
     )
 }
 
-const OrderSummary = ({subTotal, itemCount, insuranceTotal, getInsurance, setFreeItems}) => {
+const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, deleteFreeItem}) => {
     const {handleNotification} = useContext(ShoppingContext)
 
     const [openPromos, setOpenPromos] = useState(false)
@@ -66,24 +66,33 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, getInsurance, setFre
 
     const handlePromoAdded = async (code) => {
         const response = await fetchPromoCode(code, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
-        const resp = await response.json()        
+        
+        if (response.ok){
+            const resp = await response.json()        
 
-        let newActives = activePromos
-        const existingIndex = newActives.findIndex(promo => promo.uuid === resp.uuid)
-
-        if (existingIndex === -1){
-            newActives.push(resp)
-            setFreeItems(resp.free_items)
-            setActivePromos([...newActives])
-        } else {
-            handleNotification('You have already added that promotion.')
+            let newActives = activePromos
+            const existingIndex = newActives.findIndex(promo => promo.uuid === resp.uuid)
+    
+            if (existingIndex === -1){
+                newActives.push(resp)
+                setFreeItems(resp.free_items)
+                setActivePromos([...newActives])
+            } else {
+                handleNotification('You have already added that promotion.')
+            }
         }
     } 
 
     const handlePromoRemove = (removePromo) => {
         let newActives = activePromos
         const existingIndex = newActives.findIndex(promo => promo.uuid == removePromo.uuid)
+
         if (existingIndex !== -1){
+            const freeItemsToRemove = newActives[existingIndex].free_items
+            freeItemsToRemove.map((item) => {
+                deleteFreeItem(item)
+            })
+
             newActives.splice(existingIndex, 1)
             setActivePromos([...newActives])
         } else {

@@ -49,10 +49,12 @@ class Promo(models.Model):
         return self.name
     
 class FreeItemPromo(models.Model):
+    uuid = models.UUIDField(default=uuid4)
     promo = models.ForeignKey(Promo, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-    
+    insurance_purchased = models.BooleanField(default=False)
+
     
 class Cart(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)

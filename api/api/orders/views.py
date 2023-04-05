@@ -57,6 +57,23 @@ class CartItemAddView(APIView):
 
         return Response({'cart_size' : cart_size},status=status.HTTP_201_CREATED)
     
+class CartItemQuantityUpdateView(APIView):
+    def put(self, request):
+        uuid = request.data.get('uuid')
+        quantity = request.data.get('quantity')
+
+        try:
+            cart_item = CartItems.objects.get(uuid=uuid)
+            cart_item.quantity = quantity
+            cart_item.save()
+            return Response(status=status.HTTP_200_OK)
+
+        except CartItems.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
 class CartItemDeleteView(APIView):
     def delete(self, request, uuid):
         customer = request.customer

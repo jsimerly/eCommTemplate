@@ -50,7 +50,7 @@ class FreeItem_Serializer(serializers.ModelSerializer):
     days = serializers.SerializerMethodField()
     class Meta:
         model = FreeItemPromo
-        fields = ['promo', 'item', 'quantity', 'days']
+        fields = ['uuid', 'promo', 'item', 'quantity', 'days', 'insurance_purchased']
 
     def get_item(self, obj):
         serializer = CartCard_Serializer(obj.item, context=self.context)

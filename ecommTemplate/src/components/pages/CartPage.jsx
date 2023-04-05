@@ -11,30 +11,42 @@ import { ShoppingContext } from "../../context";
 const CartPage = () => {
     const {selectedDateRange} = useContext(ShoppingContext)
     const [cart, setCart] = useState([]) //cart object
-    const [items, setItems] = useState([]) //items from the cart object, but can include free items.
+    const [items, setItems] = useState([]) //items from the cart object
     const [freeItems, setFreeItems] = useState([])
 
-    const updateCartItem = (itemUUID, updateProperties) => {
-        setItems((items) => {
-            const updatedItems = [...items]
-            const itemIndex = updatedItems.findIndex((item) => item.uuid === itemUUID)
-
+    const create_updated_items = (item, updateProperties) => {
+        const updatedItems = [...items]
+            const itemIndex = updatedItems.findIndex((find_item) => find_item.uuid === item.uuid)
+    
             if (itemIndex !== -1){
                 const updatedItem = {...updatedItems[itemIndex], ...updateProperties}
                 updatedItems[itemIndex] = updatedItem
             }
         return updatedItems
-        })
     }
 
-    const deleteCartItem = (itemUUID) => {
-        setItems((items) => {
-            const updatedItems = [...items]
-            const itemIndex = updatedItems.findIndex((item) => item.uuid === itemUUID)
-            updatedItems.splice(itemIndex, 1)
+    const create_deleted_items = (item) => {
+        const updatedItems = [...items]
+        const itemIndex = updatedItems.findIndex((find_item) => find_item.uuid === item.uuid)
+        updatedItems.splice(itemIndex, 1)
 
-            return updatedItems
-        })
+        return updatedItems
+    }
+
+    const updateCartItem = (item, updateProperties) => {
+        setItems(create_updated_items(item, updateProperties))
+    }
+
+    const deleteCartItem = (item) => {
+        setItems(create_deleted_items(item))
+    }
+
+    const updateFreeItem = (freeItem, updateProperties) => {
+        setFreeItems(create_updated_items(freeItem, updateProperties))
+    }
+
+    const deleteFreeItem = (item) => {
+        setFreeItems(create_deleted_items(item))
     }
 
     const handleFetchCart = () => {
@@ -61,11 +73,6 @@ const CartPage = () => {
     }
     
     const getInsurance = (item) => {
-        console.log(item)
-        console.log(item.quantity)
-        console.log(item.item.insurance_base_cost)
-        console.log(item.item.insurance_daily_cost)
-        console.log(item.days)
         const itemTotalCost = parseFloat(item.item.insurance_base_cost) + (parseFloat(item.item.insurance_daily_cost) * parseInt(item.days))
         const totalCost = item.quantity * itemTotalCost
         return  totalCost
@@ -146,12 +153,16 @@ const CartPage = () => {
                             <CartMain
                                 items={items}
                                 freeItems={freeItems}
+
                                 updateCartItem={updateCartItem}
+                                updateFreeItem={updateFreeItem}
+                                deleteCartItem={deleteCartItem}
+
                                 itemCount={countItems(items)}
                                 totalCost={get_total(items)}
-                                deleteCartItem={deleteCartItem}
                                 getCost={getCost}
                                 getInsurance={getInsurance}
+
                             />
                         </div>
                     </div>
@@ -161,6 +172,7 @@ const CartPage = () => {
                             insuranceTotal={get_insurance_total(items)}
                             itemCount={countItems(items)}
                             setFreeItems={setFreeItems}
+                            deleteFreeItem={deleteFreeItem}
                         />
                     </div>
                 </div>

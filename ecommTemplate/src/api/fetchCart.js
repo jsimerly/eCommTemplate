@@ -22,6 +22,25 @@ export async function fetchItemsToCart(itemSlugs){
     }
 }
 
+export async function fetchUpdateQuantity(uuid, quantity){
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFTOKEN' : getCookie('csrftoken'),
+        },
+        body: JSON.stringify({uuid: uuid, quantity: quantity})
+    }
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/update-quantity/`,
+            requestOptions
+        )
+        return response
+    } catch (error){
+        throw (error)
+    }
+}
+
 export async function fetchItemDeleteCart(uuid){
     const requestOptions = {
         method: 'DELETE',
