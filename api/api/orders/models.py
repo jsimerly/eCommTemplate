@@ -148,7 +148,8 @@ class FullOrder(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name='orders'
+        related_name='orders',
+        related_query_name='orders'
     )
     customer = models.ForeignKey(
         Customer,

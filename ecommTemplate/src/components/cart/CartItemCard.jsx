@@ -5,7 +5,6 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
 import { QuantInput } from '../utils';
-import { create_full_image_path } from '../../assets/util';
 import { fetchItemDeleteCart, fetchUpdateQuantity } from '../../api/fetchCart';
 
 
@@ -47,7 +46,7 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
   
     return (
       <div className="flex border border-tertiary rounded-md mb-1">
-        <img src={create_full_image_path(item.item.main_image.image)} className='h-[160px] w-[160px] rounded-md cursor-pointer'/>
+        <img src={item.item.main_image.image} className='h-[160px] w-[160px] rounded-md cursor-pointer'/>
         <div className='p-3 w-full flex flex-col justify-between'>
           <div className='flex flex-col justify-start'>
             <div className='flex grow-0'>

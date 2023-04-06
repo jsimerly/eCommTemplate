@@ -94,7 +94,10 @@ class CartItemDeleteView(APIView):
     
 class CartView(APIView):
     def get(self, request):
-        context = getDateContext(request)
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
         
         cart, created = Cart.objects.get_or_create(customer=request.customer)
         if created:

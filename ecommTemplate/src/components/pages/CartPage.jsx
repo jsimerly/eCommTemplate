@@ -12,6 +12,7 @@ const CartPage = () => {
     const [cart, setCart] = useState([]) //cart object
     const [items, setItems] = useState([]) //items from the cart object
     const [freeItems, setFreeItems] = useState([])
+    const [activePromos, setActivePromos] = useState([])
 
     const create_updated_items = (item, items, updateProperties) => {
         const updatedItems = [...items]
@@ -61,8 +62,24 @@ const CartPage = () => {
     }, [selectedDateRange])
 
     useEffect(() => {
-        setItems(cart.items)
+        if (cart.items){
+            setItems(cart.items)
+        }
+        if (cart.promos){
+            setActivePromos(cart.promos)
+        }
       }, [cart])
+
+      useEffect(() => {
+        let newFreeItems = []
+        activePromos.map((promo)=>{
+            if (promo.free_items){
+                newFreeItems.push(...promo.free_items)
+            }
+        })
+        setFreeItems(newFreeItems)
+      },[activePromos])
+
 
     const getCost = (item) => {
     const itemTotalCost = (parseFloat(item.item.base_cost) + (parseFloat(item.item.daily_cost) * parseInt(item.days)))
@@ -187,7 +204,11 @@ const CartPage = () => {
                             subTotal={get_subTotal()}
                             insuranceTotal={get_insurance_total()}
                             itemCount={countItems(items)}
+                            
+                            activePromos={activePromos}
+                            setActivePromos={setActivePromos}
                             setFreeItems={setFreeItems}
+                            
                             deleteFreeItem={deleteFreeItem}
                         />
                     </div>

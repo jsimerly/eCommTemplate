@@ -26,17 +26,35 @@ class CartItem_Serializer(serializers.ModelSerializer):
 
 class Cart_Serializer(serializers.ModelSerializer):
     items = serializers.SerializerMethodField('get_items')
+    promos = serializers.SerializerMethodField('get_promos')
     days = serializers.SerializerMethodField()
-
+    
     class Meta:
         model = Cart
-        fields = ['uuid', 'user', 'customer', 'sub_total', 'insurance_total', 'tax_total', 'total_cost', 'items', 'days']
+        fields = ['uuid', 'user', 'customer', 'sub_total', 'insurance_total', 'tax_total', 'total_cost', 'items', 'days', 'promos']
 
     def get_items(self, obj):
         items = CartItems.objects.filter(cart=obj)
         serializer = CartItem_Serializer(items, many=True, context=self.context)
         return serializer.data
     
+    def get_promos(self, obj):
+        request = self.context['request']
+        user = request.user
+
+        auto_add_promos = Promo.objects.filter(auto_apply=True)
+        validated_promos = []
+        for promo in auto_add_promos:
+            validator_function = promo.get_validation_function()
+            is_validated = validator_function(cart=obj, user=user, context=self.context)
+
+            if is_validated:
+                validated_promos.append(promo)
+
+        serializer = Promo_Serializer(validated_promos, many=True, context=self.context)
+        return serializer.data
+        
+
     def get_days(self, obj):
         return self.context['days']
 

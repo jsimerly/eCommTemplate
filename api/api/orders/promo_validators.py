@@ -1,6 +1,4 @@
-
 #Would be a good idea to also return a message about why they don't qualify, but that's for a later day.
-
 
 def over_70_free_wagon(**kwargs):
     cart = kwargs.get('cart')
@@ -19,6 +17,11 @@ def over_70_free_wagon(**kwargs):
 
 def first_order_20_off(**kwargs):
     user = kwargs.get('user')
-    if user.orders.exists():
+
+    if user.is_anonymous:
         return False
+
+    if user.fullorder_set.first():
+        return False
+    
     return True

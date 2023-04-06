@@ -56,13 +56,13 @@ const PromoCard = ({promo, handlePromoRemove, }) => {
     )
 }
 
-const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, deleteFreeItem}) => {
+const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, deleteFreeItem, activePromos, setActivePromos}) => {
     const {handleNotification} = useContext(ShoppingContext)
     let navigateContinueShopping = navigateShopping('')
 
     const [openPromos, setOpenPromos] = useState(false)
     const [promoCode, setPromoCode] = useState('')
-    const [activePromos, setActivePromos] = useState([])
+    // const [activePromos, setActivePromos] = useState([])
     const [flatDiscounts, setFlatDiscounts] = useState([])
     const [percentDiscounts, setPercentDiscounts] = useState([])
     const [totalDiscount, setTotalDiscount] = useState(0)
@@ -104,7 +104,6 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
     
             if (existingIndex === -1){
                 newActives.push(resp)
-                setFreeItems(resp.free_items)
                 setActivePromos([...newActives])
             } else {
                 handleNotification('You have already added that promotion.')
