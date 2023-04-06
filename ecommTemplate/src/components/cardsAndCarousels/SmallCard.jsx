@@ -10,6 +10,7 @@ const SmallCard = ({item, addExtraFunction}) => {
   const {setCartSize} = useContext(ShoppingContext)
 
   let navigate = navigateProduct({slug});
+  
 
   const handleAddItemClicked = async () =>{
     try{
@@ -17,7 +18,10 @@ const SmallCard = ({item, addExtraFunction}) => {
       const response = await fetchItemsToCart([item.slug])
       const data = await response.json()
       setCartSize(data['cart_size'])
-      addExtraFunction()
+      if (addExtraFunction){
+        console.log(typeof(addExtraFunction))
+        addExtraFunction()
+      }
     } catch (error){
       throw (error)
     }

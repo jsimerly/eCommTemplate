@@ -21,7 +21,7 @@ function scrollN(){
   }
 }
 
-const BrowsingHistory = () => {
+const BrowsingHistory = ({addExtraFunction}) => {
   const {selectedDateRange} = useContext(ShoppingContext)
   const [browsingHistory, setBrowsingHistory] = useState([])
 
@@ -33,6 +33,7 @@ const BrowsingHistory = () => {
   return (
     <CarouselTemplate
       Card={SmallCard}
+      addExtraFunction={addExtraFunction}
       cardData={browsingHistory}
       cardW={156}
       header={header}

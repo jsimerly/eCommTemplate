@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import ErrorBoundry from '../utils/ErrorBoundry';
 
-const ProductCard = ({item}) => {
+const ProductCard = ({item, addExtraFunction}) => {
   const [itemFavorited, setFavorited] = useState(false)
   const {setCartSize, handleNotification} = useContext(ShoppingContext)
   const slug = item.slug
@@ -20,6 +20,9 @@ const ProductCard = ({item}) => {
       const data = await response.json()
       setCartSize(data['cart_size'])
       handleNotification(`${item.name} has been added to your cart.`)
+      if (addExtraFunction){
+        addExtraFunction()
+      }
     } catch (error){
       throw (error)
     }

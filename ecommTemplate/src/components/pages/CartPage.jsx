@@ -64,6 +64,17 @@ const CartPage = () => {
         setItems(cart.items)
       }, [cart])
 
+    const [browsingHistoryChanged, setBrowsingHistoryChanged] = useState(false);
+
+    useEffect(() => {
+        // Code to be executed when browsingHistoryChanged state changes
+        console.log('Browsing history changed!');
+      }, [browsingHistoryChanged]);
+    
+      const handleBrowsingHistoryChange = () => {
+        setBrowsingHistoryChanged(!browsingHistoryChanged);
+      };
+
     const getCost = (item) => {
     const itemTotalCost = (parseFloat(item.item.base_cost) + (parseFloat(item.item.daily_cost) * parseInt(item.days)))
     const totalCost = item.quantity * itemTotalCost
@@ -201,7 +212,9 @@ const CartPage = () => {
                 />
             </div>
             <div>
-                <BrowsingHistory/>
+                <BrowsingHistory
+                    addExtraFunction={handleFetchCart}
+                />
             </div>
         </div>
     </div>

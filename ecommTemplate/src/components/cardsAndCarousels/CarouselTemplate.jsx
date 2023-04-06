@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Empty from "../utils/Empty";
 import ErrorBoundry from "../utils/ErrorBoundry";
 
-const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
+const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc, addExtraFunction }) => {
 
   const [translateDistance, setTranslateDistance] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
@@ -93,8 +93,9 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc }) => {
             cardData.map((data, index) => {
               return (
                 <Card
-                key={index}
-                item={data}
+                  key={index}
+                  item={data}
+                  addExtraFunction={addExtraFunction}
                 />
                 )
               })
