@@ -22,7 +22,6 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
       const delayDebounce = setTimeout(
         async () => {
           const response = await fetchUpdateQuantity(item.uuid, item.quantity);
-          console.log(response)
         }, 2000)
       return () => clearTimeout(delayDebounce)
     },[item.quantity])

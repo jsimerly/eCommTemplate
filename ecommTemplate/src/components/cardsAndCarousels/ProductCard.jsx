@@ -3,37 +3,45 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
-import { fetchItemsToCart, fetchItemFavorited } from '../../api/fetchCart';
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
+import { useLocation } from 'react-router-dom';
 import ErrorBoundry from '../utils/ErrorBoundry';
+import { addItemToCart, addToFavorites } from './addTo';
+import navigateCart from '../../hooks/navigateCart';
 
 const ProductCard = ({item, addExtraFunction}) => {
   const [itemFavorited, setFavorited] = useState(false)
   const {setCartSize, handleNotification} = useContext(ShoppingContext)
+  const location = useLocation();
+  const inCart = location.pathname === '/cart';
   const slug = item.slug
 
+  let navigate = navigateProduct({slug});
+
+  const GoToCart = () => (
+    <div 
+      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
+      onClick={navigateCart()}
+    > 
+      View Cart & Check Out
+    </div>
+  )
+
+
   const handleAddItemClicked = async () =>{
-    try{
-      const response = await fetchItemsToCart([slug])
-      const data = await response.json()
-      setCartSize(data['cart_size'])
-      handleNotification(`${item.name} has been added to your cart.`)
-      if (addExtraFunction){
-        addExtraFunction()
-      }
-    } catch (error){
-      throw (error)
+    addItemToCart(item, addExtraFunction, setCartSize)
+
+    if (!inCart === true){ //using === to prevent and undefined/null from getting through
+      handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
     }
   }
   
-  let navigate = navigateProduct({slug});
+
 
   const handleFavoriteClicked = async () => {
-      const response = await fetchItemFavorited(item.slug)
-      const resp = await response.json()
-      setFavorited(resp.favorited)
+      addToFavorites(item, setFavorited)
   }
 
   useEffect(()=> {

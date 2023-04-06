@@ -1,13 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Information from '../product/Information';
 import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
-import { create_full_image_path} from '../../assets/util';
 import { ShoppingContext } from '../../context';
-
 
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState()

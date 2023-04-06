@@ -83,10 +83,14 @@ function App() {
 
   const [notifcationOpen, setNotification] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
+  const [notifcationCta, setNotificationCta] = useState(null)
 
-  const handleNotification = (message) => {
+
+  const handleNotification = (message, cta) => {
     setNotificationMessage(message)
     setNotification(true)
+    setNotificationCta(cta)
+
     const timer = setTimeout(()=> {
       setNotification(false)
     }, 5000)
@@ -117,6 +121,7 @@ function App() {
             message={notificationMessage}
             showPopup={notifcationOpen}
             setNotification={setNotification}
+            cta={notifcationCta}
           />
           <div className='h-[80px]'/>
           <ErrorBoundry fallback={<Empty className='my-[200px]'/>}>

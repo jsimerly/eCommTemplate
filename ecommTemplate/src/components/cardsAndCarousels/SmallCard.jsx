@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
-import { fetchItemsToCart } from '../../api/fetchCart';
+import { addItemToCart } from './addTo';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import navigateProduct from '../../hooks/navigateProduct';
@@ -7,23 +7,22 @@ import ErrorBoundry from '../utils/ErrorBoundry';
 
 const SmallCard = ({item, addExtraFunction}) => {
   const slug = item.slug
-  const {setCartSize} = useContext(ShoppingContext)
+  const {setCartSize, handleNotification} = useContext(ShoppingContext)
+  const inCart = location.pathname === '/cart';
 
   let navigate = navigateProduct({slug});
-  
+
+  const GoToCart = () => (
+    <div className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'>
+      View Cart & Check Out
+    </div>
+  )
 
   const handleAddItemClicked = async () =>{
-    try{
-
-      const response = await fetchItemsToCart([item.slug])
-      const data = await response.json()
-      setCartSize(data['cart_size'])
-      if (addExtraFunction){
-        console.log(typeof(addExtraFunction))
-        addExtraFunction()
-      }
-    } catch (error){
-      throw (error)
+    addItemToCart(item, addExtraFunction, setCartSize, handleNotification)
+    console.log(inCart)
+    if (!inCart === true){ //using === to prevent and undefined/null from getting through
+      handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
     }
   }
 
