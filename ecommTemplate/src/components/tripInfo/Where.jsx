@@ -12,11 +12,14 @@ const Where = () => {
     const [open, setOpen, handleClick, node] = useDropdown()
  
     const dropdown = () => (
-        <div className={`absolute bg-white flex flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 transition-all ease-in-out duration-150 ${open ? '' : 'hidden'} shadow-md z-10`}>
+        <div 
+            className={`absolute bg-white inline-block flex-col flex-1 w-full top-16 right-0 mt-1 mr-1 rounded-md p-2 ${open ? '' : 'hidden'} shadow-md z-10`}
+            style={{left: 0, right: 'auto'}}
+        >
             <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
                 Locations
             </h1>
-            <div className='grid grid-cols-4 text-tertiary'>
+            <div className='flex flex-wrap justify-between text-tertiary px-3'>
                 {allDests?.map((dest, i) => (
                     <div key={i}>
                         <h3 className='font-bold text-[18px] p-2'>

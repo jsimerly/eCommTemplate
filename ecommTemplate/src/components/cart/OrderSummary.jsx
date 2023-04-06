@@ -179,10 +179,10 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
 
   return (
     <div className='bg-white rounded-md w-full flex flex-col px-6 py-6'>
+        <h3 className='font-bold'>Where and When</h3>
         <div className='relative'>
-            <h3 className='font-bold'>Where and When</h3>
             <div className='flex flex-row space-x-1'>
-                <div className='w-1/2 flex h-[40px]'><Where/></div>
+                <div className='w-1/2 flex h-[40px] '><Where/></div>
                 <div className='w-1/2 flex h-[40px] relative'><When/></div>
             </div>
         </div>

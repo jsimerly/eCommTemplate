@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import SearchIcon from '@mui/icons-material/Search';
 
