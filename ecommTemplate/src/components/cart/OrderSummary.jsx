@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { ShoppingContext } from "../../context";
+import navigateShopping from '../../hooks/navigateShopping'
 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -57,6 +58,7 @@ const PromoCard = ({promo, handlePromoRemove, }) => {
 
 const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, deleteFreeItem}) => {
     const {handleNotification} = useContext(ShoppingContext)
+    let navigateContinueShopping = navigateShopping('')
 
     const [openPromos, setOpenPromos] = useState(false)
     const [promoCode, setPromoCode] = useState('')
@@ -86,6 +88,10 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
     }, [subTotal, flatDiscounts, percentDiscounts])
 
     const {selectedDestination, selectedDateRange} = useContext(ShoppingContext)
+
+    const handleContinueShoppingClick = () => {
+        navigateContinueShopping()
+    }
 
     const handlePromoAdded = async (code) => {
         const response = await fetchPromoCode(code, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
@@ -275,7 +281,10 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
                 <img src={payment}/>
             </div>
         </div>
-        <div className='w-full flex justify-center items-center hover:underline cursor-pointer mt-2'>
+        <div 
+            className='w-full flex justify-center items-center hover:underline cursor-pointer mt-2'
+            onClick={handleContinueShoppingClick}
+        >
             Continue Shopping
         </div>   
     </div>

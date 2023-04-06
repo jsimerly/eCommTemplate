@@ -10,10 +10,6 @@ const Items = ({categoryId}) => {
        fetchProductsByCategory(categoryId, setProductList) 
     },[])
 
-    useEffect(()=>{
-        console.log(productList)
-    },[productList])
-
   return (
     <div
         className='bg-white rounded-md w-full justify-center p-2'

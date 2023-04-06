@@ -19,7 +19,7 @@ const navigateShopping = () => {
         const end = endDate || selectedDateRange.endDate
         const change = dateChange || selectedDateRange.first
 
-        if (selectedCategory.id !== cat.id){
+        if (selectedCategory !== cat){
             setSelectedCategory(category)
         }
 

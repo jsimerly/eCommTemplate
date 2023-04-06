@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 const StandardShop = () => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search);
-  const categoryId = searchParams.get('categoryId')
+  const categoryId = searchParams.get('categoryId') || '0000';
 
   const shoppingData = shoppingPageData[categoryId]
 

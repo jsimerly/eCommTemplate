@@ -16,11 +16,8 @@ import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPag
 import AboutUs from './components/auxillaryPages/AboutUs';
 import { fetchCartSize } from './api/fetchCart';
 import NotificationBar from './components/navBar/NotificationBar';
-import navigateCart from './hooks/navigateCart';
 import ErrorBoundry from './components/utils/ErrorBoundry';
 import Empty from './components/utils/Empty';
-
-
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -75,7 +72,7 @@ function App() {
   useEffect(() => {
     sessionStorage.setItem('destination', JSON.stringify(selectedDestination));
     sessionStorage.setItem('date_range', JSON.stringify(selectedDateRange));
-    sessionStorage.setItem('category', JSON.stringify(selectedCategory) )
+    sessionStorage.setItem('category', JSON.stringify(selectedCategory))
   }, [selectedDateRange, selectedDestination, selectedCategory])  
 
   const [cartSize, setCartSize] = useState(0)
