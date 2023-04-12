@@ -42,7 +42,7 @@ module.exports = {
           errorRed: "#C76C63",
         },
         fontFamily: {
-          roboto : ['Roboto', 'serif'],
+          roboto : ['Roboto', 'sans-serif'],
           londrina: ['Londrina Solid', 'sans-serif']
         },
       },
