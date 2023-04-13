@@ -3,8 +3,8 @@
 const FormTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
     
   return (
-    <div className='flex flex-1 flex-col h-full' ref={node}>
-        <label className="cursor-pointer text-tertiaryTone-200 focus-within:text-tertiary flex items-center flex-1">
+    <div className='flex flex-col h-full w-full justify-center items-center' ref={node}>
+        <label className="cursor-pointer text-tertiaryTone-200 focus-within:text-tertiary flex items-center w-full h-full">
             <IconComponent className={`w-8 h-8 absolute scale-125 ml-2 transform ${selectedData == '' ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
             onClick={(openBool)=>{openFunc(!openBool);}}
         />
@@ -14,7 +14,9 @@ const FormTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeh
                 {selectedData == '' ? placeholder : selectedData}
             </div>
         </label>
-        {dropdown()}
+        <div className="z-50 fixed top-[15%] sm:static w-full">
+          {dropdown()}
+        </div>
     </div>
   )
 }

@@ -14,6 +14,7 @@ import { ProductCard } from '../shopping';
 import { fetchProductsBySlugs } from '../../api/fetchProducts';
 import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_SLUGS, TRENDING_SLUGS } from '../../api/landingPageConstants';
 import { ShoppingContext } from '../../context';
+import MobileSearch from '../landingPage/MobileSearch';
 
 function scrollN(){
     if (window.innerWidth < 680) {
@@ -41,12 +42,12 @@ const Carousel = ({head, data}) => (
     />
 )
 
-const LandingPage = () => {
+const LandingPage = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
     const [mostPopular, setMostPopular] = useState([])
     const [trending, setTrending] = useState([])
     const [newArrivals, setNewArrivals] = useState([])
 
-    const {selectedDateRange, selectedDestination} = useContext(ShoppingContext)
+    const {selectedDateRange} = useContext(ShoppingContext)
 
     useEffect(() => {
             const startDate = selectedDateRange.startDate
@@ -64,6 +65,12 @@ const LandingPage = () => {
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>
+                <MobileSearch
+                    searchInput={searchInput}
+                    setSearchInput={setSearchInput}
+                    searchParamActive={searchParamActive}
+                    setSearchParamActive={setSearchParamActive}
+                />
                 <HowItWorks/>
                 <div className='hidden sm:block my-16'>
                     <NewCustomers/>

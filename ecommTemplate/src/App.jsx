@@ -126,28 +126,33 @@ function App() {
           <div className='h-[80px]'/>
           <ErrorBoundry fallback={<Empty className='my-[200px]'/>}>
           <Routes>
-            <Route exact path='/' element={ <LandingPage/>}/> 
-            <Route path='/about-us' element={<AboutUs/>}/> 
-            <Route path='/shopping/' element={<StandardShop/>}/> 
-            <Route path='/search' element={<SearchPage/>}/> 
+            <Route exact path='/' element={
+              <LandingPage
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                searchParamActive={searchParamActive}
+                setSearchParamActive={setSearchParamActive}
+              />}/> {/* X */}
+            <Route path='/about-us' element={<AboutUs/>}/> {/* X */}
+            <Route path='/shopping/' element={<StandardShop/>}/> {/* X */}
+            <Route path='/search' element={<SearchPage/>}/> {/* X */}
             <Route path='/p/:slug' element= {<ProductPage/>} 
-            /> 
-            <Route path='/cart' element={<CartPage/>}/> 
-            <Route path='/help' element={<HelpPage/>} 
-            /> 
-            <Route path='/contact-support' element={<ContactSupport/>}/> 
-            <Route path='/FAQ' element={<FAQ/>}/> {/* On Hold until Business Model */}
-            <Route path='/find-order' element={<FindOrder/>}/> 
-            <Route path='/feedback' element={<Feedback/>}/> 
-            <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */} 
-            <Route path='/sign-up' element={<SignUp/>}/> 
-            <Route path='/account-information' element={<AccountInformation/>}/>
-            <Route path='/reset-password' element={<ResetPassword/>}/>
-            <Route path='/blogs' element={<AllBlogsPage/>}/> 
-            <Route path='/blogs/:blogId' element={<BlogPage/>}/> 
-            <Route path='/privacy' element={<Privacy/>}/> 
-            <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}
-            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> 
+            /> {/* X */}
+            <Route path='/cart' element={<CartPage/>}/> {/* X */}
+            <Route path='/help' element={<HelpPage/>}/> {/* X */}
+            <Route path='/contact-support' element={<ContactSupport/>}/> {/* X */}
+            <Route path='/FAQ' element={<FAQ/>}/> {/* On Hold until Business Model */} {/* X */}
+            <Route path='/find-order' element={<FindOrder/>}/> {/* X */}
+            <Route path='/feedback' element={<Feedback/>}/> {/* X */}
+            <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */} {/* X */}
+            <Route path='/sign-up' element={<SignUp/>}/> {/* X */}
+            <Route path='/account-information' element={<AccountInformation/>}/>{/* X */}
+            <Route path='/reset-password' element={<ResetPassword/>}/>{/* X */}
+            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* X */}
+            <Route path='/blogs/:blogId' element={<BlogPage/>}/> {/* X */}
+            <Route path='/privacy' element={<Privacy/>}/> {/* X */}
+            <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}{/* X */}
+            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* X */}
           </Routes>
           </ErrorBoundry>
           <div className='flex justify-center items-center'>

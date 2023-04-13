@@ -52,16 +52,14 @@ const When = () => {
     const dateText = selectedDateRange?.first ? format(selectedDateRange.startDate, 'MMM, d').concat(' - ', format(selectedDateRange.endDate, 'MMM d yyyy')) : ''
 
   return (
-    <div className="w-full">
-        <FormTemplate
-            node={node}
-            openFunc={setOpen}
-            selectedData={dateText}
-            dropdown={dropdown}
-            placeholder={'When'}
-            icon={CalendarMonthIcon}
-        />
-    </div>
+    <FormTemplate
+        node={node}
+        openFunc={setOpen}
+        selectedData={dateText}
+        dropdown={dropdown}
+        placeholder={'When'}
+        icon={CalendarMonthIcon}
+    />
   )
 }
 

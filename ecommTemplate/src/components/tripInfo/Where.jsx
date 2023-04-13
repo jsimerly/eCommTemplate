@@ -50,16 +50,14 @@ const Where = () => {
     const destText = selectedDestination ? selectedDestination.city : ''
 
   return (
-    <div className="w-full">
-        <FormTemplate
-            node={node}
-            openFunc={setOpen}
-            selectedData={destText}
-            dropdown={dropdown}
-            placeholder={'Where to'}
-            icon={LocationOnIcon}
-        />
-    </div>
+    <FormTemplate
+        node={node}
+        openFunc={setOpen}
+        selectedData={destText}
+        dropdown={dropdown}
+        placeholder={'Where to'}
+        icon={LocationOnIcon}
+    />
   )
 }
 

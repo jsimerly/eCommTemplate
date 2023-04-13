@@ -11,9 +11,7 @@ import ErrorBoundry from './utils/ErrorBoundry';
 
 const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
 
-    const {selectedDateRange, 
-        selectedDestination, 
-        selectedCategory, } = useContext(ShoppingContext)
+    const {selectedDateRange, selectedDestination, selectedCategory, } = useContext(ShoppingContext)
     const [mounted, setMounted] = useState(false)
     const useNavShopping = navigateShopping()
 
@@ -58,7 +56,7 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
                 setSearchInput={setSearchInput}
                 searchParamActive={searchParamActive}
                 setSearchParamActive={setSearchParamActive}
-                />
+            />
         </div>
         {immediateSearch ? 
             null
