@@ -12,11 +12,11 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
     }
 
     return(
-        <div className={`flex flex-col ${reverse ? 'sm:flex-row-reverse' : 'sm:flex-row'} w-full sm:pt-10`}>
-            <img src={img} className='sm:w-3/5 sm:rounded-md'/>
-            <div className={`sm:w-2/5 text-center pb-2 flex flex-col ${reverse ? 'sm:mr-20' : 'sm:ml-20'}`}>
-                <div className='h-full flex flex-col justify-center mt-4 sm:mt-0 mx-4'>
-                    <h3 className='font-bold sm:text-[40px] text-[30px] text-primary'>
+        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} w-full md:pt-10`}>
+            <img src={img} className='md:w-3/5 rounded-md'/>
+            <div className={`md:w-2/5 text-center pb-2 flex flex-col mx-16`}>
+                <div className='h-full flex flex-col justify-center mt-4 md:mt-0 mx-4'>
+                    <h3 className='font-bold md:text-[40px] text-[30px] text-primary'>
                         {header}
                     </h3>
                     <div className='text-tertiary text-[18px]'>
@@ -42,7 +42,7 @@ const Categories = () => {
         <div className='flex justify-center items-center text-[36px] text-center font-bold text-tertiary pb-6 mx-3'>
             {categories.title}
         </div>
-        <div className='flex flex-col gap-10 sm:gap-[300px] sm:pb-[100px]'>
+        <div className='flex flex-col gap-10 md:gap-[300px] md:pb-[100px]'>
             {categories.cats.map((cat, index) => {
                 const reverse = index % 2 === 1
                 return (
