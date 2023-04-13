@@ -51,7 +51,7 @@ const ProductCard = ({item, addExtraFunction}) => {
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
-    <div className='w-[150px] h-[260px] sm:h-[486px] sm:w-[300px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-2 sm:px-2 flex flex-col m-2 relative group'>
+    <div className='w-[150px] h-[260px] md:h-[486px] md:min-w-[300px] rounded-md bg-tertiaryTone-100 p-2 md:pt-2 md:px-2 flex flex-col m-2 relative group'>
       {item.main_image && (
         <>
           <img 
@@ -76,40 +76,40 @@ const ProductCard = ({item, addExtraFunction}) => {
       <div className='mt-2 p-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 
-            className='font-bold text-[16px] sm:text-[20px] sm:truncate hover:cursor-pointer hover:underline'
+            className='font-bold text-[16px] md:text-[20px] truncate hover:cursor-pointer hover:underline'
             onClick={navigate}
             >
            {item.name}
           </h3>
-          <h4 className='text-[12px] sm:text-[18px] tracking-wide'>
+          <h4 className='text-[12px] md:text-[18px] tracking-wide'>
             {item.brand.name}
           </h4>
         </div>
-        <div className='hidden sm:block'>
+        <div className='hidden md:block'>
           <div className='flex flex-row mt-2 hover:cursor-pointer'>
             <Stars rating={item.average_rating}/>
-            <div className='ml-1 sm:text-[16px]'>
+            <div className='ml-1 md:text-[16px]'>
              ({item.n_ratings})
             </div>
           </div>
         </div>
-        <div className='flex flex-col flex-1 w-full justify-between items-start sm:my-4'>
+        <div className='flex flex-col flex-1 w-full justify-between items-start md:my-4'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
-              <div className='font-semibold sm:text-[26px] leading-none'>
+              <div className='font-semibold md:text-[26px] leading-none'>
                 ${item.total_cost.toFixed(2)}
               </div>
               <p className='leading-none text-[12px] text-center'>
                 For {item.days} Days
               </p>
             </div>
-            <div className='h-full border hidden sm:block'>
+            <div className='h-full border hidden md:block'>
               <BlueButton
                 content='Add to Cart'
                 onClick={handleAddItemClicked}
                 />
             </div>
-            <div className='sm:hidden'>
+            <div className='md:hidden'>
               <BlueButton
                 className='!p-1'
                 content={<AddIcon/>}
