@@ -42,8 +42,8 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
     const dropdown = () => {
         return (
         <div 
-            className={`sm:absolute bg-white flex flex-col top-16 right-0 mx-4 rounded-md p-2 ${open ? '' : 'hidden'} shadow-md z-20 border border-primary sm:border-none overflow-y-auto`}
-            style={{ height: `80vh` }}
+            className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 mx-4 rounded-md p-2 ${open ? '' : 'hidden'} shadow-md z-20 border border-primary sm:border-none overflow-y-auto `}
+            style={{ maxHeight: `80vh` }}
         >
             <div className="relative">
                 <input 

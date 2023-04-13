@@ -36,17 +36,22 @@ const When = () => {
     },[dateRangeHolder])
 
     const dropdown = () => (
-        <DateRange
-            ranges={[dateRangeHolder]}
-            showMonthAndYearPickers={false}
-            onChange={handleDateSelection}
-            minDate={new Date()}
-            direction='horizontal'
-            startDatePlaceholder='Beginning'
-            endDatePlaceholder='Finale'
-            className={`${open ? '' : 'hidden'} rounded-md flex absolute top-16 z-10 border  shadow-md`}
-            onRangeFocusChange={handleRangeChange}
-        />
+        <div 
+            className={`sm:absolute ${open ? '' : 'hidden'} z-10 top-16 sm:border-none border border-primary rounded-md shadow-md`}
+            style={{height: '80hv'}}
+        >
+            <DateRange
+                ranges={[dateRangeHolder]}
+                showMonthAndYearPickers={false}
+                onChange={handleDateSelection}
+                minDate={new Date()}
+                direction='horizontal'
+                startDatePlaceholder='Beginning'
+                endDatePlaceholder='Finale'
+                className={`rounded-md shadow-md flex`}
+                onRangeFocusChange={handleRangeChange}
+            />
+        </div>
     )
 
     const dateText = selectedDateRange?.first ? format(selectedDateRange.startDate, 'MMM, d').concat(' - ', format(selectedDateRange.endDate, 'MMM d yyyy')) : ''
