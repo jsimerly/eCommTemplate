@@ -25,7 +25,7 @@ const Hero = () => {
         onLoad={handleImageLoad}
       />
       <div className={`bg-tertiaryTone-100 ${loaded? 'hidden' : null}`}></div>
-      <div className='absolute flex flex-1 justify-center items-center sm:h-4/5 sm:w-1/2 h-[90%] mx-4 bg-white sm:rounded-r-lg sm:rounded-l-none rounded-md'>
+      <div className='absolute flex flex-1 justify-center items-center sm:h-4/5 sm:w-1/2 h-[90%] mx-4 sm:mx-0 bg-white sm:rounded-r-lg sm:rounded-l-none rounded-md'>
         <div className='flex flex-col justify-center items-center text-primary p-6'>
           <h1 className='text-[36px] sm:text-[70px] font-bold py-6 px-0 sm:px-6 leading-none text-center'>
             {heroMain.title}

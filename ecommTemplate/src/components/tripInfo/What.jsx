@@ -63,7 +63,7 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
             </h1>
             <div className='sm:flex sm:flex-wrap justify-start text-tertiary'>
                 {allCategories?.map((cat, i) => {
-                    const [open, setOpen] = useState(true)
+                    const [open, setOpen] = useState(false)
 
                     return(
                         <div key={i} className='last:hidden mr-10 flex flex-col flex-1 sm:flex-none mb-3'>
@@ -78,7 +78,7 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
                                     <button
                                         key={'button_less_'+i} 
                                         className="sm:hidden"
-                                        onClick={(open) => setOpen(false)}
+                                        onClick={() => setOpen(false)}
                                     >
                                         <ExpandLessIcon/>
                                     </button>
@@ -86,7 +86,7 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
                                     <button 
                                         key={'button_more_'+i} 
                                         className="sm:hidden"
-                                        onClick={(open) => setOpen(true)}
+                                        onClick={() => setOpen(true)}
                                     >
                                         <ExpandMoreIcon/>
                                     </button>
