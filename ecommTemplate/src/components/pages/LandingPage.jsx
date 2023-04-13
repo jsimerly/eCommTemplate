@@ -10,7 +10,7 @@ import {
 } from '../landingPage';
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useContext, useEffect, useState } from 'react';
-import { ProductCard, SmallCard } from '../shopping';
+import { ProductCard } from '../shopping';
 import { fetchProductsBySlugs } from '../../api/fetchProducts';
 import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_SLUGS, TRENDING_SLUGS } from '../../api/landingPageConstants';
 import { ShoppingContext } from '../../context';

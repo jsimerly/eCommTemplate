@@ -93,7 +93,7 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
                                 }
 
                             </div>   
-                            <ul className={`${open ? null : 'hidden'}`}>
+                            <ul className={`${open ? null : 'hidden sm:block'}`}>
                                 {cat.sub?.map((subCat, i) => (
                                     <li 
                                         key={i}

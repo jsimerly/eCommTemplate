@@ -132,7 +132,7 @@ function App() {
                 setSearchInput={setSearchInput}
                 searchParamActive={searchParamActive}
                 setSearchParamActive={setSearchParamActive}
-              />}/> {/* X */}
+              />}/>
             <Route path='/about-us' element={<AboutUs/>}/> {/* X */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* X */}
             <Route path='/search' element={<SearchPage/>}/> {/* X */}

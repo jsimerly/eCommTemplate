@@ -31,7 +31,7 @@ const ProductCard = ({item, addExtraFunction}) => {
 
 
   const handleAddItemClicked = async () =>{
-    addItemToCart(item, addExtraFunction, setCartSize)
+    addItemToCart(item, setCartSize, addExtraFunction=addExtraFunction)
 
     if (!inCart === true){ //using === to prevent and undefined/null from getting through
       handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)

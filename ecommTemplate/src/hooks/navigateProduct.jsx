@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const navigateProduct = ({slug}) => {
@@ -5,8 +6,12 @@ const navigateProduct = ({slug}) => {
 
     function handleNav(){
         navigate(`/p/${slug}`)
-        window.scrollTo(0, 0);
     }
+
+    useEffect(()=> {
+        window.scrollTo(0,0)
+    },[slug])
+
     return handleNav
 }   
 

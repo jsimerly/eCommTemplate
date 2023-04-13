@@ -6,6 +6,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
 import { fetchItemFavorited } from '../../api/fetchCart';
+import { addItemToCart } from '../cardsAndCarousels/addTo';
 
 const ProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
@@ -26,6 +27,11 @@ const ProductMain = ({mainCardInfo}) => {
       const response = await fetchItemFavorited(mainCardInfo.slug)
       const resp = await response.json()
       setFavorited(resp.favorited)
+    }
+
+    const handleAddToCart = async () => {
+      addItemToCart(mainCardInfo.slug)
+      console.log(mainCardInfo.slug)
     }
 
   return (
@@ -139,6 +145,7 @@ const ProductMain = ({mainCardInfo}) => {
               <div className='w-full mx-4'>
                 <LargeBlueButton
                   content='Add to Cart'
+                  onClick={handleAddToCart}
                 />
               </div>
               {/*when adding to cart alert them to the location and date range*/}

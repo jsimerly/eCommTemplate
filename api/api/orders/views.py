@@ -19,7 +19,7 @@ class CartItemAddView(APIView):
 
         cart_items_data = request.data
         cart_items = []
-
+        print(cart_items_data)
         for cart_item_data in cart_items_data:
             product = Product.objects.get(slug=cart_item_data['slug'])
             quantity = cart_item_data.get('quantity') or 1

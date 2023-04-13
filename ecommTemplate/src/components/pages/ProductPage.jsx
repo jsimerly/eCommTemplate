@@ -6,8 +6,10 @@ import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
 import { ShoppingContext } from '../../context';
+import navigateShopping from '../../hooks/navigateShopping';
 
 const ProductPage = () => {
+  const navigate = navigateShopping()
   const [productInfo, setProductInfo] = useState()
   const [mainCardInfo, setMainCardInfo] = useState({
     name: '',
@@ -92,10 +94,22 @@ const ProductPage = () => {
 
     let currentCategory = category;
     let chev = false
+
+    const createOnClickHandler = (cat) => {
+      return () => {
+        navigate(category=cat)
+      };
+    };
+
     while (currentCategory) {
+      console.log(currentCategory)
       categoryPath.push(
         <div key={currentCategory.fe_id}>
-          <a href={`/categories/${currentCategory.slug}`} className='hover:underline cursor-pointer'>{currentCategory.name}</a>
+          <a 
+            onClick={createOnClickHandler(currentCategory)}
+            className='hover:underline cursor-pointer'>
+              {currentCategory.name}
+          </a>
           {chev && <ChevronRightIcon className='scale-75' />}
         </div>
       );
@@ -120,7 +134,7 @@ const ProductPage = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="max-w-[1280px] w-full">
-        <div className='my-4 text-[12px] text-tertiary flex flex-row'>
+        <div className='my-4 text-[12px] text-tertiary flex flex-row items-center'>
           <LinkPath category={category}/>
         </div>
         <div className='mt-20 mb-24'>

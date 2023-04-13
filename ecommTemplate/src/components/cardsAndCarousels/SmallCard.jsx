@@ -12,6 +12,7 @@ const SmallCard = ({item, addExtraFunction}) => {
 
   let navigate = navigateProduct({slug});
 
+
   const GoToCart = () => (
     <div className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'>
       View Cart & Check Out
