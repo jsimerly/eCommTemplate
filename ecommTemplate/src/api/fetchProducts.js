@@ -66,3 +66,21 @@ export async function fetchProductsByCategory(category, setterFunc){
     throw error
   }
 }
+
+export async function fetchManyCategories(category_id){
+  try{
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category_many/${category_id}/`)
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function fetchIndividualCategories(category_id){
+  try{
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category_individual/${category_id}/`)
+    return response
+  } catch (error) {
+    throw error
+  }
+}

@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import ProductPageView, ProductCategoryAPIView, ProductListAPIView, ProductSearchView, ProductAPIView, ProductReviewsView
+from .views import ProductPageView, ProductCategoryAPIView, ProductListAPIView, ProductSearchView, ProductAPIView, ProductReviewsView, IndividualCategoryView, CategoriesView
 
 urlpatterns = [
+    path('category_many/<fe_id>/', CategoriesView.as_view(), name='many_categories'),
+    path('category_individual/<fe_id>/', IndividualCategoryView.as_view(), name='individual_categories'),
+
     path('slug/<slug:slug>/', ProductPageView.as_view(), name='product_detail'),
     path('category/<str:category>/', ProductCategoryAPIView.as_view(), name='category_products'),
     path('products/list/', ProductListAPIView.as_view(), name='product_list'),

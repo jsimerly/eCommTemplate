@@ -102,7 +102,6 @@ const ProductPage = () => {
     };
 
     while (currentCategory) {
-      console.log(currentCategory)
       categoryPath.push(
         <div key={currentCategory.fe_id}>
           <a 

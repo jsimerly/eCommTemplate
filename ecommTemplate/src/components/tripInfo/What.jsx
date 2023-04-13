@@ -1,21 +1,35 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 import { ShoppingContext } from "../../context";
+import { fetchManyCategories } from "../../api/fetchProducts";
 
 import FormTemplate from "./FormTemplate";
 import useDropdown from "../../hooks/useDropdown";
 import navigateSearch from "../../hooks/navigateSearch";
+import { categories } from "../landingPage/landingCopy_constant";
 
 
 
 const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
     //add search ability to this at some point
-    const {setSelectedCategory, selectedCategory, allCategories} = useContext(ShoppingContext)
+    const {setSelectedCategory, selectedCategory} = useContext(ShoppingContext)
     const [open, setOpen, handleClick, node] = useDropdown()
+    const [allCategories, setAllCategories] = useState()
+    
+    useEffect(()=> {
+        const getAllCategory = async () => {
+            const response = await fetchManyCategories('0000') 
+            if (response.ok){
+                const resp = await response.json()
+                setAllCategories(resp)
+            } 
+        }
+        getAllCategory()
+    },[])
 
     const handleSelect = (cat) => {
         setSelectedCategory(cat);
@@ -38,7 +52,6 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
             handleSearchClick(searchInput)
         }
     }
-
     const dropdown = () => {
         return (
         <div 
@@ -62,11 +75,11 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
                 Categories
             </h1>
             <div className='sm:flex sm:flex-wrap justify-start text-tertiary'>
-                {allCategories?.map((cat, i) => {
+                {allCategories && allCategories.subcategories.map((cat, i) => {
                     const [open, setOpen] = useState(false)
 
                     return(
-                        <div key={i} className='last:hidden mr-10 flex flex-col flex-1 sm:flex-none mb-3'>
+                        <div key={i} className='mr-10 flex flex-col flex-1 sm:flex-none mb-3'>
                             <div className="flex flex-row justify-between">
                                 <h3 
                                     className='font-bold text-[18px] px-2 cursor-pointer hover:underline'
@@ -94,7 +107,7 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
 
                             </div>   
                             <ul className={`${open ? null : 'hidden sm:block'}`}>
-                                {cat.sub?.map((subCat, i) => (
+                                {cat.subcategories?.map((subCat, i) => (
                                     <li 
                                         key={i}
                                         className='pl-4 cursor-pointer hover:underline truncate'
@@ -110,15 +123,7 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
             </div>
             <h4 
                 className='w-full text-center underline text-tertiary cursor-pointer hover:scale-105 mt-2'
-                onClick={()=> {
-                    setSelectedCategory({
-                        name: 'All Categories',
-                        link: '',
-                        type:'full',
-                        id:'0000'
-                    });
-                    setOpen(false)
-                }}
+                onClick={()=>handleSelect(allCategories)}
             >
                 All Categories
             </h4>

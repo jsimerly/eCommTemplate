@@ -10,18 +10,22 @@ class BrandSerializer(serializers.ModelSerializer):
         model = Brand
         fields = ['id','name', 'logo_path', 'full_name']
 
-class Category_Serializer(serializers.ModelSerializer):
-    parent = serializers.SerializerMethodField()
+class Categories_Serializers(serializers.ModelSerializer):
+    subcategories = serializers.SerializerMethodField()
 
     class Meta:
         model = Category
-        fields = ['fe_id', 'name', 'parent']
+        fields = ['fe_id', 'name', 'desc', 'parent', 'subcategories']
 
-    def get_parent(self, obj):
-        if obj.parent is None:
-            return None
-        serializer = self.__class__(obj.parent)
+    def get_subcategories(self, obj):
+        serializer = Categories_Serializers(obj.category_set.all(), many=True)
         return serializer.data
+    
+class IndividualCategory_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['fe_id', 'name', 'desc',]
+
 
 class ProductImage_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -60,7 +64,7 @@ class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
     images = ProductImage_Serializer(many=True)
-    category = Category_Serializer()
+    category = Categories_Serializers()
     frequently_bought_with = ProductCard_Serializer(many=True)
     total_cost = serializers.SerializerMethodField()
     insurance_total_cost = serializers.SerializerMethodField()

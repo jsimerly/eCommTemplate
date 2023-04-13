@@ -12,7 +12,6 @@ const navigateShopping = () => {
     const navigate = useNavigate();
 
     function handleNav(category, destination, startDate, endDate, dateChange){
-
         const cat = category || selectedCategory
         const dest = destination || selectedDestination 
         const start = startDate || selectedDateRange.startDate 
@@ -23,7 +22,7 @@ const navigateShopping = () => {
             setSelectedCategory(category)
         }
 
-        let params = `?destination=${dest}&startDate=${start}&endDate=${end}&categoryId=${cat.id}&dateChange=${change}`
+        let params = `?destination=${dest.city}&startDate=${start}&endDate=${end}&categoryId=${cat.fe_id}&dateChange=${change}`
 
         navigate(`/shopping${params}`)
         window.scrollTo(0, 0);

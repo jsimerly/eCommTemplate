@@ -8,9 +8,9 @@ from datetime import datetime
 from django.utils import timezone
 
 
-from .models import Product
+from .models import Product, Category
 
-from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer
+from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer
 
 def getDateContext(request):
     date_changed_str = request.GET.get('dateChange')
@@ -38,6 +38,27 @@ def getDateContext(request):
 
     return context
 
+class IndividualCategoryView(APIView):
+    serializer_class = IndividualCategory_Serializer
+
+    def get(self, request, fe_id):
+        category = Category.objects.get(fe_id=fe_id)
+        serializer = self.serializer_class(data=category)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class CategoriesView(APIView):
+    serializer_class = Categories_Serializers
+
+    def get(self, request, fe_id):
+        if fe_id is None:
+            fe_id = '0000'
+
+        category = Category.objects.get(fe_id=fe_id)
+        serializer = self.serializer_class(category)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 # Create your views here.
 class ProductPageView(APIView):
     def get(self, request, slug,):

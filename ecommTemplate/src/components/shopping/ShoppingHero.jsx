@@ -28,7 +28,7 @@ const ShoppingHero = ({name, desc, img, parent}) => {
             }
         )
 
-        if (selectedCategory.id.slice(-2) === '00'){
+        if (selectedCategory.fe_id.slice(-2) === '00'){
             return heirarchy
         }
 

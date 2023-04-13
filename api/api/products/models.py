@@ -23,13 +23,19 @@ class Brand(models.Model):
 class Category(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
 
-    fe_id = models.CharField(max_length=4)
+    fe_id = models.CharField(max_length=4, unique=True)
     name = models.CharField(max_length=40)
+    desc = models.TextField()
 
-    parent = models.ForeignKey('self',null=True, blank=True, on_delete=models.PROTECT)
+    parent = models.ForeignKey(
+        'self',
+        null=True, 
+        blank=True, 
+        on_delete=models.PROTECT
+    )
 
     def __str__(self):
-        return self.name
+        return str(self.name)
     
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)

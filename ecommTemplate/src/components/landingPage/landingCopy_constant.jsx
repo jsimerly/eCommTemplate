@@ -50,21 +50,21 @@ export const categories = {
             header: 'You Can Have it All',
             desc:"Whether you're surfing in style or laying out in the sun, we've got what you need.",
             cta1: 'Shop Paddleboards',
-            nav:{name:'Other Boards', id:'0709'},
+            nav:{name:'Other Boards', fe_id:'0709'},
             img: layingOut,
         },
         {
             header: 'Game On',
             desc : 'Trying to stay active or just want to make things competitive on your get away?',
             cta1: 'Shop Games',
-            nav:{name:'Games', id:'0402'},
+            nav:{name:'Games', fe_id:'0402'},
             img: gameOn,
         },
         {
             header: "Don't Kid Yourself",
             desc: 'Keeping the young ones safe and smiling can be stressful, but we can make it easy.',
             cta1: 'Shop Kids',
-            nav:{name:'Kids', id:'0500'},
+            nav:{name:'Kids', fe_id:'0500'},
             img: withKids
         }
 
