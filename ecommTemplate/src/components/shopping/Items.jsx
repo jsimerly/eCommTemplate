@@ -2,7 +2,7 @@ import { ProductCard } from "."
 import Empty from "../utils/Empty"
 
 const Items = ({products}) => {
-    console.log(products)
+
    return (
     <div
         className='bg-white rounded-md w-full justify-center p-2'

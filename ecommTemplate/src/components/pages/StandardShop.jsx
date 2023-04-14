@@ -13,7 +13,7 @@ const StandardShop = () => {
 
   const [products, setProductData] = useState([])
   const [categoryInfo, setCategoryInfo] = useState()
-  const [relatedCategories, setRelatedCategories] = ([])
+  const [relatedCategories, setRelatedCategories] = useState([])
 
   useEffect(() => {
     const fetchCategoryInfo = async () => {
@@ -32,9 +32,6 @@ const StandardShop = () => {
     fetchCategoryInfo()
   },[selectedCategory])
 
-  useEffect(()=>{
-    console.log(categoryInfo)
-  }, [products])
 
   useEffect(() => {
     window.scrollTo(0, 0);

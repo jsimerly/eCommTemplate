@@ -1,17 +1,15 @@
 import styles from '../../styles'
-import { useContext, useEffect } from 'react'
-import { ShoppingContext } from '../../context';
 import { LinkPath } from '../utils/LinkPath';
 
 const ShoppingHero = ({categoryInfo}) => {  
   return (
     <div className='w-full flex flex-col relative'>
-        <div className='bg-green-500 h-[500px]'>
-        </div>
-        {/* <img
-            src={img}
-            className='w-full'
-        /> */}
+        {categoryInfo && (
+            <img
+                src={categoryInfo.image}
+                className='w-full'
+            />
+        )}
         <div className="absolute h-full w-full">
             <div className={`${styles.flexCenter} h-full`}>
                 <div className={`${styles.boxWidth}`}>

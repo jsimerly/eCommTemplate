@@ -17,6 +17,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
   const [filterOpen, setFilterOpen, handleFilterClick] = useOpenAndClose(false)
   const [filterApplied, setFilterApplied] = useState(false)
+  console.log(relatedCategories)
 
   // useEffect(() => {
   //   setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));

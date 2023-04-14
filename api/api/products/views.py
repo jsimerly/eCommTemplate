@@ -107,7 +107,7 @@ class ProductCategoryAPIView(APIView):
         products_serializer = ProductCard_Serializer(products, context=context, many=True)
 
         category_obj = Category.objects.get(fe_id=category)
-        category_serializer = IndividualCategory_Serializer(category_obj)
+        category_serializer = IndividualCategory_Serializer(category_obj, context=context)
 
         response_data = {
             'products' : products_serializer.data,
