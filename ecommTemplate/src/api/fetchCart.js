@@ -3,14 +3,15 @@ import { fetchWrapper, getCookie } from "./cookies";
 import { parseDates, datesUrlString } from "./fetchProducts";
 
 
-export async function fetchItemsToCart(itemSlugs){
+export async function fetchItemsToCart(items){
+    console.log(items)
     const requestOptions = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFTOKEN' : getCookie('csrftoken'),
         },
-        body: JSON.stringify(itemSlugs.map(slug => ({ slug })))
+        body: JSON.stringify(items),
     }
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/add-items/`,

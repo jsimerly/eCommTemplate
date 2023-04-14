@@ -6,10 +6,10 @@ import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
 import { ShoppingContext } from '../../context';
-import navigateShopping from '../../hooks/navigateShopping';
+
+import { LinkPath } from '../utils/LinkPath';
 
 const ProductPage = () => {
-  const navigate = navigateShopping()
   const [productInfo, setProductInfo] = useState()
   const [mainCardInfo, setMainCardInfo] = useState({
     name: '',
@@ -36,13 +36,14 @@ const ProductPage = () => {
     days: 6,
   })
   const [frequentlyBought, setFrequentlyBought] = useState([])
+  const [category, setCategory] = useState()
 
   const location = useLocation();
   const segments = location.pathname.split('/');
   const slug = segments[segments.length - 1];
 
 
-  const {selectedDateRange, selectedDestination} = useContext(ShoppingContext)
+  const {selectedDateRange} = useContext(ShoppingContext)
 
   useEffect(() => {
     const startDate = selectedDateRange.startDate
@@ -86,49 +87,6 @@ const ProductPage = () => {
       setCategory(productInfo.product.category)
     }
   }, [productInfo])
-
-  const [category, setCategory] = useState()
-
-  const LinkPath = ({category}) => {
-    const categoryPath = [];
-
-    let currentCategory = category;
-    let chev = false
-
-    const createOnClickHandler = (cat) => {
-      return () => {
-        navigate(category=cat)
-      };
-    };
-
-    while (currentCategory) {
-      categoryPath.push(
-        <div key={currentCategory.fe_id}>
-          <a 
-            onClick={createOnClickHandler(currentCategory)}
-            className='hover:underline cursor-pointer'>
-              {currentCategory.name}
-          </a>
-          {chev && <ChevronRightIcon className='scale-75' />}
-        </div>
-      );
-      currentCategory = currentCategory.parent;
-      chev = true
-    }
-
-    categoryPath.push(
-      <div key="home">
-        <a href="/" className='hover:underline cursor-pointer'>Home</a>
-        <ChevronRightIcon className='scale-75' />
-      </div>
-    );
-
-    return (
-      <>
-        {categoryPath.reverse()}
-      </>
-      );
-    }
 
   return (
     <div className="flex justify-center items-center">

@@ -9,9 +9,20 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ['id','name', 'logo_path', 'full_name']
+    
+class IndividualCategory_Serializer(serializers.ModelSerializer):
+    parent = serializers.SerializerMethodField()
+    class Meta:
+        model = Category
+        fields = ['fe_id', 'name', 'desc', 'parent']
+    
+    def get_parent(self, obj):
+        serializer = IndividualCategory_Serializer(obj.parent)
+        return serializer.data
 
 class Categories_Serializers(serializers.ModelSerializer):
     subcategories = serializers.SerializerMethodField()
+    parent = IndividualCategory_Serializer()
 
     class Meta:
         model = Category
@@ -20,11 +31,6 @@ class Categories_Serializers(serializers.ModelSerializer):
     def get_subcategories(self, obj):
         serializer = Categories_Serializers(obj.category_set.all(), many=True)
         return serializer.data
-    
-class IndividualCategory_Serializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['fe_id', 'name', 'desc',]
 
 
 class ProductImage_Serializer(serializers.ModelSerializer):

@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import { useLocation } from 'react-router-dom';
 import ErrorBoundry from '../utils/ErrorBoundry';
-import { addItemToCart, addToFavorites } from './addTo';
+import { addItemsToCart, addToFavorites } from './addTo';
 import navigateCart from '../../hooks/navigateCart';
 
 const ProductCard = ({item, addExtraFunction}) => {
@@ -31,7 +31,7 @@ const ProductCard = ({item, addExtraFunction}) => {
 
 
   const handleAddItemClicked = async () =>{
-    addItemToCart(item, setCartSize, addExtraFunction=addExtraFunction)
+    addItemsToCart([item], setCartSize, addExtraFunction=addExtraFunction)
 
     if (!inCart === true){ //using === to prevent and undefined/null from getting through
       handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)

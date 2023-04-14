@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -6,13 +6,15 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
 import { fetchItemFavorited } from '../../api/fetchCart';
-import { addItemToCart } from '../cardsAndCarousels/addTo';
+import { addItemsToCart } from '../cardsAndCarousels/addTo';
+import { ShoppingContext } from '../../context';
 
 const ProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
     const [insured, setInsured] = useState(false)
     const [mainImg, setMainImg] = useState(mainCardInfo.mainImg)
     const [itemFavorited, setFavorited] = useState(false)
+    const {setCartSize, handleNotification} = useContext(ShoppingContext)
 
     useEffect(()=>{
       setMainImg(mainCardInfo.mainImg)
@@ -30,8 +32,12 @@ const ProductMain = ({mainCardInfo}) => {
     }
 
     const handleAddToCart = async () => {
-      addItemToCart(mainCardInfo.slug)
-      console.log(mainCardInfo.slug)
+      const cartItems = [{
+        slug: mainCardInfo.slug,
+        quantity: quant,
+        insurancePurchased: insured,
+      }]
+      addItemsToCart(cartItems, setCartSize)
     }
 
   return (

@@ -1,5 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
-import { addItemToCart } from './addTo';
+import { addItemsToCart } from './addTo';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import navigateProduct from '../../hooks/navigateProduct';
@@ -20,7 +20,7 @@ const SmallCard = ({item, addExtraFunction}) => {
   )
 
   const handleAddItemClicked = async () =>{
-    addItemToCart(item, addExtraFunction, setCartSize, handleNotification)
+    addItemsToCart([item], addExtraFunction, setCartSize, handleNotification)
     console.log(inCart)
     if (!inCart === true){ //using === to prevent and undefined/null from getting through
       handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)

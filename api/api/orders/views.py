@@ -23,9 +23,9 @@ class CartItemAddView(APIView):
         for cart_item_data in cart_items_data:
             product = Product.objects.get(slug=cart_item_data['slug'])
             quantity = cart_item_data.get('quantity') or 1
+            insurance_purchased = cart_item_data.get('insurancePurchased') or False
 
             existing_cart_item = cart.items.filter(item=product).first()
-
 
             if existing_cart_item:
                 existing_cart_item.quantity += quantity
@@ -45,6 +45,7 @@ class CartItemAddView(APIView):
                     
                         item = product,
                         quantity = quantity,
+                        insurance_purchased = insurance_purchased,
                     )
                     cart_items.append(cart_item)
                 except Exception as e:
