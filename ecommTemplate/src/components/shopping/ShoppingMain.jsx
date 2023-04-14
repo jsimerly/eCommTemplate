@@ -89,7 +89,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                 </div>
 
               </div>
-              {relatedCategories && (
+              {relatedCategories && relatedCategories.length > 0 && (
                 <div className='flex flex-col items-center justify-center flex-1 pb-4'>
                 <h4 className='text-[14px] font-semibold'>
                   Related Categories
