@@ -57,11 +57,14 @@ export async function fetchProductReviewsBySlug(slug, setterFunc){
   }
 }
 
-export async function fetchProductsByCategory(category, setterFunc){
+export async function fetchCategory(category, startDate, endDate, dateChange){
+  const [start, end] = parseDates(startDate, endDate)
   try {
-    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category/${category}/`);
-    const productList = await response.json()
-    setterFunc(productList)
+    if (!category){
+      return
+    }
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category/${category}/?${datesUrlString(start,end,dateChange)}`);
+    return response
   } catch (error) {
     throw error
   }

@@ -9,5 +9,7 @@ admin.site.register(ProductReview)
 admin.site.register(Stock)
 admin.site.register(ProductImage)
 admin.site.register(Category)
+admin.site.register(FilterOption)
+admin.site.register(FilterTag)
 
 

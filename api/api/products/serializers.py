@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category
+from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category, FilterTag, FilterOption
 from django.contrib.auth import get_user_model
 from decimal import Decimal
 
@@ -14,7 +14,7 @@ class IndividualCategory_Serializer(serializers.ModelSerializer):
     parent = serializers.SerializerMethodField()
     class Meta:
         model = Category
-        fields = ['fe_id', 'name', 'desc', 'parent']
+        fields = ['fe_id', 'name', 'desc', 'parent', 'related_categories', 'image']
     
     def get_parent(self, obj):
         serializer = IndividualCategory_Serializer(obj.parent)
@@ -38,12 +38,27 @@ class ProductImage_Serializer(serializers.ModelSerializer):
         model = ProductImage
         fields = ('uuid', 'image', 'caption', 'is_main_image')
 
+class FilterTag_Serializer(serializers.ModelSerializer):
+    filter_option = serializers.SerializerMethodField()
+    class Meta:
+        model = FilterTag
+        fields = ['name', 'filter_option']
+
+    def get_filter_option(self, obj):
+        filter_option = obj.filter_option
+        return filter_option.display_name
+
 class ProductCard_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
     total_cost = serializers.SerializerMethodField()
     days = serializers.SerializerMethodField()
     favorited = serializers.SerializerMethodField()
+    filter_tags = FilterTag_Serializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'base_cost', 'daily_cost', 'total_cost', 'days', 'favorited', 'filter_tags',]
 
     def get_total_cost(self, obj):
         if 'days' in self.context:
@@ -62,9 +77,7 @@ class ProductCard_Serializer(serializers.ModelSerializer):
         is_favorited = obj.favorited_items.filter(customer=customer).exists()
         return is_favorited
 
-    class Meta:
-        model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'base_cost', 'daily_cost', 'total_cost', 'days', 'favorited']
+
 
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
@@ -114,7 +127,7 @@ class Product_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'tags', 'total_cost', 'days', 'insurance_total_cost', 'main_image', 'images','frequently_bought_with', 'favorited']
+        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'filter_tags', 'total_cost', 'days', 'insurance_total_cost', 'main_image', 'images','frequently_bought_with', 'favorited']
 
     def create(self, validated_data):
         brand_data = validated_data.pop('brand')

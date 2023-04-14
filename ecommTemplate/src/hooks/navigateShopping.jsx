@@ -4,27 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { ShoppingContext } from '../context';
 
 const navigateShopping = () => {
-    const {
-        selectedDateRange, setSelectedDateRange, 
-        selectedDestination, setSelectedDestination,
-        selectedCategory, setSelectedCategory} = useContext(ShoppingContext)
+    const {selectedCategory, setSelectedCategory} = useContext(ShoppingContext)
 
     const navigate = useNavigate();
 
     function handleNav(category, destination, startDate, endDate, dateChange){
         const cat = category || selectedCategory
-        const dest = destination || selectedDestination 
-        const start = startDate || selectedDateRange.startDate 
-        const end = endDate || selectedDateRange.endDate
-        const change = dateChange || selectedDateRange.first
 
         if (selectedCategory !== cat){
             setSelectedCategory(category)
         }
 
-        let params = `?destination=${dest.city}&startDate=${start}&endDate=${end}&categoryId=${cat.fe_id}&dateChange=${change}`
-
-        navigate(`/shopping${params}`)
+        navigate(`/shopping`)
         window.scrollTo(0, 0);
     }
     

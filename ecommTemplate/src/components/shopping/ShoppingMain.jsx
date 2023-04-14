@@ -10,17 +10,17 @@ import useOpenAndClose from '../../hooks/useOpenAndClose';
 import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
-const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
+const ShoppingMain = ({filterData, relatedCategories, products}) => {
   //Filter Related
-  const filterData_copy = JSON.parse(JSON.stringify(filterData))
-  const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
+  // const filterData_copy = JSON.parse(JSON.stringify(filterData))
+  // const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
 
   const [filterOpen, setFilterOpen, handleFilterClick] = useOpenAndClose(false)
   const [filterApplied, setFilterApplied] = useState(false)
 
-  useEffect(() => {
-    setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));
-  }, [filterData]);
+  // useEffect(() => {
+  //   setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));
+  // }, [filterData]);
 
   const areListsEqual = (deepCopy, stateCopy) =>{
 
@@ -38,12 +38,12 @@ const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
   }
 
   const checkForFilterApplied = () => {
-    const bool = areListsEqual(filterData_copy, checkFilterOptions)
-    setFilterApplied(!bool)
+    // const bool = areListsEqual(filterData_copy, checkFilterOptions)
+    // setFilterApplied(!bool)
   }
 
   const handleClearClick = () => {
-    setCheckFilterOptions([...filterData_copy])
+    // setCheckFilterOptions([...filterData_copy])
     setFilterApplied(false)
   }
 
@@ -68,7 +68,7 @@ const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
               <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
                   <WhiteButton 
-                    onClick={handleFilterClick}
+                    // onClick={handleFilterClick}
                     content={
                       <div>
                         <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
@@ -88,7 +88,8 @@ const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
                 </div>
 
               </div>
-              <div className='flex flex-col items-center justify-center flex-1 pb-4'>
+              {relatedCategories && (
+                <div className='flex flex-col items-center justify-center flex-1 pb-4'>
                 <h4 className='text-[14px] font-semibold'>
                   Related Categories
                 </h4>
@@ -102,9 +103,9 @@ const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
                       {cat.name}
                     </a>
                   ))}
-
                 </div>
               </div>
+              )}
               <div className='flex justify-end items-center w-1/5'>
                 <div ref={sortNode}>
                   <div className='h-[42px] group'>
@@ -140,16 +141,16 @@ const ShoppingMain = ({filterData, relatedCategories, categoryId}) => {
             </div>
             <div className='flex flex-row mt-2 w-full'>
               <div className={`${filterOpen ? '' : 'hidden'} mr-2`}>
-                <Filter
+                {/* <Filter
                   closeFunc={setFilterOpen}
                   checkFilterOptions={checkFilterOptions}
                   setCheckFilterOptions={setCheckFilterOptions}
                   checkForFilterApplied={checkForFilterApplied}
-                />
+                /> */}
               </div>
               <div className='flex flex-1 w-full'>
                 <Items
-                  categoryId={categoryId}
+                  products={products}
                 />
               </div>
             </div>

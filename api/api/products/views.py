@@ -101,6 +101,7 @@ class ProductCategoryAPIView(APIView):
             'request' : request,
             **getDateContext(request)
         }
+        print(context)
 
         products = Product.objects.filter(category__fe_id=category)
         products_serializer = ProductCard_Serializer(products, context=context, many=True)
@@ -112,7 +113,7 @@ class ProductCategoryAPIView(APIView):
             'products' : products_serializer.data,
             'category' : category_serializer.data
         }
-        
+
         return Response(response_data, status=status.HTTP_200_OK)
     
 class ProductAPIView(APIView):

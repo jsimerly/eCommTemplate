@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.db.models import JSONField
 from django.contrib.postgres.fields import ArrayField, DateRangeField
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -20,12 +21,15 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
     
+def get_upload_path_cat(instance, filename):
+    return f"category/{instance.name}/{filename}"
 class Category(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
 
     fe_id = models.CharField(max_length=4, unique=True)
     name = models.CharField(max_length=40)
     desc = models.TextField()
+
 
     parent = models.ForeignKey(
         'self',
@@ -34,8 +38,41 @@ class Category(models.Model):
         on_delete=models.PROTECT
     )
 
+    image = models.ImageField(upload_to=get_upload_path_cat, null=True)
+
+    related_categories = models.ManyToManyField('self', blank=True)
+
+    #Set the max number of related categories to 6    
+    def clean(self):
+        if self.related_categories.count() > 6:
+            raise ValidationError("A maximum of 6 related categories is allowed.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return str(self.name)
+    
+class FilterOption(models.Model):
+    internal_name = models.CharField(max_length=60)
+    display_name = models.CharField(max_length=30)
+    categories = models.ManyToManyField(Category)
+
+    def __str__(self):
+        return self.internal_name
+    
+class FilterTag(models.Model):
+    name = models.CharField(max_length=30)
+    filter_option = models.ForeignKey(
+        FilterOption,
+        on_delete=models.CASCADE,
+        related_name='tags'
+    )
+
+    def __str__(self):
+        return str(self.filter_option.internal_name) + ': ' + self.name
+
     
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
@@ -46,7 +83,7 @@ class Product(models.Model):
     slug = models.CharField(max_length=32, unique=True,)
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, default=None)
-    tags = ArrayField(models.CharField(max_length=30), null=True, blank=True)
+    filter_tags = models.ManyToManyField(FilterTag, blank=True)
 
     average_rating = models.FloatField(null=True, blank=True)
     n_ratings = models.PositiveIntegerField(default=0)
@@ -85,7 +122,7 @@ def set_frequently_bought_with(sender, instance, created, **kwargs):
         instance.frequently_bought_with.add(instance)
 
 
-def get_upload_path(instance, filename):
+def get_upload_path_prod(instance, filename):
     return f"products/{instance.product.brand}/{instance.product.slug}/{filename}"
 
 class ProductImage(models.Model):
@@ -97,7 +134,7 @@ class ProductImage(models.Model):
     )
     caption = models.CharField(max_length=100, blank=True, null=True)
 
-    image = models.ImageField(upload_to=get_upload_path)
+    image = models.ImageField(upload_to=get_upload_path_prod)
     is_main_image = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
