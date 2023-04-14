@@ -10,9 +10,6 @@ import { fetchManyCategories } from "../../api/fetchProducts";
 import FormTemplate from "./FormTemplate";
 import useDropdown from "../../hooks/useDropdown";
 import navigateSearch from "../../hooks/navigateSearch";
-import { categories } from "../landingPage/landingCopy_constant";
-
-
 
 const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
     //add search ability to this at some point
@@ -42,7 +39,10 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
         if (searchParamActive){
             return searchInput
         }
-        return selectedCategory.name
+        if (selectedCategory){
+            return selectedCategory.name
+        }
+        return ''
     }
 
     const handleSearchClick = navigateSearch()

@@ -26,8 +26,6 @@ function getDateRange(){
     dateRange['startDate'] = new Date(dateRange['startDate'])
     dateRange['endDate'] = new Date(dateRange['endDate'])
     return dateRange
-
-    
   }
   return (
     {
@@ -41,12 +39,12 @@ function getDateRange(){
 
 function getDestination(){
   const sessionDest = sessionStorage.getItem('destination')
-  return sessionDest ? JSON.parse(sessionDest) : ''
+  return sessionDest ? JSON.parse(sessionDest) : null
 }
 
 function getCategory(){
   const sessionCat = sessionStorage.getItem('category')
-    return sessionCat ? JSON.parse(sessionCat) : {name: '', id:'0000'}
+    return sessionCat ? JSON.parse(sessionCat) : null
 }
 
 function App() {

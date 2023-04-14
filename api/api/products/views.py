@@ -103,8 +103,17 @@ class ProductCategoryAPIView(APIView):
         }
 
         products = Product.objects.filter(category__fe_id=category)
-        serializer = ProductCard_Serializer(products, context=context, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        products_serializer = ProductCard_Serializer(products, context=context, many=True)
+
+        category_obj = Category.objects.get(fe_id=category)
+        category_serializer = IndividualCategory_Serializer(category_obj)
+
+        response_data = {
+            'products' : products_serializer.data,
+            'category' : category_serializer.data
+        }
+        
+        return Response(response_data, status=status.HTTP_200_OK)
     
 class ProductAPIView(APIView):
     def get(self, request):

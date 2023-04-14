@@ -1,19 +1,24 @@
 
 import styles from '../../styles'
 
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { shoppingPageData } from '../shopping/shopping_constant';
 import { BrowsingHistory, ItemSuggestion, ShoppingMain }  from '../shopping';
 
 import ShoppingHero from '../shopping/ShoppingHero';
 import { useLocation } from 'react-router-dom';
+import { ShoppingContext } from '../../context';
 
 const StandardShop = () => {
+  const {selectedDateRange, selectedDestination, selectedCategory} = useContext(ShoppingContext)
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search);
   const categoryId = searchParams.get('categoryId') || '0000';
 
   const shoppingData = shoppingPageData[categoryId]
+
+  const [products, setShoppingData] = useState()
+  const [categoryInfo, setCategoryInfo] = useState()
 
   useEffect(() => {
     window.scrollTo(0, 0);
