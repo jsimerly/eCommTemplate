@@ -1,13 +1,10 @@
 import { fetchItemsToCart, fetchItemFavorited  } from '../../api/fetchCart';
 
-export async function addItemsToCart(items, setCartSize, addExtraFunction=null, quant=1, ) {
+export async function addItemsToCart(items, setCartSize, addExtraFunction=null,) {
     try {
       const response = await fetchItemsToCart(items)
-      const data = await response.json()
-      setCartSize(data['cart_size'])
-      if (addExtraFunction) {
-        addExtraFunction()
-      }
+      return response
+
     } catch (error) {
       throw (error)
     }

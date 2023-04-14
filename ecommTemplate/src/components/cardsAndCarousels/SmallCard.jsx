@@ -1,9 +1,10 @@
 import AddIcon from '@mui/icons-material/Add';
-import { addItemsToCart } from './addTo';
+import { fetchItemsToCart } from '../../api/fetchCart';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import navigateProduct from '../../hooks/navigateProduct';
 import ErrorBoundry from '../utils/ErrorBoundry';
+import navigateCart from '../../hooks/navigateCart';
 
 const SmallCard = ({item, addExtraFunction}) => {
   const slug = item.slug
@@ -12,18 +13,30 @@ const SmallCard = ({item, addExtraFunction}) => {
 
   let navigate = navigateProduct({slug});
 
-
   const GoToCart = () => (
-    <div className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'>
+    <div 
+      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
+      onClick={navigateCart()}
+    >
       View Cart & Check Out
     </div>
   )
 
   const handleAddItemClicked = async () =>{
-    addItemsToCart([item], addExtraFunction, setCartSize, handleNotification)
-    console.log(inCart)
-    if (!inCart === true){ //using === to prevent and undefined/null from getting through
-      handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
+    const response = await fetchItemsToCart([item])
+    if (response.ok){
+      const resp = await response.json()
+      setCartSize(resp['cart_size'])
+
+      if (addExtraFunction){
+        addExtraFunction()
+      }
+
+      if (!inCart){ //using === to prevent and undefined/null from getting through
+        handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
+      }
+    } else {
+      handleNotification(`We're currently experiencing issues and were unable to add ${item.name} to your cart.`)
     }
   }
 

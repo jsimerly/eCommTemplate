@@ -8,8 +8,9 @@ import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import { useLocation } from 'react-router-dom';
 import ErrorBoundry from '../utils/ErrorBoundry';
-import { addItemsToCart, addToFavorites } from './addTo';
+import { addToFavorites } from './addTo';
 import navigateCart from '../../hooks/navigateCart';
+import { fetchItemsToCart } from '../../api/fetchCart';
 
 const ProductCard = ({item, addExtraFunction}) => {
   const [itemFavorited, setFavorited] = useState(false)
@@ -29,17 +30,24 @@ const ProductCard = ({item, addExtraFunction}) => {
     </div>
   )
 
-
   const handleAddItemClicked = async () =>{
-    addItemsToCart([item], setCartSize, addExtraFunction=addExtraFunction)
+    const response = await fetchItemsToCart([item])
+    if (response.ok){
+      const resp = await response.json()
+      setCartSize(resp['cart_size'])
 
-    if (!inCart === true){ //using === to prevent and undefined/null from getting through
-      handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
+      if (addExtraFunction){
+        addExtraFunction()
+      }
+
+      if (!inCart){ //using === to prevent and undefined/null from getting through
+        handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
+      }
+    } else {
+      handleNotification(`We're currently experiencing issues and were unable to add ${item.name} to your cart.`)
     }
   }
   
-
-
   const handleFavoriteClicked = async () => {
       addToFavorites(item, setFavorited)
   }

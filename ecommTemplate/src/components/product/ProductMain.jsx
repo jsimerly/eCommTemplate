@@ -8,6 +8,7 @@ import { LargeBlueButton, QuantInput, Stars } from '../utils';
 import { fetchItemFavorited } from '../../api/fetchCart';
 import { addItemsToCart } from '../cardsAndCarousels/addTo';
 import { ShoppingContext } from '../../context';
+import navigateCart from '../../hooks/navigateCart';
 
 const ProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
@@ -31,13 +32,29 @@ const ProductMain = ({mainCardInfo}) => {
       setFavorited(resp.favorited)
     }
 
+    const GoToCart = () => (
+      <div 
+        className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
+        onClick={navigateCart()}
+      >
+        View Cart & Check Out
+      </div>
+    )
+
     const handleAddToCart = async () => {
       const cartItems = [{
         slug: mainCardInfo.slug,
         quantity: quant,
         insurancePurchased: insured,
       }]
-      addItemsToCart(cartItems, setCartSize)
+      const response = await addItemsToCart(cartItems)
+      if (response.ok){
+        const resp = await response.json()
+        setCartSize(resp['cart_size'])
+        handleNotification(`${mainCardInfo.name} has been added to your cart.`, <GoToCart/>)
+      } else {
+        handleNotification(`We're currently experiencing issues and were unable to add ${mainCardInfo.name} to your cart.`)
+      }
     }
 
   return (
