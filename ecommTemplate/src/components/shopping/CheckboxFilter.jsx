@@ -13,7 +13,7 @@ const CheckBoxFilterCat = ({category, handleCheckboxClicked}) => {
                 onClick={()=> setOpen((open) => !open)}
             >
                 <h3 className='text-[24px]'>
-                {category.name}
+                    {category.name}
                 </h3>
                 <ExpandMoreIcon
                 className='group-hover:scale-125'

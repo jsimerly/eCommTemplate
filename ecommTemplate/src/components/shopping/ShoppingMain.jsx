@@ -4,47 +4,45 @@ import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-import { Filter, Items }  from '.';
+import { Items }  from '.';
+import FilterOptions from './FilterOptions';
 import useDropdown from '../../hooks/useDropdown';
-import useOpenAndClose from '../../hooks/useOpenAndClose';
 import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
   // Filter Related
-  const filterData_copy = JSON.parse(JSON.stringify(filterData))
-  const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
+  const original_filterData = JSON.parse(JSON.stringify(filterData))
 
-  const [filterOpen, setFilterOpen, handleFilterClick] = useOpenAndClose(false)
-  const [filterApplied, setFilterApplied] = useState(false)
-  console.log(filterData)
-  useEffect(() => {
-    setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));
-  }, [filterData]);
+  const [filters, setFilters] = useState([])
+  useEffect(()=>{
+    setFilters(filterData)
+  }, [filterData])
 
-  const areListsEqual = (deepCopy, stateCopy) =>{
+  const createUpdateFilters = (tag, categoryIndex, filterOptions, tagProperties) => {
+    const updatedFilterOptions = [...filterOptions]
+    const tagIndex = filterData[categoryIndex].tags.findIndex(
+      find_tag => find_tag.name === tag.name
+    )
 
-    for (let i=0; i < deepCopy.length; i++){
-      const dict1 = deepCopy[i].tags
-      const dict2 = stateCopy[i].tags
-
-      for (const key in dict1){
-        if (dict1[key] != dict2[key]){
-          return false
-        }
-      }
+    if (tagIndex !== -1){
+      const updatedTag = {...updatedFilterOptions[categoryIndex].tags[tagIndex], ...tagProperties}
+      updatedFilterOptions[categoryIndex].tags[tagIndex] = updatedTag
     }
-    return true
+    return updatedFilterOptions
   }
 
-  const checkForFilterApplied = () => {
-    const bool = areListsEqual(filterData_copy, checkFilterOptions)
-    setFilterApplied(!bool)
-  }
+  const handleCheckboxClicked = (categoryIndex, tagIndex) => {
+    const updateFilterOptions = createUpdateFilters(
+      filters[categoryIndex].tags[tagIndex],
+      categoryIndex,
+      filters,
+      {
+        checked: !filters[categoryIndex].tags[tagIndex].checked
+      }
+    )
 
-  const handleClearClick = () => {
-    setCheckFilterOptions([...filterData_copy])
-    setFilterApplied(false)
+    setFilters(updateFilterOptions)
   }
 
   //Category Related
@@ -55,12 +53,10 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
     'Featured',
     'Price - Low to High',
     'Price - High to Low',
-    'Most Popular',
   ]
   
   const [sortOpen, setSortOpen, handleSortClick, sortNode] = useDropdown()
   const [sortBy, setSortBy] = useState('Featured')
-
 
   return (
     <div>
@@ -68,7 +64,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
               <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
                   <WhiteButton 
-                    onClick={handleFilterClick}
+                    onClick={()=>console.log('clicked')}
                     content={
                       <div>
                         <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
@@ -78,8 +74,8 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                     className='!text-tertiary'
                   />
                   <button 
-                    className={`${filterApplied ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
-                    onClick={handleClearClick}
+                    className={`${true ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
+                    onClick={()=> console.log('handleclickclear')}
                   >
                     <DeleteForeverIcon 
                       className='group-hover:scale-125'
@@ -140,12 +136,11 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
               
             </div>
             <div className='flex flex-row mt-2 w-full'>
-              <div className={`${filterOpen ? '' : 'hidden'} mr-2`}>
-                <Filter
-                  closeFunc={setFilterOpen}
-                  checkFilterOptions={checkFilterOptions}
-                  setCheckFilterOptions={setCheckFilterOptions}
-                  checkForFilterApplied={checkForFilterApplied}
+                      {/* put hide back when */}
+              <div className='mr-2'>
+                <FilterOptions
+                  filters={filters}
+                  handleCheckboxClicked={handleCheckboxClicked}
                 />
               </div>
               <div className='flex flex-1 w-full'>

@@ -11,8 +11,6 @@ User = get_user_model()
 
 # Create your models here.
 class Brand(models.Model):
-    uuid = models.UUIDField(default=uuid4, editable=False)
-
     name = models.CharField(max_length=40)
     full_name = models.CharField(max_length=100)
 
@@ -57,6 +55,7 @@ class Category(models.Model):
 class FilterOption(models.Model):
     internal_name = models.CharField(max_length=60)
     display_name = models.CharField(max_length=30)
+
     categories = models.ManyToManyField(Category)
 
     def __str__(self):
@@ -64,6 +63,8 @@ class FilterOption(models.Model):
     
 class FilterTag(models.Model):
     name = models.CharField(max_length=30)
+    checked = models.BooleanField(default=True) #this is for if it defaults selected
+
     filter_option = models.ForeignKey(
         FilterOption,
         on_delete=models.CASCADE,

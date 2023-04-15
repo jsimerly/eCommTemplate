@@ -18,14 +18,14 @@ class RelatedCategory_Serializer(serializers.ModelSerializer):
 class FilterTagForCategory_Serializer(serializers.ModelSerializer):
     class Meta:
         model = FilterTag
-        fields = ['name']
+        fields = ['name', 'checked']
 
 class FilterOptionForCategory_Serializer(serializers.ModelSerializer):
     tags = FilterTagForCategory_Serializer(many=True, read_only=True)
 
     class Meta:
         model = FilterOption
-        fields = ['display_name', 'tags']
+        fields = ['display_name','tags']
 
 class IndividualCategory_Serializer(serializers.ModelSerializer):
     parent = serializers.SerializerMethodField()
