@@ -12,12 +12,45 @@ import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
   // Filter Related
-  const original_filterData = JSON.parse(JSON.stringify(filterData))
-
+  const [original_filterData, setOriginalFilterData] = useState([])
+  const [openFilter, setOpenFilter] = useState(false)
+  const [filterActive, setFilterActive] = useState(false)
   const [filters, setFilters] = useState([])
+
+  const areFiltersEqual = () => {
+    for (let i = 0; i< filters.length; i++){
+      for (let j = 0; j < filters[i].tags.length; j++) {
+        if (filters[i].tags[j].checked !== original_filterData[i].tags[j].checked) {
+          return false;
+        }
+      }
+    }
+
+    return true
+  }
+
+  const handleCloseFilter = () => {
+    setOpenFilter(false)
+  }
+
+  const handleFilterToggle = () => {
+    setOpenFilter(!openFilter)
+  }
+
+  const handleResetFilters = () => {
+    setFilters(original_filterData)
+  }
+
+  useEffect(()=>{
+    const isActive = areFiltersEqual()
+    setFilterActive(!isActive)
+  },[filters])
+
   useEffect(()=>{
     setFilters(filterData)
+    setOriginalFilterData(JSON.parse(JSON.stringify(filterData)))
   }, [filterData])
+
 
   const createUpdateFilters = (tag, categoryIndex, filterOptions, tagProperties) => {
     const updatedFilterOptions = [...filterOptions]
@@ -64,7 +97,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
               <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
                   <WhiteButton 
-                    onClick={()=>console.log('clicked')}
+                    onClick={handleFilterToggle}
                     content={
                       <div>
                         <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
@@ -74,8 +107,8 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                     className='!text-tertiary'
                   />
                   <button 
-                    className={`${true ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
-                    onClick={()=> console.log('handleclickclear')}
+                    className={`${filterActive ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
+                    onClick={handleResetFilters}
                   >
                     <DeleteForeverIcon 
                       className='group-hover:scale-125'
@@ -137,9 +170,10 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
             </div>
             <div className='flex flex-row mt-2 w-full'>
                       {/* put hide back when */}
-              <div className='mr-2'>
+              <div className={`mr-2 ${openFilter ? '' : 'hidden'}`}>
                 <FilterOptions
                   filters={filters}
+                  handleCloseFilter={handleCloseFilter}
                   handleCheckboxClicked={handleCheckboxClicked}
                 />
               </div>

@@ -47,7 +47,7 @@ const OptionComp = ({option, option_index, handleCheckboxClicked}) => {
     )
 }
 
-const FilterOptions = ({filters, handleCheckboxClicked}) => {
+const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter}) => {
   return (
     <div 
         className='bg-white rounded-md p-2 min-w-[300px]'
@@ -57,7 +57,7 @@ const FilterOptions = ({filters, handleCheckboxClicked}) => {
             Filter Options
           </p>
           <CloseIcon
-            onClick={() => closeFunc(false)}
+            onClick={handleCloseFilter}
             className='hover:scale-105 cursor-pointer'
           />
         </div>
