@@ -11,17 +11,16 @@ import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
-  //Filter Related
-  // const filterData_copy = JSON.parse(JSON.stringify(filterData))
-  // const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
+  // Filter Related
+  const filterData_copy = JSON.parse(JSON.stringify(filterData))
+  const [checkFilterOptions, setCheckFilterOptions] = useState(JSON.parse(JSON.stringify(filterData)));
 
   const [filterOpen, setFilterOpen, handleFilterClick] = useOpenAndClose(false)
   const [filterApplied, setFilterApplied] = useState(false)
-  console.log(relatedCategories)
-
-  // useEffect(() => {
-  //   setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));
-  // }, [filterData]);
+  console.log(filterData)
+  useEffect(() => {
+    setCheckFilterOptions(JSON.parse(JSON.stringify(filterData)));
+  }, [filterData]);
 
   const areListsEqual = (deepCopy, stateCopy) =>{
 
@@ -39,12 +38,12 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
   }
 
   const checkForFilterApplied = () => {
-    // const bool = areListsEqual(filterData_copy, checkFilterOptions)
-    // setFilterApplied(!bool)
+    const bool = areListsEqual(filterData_copy, checkFilterOptions)
+    setFilterApplied(!bool)
   }
 
   const handleClearClick = () => {
-    // setCheckFilterOptions([...filterData_copy])
+    setCheckFilterOptions([...filterData_copy])
     setFilterApplied(false)
   }
 
@@ -69,7 +68,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
               <div className='flex space-x-10 items-center w-1/5'>
                 <div className='flex space-x-2'>
                   <WhiteButton 
-                    // onClick={handleFilterClick}
+                    onClick={handleFilterClick}
                     content={
                       <div>
                         <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
@@ -142,12 +141,12 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
             </div>
             <div className='flex flex-row mt-2 w-full'>
               <div className={`${filterOpen ? '' : 'hidden'} mr-2`}>
-                {/* <Filter
+                <Filter
                   closeFunc={setFilterOpen}
                   checkFilterOptions={checkFilterOptions}
                   setCheckFilterOptions={setCheckFilterOptions}
                   checkForFilterApplied={checkForFilterApplied}
-                /> */}
+                />
               </div>
               <div className='flex flex-1 w-full'>
                 <Items

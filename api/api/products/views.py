@@ -101,7 +101,6 @@ class ProductCategoryAPIView(APIView):
             'request' : request,
             **getDateContext(request)
         }
-        print(context)
 
         products = Product.objects.filter(category__fe_id=category)
         products_serializer = ProductCard_Serializer(products, context=context, many=True)

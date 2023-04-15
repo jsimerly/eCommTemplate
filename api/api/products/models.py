@@ -1,6 +1,6 @@
 from django.db import models
 from uuid import uuid4
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, m2m_changed
 from django.dispatch import receiver
 from django.db.models import JSONField
 from django.contrib.postgres.fields import ArrayField, DateRangeField
@@ -52,7 +52,7 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.name)
+        return 'Category Obj: ' + str(self.name)
     
 class FilterOption(models.Model):
     internal_name = models.CharField(max_length=60)
@@ -82,7 +82,12 @@ class Product(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='prod_brand')
     slug = models.CharField(max_length=32, unique=True,)
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, default=None)
+    category = models.ForeignKey(
+        Category, 
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True,
+    )
     filter_tags = models.ManyToManyField(FilterTag, blank=True)
 
     average_rating = models.FloatField(null=True, blank=True)
@@ -116,10 +121,28 @@ class Product(models.Model):
             raise ValueError('Cannot add more than 4 frequently bought with products.')
         self.frequently_bought_with.add(product)
 
+    def clean(self):
+        for filter_tag in self.filter_tags.all():
+            if self.category not in filter_tag.filter_option.categories.all():
+                raise ValidationError("FilterTag's FilterOption category must match the product's category.")
+            
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
 @receiver(post_save, sender=Product)
 def set_frequently_bought_with(sender, instance, created, **kwargs):
     if created:
         instance.frequently_bought_with.add(instance)
+        
+@receiver(m2m_changed, sender=Product.filter_tags.through)
+def validate_filter_tags(sender, instance, action, pk_set, **kwargs):
+    if action in ['post_add', 'post_remove', 'post_clear']:
+        for filter_tag in instance.filter_tags.all():
+            if instance.category not in filter_tag.filter_option.categories.all():
+                raise ValidationError("FilterTag's FilterOption category must match the product's category.")
+
+        instance.save()
 
 
 def get_upload_path_prod(instance, filename):

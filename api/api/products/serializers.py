@@ -14,12 +14,26 @@ class RelatedCategory_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['fe_id', 'name']
+
+class FilterTagForCategory_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = FilterTag
+        fields = ['name']
+
+class FilterOptionForCategory_Serializer(serializers.ModelSerializer):
+    tags = FilterTagForCategory_Serializer(many=True, read_only=True)
+
+    class Meta:
+        model = FilterOption
+        fields = ['display_name', 'tags']
+
 class IndividualCategory_Serializer(serializers.ModelSerializer):
     parent = serializers.SerializerMethodField()
     related_categories = RelatedCategory_Serializer(many=True)
+    filter_options = FilterOptionForCategory_Serializer(many=True, read_only=True, source='filteroption_set')
     class Meta:
         model = Category
-        fields = ['fe_id', 'name', 'desc', 'parent', 'related_categories', 'image']
+        fields = ['fe_id', 'name', 'desc', 'parent', 'related_categories', 'image', 'filter_options']
     
     def get_parent(self, obj):
         serializer = IndividualCategory_Serializer(obj.parent)

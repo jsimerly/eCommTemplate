@@ -14,6 +14,7 @@ const StandardShop = () => {
   const [products, setProductData] = useState([])
   const [categoryInfo, setCategoryInfo] = useState()
   const [relatedCategories, setRelatedCategories] = useState([])
+  const [filterData, setFilterData] = useState([])
 
   useEffect(() => {
     const fetchCategoryInfo = async () => {
@@ -24,13 +25,17 @@ const StandardShop = () => {
         setCategoryInfo(resp['category'])
         setProductData(resp['products'])
         setRelatedCategories(resp['category']['related_categories'])
+        setFilterData(resp['category']['filter_options'])
       } else {
         handleNotification('Sorry, we appear to be having some technical difficulties. Please visit back once this has been updated.')
       }
     }
-
     fetchCategoryInfo()
   },[selectedCategory])
+
+  // useEffect(()=>{
+  //   console.log(categoryInfo)
+  // },[categoryInfo])
 
 
   useEffect(() => {
@@ -50,6 +55,7 @@ const StandardShop = () => {
                 <ShoppingMain
                   products={products}
                   relatedCategories={relatedCategories}
+                  filterData={filterData}
                 />
               </div>
             </div>
