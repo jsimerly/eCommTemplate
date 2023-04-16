@@ -13,8 +13,7 @@ import { WhiteButton } from '../utils';
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
   //Constant Filter Related
-  const [minPrice, setMinPriceFilter] = useState(0)
-  const [maxPrice, setMaxPriceFilter] = useState(null)
+  const [priceFilter, setPriceFilter] = useState([0,100])
 
   const [minStar, setMinStarFilter] = useState(1)
   const [maxStar, setMaxStarFilter] = useState(5)
@@ -187,8 +186,9 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                   maxStar={maxStar}
                   setMinStar={setMinStarFilter}
                   setMaxStar={setMaxStarFilter}
-                  minPrice={minPrice}
-                  maxPrice={maxPrice}
+
+                  priceFilter={priceFilter}
+                  setPriceFilter={setPriceFilter}
                 />
               </div>
               <div className='flex flex-1 w-full'>

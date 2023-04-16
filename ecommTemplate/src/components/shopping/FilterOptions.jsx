@@ -6,7 +6,10 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import StarIcon from '@mui/icons-material/Star';
 
+
 import { useEffect, useState } from 'react';
+import ScaleBar from '../utils/ScaleBar';
+
 
 const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
     const [open, setOpen] = useState(true)
@@ -38,17 +41,14 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
         }
     }
 
-    const handleMouseLeave = () => {
-        setHovering(null)
-    }
-
     const handleLeaveFully = () => {
         setHoveringDisabled(false)
+        setHovering(null)
     }
 
     const FilledStar = ({i}) => (
         <StarIcon 
-            key={i} 
+            key={'star_icon_filter_'+i} 
             sx={{ fontSize: 30 }}
             onMouseEnter={()=> handleMouseEnter(i)}
         />
@@ -57,7 +57,7 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
     const FilledHoverStar = ({i}) => (
         <StarIcon 
             className='cursor-pointer hover:scale-110'
-            key={i} 
+            key={'star_icon_hover_filter'+i} 
             sx={{ fontSize: 30 }}
             onClick={()=>handleClick(i)}
             onMouseEnter={()=> handleMouseEnter(i)}
@@ -66,7 +66,7 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
 
     const EmptyStar = ({i}) => (
         <StarOutlineIcon 
-            key={i} 
+            key={'star_icon_blank_filter'+i} 
             sx={{ fontSize: 30 }} 
             onMouseEnter={()=> handleMouseEnter(i)}
         />
@@ -136,8 +136,40 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
     )
 }
 
-const PriceComp = () => {
+const PriceComp = ({priceFilter, setPriceFilter}) => {
     const [open, setOpen] = useState(true)
+
+    const convertToDecimal = (input) => {
+        if (input===''){
+            return 0
+        }
+        const newValue = Number.parseFloat(input.replace(/[^0-9]/g, ""));
+        return newValue;
+    }
+
+    const handleInputChangeMin = (e) => {
+        let newValue = convertToDecimal(e.target.value)
+        let newPriceFilter = [...priceFilter]
+
+        if (newValue <= priceFilter[1]){
+            newPriceFilter[0] = newValue
+        } else {
+            newPriceFilter = [newValue, newValue]
+        }
+        setPriceFilter(newPriceFilter)
+    }
+
+    const handleInputChangeMax = (e) => {
+        let newValue = convertToDecimal(e.target.value)
+        let newPriceFilter = [...priceFilter]
+
+        if (newValue >= priceFilter[0]){
+            newPriceFilter[1] = newValue
+        } else {
+            newPriceFilter = [newValue, newValue]
+        }
+        setPriceFilter(newPriceFilter)
+    }
 
     return (
         <div>
@@ -154,8 +186,34 @@ const PriceComp = () => {
                     <ExpandLessIcon/>
                 }
             </div>
-            <div className={`${open? null : 'hidden'}`}>
-                PRETEND STUFF
+            <div className={`${open? null : 'hidden'} py-3`}>
+                <ScaleBar 
+                    values={priceFilter}
+                    setValues={setPriceFilter}
+                />
+                <div className='flex flex-row justify-center items-center'>
+                    <div className='w-1/3 relative'>
+                        <input
+                            value={priceFilter[0]}
+                            onChange={(e)=> handleInputChangeMin(e)}
+                            className='p-2 outline-primary border border-primary rounded-md text-center w-full'
+                            placeholder='$ Min'
+                        />
+                        <span className='absolute left-2 top-1/2 transform -translate-y-1/2'>$</span>
+                    </div>
+                    <span className='mx-4'>
+                        -
+                    </span>
+                    <div className='w-1/3 relative'>
+                        <input
+                            value={priceFilter[1]}
+                            onChange={(e)=> handleInputChangeMax(e)}
+                            className='p-2 outline-primary border border-primary rounded-md text-center relative w-full'
+                            placeholder='$ Max'
+                        />
+                        <span className='absolute left-2 top-1/2 transform -translate-y-1/2'>$</span>
+                    </div>
+                </div>
             </div>          
         </div>
     )
@@ -202,10 +260,10 @@ const OptionComp = ({option, option_index, handleCheckboxClicked}) => {
     )
 }
 
-const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar, minPrice, maxPrice}) => {
+const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar, priceFilter, setPriceFilter}) => {
   return (
     <div 
-        className='bg-white rounded-md p-2 min-w-[300px]'
+        className='bg-white rounded-md p-2 w-[300px]'
       >
         <div className='flex justify-between'>
           <p className='text-[20px]'>
@@ -232,8 +290,10 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
             setMinStar={setMinStar}
             setMaxStar={setMaxStar}
         />
-        <PriceComp/>
-        
+        <PriceComp
+            priceFilter={priceFilter}
+            setPriceFilter={setPriceFilter}
+        />
       </div>
   )
 }
