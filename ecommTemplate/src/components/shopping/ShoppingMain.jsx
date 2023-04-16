@@ -11,7 +11,15 @@ import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
-  // Filter Related
+
+  //Constant Filter Related
+  const [minPrice, setMinPriceFilter] = useState(0)
+  const [maxPrice, setMaxPriceFilter] = useState(null)
+
+  const [minStar, setMinStarFilter] = useState(1)
+  const [maxStar, setMaxStarFilter] = useState(5)
+
+  //Variable Filter Related
   const [original_filterData, setOriginalFilterData] = useState([])
   const [openFilter, setOpenFilter] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
@@ -175,6 +183,12 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                   filters={filters}
                   handleCloseFilter={handleCloseFilter}
                   handleCheckboxClicked={handleCheckboxClicked}
+                  minStar={minStar}
+                  maxStar={maxStar}
+                  setMinStar={setMinStarFilter}
+                  setMaxStar={setMaxStarFilter}
+                  minPrice={minPrice}
+                  maxPrice={maxPrice}
                 />
               </div>
               <div className='flex flex-1 w-full'>
