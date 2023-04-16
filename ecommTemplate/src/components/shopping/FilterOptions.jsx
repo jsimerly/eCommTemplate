@@ -7,7 +7,7 @@ import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import StarIcon from '@mui/icons-material/Star';
 
 
-import { useEffect, useState } from 'react';
+import {useState} from 'react';
 import ScaleBar from '../utils/ScaleBar';
 
 
@@ -41,6 +41,14 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
         }
     }
 
+    const handleLeaveIcon = (index) => {
+        setTimeout(() => {
+            if (hovering === index + 1) {
+              setHovering(null);
+            }
+          }, 50);
+    }
+
     const handleLeaveFully = () => {
         setHoveringDisabled(false)
         setHovering(null)
@@ -51,6 +59,7 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
             key={'star_icon_filter_'+i} 
             sx={{ fontSize: 30 }}
             onMouseEnter={()=> handleMouseEnter(i)}
+            onMouseLeave={() => handleLeaveIcon(i)}
         />
     )
 
@@ -61,6 +70,7 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
             sx={{ fontSize: 30 }}
             onClick={()=>handleClick(i)}
             onMouseEnter={()=> handleMouseEnter(i)}
+            onMouseLeave={() => handleLeaveIcon(i)}
         />
     )
 
@@ -69,6 +79,7 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
             key={'star_icon_blank_filter'+i} 
             sx={{ fontSize: 30 }} 
             onMouseEnter={()=> handleMouseEnter(i)}
+            onMouseLeave={() => handleLeaveIcon(i)}
         />
     )
 
