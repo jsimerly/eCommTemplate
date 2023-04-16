@@ -48,7 +48,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
   }
 
   const handleResetFilters = () => {
-    setFilters(original_filterData)
+    setFilters(JSON.parse(JSON.stringify(original_filterData)))
     setStarFilter([1,5])
     setPriceFilter([0,100])
   }
