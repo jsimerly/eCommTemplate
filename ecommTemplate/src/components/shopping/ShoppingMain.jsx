@@ -14,9 +14,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
   //Constant Filter Related
   const [priceFilter, setPriceFilter] = useState([0,100])
-
-  const [minStar, setMinStarFilter] = useState(1)
-  const [maxStar, setMaxStarFilter] = useState(5)
+  const [starFilter, setStarFilter] = useState([1,5])
 
   //Variable Filter Related
   const [original_filterData, setOriginalFilterData] = useState([])
@@ -25,6 +23,12 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
   const [filters, setFilters] = useState([])
 
   const areFiltersEqual = () => {
+    if (starFilter[0] !== 1 || starFilter[1] !== 5){
+      return false
+    }
+    if (priceFilter[0] !== 0 || priceFilter[1] !== 100) {
+      return false;
+    }
     for (let i = 0; i< filters.length; i++){
       for (let j = 0; j < filters[i].tags.length; j++) {
         if (filters[i].tags[j].checked !== original_filterData[i].tags[j].checked) {
@@ -32,7 +36,6 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
         }
       }
     }
-
     return true
   }
 
@@ -46,12 +49,14 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
   const handleResetFilters = () => {
     setFilters(original_filterData)
+    setStarFilter([1,5])
+    setPriceFilter([0,100])
   }
 
   useEffect(()=>{
     const isActive = areFiltersEqual()
     setFilterActive(!isActive)
-  },[filters])
+  },[filters, starFilter[0], starFilter[1], priceFilter])
 
   useEffect(()=>{
     setFilters(filterData)
@@ -182,11 +187,9 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                   filters={filters}
                   handleCloseFilter={handleCloseFilter}
                   handleCheckboxClicked={handleCheckboxClicked}
-                  minStar={minStar}
-                  maxStar={maxStar}
-                  setMinStar={setMinStarFilter}
-                  setMaxStar={setMaxStarFilter}
 
+                  starFilter={starFilter}
+                  setStarFilter={setStarFilter}
                   priceFilter={priceFilter}
                   setPriceFilter={setPriceFilter}
                 />

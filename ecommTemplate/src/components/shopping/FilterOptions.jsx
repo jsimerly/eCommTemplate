@@ -11,7 +11,7 @@ import {useState} from 'react';
 import ScaleBar from '../utils/ScaleBar';
 
 
-const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
+const RatingComp = ({starFilter, setStarFilter}) => {
     const [open, setOpen] = useState(true)
     const [hovering, setHovering] = useState(null)
     const [hoveringDisabled, setHoveringDisabled] = useState(false)
@@ -24,11 +24,9 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
         } else {
             setHoveringDisabled(true)
             if (selection_1 <= index){
-                setMinStar(selection_1)
-                setMaxStar(index+1)
+                setStarFilter([selection_1, index+1])
             } else {
-                setMinStar(index+1)
-                setMaxStar(selection_1)
+                setStarFilter([index+1, selection_1])
             }
             setSelection_1(null)
             setHovering(null)
@@ -84,7 +82,9 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
     )
 
     return (
-        <div>
+        <div
+            onMouseLeave={handleLeaveFully}
+        >
             <div 
                 className='flex flex-row justify-between items-center hover:underline cursor-pointer'
                 onClick={()=> setOpen((open) => !open)}
@@ -99,12 +99,12 @@ const RatingComp = ({minStar, maxStar, setMinStar, setMaxStar}) => {
                 }
             </div>
             <div 
-                className={`${open? null : 'hidden'} text-primary`}
+                className={`${open? null : 'hidden'} inline-flex text-primary`}
                 onMouseLeave={handleLeaveFully}
             >
                 {stars.map((_, index) => {
                     if (hovering === null){
-                        if (index+1 >= minStar && index+1 <= maxStar) {
+                        if (index+1 >= starFilter[0] && index+1 <= starFilter[1]) {
                             return (
                                 <FilledStar i={index}/>
                             )
@@ -271,7 +271,7 @@ const OptionComp = ({option, option_index, handleCheckboxClicked}) => {
     )
 }
 
-const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar, priceFilter, setPriceFilter}) => {
+const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar,starFilter, setStarFilter, priceFilter, setPriceFilter}) => {
   return (
     <div 
         className='bg-white rounded-md p-2 w-[300px]'
@@ -296,6 +296,8 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
             )
         })}
         <RatingComp
+            starFilter={starFilter}
+            setStarFilter={setStarFilter}
             minStar={minStar}
             maxStar={maxStar}
             setMinStar={setMinStar}
