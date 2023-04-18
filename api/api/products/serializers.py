@@ -55,7 +55,7 @@ class Categories_Serializers(serializers.ModelSerializer):
 class ProductImage_Serializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
-        fields = ('uuid', 'image', 'caption', 'is_main_image')
+        fields = ['uuid', 'image', 'caption', 'is_main_image']
 
 class FilterTag_Serializer(serializers.ModelSerializer):
     filter_option = serializers.SerializerMethodField()

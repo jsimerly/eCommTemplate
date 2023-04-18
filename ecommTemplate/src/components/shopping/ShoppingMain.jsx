@@ -12,15 +12,16 @@ import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
-  //Constant Filter Related
+  //Filter Setters
   const [priceFilter, setPriceFilter] = useState([0,100])
   const [starFilter, setStarFilter] = useState([1,5])
 
-  //Variable Filter Related
   const [original_filterData, setOriginalFilterData] = useState([])
   const [openFilter, setOpenFilter] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
   const [filters, setFilters] = useState([])
+
+  const [filteredProducts, setFilteredProducts] = useState([])
 
   const areFiltersEqual = () => {
     if (starFilter[0] !== 1 || starFilter[1] !== 5){
@@ -89,6 +90,41 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
     setFilters(updateFilterOptions)
   }
+
+  //Filter Users
+  const shouldDisplayProduct = (product) => {
+    console.log('-----')
+    console.log(product.name)
+    const {total_cost, average_rating, filter_tags} = product
+    if (total_cost < priceFilter[0] || total_cost > priceFilter[1]){
+      return false
+    }
+
+    if (average_rating < starFilter[0] || average_rating > starFilter[1]){
+      return false
+    }
+
+    for (let i = 0; i < filters.length; i++){
+      for (let j = 0; j < filters[i].tags.length; j++){
+        const tag = filters[i].tags[j];
+        console.log(tag)
+        console.log(filter_tags)
+        if (
+          tag.checked && 
+          filter_tags.some(filterTag => filterTag.name === tag.name)
+        ){ 
+          return true
+        }
+      }
+    }
+    return false
+  }
+
+  useEffect(()=> {
+    const newFilteredProducts = products.filter(shouldDisplayProduct)
+    setFilteredProducts([...newFilteredProducts])
+    console.log(newFilteredProducts)
+  },[products, filters, priceFilter, starFilter])
 
   //Category Related
   const {setSelectedCategory} = useContext(ShoppingContext)
@@ -196,7 +232,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
               </div>
               <div className='flex flex-1 w-full'>
                 <Items
-                  products={products}
+                  products={filteredProducts}
                 />
               </div>
             </div>

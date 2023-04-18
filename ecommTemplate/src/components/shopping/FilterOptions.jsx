@@ -54,7 +54,7 @@ const RatingComp = ({starFilter, setStarFilter}) => {
 
     const FilledStar = ({i}) => (
         <StarIcon 
-            key={'star_icon_filter_'+i} 
+            key={'filled_star_' + i} 
             sx={{ fontSize: 30 }}
             onMouseEnter={()=> handleMouseEnter(i)}
             onMouseLeave={() => handleLeaveIcon(i)}
@@ -64,7 +64,7 @@ const RatingComp = ({starFilter, setStarFilter}) => {
     const FilledHoverStar = ({i}) => (
         <StarIcon 
             className='cursor-pointer hover:scale-110'
-            key={'star_icon_hover_filter'+i} 
+            key={'filled_hover_star_' + i}
             sx={{ fontSize: 30 }}
             onClick={()=>handleClick(i)}
             onMouseEnter={()=> handleMouseEnter(i)}
@@ -74,7 +74,7 @@ const RatingComp = ({starFilter, setStarFilter}) => {
 
     const EmptyStar = ({i}) => (
         <StarOutlineIcon 
-            key={'star_icon_blank_filter'+i} 
+            key={'empty_star_' + i} // Add key prop here
             sx={{ fontSize: 30 }} 
             onMouseEnter={()=> handleMouseEnter(i)}
             onMouseLeave={() => handleLeaveIcon(i)}
@@ -106,38 +106,38 @@ const RatingComp = ({starFilter, setStarFilter}) => {
                     if (hovering === null){
                         if (index+1 >= starFilter[0] && index+1 <= starFilter[1]) {
                             return (
-                                <FilledStar i={index}/>
+                                <FilledStar key={'filled_star_no_hover_'+index} i={index}/>
                             )
                         } else {
                             return (
-                                <EmptyStar i={index}/>
+                                <EmptyStar key={'empty_star_no_hover_'+index} i={index}/>
                             ) 
                         }
                     } else {
                         if (index+1 === hovering){
                             return(
-                                <FilledHoverStar i={index}/>
+                                <FilledHoverStar key={'filled_star_hover_'+index} i={index} />
                             )
                         } else {
                             if (!selection_1){
                                 return(
-                                    <EmptyStar i={index}/>
+                                    <EmptyStar key={'empty_star__hover_'+index} i={index}/>
                                 )
                             }
                             if (hovering >= selection_1){
                                 if (index+1 >= selection_1 && index+1 < hovering){
                                     return (
-                                        <FilledStar i={index}/>
+                                        <FilledStar key={'filled_star_less_'+index} i={index}/>
                                     )
                                 }
                             } 
                             if (index+1 <= selection_1 && index+1 > hovering){
                                 return (
-                                    <FilledStar i={index}/>
+                                    <FilledStar key={'filled_star_more_'+index} i={index}/>
                                 )
-                            }
+                            } 
                             return(
-                                <EmptyStar i={index}/>
+                                <EmptyStar  key={'empty_star_default_'+index} i={index}/>
                             )
                         }
                     }

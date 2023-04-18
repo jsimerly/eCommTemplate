@@ -19,7 +19,7 @@ const ScaleBar = ({values, setValues}) => {
               >
                 <div
                   ref={props.ref}
-                  className='rounded-md w-full h-[3px]'
+                  className='rounded-md w-full h-[3px] cursor-pointer'
                   style={{
                     background: `linear-gradient(to right, ${colors.neutralLight} 0%, ${colors.neutralLight} ${
                       values[0]
