@@ -102,18 +102,11 @@ class ProductCategoryAPIView(APIView):
             **getDateContext(request)
         }
 
-        products = Product.objects.filter(category__fe_id=category)
-        products_serializer = ProductCard_Serializer(products, context=context, many=True)
-
         category_obj = Category.objects.get(fe_id=category)
         category_serializer = IndividualCategory_Serializer(category_obj, context=context)
 
-        response_data = {
-            'products' : products_serializer.data,
-            'category' : category_serializer.data
-        }
 
-        return Response(response_data, status=status.HTTP_200_OK)
+        return Response(category_serializer.data, status=status.HTTP_200_OK)
     
 class ProductAPIView(APIView):
     def get(self, request):

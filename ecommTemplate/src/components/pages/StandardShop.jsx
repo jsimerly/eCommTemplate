@@ -22,10 +22,10 @@ const StandardShop = () => {
       const response = await fetchCategory(selectedCategory.fe_id, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
       if (response.ok){
         const resp = await response.json()
-        setCategoryInfo(resp['category'])
+        setCategoryInfo(resp)
         setProductData(resp['products'])
-        setRelatedCategories(resp['category']['related_categories'])
-        setFilterData(resp['category']['filter_options'])
+        setRelatedCategories(resp['related_categories'])
+        setFilterData(resp['filter_options'])
       } else {
         handleNotification('Sorry, we appear to be having some technical difficulties. Please visit back once this has been updated.')
       }

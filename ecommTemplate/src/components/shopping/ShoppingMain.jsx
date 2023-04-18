@@ -11,7 +11,7 @@ import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products}) => {
-
+  console.log(filterData)
   //Filter Setters
   const [priceFilter, setPriceFilter] = useState([0,100])
   const [starFilter, setStarFilter] = useState([1,5])
@@ -91,10 +91,8 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
     setFilters(updateFilterOptions)
   }
 
-  //Filter Users
+  //Filter User
   const shouldDisplayProduct = (product) => {
-    console.log('-----')
-    console.log(product.name)
     const {total_cost, average_rating, filter_tags} = product
     if (total_cost < priceFilter[0] || total_cost > priceFilter[1]){
       return false
@@ -106,24 +104,21 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
     for (let i = 0; i < filters.length; i++){
       for (let j = 0; j < filters[i].tags.length; j++){
-        const tag = filters[i].tags[j];
-        console.log(tag)
-        console.log(filter_tags)
+        const client_tag = filters[i].tags[j];
         if (
-          tag.checked && 
-          filter_tags.some(filterTag => filterTag.name === tag.name)
+          !client_tag.checked && 
+          filter_tags.some(filterTag => filterTag.name === client_tag.name)
         ){ 
-          return true
+          return false
         }
       }
     }
-    return false
+    return true
   }
 
   useEffect(()=> {
     const newFilteredProducts = products.filter(shouldDisplayProduct)
     setFilteredProducts([...newFilteredProducts])
-    console.log(newFilteredProducts)
   },[products, filters, priceFilter, starFilter])
 
   //Category Related
