@@ -3,8 +3,9 @@ import { Range } from 'react-range'
 import colors from '../../../constants/design/colors'
 
 
-const ScaleBar = ({values, setValues, priceExtrema}) => {
+const ScaleBar = ({values, setValues, priceExtrema, setDisplayMax, setDisplayMin}) => {
   const [displayValues, setDisplayValues] = useState([0,100])
+
   useEffect(() => {
     const newValues = [
       values[0] === null ? priceExtrema[0] : values[0],
@@ -13,6 +14,12 @@ const ScaleBar = ({values, setValues, priceExtrema}) => {
     setDisplayValues(newValues)
   }, [priceExtrema, values, setValues]);
 
+  const handleOnChange = (values) => {
+    setValues(values)
+    setDisplayMin(values[0].toFixed(2))
+    setDisplayMax(values[1].toFixed(2))
+  }
+
     return (
         <div className='pb-8 px-2'>
           <Range
@@ -20,7 +27,7 @@ const ScaleBar = ({values, setValues, priceExtrema}) => {
             min={priceExtrema[0]}
             max={priceExtrema[1]}
             step={0.05}
-            onChange={(values) => setValues(values)}
+            onChange={handleOnChange}
             renderTrack={({ props, children }) => (
               <div
                 onMouseDown={props.onMouseDown}

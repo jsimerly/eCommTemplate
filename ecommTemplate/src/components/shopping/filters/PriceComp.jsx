@@ -1,47 +1,71 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import {useState} from 'react';
+import { useState, useEffect} from 'react';
 
 import ScaleBar from '../../utils/ScaleBar';
 
 const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
     const [open, setOpen] = useState(true)
+    const [displayMin, setDisplayMin] = useState(null)
+    const [displayMax, setDisplayMax] = useState(null)
 
-    const convertToDecimal = (input) => {
-        if (input===''){
-            return 0
-        }
-        const newValue = Number.parseFloat(input.replace(/[^0-9]/g, ""));
-        return newValue;
-    }
+    const setValidFilters = () => {
+        const newPriceFilter = [...priceFilter]
+        const newMin = displayMin ? parseFloat(displayMin) : null;
+        const newMax = displayMax ? parseFloat(displayMax) : null;
 
-    const handleInputChangeMin = (e) => {
-        let newValue = convertToDecimal(e.target.value)
-        let newPriceFilter = [...priceFilter]
-
-        if (newValue < priceExtrema[0]){
-            newPriceFilter[0] = null 
-        } else if (newValue <= priceFilter[1]){
-            newPriceFilter[0] = newValue
+        if (newMin < priceExtrema[0] || newMin > priceExtrema[1] || newMin === null){
+            newPriceFilter[0] = null
         } else {
-            newPriceFilter = [newValue, newValue]
+            newPriceFilter[0] = newMin;
+        }
+
+        if (newMax > priceExtrema[1] || newMax < priceExtrema[0] || newMax=== null){
+            newPriceFilter[1] = null
+        } else {
+            newPriceFilter[1] = newMax
+        }
+
+        if (newMin > newMax){
+            newPriceFilter[1] = newMin        
+        }
+        
+        if (newPriceFilter[0]){
+            setDisplayMin(newPriceFilter[0].toFixed(2))
+        } else {
+            setDisplayMin(null)
+        }
+        if (newPriceFilter[1]){
+            setDisplayMax(newPriceFilter[1].toFixed(2))
+        } else {
+            setDisplayMax(null)
         }
         setPriceFilter(newPriceFilter)
+    }
+
+    useEffect(()=>{
+        let timer = setTimeout(() => setValidFilters(), 1500)
+        return ()=> {
+            clearTimeout(timer)
+        }
+    }, [ displayMin ,displayMax, priceExtrema])
+
+    const money_regex = /^[0-9]\d*(?:\.\d{0,2})?$/;
+    const handleInputChangeMin = (e) => {
+        const value = e.target.value
+        if (value === '' || money_regex.test(value)){
+            setDisplayMin(value)    
+
+        }
     }
 
     const handleInputChangeMax = (e) => {
-        let newValue = convertToDecimal(e.target.value)
-        let newPriceFilter = [...priceFilter]
-
-        if (newValue < priceExtrema[1]){
-            newPriceFilter[1] = null
-        } else if (newValue >= priceFilter[0]){
-            newPriceFilter[1] = newValue
-        } else {
-            newPriceFilter = [newValue, newValue]
+        const value = e.target.value
+        if (value === '' || money_regex.test(value)){
+            setDisplayMax(value)
         }
-        setPriceFilter(newPriceFilter)
     }
+
 
     return (
         <div>
@@ -63,11 +87,13 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
                     values={priceFilter}
                     setValues={setPriceFilter}
                     priceExtrema={priceExtrema}
+                    setDisplayMin={setDisplayMin}
+                    setDisplayMax={setDisplayMax}
                 />
                 <div className='flex flex-row justify-center items-center'>
                     <div className='w-1/3 relative'>
                         <input
-                            value={priceFilter[0] === null ? '' : priceFilter[0]}
+                            value={displayMin === null ? '' : displayMin}
                             onChange={(e)=> handleInputChangeMin(e)}
                             className='p-2 outline-primary border border-primary rounded-md text-center w-full'
                             placeholder='Min'
@@ -79,7 +105,7 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
                     </span>
                     <div className='w-1/3 relative'>
                         <input
-                            value={priceFilter[1] === null ? '' : priceFilter[1]}
+                            value={displayMax === null ? '' : displayMax}
                             onChange={(e)=> handleInputChangeMax(e)}
                             className='p-2 outline-primary border border-primary rounded-md text-center relative w-full'
                             placeholder='Max'
