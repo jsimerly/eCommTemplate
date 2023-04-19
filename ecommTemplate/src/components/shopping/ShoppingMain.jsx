@@ -12,7 +12,8 @@ import { WhiteButton } from '../utils';
 
 const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   //Filter Setters
-  const [priceFilter, setPriceFilter] = useState([0,100])
+  const [priceFilter, setPriceFilter] = useState([null,null])
+  const [priceExtrema, setPriceExtrma] = useState([0,100])
   const [starFilter, setStarFilter] = useState([1,5])
 
   const [original_brandData, setOriginalBrandData] = useState([])
@@ -29,9 +30,14 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
     if (starFilter[0] !== 1 || starFilter[1] !== 5){
       return false
     }
-    if (priceFilter[0] !== 0 || priceFilter[1] !== 100) {
+    
+    if (
+      (priceFilter[0] !== null && priceFilter[0] !== priceExtrema[0]) ||
+      (priceFilter[1] !== null && priceFilter[1] !== priceExtrema[1])
+    ) {
       return false;
     }
+
     for (let i = 0; i < brandFilter.length; i++){
       if (brandFilter[i].checked !== original_brandData[i].checked){
         return false;
@@ -60,7 +66,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
     setFilters(JSON.parse(JSON.stringify(original_filterData)))
     setBrandFilter(JSON.parse(JSON.stringify(original_brandData)))
     setStarFilter([1,5])
-    setPriceFilter([0,100])
+    setPriceFilter([null, null])
   }
 
   useEffect(()=>{
@@ -79,6 +85,15 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
     setOriginalBrandData(JSON.parse(JSON.stringify(brands)))
   },[brands])
 
+  useEffect(() => {
+    if (products.length > 0) {
+      const minPrice = Math.min(...products.map(product => product.total_cost));
+      const maxPrice = Math.max(...products.map(product => product.total_cost));
+      setPriceExtrma([minPrice, maxPrice]);
+    } else {
+      setPriceExtrma([0, 100]); //Set default min and max values if filteredProducts is empty
+    }
+  }, [products]);
 
   const createUpdatedItems = (items, itemIndex, originalItems, itemProperties) => {
     const updatedItems = [...items];
@@ -127,7 +142,11 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   //Filter User
   const shouldDisplayProduct = (product) => {
     const {total_cost, average_rating, filter_tags, brand} = product
-    if (total_cost < priceFilter[0] || total_cost > priceFilter[1]){
+
+    if (priceFilter[0] !== null && total_cost < priceFilter[0]){
+      return false
+    }
+    if (priceFilter[1] !== null && total_cost > priceFilter[1]){
       return false
     }
 
@@ -264,8 +283,11 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
 
                   starFilter={starFilter}
                   setStarFilter={setStarFilter}
+
                   priceFilter={priceFilter}
                   setPriceFilter={setPriceFilter}
+                  priceExtrema={priceExtrema}
+
                   brandFilter={brandFilter}
                   handleBrandCheckClicked={handleBrandCheckClicked}
                 />

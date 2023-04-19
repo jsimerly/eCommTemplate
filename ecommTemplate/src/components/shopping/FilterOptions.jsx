@@ -5,7 +5,7 @@ import PriceComp from './filters/PriceComp';
 import OptionComp from './filters/OptionsComp';
 import BrandComp from './filters/BrandComp';
 
-const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar,starFilter, setStarFilter, priceFilter, setPriceFilter, brandFilter, handleBrandCheckClicked}) => {
+const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar, starFilter, setStarFilter, priceFilter, setPriceFilter, priceExtrema, brandFilter, handleBrandCheckClicked}) => {
   return (
     <div 
         className='bg-white rounded-md p-2 w-[300px]'
@@ -36,14 +36,11 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
         <RatingComp
           starFilter={starFilter}
           setStarFilter={setStarFilter}
-          minStar={minStar}
-          maxStar={maxStar}
-          setMinStar={setMinStar}
-          setMaxStar={setMaxStar}
         />
         <PriceComp
           priceFilter={priceFilter}
           setPriceFilter={setPriceFilter}
+          priceExtrema={priceExtrema}
         />
       </div>
   )

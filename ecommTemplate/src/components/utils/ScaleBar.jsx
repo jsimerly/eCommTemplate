@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Range } from 'react-range'
 import colors from '../../../constants/design/colors'
 
 
-const ScaleBar = ({values, setValues}) => {
+const ScaleBar = ({values, setValues, priceExtrema}) => {
+  const [displayValues, setDisplayValues] = useState([0,100])
+  useEffect(() => {
+    const newValues = [
+      values[0] === null ? priceExtrema[0] : values[0],
+      values[1] === null ? priceExtrema[1] : values[1],
+    ];
+    setDisplayValues(newValues)
+  }, [priceExtrema, values, setValues]);
 
     return (
         <div className='pb-8 px-2'>
           <Range
-            values={values}
-            min={0}
-            max={100}
+            values={displayValues}
+            min={priceExtrema[0]}
+            max={priceExtrema[1]}
+            step={0.05}
             onChange={(values) => setValues(values)}
             renderTrack={({ props, children }) => (
               <div
@@ -22,10 +31,14 @@ const ScaleBar = ({values, setValues}) => {
                   className='rounded-md w-full h-[3px] cursor-pointer'
                   style={{
                     background: `linear-gradient(to right, ${colors.neutralLight} 0%, ${colors.neutralLight} ${
-                      values[0]
-                    }%, ${colors.primary} ${values[0]}%, ${colors.primary} ${
-                      values[1]
-                    }%, ${colors.neutralLight} ${values[1]}%, ${colors.neutralLight} 100%)`,
+                      ((displayValues[0] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
+                    }%, ${colors.primary} ${
+                      ((displayValues[0] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
+                    }%, ${colors.primary} ${
+                      ((displayValues[1] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
+                    }%, ${colors.neutralLight} ${
+                      ((displayValues[1] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
+                    }%, ${colors.neutralLight} 100%)`,
                   }}
                 >
                   {children}
@@ -44,7 +57,7 @@ const ScaleBar = ({values, setValues}) => {
                         left: "50%",
                       }}
                 >
-                    {values[index].toFixed(0)}
+                    {displayValues[index].toFixed(0)}
                 </div>
               </div>
             )}
