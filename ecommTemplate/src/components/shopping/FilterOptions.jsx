@@ -23,19 +23,7 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
           brands={brandFilter}
           handleBrandCheckClicked={handleBrandCheckClicked}
         />
-        <RatingComp
-            starFilter={starFilter}
-            setStarFilter={setStarFilter}
-            minStar={minStar}
-            maxStar={maxStar}
-            setMinStar={setMinStar}
-            setMaxStar={setMaxStar}
-        />
-        <PriceComp
-            priceFilter={priceFilter}
-            setPriceFilter={setPriceFilter}
-        />
-                {filters.map((option, i) => {
+        {filters.map((option, i) => {
             return (
                 <OptionComp
                     key={'option_comp_'+i}
@@ -45,6 +33,18 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
                 />
             )
         })}
+        <RatingComp
+          starFilter={starFilter}
+          setStarFilter={setStarFilter}
+          minStar={minStar}
+          maxStar={maxStar}
+          setMinStar={setMinStar}
+          setMaxStar={setMaxStar}
+        />
+        <PriceComp
+          priceFilter={priceFilter}
+          setPriceFilter={setPriceFilter}
+        />
       </div>
   )
 }
