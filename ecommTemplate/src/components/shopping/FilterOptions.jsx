@@ -3,9 +3,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import RatingComp from './filters/RatingComp';
 import PriceComp from './filters/PriceComp';
 import OptionComp from './filters/OptionsComp';
+import BrandComp from './filters/BrandComp';
 
-
-const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar,starFilter, setStarFilter, priceFilter, setPriceFilter}) => {
+const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minStar, maxStar, setMinStar, setMaxStar,starFilter, setStarFilter, priceFilter, setPriceFilter, brandFilter, handleBrandCheckClicked}) => {
   return (
     <div 
         className='bg-white rounded-md p-2 w-[300px]'
@@ -19,16 +19,10 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
             className='hover:scale-105 cursor-pointer'
           />
         </div>
-        {filters.map((option, i) => {
-            return (
-                <OptionComp
-                    key={'option_comp_'+i}
-                    option={option}
-                    option_index={i}
-                    handleCheckboxClicked={handleCheckboxClicked}
-                />
-            )
-        })}
+        <BrandComp
+          brands={brandFilter}
+          handleBrandCheckClicked={handleBrandCheckClicked}
+        />
         <RatingComp
             starFilter={starFilter}
             setStarFilter={setStarFilter}
@@ -41,6 +35,16 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, minSt
             priceFilter={priceFilter}
             setPriceFilter={setPriceFilter}
         />
+                {filters.map((option, i) => {
+            return (
+                <OptionComp
+                    key={'option_comp_'+i}
+                    option={option}
+                    option_index={i}
+                    handleCheckboxClicked={handleCheckboxClicked}
+                />
+            )
+        })}
       </div>
   )
 }

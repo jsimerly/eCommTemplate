@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category, FilterTag, FilterOption
 from django.contrib.auth import get_user_model
-from decimal import Decimal
+from django.utils.functional import cached_property
 
 User = get_user_model()
 
@@ -26,25 +26,43 @@ class FilterOptionForCategory_Serializer(serializers.ModelSerializer):
         model = FilterOption
         fields = ['display_name','tags']
 
+class BrandNameForFilter_Seralizer(serializers.ModelSerializer):
+    checked = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Brand
+        fields = ['name', 'checked']
+
+    def get_checked(self, obj):
+        return True
 
 class IndividualCategory_Serializer(serializers.ModelSerializer):
     parent = serializers.SerializerMethodField()
     related_categories = RelatedCategory_Serializer(many=True)
     filter_options = FilterOptionForCategory_Serializer(many=True, read_only=True, source='filteroption_set')
     products = serializers.SerializerMethodField()
+    brands = serializers.SerializerMethodField()
 
     class Meta:
         model = Category
-        fields = ['fe_id', 'name', 'desc', 'parent', 'related_categories', 'image', 'filter_options', 'products']
+        fields = ['fe_id', 'name', 'desc', 'parent', 'related_categories', 'image', 'filter_options', 'products', 'brands']
     
     def get_parent(self, obj):
         serializer = IndividualCategory_Serializer(obj.parent)
         return serializer.data
     
+    @cached_property #using cache to avoid hitting DB twice with expensive product select
+    def _filtered_products(self):
+        return Product.objects.filter(category=self.instance)
+
     def get_products(self, obj):
-        products = Product.objects.filter(category=obj)
-        return ProductCard_Serializer(products, many=True, context=self.context).data
-    
+        return ProductCard_Serializer(self._filtered_products, many=True, context=self.context).data
+
+    def get_brands(self,obj):
+        unique_brands = self._filtered_products.values('brand').distinct()
+        brand_ids = [brand['brand'] for brand in unique_brands]
+        brands = Brand.objects.filter(id__in=brand_ids)
+        return BrandNameForFilter_Seralizer(brands, many=True).data   
     
 class Categories_Serializers(serializers.ModelSerializer):
     subcategories = serializers.SerializerMethodField()

@@ -15,6 +15,7 @@ const StandardShop = () => {
   const [categoryInfo, setCategoryInfo] = useState()
   const [relatedCategories, setRelatedCategories] = useState([])
   const [filterData, setFilterData] = useState([])
+  const [brands, setBrands] = useState([])
 
   useEffect(() => {
     const fetchCategoryInfo = async () => {
@@ -24,6 +25,7 @@ const StandardShop = () => {
         const resp = await response.json()
         setCategoryInfo(resp)
         setProductData(resp['products'])
+        setBrands(resp['brands'])
         setRelatedCategories(resp['related_categories'])
         setFilterData(resp['filter_options'])
       } else {
@@ -32,10 +34,6 @@ const StandardShop = () => {
     }
     fetchCategoryInfo()
   },[selectedCategory])
-
-  // useEffect(()=>{
-  //   console.log(categoryInfo)
-  // },[categoryInfo])
 
 
   useEffect(() => {
@@ -56,6 +54,7 @@ const StandardShop = () => {
                   products={products}
                   relatedCategories={relatedCategories}
                   filterData={filterData}
+                  brands={brands}
                 />
               </div>
             </div>

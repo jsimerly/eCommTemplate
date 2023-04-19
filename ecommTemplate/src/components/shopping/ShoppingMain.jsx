@@ -10,11 +10,13 @@ import useDropdown from '../../hooks/useDropdown';
 import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
 
-const ShoppingMain = ({filterData, relatedCategories, products}) => {
-  console.log(filterData)
+const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   //Filter Setters
   const [priceFilter, setPriceFilter] = useState([0,100])
   const [starFilter, setStarFilter] = useState([1,5])
+
+  const [original_brandData, setOriginalBrandData] = useState([])
+  const [brandFilter, setBrandFilter] = useState([])
 
   const [original_filterData, setOriginalFilterData] = useState([])
   const [openFilter, setOpenFilter] = useState(false)
@@ -30,6 +32,12 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
     if (priceFilter[0] !== 0 || priceFilter[1] !== 100) {
       return false;
     }
+    for (let i = 0; i < brandFilter.length; i++){
+      if (brandFilter[i].checked !== original_brandData[i].checked){
+        return false;
+      }
+    }
+
     for (let i = 0; i< filters.length; i++){
       for (let j = 0; j < filters[i].tags.length; j++) {
         if (filters[i].tags[j].checked !== original_filterData[i].tags[j].checked) {
@@ -50,6 +58,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
 
   const handleResetFilters = () => {
     setFilters(JSON.parse(JSON.stringify(original_filterData)))
+    setBrandFilter(JSON.parse(JSON.stringify(original_brandData)))
     setStarFilter([1,5])
     setPriceFilter([0,100])
   }
@@ -57,49 +66,82 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
   useEffect(()=>{
     const isActive = areFiltersEqual()
     setFilterActive(!isActive)
-  },[filters, starFilter[0], starFilter[1], priceFilter])
+  },[filters, starFilter[0], starFilter[1], priceFilter, brandFilter])
 
   useEffect(()=>{
     setFilters(filterData)
     setOriginalFilterData(JSON.parse(JSON.stringify(filterData)))
   }, [filterData])
 
+  useEffect(()=>{
+    setBrandFilter(brands)
+    setOriginalBrandData(JSON.parse(JSON.stringify(brands)))
+  },[brands])
 
-  const createUpdateFilters = (tag, categoryIndex, filterOptions, tagProperties) => {
-    const updatedFilterOptions = [...filterOptions]
-    const tagIndex = filterData[categoryIndex].tags.findIndex(
-      find_tag => find_tag.name === tag.name
-    )
 
-    if (tagIndex !== -1){
-      const updatedTag = {...updatedFilterOptions[categoryIndex].tags[tagIndex], ...tagProperties}
-      updatedFilterOptions[categoryIndex].tags[tagIndex] = updatedTag
+  const createUpdatedItems = (items, itemIndex, originalItems, itemProperties) => {
+    const updatedItems = [...items];
+    const index = originalItems.findIndex(
+      (find_item) => find_item.name === items[itemIndex].name
+    );
+  
+    if (index !== -1) {
+      const updatedItem = { ...updatedItems[itemIndex], ...itemProperties };
+      updatedItems[itemIndex] = updatedItem;
     }
-    return updatedFilterOptions
-  }
-
+  
+    return updatedItems;
+  };
+  
   const handleCheckboxClicked = (categoryIndex, tagIndex) => {
-    const updateFilterOptions = createUpdateFilters(
-      filters[categoryIndex].tags[tagIndex],
-      categoryIndex,
-      filters,
+    const updatedFilters = createUpdatedItems(
+      filters[categoryIndex].tags,
+      tagIndex,
+      filterData[categoryIndex].tags,
       {
-        checked: !filters[categoryIndex].tags[tagIndex].checked
+        checked: !filters[categoryIndex].tags[tagIndex].checked,
       }
-    )
-
-    setFilters(updateFilterOptions)
-  }
+    );
+  
+    const updatedFilterOptions = filters.map((filter, index) =>
+      index === categoryIndex
+        ? { ...filter, tags: updatedFilters }
+        : filter
+    );
+  
+    setFilters(updatedFilterOptions);
+  };
+  
+  const handleBrandCheckClicked = (brandIndex) => {
+    const updatedBrands = createUpdatedItems(
+      brandFilter,
+      brandIndex,
+      original_brandData,
+      { checked: !brandFilter[brandIndex].checked }
+    );
+  
+    setBrandFilter(updatedBrands);
+  };
 
   //Filter User
   const shouldDisplayProduct = (product) => {
-    const {total_cost, average_rating, filter_tags} = product
+    const {total_cost, average_rating, filter_tags, brand} = product
     if (total_cost < priceFilter[0] || total_cost > priceFilter[1]){
       return false
     }
 
     if (average_rating < starFilter[0] || average_rating > starFilter[1]){
       return false
+    }
+
+    for (let i = 0; i < brandFilter.length; i++){
+      const individualBrandFilter = brandFilter[i]
+      if (
+        !individualBrandFilter.checked && 
+        individualBrandFilter.name === brand.name
+      ){
+        return false
+      }
     }
 
     for (let i = 0; i < filters.length; i++){
@@ -119,7 +161,7 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
   useEffect(()=> {
     const newFilteredProducts = products.filter(shouldDisplayProduct)
     setFilteredProducts([...newFilteredProducts])
-  },[products, filters, priceFilter, starFilter])
+  },[products, filters, priceFilter, starFilter, brandFilter])
 
   //Category Related
   const {setSelectedCategory} = useContext(ShoppingContext)
@@ -223,6 +265,8 @@ const ShoppingMain = ({filterData, relatedCategories, products}) => {
                   setStarFilter={setStarFilter}
                   priceFilter={priceFilter}
                   setPriceFilter={setPriceFilter}
+                  brandFilter={brandFilter}
+                  handleBrandCheckClicked={handleBrandCheckClicked}
                 />
               </div>
               <div className='flex flex-1 w-full'>
