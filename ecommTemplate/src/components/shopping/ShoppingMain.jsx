@@ -272,6 +272,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
               <div className='flex flex-1 w-full'>
                 <Items
                   products={filteredProducts}
+                  sortBy={sortBy}
                 />
               </div>
             </div>
