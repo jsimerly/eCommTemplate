@@ -11,7 +11,7 @@ const UpdateOrderPage = () => {
     }, 231)
 
   }
-
+  window.scrollTo(0,0)
   return (
     <div className='w-full flex flex-col justify-center items-center text-tertiary p-10'>
       <h1 className='text-[40px] p-3'> Update or Exchange an Order</h1>

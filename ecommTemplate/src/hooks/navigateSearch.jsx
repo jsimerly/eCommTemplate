@@ -9,7 +9,6 @@ const navigateSearch = () => {
         let params = `?searchTerms=${searchParam}`
 
         navigate(`/search${params}`)
-        window.scrollTo(0, 0);
     }
 
     return handleNav

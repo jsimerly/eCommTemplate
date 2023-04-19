@@ -170,6 +170,7 @@ const faqCopy = [
 ]
 
 const FAQ = () => {
+  window.scrollTo(0,0)
   return (
     <div className='flex flex-col justify-center items-center text-tertiary'>
       <h1 className='text-[70px] py-10'>FAQ</h1>

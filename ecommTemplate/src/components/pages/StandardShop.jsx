@@ -32,6 +32,7 @@ const StandardShop = () => {
         handleNotification('Sorry, we appear to be having some technical difficulties. Please visit back once this has been updated.')
       }
     }
+    window.scrollTo(0,0)
     fetchCategoryInfo()
   },[selectedCategory])
 

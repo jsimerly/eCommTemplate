@@ -8,10 +8,6 @@ const navigateProduct = ({slug}) => {
         navigate(`/p/${slug}`)
     }
 
-    useEffect(()=> {
-        window.scrollTo(0,0)
-    },[slug])
-
     return handleNav
 }   
 

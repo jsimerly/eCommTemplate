@@ -14,6 +14,10 @@ const CartPage = () => {
     const [freeItems, setFreeItems] = useState([])
     const [activePromos, setActivePromos] = useState([])
 
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
+
     const create_updated_items = (item, items, updateProperties) => {
         const updatedItems = [...items]
             const itemIndex = updatedItems.findIndex((find_item) => find_item.uuid === item.uuid)

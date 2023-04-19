@@ -16,7 +16,6 @@ const navigateShopping = () => {
         }
 
         navigate(`/shopping`)
-        window.scrollTo(0, 0);
     }
     
     return handleNav

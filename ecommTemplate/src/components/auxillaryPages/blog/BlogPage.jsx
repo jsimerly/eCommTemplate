@@ -17,7 +17,7 @@ const Image = ({img}) => (
 const BlogPage = () => {
   const { blogId } = useParams()
   const blog = blogData[blogId]
-
+  window.scrollTo(0,0)
   return (
     <ErrorBoundry fallback="Oops, Sorry! We seem to be missing something here.">
     <div className="flex justify-center items-center text-tertiary">

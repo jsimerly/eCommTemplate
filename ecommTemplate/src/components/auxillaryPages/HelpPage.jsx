@@ -5,6 +5,7 @@ import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 
 const HelpPage = () => {
+    window.scrollTo(0,0)
   return (
     <div className="flex flex-col justify-center items-center py-10">
     <div className="w-full text-tertiary flex flex-col justify-center items-center">

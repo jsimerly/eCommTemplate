@@ -71,6 +71,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   useEffect(()=>{
     setFilters(filterData)
     setOriginalFilterData(JSON.parse(JSON.stringify(filterData)))
+
   }, [filterData])
 
   useEffect(()=>{

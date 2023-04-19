@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom"
+import { useEffect } from "react"
+import { useLocation, } from "react-router-dom"
 import { ShoppingMain } from "../shopping"
 
 const filterData_fromAPI = [{
@@ -46,6 +47,10 @@ const SearchPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchTerms = searchParams.get('searchTerms');
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
   return (
     <div className='flex justify-center items-center text-tertiary'>

@@ -3,7 +3,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import navigateProduct from '../../hooks/navigateProduct';
 import { BlueButton, Stars } from '../utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import { useLocation } from 'react-router-dom';
@@ -131,4 +131,4 @@ const ProductCard = ({item, addExtraFunction}) => {
   )
 }
 
-export default ProductCard
+export default memo(ProductCard);

@@ -53,6 +53,10 @@ const ProductPage = () => {
     fetchFullProductBySlug(slug, setProductInfo, startDate, endDate, dateChange)
   }, [slug, selectedDateRange])
 
+  useEffect(()=>{
+      window.scrollTo(0,0)
+  },[slug])
+
   useEffect(() => {
     if (productInfo){
       setMainCardInfo({

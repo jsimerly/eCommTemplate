@@ -2,6 +2,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 const ResetPassword = () => {
+  window.scrollTo(0,0)
   return (
     <div className="flex w-full justify-center">
       <div className="w-[1280px] h-full flex flex-col justify-center items-center text-tertiary py-16">

@@ -48,6 +48,7 @@ const MainBlog = ({title, img})  => (
   </div>
 )
 const AllBlogsPage = () => {
+  window.scrollTo(0,0)
   return (
     <div className='w-full flex flex-col justify-center items-center p-10'>
       <h1 className='py-10 text-[40px] text-tertiary'> Blue Elf's Blogs</h1>

@@ -5,7 +5,6 @@ const navigateCart = () => {
 
     function handleNav(){
         navigate('/cart')
-        window.scrollTo(0, 0);
     }
 
   return handleNav

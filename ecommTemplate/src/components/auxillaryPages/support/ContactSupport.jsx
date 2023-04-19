@@ -11,6 +11,7 @@ const supportDict = {
 }
 
 const ContactSupport = () => {
+    window.scrollTo(0,0)
   return (
     <div className='flex justify-center text-tertiary'>
       <div className='max-w-[1280px] w-full flex flex-col items-center'>

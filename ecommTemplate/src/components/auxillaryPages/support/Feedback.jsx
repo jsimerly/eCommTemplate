@@ -12,6 +12,7 @@ const feedbackOptions = [
 ]
 
 const Feedback = () => {
+    window.scrollTo(0,0)
     const [open, setOpen, handleClick, node] = useDropdown()
 
     const [feedbackType, setFeedbackType] = useState('')

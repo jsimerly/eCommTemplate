@@ -73,7 +73,7 @@ const AccountInformation = () => {
 
       return data
     }
-  
+    window.scrollTo(0,0)
     fetchInfo();
   }, []);
 
