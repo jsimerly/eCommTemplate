@@ -3,12 +3,20 @@ import { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { BlueButton } from '../utils';
 import { isDictInList } from '../utils'
+import { fetchItemsToCart } from '../../api/fetchCart';
+import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { ShoppingContext } from '../../context';
+import navigateCart from '../../hooks/navigateCart';
 
 
 const BoughtTogether = ({frequentlyBought}) => {
   const [checkedItems, setCheckedItems] = useState([]);
   const [totalCost, setTotalCost] = useState(0)
   const [days, setDays] = useState(7)
+  const location = useLocation();
+  const inCart = location.pathname === '/cart';
+  const {setCartSize, handleNotification} = useContext(ShoppingContext)
 
   function calculateTotalCost(checkedItems) {
 
@@ -30,7 +38,6 @@ const BoughtTogether = ({frequentlyBought}) => {
     }
   };
 
-
   useEffect(()=> {
     const newTotalCost = calculateTotalCost(checkedItems)
     setTotalCost(newTotalCost)
@@ -44,6 +51,30 @@ const BoughtTogether = ({frequentlyBought}) => {
       }
     }
   }, [frequentlyBought])
+
+  const GoToCart = () => (
+    <div 
+      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
+      onClick={navigateCart()}
+    > 
+      View Cart & Check Out
+    </div>
+  )
+
+  const handleAddToCartClicked = async () => {
+    const response = await fetchItemsToCart(checkedItems)
+    if (response.ok){
+      const resp = await response.json()
+      setCartSize(resp['cart_size'])
+      if (!inCart){
+        if (checkedItems.length === 1){
+          handleNotification(`1 item has been added to your cart.`, <GoToCart/>)
+        } else if (checkedItems.length >= 2){
+          handleNotification(`${checkedItems.length} items have been added to your cart.`, <GoToCart/>)
+        }
+      }
+    }
+  }
 
   return (
     <div className='my-6 bg-white rounded-md pb-6 px-16 text-tertiary justify-center flex flex-col items-center'>
@@ -75,6 +106,7 @@ const BoughtTogether = ({frequentlyBought}) => {
           <div className='ml-2' >
             <BlueButton
               content='Add to Cart'
+              onClick={handleAddToCartClicked}
             />
           </div>
         </div>

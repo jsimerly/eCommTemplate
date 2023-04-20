@@ -60,7 +60,6 @@ export async function fetchItemDeleteCart(uuid){
 
 export async function fetchCart(setterFunc, startDate, endDate, dateChange){
     const [start, end] = parseDates(startDate, endDate)
-
     try{
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/cart/?${datesUrlString(start, end, dateChange)}`)
         const cart = await response.json()

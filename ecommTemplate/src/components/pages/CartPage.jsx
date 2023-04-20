@@ -170,7 +170,7 @@ const CartPage = () => {
                         <h1 className="text-[40px] font-bold leading-none pt-1">
                             Cart
                         </h1>
-                        <p className="leading-none pb-1">
+                        <p className="leading-none ml-1">
                             {countItems(items)} Items
                         </p>
                     </div>

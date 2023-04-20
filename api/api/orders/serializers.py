@@ -46,7 +46,7 @@ class Cart_Serializer(serializers.ModelSerializer):
         validated_promos = []
         for promo in auto_add_promos:
             validator_function = promo.get_validation_function()
-            is_validated = validator_function(cart=obj, user=user, context=self.context)
+            is_validated, message = validator_function(cart=obj, user=user, context=self.context)
 
             if is_validated:
                 validated_promos.append(promo)

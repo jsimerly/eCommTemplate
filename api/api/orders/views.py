@@ -21,7 +21,6 @@ class CartItemAddView(APIView):
         cart_items = []
 
         for cart_item_data in cart_items_data:
-            print(cart_item_data)
             product = Product.objects.get(slug=cart_item_data['slug'])
             quantity = cart_item_data.get('quantity') or 1
             insurance_purchased = cart_item_data.get('insurancePurchased') or False
@@ -170,11 +169,11 @@ class PromoCodeView(APIView):
             validator_function = promo.get_validation_function()
             is_validated, message = validator_function(cart=cart, user=request.user, context=context)
 
+            print(validator_function)
             if is_validated:
                 serializer = Promo_Serializer(promo, context=context)
                 return Response(serializer.data, status=status.HTTP_200_OK)
             
-            print(message)
             return Response({'error' : message}, status=status.HTTP_400_BAD_REQUEST)
         
         except Promo.DoesNotExist:

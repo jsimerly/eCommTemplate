@@ -41,7 +41,7 @@ const ProductCard = ({item, addExtraFunction}) => {
         addExtraFunction()
       }
 
-      if (!inCart){ //using === to prevent and undefined/null from getting through
+      if (!inCart){ 
         handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
       }
     } else {

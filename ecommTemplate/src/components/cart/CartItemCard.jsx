@@ -6,11 +6,15 @@ import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
 import { QuantInput } from '../utils';
 import { fetchItemDeleteCart, fetchUpdateQuantity } from '../../api/fetchCart';
+import navigateProduct from '../../hooks/navigateProduct';
 
 
 const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCost, handleFetchCart}) => {
     const {setCartSize} = useContext(ShoppingContext)
     const [isMounted, setIsMounted] = useState(false)
+
+    const slug = item.item.slug
+    let navigate = navigateProduct({slug})
 
     useEffect(()=>{
       if (!isMounted){
@@ -52,11 +56,20 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
   
     return (
       <div className="flex border border-tertiary rounded-md mb-1">
-        <img src={item.item.main_image.image} className='h-[160px] w-[160px] rounded-md cursor-pointer'/>
+        <img 
+          onClick={navigate}
+          src={item.item.main_image.image} 
+          className='h-[160px] w-[160px] rounded-md cursor-pointer'
+        />
         <div className='p-3 w-full flex flex-col justify-between'>
           <div className='flex flex-col justify-start'>
             <div className='flex grow-0'>
-              <h2 className='text-[30px] leading-none cursor-pointer hover:underline'>{item.item.name}</h2>
+              <h2 
+                className='text-[30px] leading-none cursor-pointer hover:underline'
+                onClick={navigate}
+                >
+                  {item.item.name}
+              </h2>
             </div>
             <div className='flex flex-row items-center'>
               <div className='flex grow-0 cursor-pointer group'
