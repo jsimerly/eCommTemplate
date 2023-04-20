@@ -1,52 +1,31 @@
-import { useEffect } from "react"
+import { useEffect, useContext, useState } from "react"
 import { useLocation, } from "react-router-dom"
-import { ShoppingMain } from "../shopping"
-
-const filterData_fromAPI = [{
-    name: 'Category',
-    tags: {
-        'Hardshell' : true,
-        'Softshell': true,
-        'Floating' : true,
-        'Wheeled' : true,
-    },
-},  
-{
-    name: 'Brand',
-    tags: {
-        'Yeti' : true,
-        'RTIC' : true,
-        'Igloo' : true,
-    }
-},
-{
-    name: 'Capacity',
-    tags:{
-        '0-20 Cans' :  true,
-        '20-30 Cans':  true,
-        '31-40 Cans':  true,
-        '40-50 Cans':  true,
-        '50+ Cans' : true
-    }
-},
-{
-    name: 'Deals',
-    tags: {
-        'Standard' : true,
-        'On Sale' : true
-    }
-}]
-const relatedCategories_fromAPI = [
-    {name: 'Luxury Chairs', id:'0101'},
-    {name: "Kid's Chairs", id:'0102'},
-    {name: 'Canopy Chairs', id:'0103'},
-    {name: 'Chair Accessories', id:'0104'},
-]
+import { fetchSearch } from "../../api/fetchProducts";
+import { BrowsingHistory, ItemSuggestion, ShoppingMain } from "../shopping"
+import { ShoppingContext } from '../../context';
 
 const SearchPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchTerms = searchParams.get('searchTerms');
+
+    const {selectedDateRange, handleNotification} = useContext(ShoppingContext)
+    const [products, setProducts] = useState([])
+    const [brands, setBrands] = useState([])
+
+    useEffect(()=>{
+        const fetchSearchProducts = async () => {
+            const response = await fetchSearch(searchTerms, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+            if (response.ok){
+                const resp = await response.json()
+                setProducts(resp.products)
+                setBrands(resp.brands)
+            } else {
+                console.log('response not Ok ')
+            }
+        }
+        fetchSearchProducts()
+    },[searchTerms])
 
     useEffect(()=>{
         window.scrollTo(0,0)
@@ -59,9 +38,13 @@ const SearchPage = () => {
                 Search Results for "{searchTerms}"
             </h1>
             <ShoppingMain
-                filterData={filterData_fromAPI}
-                relatedCategories={relatedCategories_fromAPI}
+                filterData={[]}
+                relatedCategories={[]}
+                products={products}
+                brands={brands}                
             />
+            <ItemSuggestion/>
+            <BrowsingHistory/>
         </div>
     </div>
   )

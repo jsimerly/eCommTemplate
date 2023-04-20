@@ -133,7 +133,7 @@ function App() {
               />}/>
             <Route path='/about-us' element={<AboutUs/>}/> {/* X */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* X */}
-            <Route path='/search' element={<SearchPage/>}/> {/* X */}
+            <Route path='/search/' element={<SearchPage/>}/> {/* X */}
             <Route path='/p/:slug' element= {<ProductPage/>} 
             /> {/* X */}
             <Route path='/cart' element={<CartPage/>}/> {/* X */}

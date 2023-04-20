@@ -70,6 +70,16 @@ export async function fetchCategory(category, startDate, endDate, dateChange){
   }
 }
 
+export async function fetchSearch(searchTerms, startDate, endDate, dateChange){
+  const [start, end] = parseDates(startDate, endDate)
+  try {
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/search/?searchTerms=${searchTerms}&${datesUrlString(start,end,dateChange)}`);
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function fetchManyCategories(category_id){
   try{
     const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/category_many/${category_id}/`)

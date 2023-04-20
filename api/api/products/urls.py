@@ -9,7 +9,8 @@ urlpatterns = [
     path('category/<str:category>/', ProductCategoryAPIView.as_view(), name='category_products'),
     path('products/list/', ProductListAPIView.as_view(), name='product_list'),
     path('products/info/', ProductAPIView.as_view(), name='product_info'),
-    path('products/search/', ProductSearchView.as_view(), name='product_search'),
+    path('search/', ProductSearchView.as_view(), name='product_search'),
+
     path('products/<slug:slug>/reviews/', ProductReviewsView.as_view(), name='product_review_list'),
 
     path('product-group/<group_name>/', ProductGroupingView.as_view(), name='product_group'),

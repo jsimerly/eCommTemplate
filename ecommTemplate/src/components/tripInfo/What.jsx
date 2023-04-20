@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -28,6 +28,14 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
         getAllCategory()
     },[])
 
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (open && inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, [open]);
+
     const handleSelect = (cat) => {
         setSelectedCategory(cat);
         setOpen(false);
@@ -45,11 +53,12 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
         return ''
     }
 
-    const handleSearchClick = navigateSearch()
+    const handleSearch = navigateSearch()
 
     const handleKeyDown = (e) =>{
         if (e.key === 'Enter'){
-            handleSearchClick(searchInput)
+            e.preventDefault();
+            handleSearch(searchInput)
         }
     }
     const dropdown = () => {
@@ -59,17 +68,20 @@ const What = ({searchInput, setSearchInput, searchParamActive, setSearchParamAct
             style={{ maxHeight: `80vh` }}
         >
             <div className="relative">
-                <input 
-                    className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
-                    placeholder="Search"
-                    value={searchInput}
-                    onChange={(e)=> {setSearchInput(e.target.value); setSearchParamActive(true)}}
-                    onKeyDown={handleKeyDown}
-                />
-                <SearchIcon 
-                    className="absolute -translate-y-1/2 top-1/2 right-2 scale-125 hover:scale-150 cursor-pointer"
-                    onClick={()=>handleSearchClick(searchInput)}
-                />
+                <form>
+                    <input 
+                        ref={inputRef}
+                        className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
+                        placeholder="Search"
+                        value={searchInput}
+                        onChange={(e)=> {setSearchInput(e.target.value); setSearchParamActive(true)}}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <SearchIcon 
+                        className="absolute -translate-y-1/2 top-1/2 right-2 scale-125 hover:scale-150 cursor-pointer"
+                        onClick={()=>handleSearch(searchInput)}
+                    />
+                </form>
             </div>
             <h1 className='w-full text text-tertiary font-bold text-[22px] py-2'>
                 Categories

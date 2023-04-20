@@ -10,9 +10,9 @@ import math
 import random
 
 
-from .models import Product, Category, ProductGrouping
+from .models import Product, Category, ProductGrouping, Brand
 
-from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer, ProductGrouping_Serializer
+from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer, ProductGrouping_Serializer, BrandNameForFilter_Seralizer
 
 def getDateContext(request):
     date_changed_str = request.GET.get('dateChange')
@@ -106,7 +106,6 @@ class ProductCategoryAPIView(APIView):
 
         category_obj = Category.objects.get(fe_id=category)
         category_serializer = IndividualCategory_Serializer(category_obj, context=context)
-
 
         return Response(category_serializer.data, status=status.HTTP_200_OK)
     
@@ -226,11 +225,33 @@ class ProductSuggestionView(APIView):
             suggested_products = list(product_group.products.all())
 
         random.shuffle(suggested_products)
-        print(suggested_products)
 
         return Response(ProductCard_Serializer(suggested_products, context=context, many=True).data, status=status.HTTP_200_OK)
 
+class ProductSearchView(APIView):
+    def get(self, request):
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
+                
+        search_terms = request.query_params.get('searchTerms', '').strip()
+        
+        products = Product.objects.annotate(
+            search=SearchVector('name', 'keywords')
+        ).filter(Q(search=search_terms) | Q(slug__icontains=search_terms))
 
+        brand_ids = products.values_list('brand_id', flat=True).distinct()
+        brands = Brand.objects.filter(id__in=brand_ids)
 
+        products_serializer = ProductCard_Serializer(products, context=context, many=True)
+        brand_serializer = BrandNameForFilter_Seralizer(brands, many=True)
+
+        response_data = {
+            'brands' : brand_serializer.data,
+            'products' : products_serializer.data
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
     
 
