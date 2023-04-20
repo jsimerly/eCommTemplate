@@ -112,7 +112,7 @@ class Product(models.Model):
         related_name='product_as_main'
     )
 
-    frequently_bought_with = models.ManyToManyField('self', blank=True)
+    frequently_bought_with = models.ManyToManyField('self')
 
     def __str__(self):
         return  self.brand.name + " - " + self.name
@@ -271,6 +271,15 @@ def generate_sku_upc(sender, instance, **kwargs):
             except Stock.DoesNotExist:
                 instance.sku = sku
                 break
+
+class ProductGrouping(models.Model):
+    uuid = models.UUIDField(default=uuid4, editable=False)
+    name = models.CharField(max_length=100, unique=True)
+    display_name = models.CharField(max_length=120, unique=False, null=False)
+    products = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return self.name
 
 
 

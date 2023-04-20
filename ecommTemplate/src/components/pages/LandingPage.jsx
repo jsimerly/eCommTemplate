@@ -11,7 +11,7 @@ import {
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useContext, useEffect, useState } from 'react';
 import { ProductCard } from '../shopping';
-import { fetchProductsBySlugs } from '../../api/fetchProducts';
+import { fetchProductsBySlugs, fetchProductGrouping } from '../../api/fetchProducts';
 import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_SLUGS, TRENDING_SLUGS } from '../../api/landingPageConstants';
 
 import { ShoppingContext } from '../../context';
@@ -44,20 +44,38 @@ const Carousel = ({head, data}) => (
 )
 
 const LandingPage = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
-    const [mostPopular, setMostPopular] = useState([])
-    const [trending, setTrending] = useState([])
-    const [newArrivals, setNewArrivals] = useState([])
+    const [mostPopular, setMostPopular] = useState()
+    const [trending, setTrending] = useState()
+    const [newArrivals, setNewArrivals] = useState()
 
     const {selectedDateRange} = useContext(ShoppingContext)
 
     useEffect(() => {
+        const fetchAllCaros = async () =>{
             const startDate = selectedDateRange.startDate
             const endDate = selectedDateRange.endDate
             const dateChange = selectedDateRange.first
-    
-            fetchProductsBySlugs(MOST_POPULAR_SLUGS, setMostPopular, startDate, endDate, dateChange)
-            fetchProductsBySlugs(NEW_ARRIVALS_SLUGS, setNewArrivals, startDate, endDate, dateChange)
-            fetchProductsBySlugs(TRENDING_SLUGS, setTrending, startDate, endDate, dateChange)
+
+            const newArrival_response = await fetchProductGrouping('new_arrivals_landing_page', startDate, endDate, dateChange)
+            const mostPopular_response = await fetchProductGrouping('most_popular_landing_page', startDate, endDate, dateChange)
+            const trending_response = await fetchProductGrouping('trending_landing_page', startDate, endDate, dateChange)
+
+            if (newArrival_response.ok){
+                const newArrival_resp = await newArrival_response.json()
+                setNewArrivals(newArrival_resp)
+                console.log(newArrival_resp)
+            }
+            if (mostPopular_response.ok){
+                const mostPopular_resp = await mostPopular_response.json()
+                setMostPopular(mostPopular_resp)
+            }
+            if (trending_response.ok){
+                const trending_resp = await trending_response.json()
+                setTrending(trending_resp)
+            }
+        }
+        fetchAllCaros()
+            
     }, [selectedDateRange])
 
 
@@ -77,23 +95,30 @@ const LandingPage = ({searchInput, setSearchInput, searchParamActive, setSearchP
                     <NewCustomers/>
                 </div>
                 <div>
-                <Carousel
-                    head={header('Most Popular')}
-                    data={mostPopular}
-                />
-                <Carousel
-                    head={header('Trending')}
-                    data={trending}
-                />
+                {mostPopular &&
+                    <Carousel
+                        head={header(mostPopular.display_name)}
+                        data={mostPopular.products}
+                    />
+                }
+                {trending &&
+                    <Carousel
+                        head={header(trending.display_name)}
+                        data={trending.products}
+                    />
+                }
                 </div>
                 <div className='my-6 sm:my-16'>
                 <Categories/>
                 </div>
                 <div className='sm:my-6'>
-                <Carousel
-                    head={header('New Arrivals')}
-                    data={newArrivals}
-                />
+                {newArrivals &&
+                    <Carousel
+                        head={header(newArrivals.display_name)}
+                        data={newArrivals.products}
+                    />
+                }
+
                 </div>
                 <div className='sm:my-6'>
                 </div>

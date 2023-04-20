@@ -87,3 +87,14 @@ export async function fetchIndividualCategories(category_id){
     throw error
   }
 }
+
+export async function fetchProductGrouping(groupName, startDate, endDate, dateChange) {
+  const [start, end] = parseDates(startDate, endDate);
+  try {
+
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/product-group/${groupName}/?${datesUrlString(start,end,dateChange)}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

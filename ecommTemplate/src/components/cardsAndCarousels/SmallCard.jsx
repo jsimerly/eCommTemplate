@@ -40,14 +40,6 @@ const SmallCard = ({item, addExtraFunction}) => {
     }
   }
 
-  const getCost = (item) => {
-
-    const itemTotalCost = (parseFloat(item.base_cost) + (parseFloat(item.daily_cost) * parseInt(item.days)))
-    const totalCost = itemTotalCost
-
-    return  totalCost
-  }
-
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
     <div className="bg-white m-1 p-2 flex flex-col rounded-md shadow-md">
@@ -66,7 +58,7 @@ const SmallCard = ({item, addExtraFunction}) => {
       </div>
       <div className="flex flex-row justify-between">
         <div>
-          ${getCost(item).toFixed(2)}
+          ${item.total_cost.toFixed(2)}
         </div>
         <div className='text-white bg-primary rounded-md cursor-pointer'>
           <AddIcon

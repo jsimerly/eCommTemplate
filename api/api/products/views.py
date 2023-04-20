@@ -8,9 +8,9 @@ from datetime import datetime
 from django.utils import timezone
 
 
-from .models import Product, Category
+from .models import Product, Category, ProductGrouping
 
-from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer
+from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer, ProductGrouping_Serializer
 
 def getDateContext(request):
     date_changed_str = request.GET.get('dateChange')
@@ -172,6 +172,22 @@ class ProductReviewsView(APIView):
         reviews = product.reviews.all()
         serializer = ProductReview_Serializer(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class ProductGroupingView(APIView):
+    def get(self, request, group_name):
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
+        print(group_name)
+        try:
+            product_grouping = ProductGrouping.objects.get(name=group_name)
+        except ProductGrouping.DoesNotExist:
+            return Response({'error': 'Product group not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = ProductGrouping_Serializer(product_grouping, context=context)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
     
 

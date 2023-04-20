@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category, FilterTag, FilterOption
+from .models import Product, Brand, ProductMInfo, ProductReview, Stock, ProductImage, Category, FilterTag, FilterOption, ProductGrouping
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
@@ -102,7 +102,7 @@ class ProductCard_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'base_cost', 'daily_cost', 'total_cost', 'days', 'favorited', 'filter_tags',]
+        fields = ['uuid', 'name', 'brand', 'slug','average_rating', 'n_ratings', 'main_image', 'total_cost', 'days', 'favorited', 'filter_tags',]
 
     def get_total_cost(self, obj):
         if 'days' in self.context:
@@ -133,6 +133,10 @@ class Product_Serializer(serializers.ModelSerializer):
     insurance_total_cost = serializers.SerializerMethodField()
     days = serializers.SerializerMethodField()
     favorited = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Product
+        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'filter_tags', 'total_cost', 'days', 'insurance_total_cost', 'main_image', 'images','frequently_bought_with', 'favorited']
 
     def get_total_cost(self, obj):
         if 'days' in self.context:
@@ -169,9 +173,7 @@ class Product_Serializer(serializers.ModelSerializer):
         return serializer.data
 
 
-    class Meta:
-        model = Product
-        fields = ['uuid', 'name', 'brand', 'slug', 'average_rating', 'n_ratings', 'category', 'filter_tags', 'total_cost', 'days', 'insurance_total_cost', 'main_image', 'images','frequently_bought_with', 'favorited']
+
 
     def create(self, validated_data):
         brand_data = validated_data.pop('brand')
@@ -290,3 +292,14 @@ class Stock_Serializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+    
+class ProductGrouping_Serializer(serializers.ModelSerializer):
+    products = serializers.SerializerMethodField()
+    class Meta:
+        model = ProductGrouping
+        fields = ['uuid', 'display_name', 'products']
+
+    def get_products(self, obj):
+        product_group = obj.products.all()
+        products_serializer = ProductCard_Serializer(product_group, context=self.context, many=True)
+        return products_serializer.data
