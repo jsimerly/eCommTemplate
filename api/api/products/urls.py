@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProductPageView, ProductCategoryAPIView, ProductListAPIView, ProductSearchView, ProductAPIView, ProductReviewsView, IndividualCategoryView, CategoriesView, ProductGroupingView
+from .views import ProductPageView, ProductCategoryAPIView, ProductListAPIView, ProductSearchView, ProductAPIView, ProductReviewsView, IndividualCategoryView, CategoriesView, ProductGroupingView, ProductSuggestionView
 
 urlpatterns = [
     path('category_many/<fe_id>/', CategoriesView.as_view(), name='many_categories'),
@@ -12,5 +12,6 @@ urlpatterns = [
     path('products/search/', ProductSearchView.as_view(), name='product_search'),
     path('products/<slug:slug>/reviews/', ProductReviewsView.as_view(), name='product_review_list'),
 
-    path('product-group/<group_name>/', ProductGroupingView.as_view(), name='product_group')
+    path('product-group/<group_name>/', ProductGroupingView.as_view(), name='product_group'),
+    path('product-suggestions/', ProductSuggestionView.as_view(), name='product_suggestions')
 ]

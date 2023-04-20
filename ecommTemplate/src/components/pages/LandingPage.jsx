@@ -11,8 +11,8 @@ import {
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useContext, useEffect, useState } from 'react';
 import { ProductCard } from '../shopping';
-import { fetchProductsBySlugs, fetchProductGrouping } from '../../api/fetchProducts';
-import { MOST_POPULAR_SLUGS, NEW_ARRIVALS_SLUGS, TRENDING_SLUGS } from '../../api/landingPageConstants';
+import { fetchProductGrouping } from '../../api/fetchProducts';
+
 
 import { ShoppingContext } from '../../context';
 import MobileSearch from '../landingPage/MobileSearch';

@@ -3,7 +3,7 @@ import CarouselTemplate from "./CarouselTemplate"
 
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
-import { fetchAllFavorited, } from '../../api/fetchCart';
+import { fetchProductSuggestions } from "../../api/fetchProducts";
 
 const header = (
 <div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8 '>
@@ -27,7 +27,14 @@ const ItemSuggestion = () => {
 
   //replace this fetch with ItemSuggestion endpoint
   useEffect(()=>{
-    fetchAllFavorited(setSuggestions, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+    const getSuggestions = async () => {
+      const response = await fetchProductSuggestions(selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+      if (response.ok){
+        const resp = await response.json()
+        setSuggestions(resp)
+      }
+    }
+    getSuggestions()
   },[selectedDateRange])
 
   return (

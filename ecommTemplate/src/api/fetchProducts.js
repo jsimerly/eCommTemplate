@@ -98,3 +98,14 @@ export async function fetchProductGrouping(groupName, startDate, endDate, dateCh
     throw error;
   }
 }
+
+export async function fetchProductSuggestions(startDate, endDate, dateChange) {
+  const [start, end] = parseDates(startDate, endDate);
+  try {
+
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/product-suggestions/?${datesUrlString(start,end,dateChange)}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

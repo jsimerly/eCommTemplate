@@ -6,6 +6,8 @@ from django.contrib.postgres.search import SearchVector
 from customer.models import BrowseHistory
 from datetime import datetime
 from django.utils import timezone
+import math
+import random
 
 
 from .models import Product, Category, ProductGrouping
@@ -179,7 +181,7 @@ class ProductGroupingView(APIView):
             'request' : request,
             **getDateContext(request)
         }
-        print(group_name)
+
         try:
             product_grouping = ProductGrouping.objects.get(name=group_name)
         except ProductGrouping.DoesNotExist:
@@ -187,6 +189,47 @@ class ProductGroupingView(APIView):
         
         serializer = ProductGrouping_Serializer(product_grouping, context=context)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class ProductSuggestionView(APIView):
+    def get(self, request):
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
+                
+        customer = request.customer
+        browse_history = BrowseHistory.objects.filter(customer=customer).order_by('-timestamp')[:20]
+
+        products = [bh.product for bh in browse_history]
+        categories = set(p.category for p in products)
+        unique_categories = Category.objects.filter(id__in=[c.id for c in categories])
+
+        num_categories = len(unique_categories)
+        num_items_per_category = math.ceil(20 / num_categories)
+
+        suggested_products = []
+        for category in unique_categories:
+            category_products = category.product_set.exclude(id__in=[p.id for p in products])
+            num_products = category_products.count()
+            if num_products < num_items_per_category:
+                additional_products = category.product_set.exclude(id__in=[p.id for p in products])[:num_items_per_category - num_products]
+                category_products |= additional_products
+            else:
+                random_indices = random.sample(range(num_products), num_items_per_category)
+                category_products = category_products.filter(pk__in=[category_products[index].pk for index in random_indices])
+            suggested_products.extend(category_products)
+
+        
+        
+        if len(suggested_products) == 0:
+            product_group = ProductGrouping.objects.get(name='most_popular_landing_page')
+            suggested_products = list(product_group.products.all())
+
+        random.shuffle(suggested_products)
+        print(suggested_products)
+
+        return Response(ProductCard_Serializer(suggested_products, context=context, many=True).data, status=status.HTTP_200_OK)
+
 
 
     

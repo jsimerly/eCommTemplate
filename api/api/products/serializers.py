@@ -122,7 +122,6 @@ class ProductCard_Serializer(serializers.ModelSerializer):
         return is_favorited
 
 
-
 class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
@@ -302,4 +301,5 @@ class ProductGrouping_Serializer(serializers.ModelSerializer):
     def get_products(self, obj):
         product_group = obj.products.all()
         products_serializer = ProductCard_Serializer(product_group, context=self.context, many=True)
+        
         return products_serializer.data

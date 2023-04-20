@@ -6,6 +6,7 @@ from django.db.models import JSONField
 from django.contrib.postgres.fields import ArrayField, DateRangeField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.contrib.postgres.search import SearchVectorField, SearchVector
 
 User = get_user_model()
 
@@ -114,6 +115,10 @@ class Product(models.Model):
 
     frequently_bought_with = models.ManyToManyField('self')
 
+    #Search
+    keywords = models.TextField(blank=True, null=True)
+    search_vector = SearchVectorField(blank=True)
+
     def __str__(self):
         return  self.brand.name + " - " + self.name
     
@@ -129,6 +134,7 @@ class Product(models.Model):
             
     def save(self, *args, **kwargs):
         self.full_clean()
+        self.search_vector = SearchVector('name', 'keywords')
         super().save(*args, **kwargs)
 
 @receiver(post_save, sender=Product)
@@ -280,6 +286,7 @@ class ProductGrouping(models.Model):
 
     def __str__(self):
         return self.name
+    
 
 
 
