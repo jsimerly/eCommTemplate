@@ -24,10 +24,10 @@ const Footer = () => {
                     </ul>
                 </div>
             ))}
-            <div className='bg-white rounded-md pt-0 p-10 sm:relative sm:bottom-6  text-tertiary mt-6 sm:mt-0'>
+            <div className='bg-white rounded-md pt-0 p-10 sm:relative sm:bottom-6  text-tertiary mt-6 sm:mt-0 shadow-md'>
                 <div className='mt-6 font-semibold mb-2'> Stay Connected </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
-                    <input placeholder='Email' className='my-2 rounded-md p-2 pl-4 bg-tertiaryTone-100 '/>
+                    <input placeholder='Email' className='my-2 rounded-l p-2 pl-4 bg-tertiaryTone-100 outline-none'/>
                     <BlueButton
                         className='!rounded-l-none group'
                         content={<ArrowForwardIcon className='group-hover:scale-110'/>}

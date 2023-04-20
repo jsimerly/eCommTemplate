@@ -52,11 +52,13 @@ const CartPage = () => {
     }
 
     const handleFetchCart = () => {
+
         const startDate = selectedDateRange.startDate
         const endDate = selectedDateRange.endDate
         const dateChange = selectedDateRange.first
 
-      fetchCart(setCart, startDate, endDate, dateChange)
+        fetchCart(setCart, startDate, endDate, dateChange)
+
     }
 
     useEffect(() => {

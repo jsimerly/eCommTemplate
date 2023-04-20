@@ -57,7 +57,7 @@ const Favorites = ({getCost, selectedDateRange, handleFetchCart}) => {
       <h2 className='text-[30px] font-bold '>
         Favorites
       </h2>
-      <div className='bg-white rounded-md py-6 px-6'>
+      <div className='py-6 px-6'>
         <p className='pb-3'>Something missing from you cart? Maybe it's one of your favorites. Add items from your favorites list to the cart.</p>
         <div className='flex flex-wrap justify-start items-center'>
           {favorites.length === 0 ? 
