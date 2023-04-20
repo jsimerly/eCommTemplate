@@ -60,7 +60,7 @@ const ProductCard = ({item, addExtraFunction}) => {
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
-    <div className='w-[150px] h-[260px] md:h-[486px] md:min-w-[300px] rounded-md bg-tertiaryTone-100 p-2 md:pt-2 md:px-2 flex flex-col m-2 relative group'>
+    <div className='w-[150px] h-[260px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 relative group shadow-md'>
       {item.main_image && (
         <>
           <img 

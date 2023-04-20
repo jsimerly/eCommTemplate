@@ -273,7 +273,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
             </div>
               
             </div>
-            <div className='flex flex-row mt-2 w-full'>
+            <div className='flex flex-row w-full'>
                       {/* put hide back when */}
               <div className={`mr-2 ${openFilter ? '' : 'hidden'}`}>
                 <FilterOptions

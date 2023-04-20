@@ -75,7 +75,7 @@ const CarouselTemplate = ({Card, cardData, cardW, header, scrollNFunc, addExtraF
         onTouchStart={handleMouseDown}
         onTouchMove={handleMouseMove}
         onTouchEnd={handleMouseUp}
-        className='overflow-hidden flex flex-row relative p-4 bg-white sm:rounded-md'
+        className='overflow-hidden flex flex-row relative p-4 sm:rounded-md'
         >
         <button 
         className={`text-white bg-primary rounded-md absolute top-1/2 z-10 ${translateDistance === 0 ? 'sm:hidden' : 'sm:block'} p-2 bg-opacity-20 hover:bg-opacity-50 hidden`}
