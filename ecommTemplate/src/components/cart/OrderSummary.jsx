@@ -62,7 +62,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
 
     const [openPromos, setOpenPromos] = useState(false)
     const [promoCode, setPromoCode] = useState('')
-    // const [activePromos, setActivePromos] = useState([])
+    const [promoCodeError, setPromoCodeError] = useState()
     const [flatDiscounts, setFlatDiscounts] = useState([])
     const [percentDiscounts, setPercentDiscounts] = useState([])
     const [totalDiscount, setTotalDiscount] = useState(0)
@@ -109,6 +109,10 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
                 handleNotification('You have already added that promotion.')
             }
             setOpenPromos(false)
+            setPromoCodeError(null)
+        } else if (response.status === 400){
+            const resp = await response.json()
+            setPromoCodeError(resp.error)
         }
     } 
 
@@ -225,6 +229,12 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
                         />
                     </div>
                 </div>
+                {promoCodeError && 
+                    <div className={`ml-1 mt-1 text-errorRed ${openPromos ? '' : 'hidden'}`}>
+                        {promoCodeError}
+                    </div>
+                }
+
             </div>
         </div>
         <div className='mt-2'>

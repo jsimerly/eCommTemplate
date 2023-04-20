@@ -168,16 +168,17 @@ class PromoCodeView(APIView):
             cart = Cart.objects.get(customer=customer)
 
             validator_function = promo.get_validation_function()
-            is_validated = validator_function(cart=cart, user=request.user, context=context)
+            is_validated, message = validator_function(cart=cart, user=request.user, context=context)
 
             if is_validated:
                 serializer = Promo_Serializer(promo, context=context)
                 return Response(serializer.data, status=status.HTTP_200_OK)
             
-            return Response({'error' : 'Your current cart does not qualify for this promotion.'}, status=status.HTTP_400_BAD_REQUEST)
+            print(message)
+            return Response({'error' : message}, status=status.HTTP_400_BAD_REQUEST)
         
         except Promo.DoesNotExist:
-            return Response({'error': 'Promo not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'We could not find this Promo Code.'}, status=status.HTTP_404_NOT_FOUND)
         
 
 

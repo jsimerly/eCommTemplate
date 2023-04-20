@@ -1,4 +1,3 @@
-#Would be a good idea to also return a message about why they don't qualify, but that's for a later day.
 
 def over_70_free_wagon(**kwargs):
     cart = kwargs.get('cart')
@@ -13,15 +12,15 @@ def over_70_free_wagon(**kwargs):
 
     if total_subcost >= 70.00:
         return (True, f'Successfully Added!')
-    return (False)
+    return (False, 'Your order subtotal needs to be more than $70 to qualify for this promotion.')
 
 def first_order_20_off(**kwargs):
     user = kwargs.get('user')
 
     if user.is_anonymous:
-        return (False)
+        return (False, 'You must be logged in to qualify for this promotion.')
 
     if user.fullorder_set.first():
-        return (False)
+        return (False, 'This promotion is only valid for your first order.')
     
     return (True, f'Successfully Added!')
