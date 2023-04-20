@@ -112,7 +112,7 @@ const ProductCard = ({item, addExtraFunction}) => {
                 For {item.days} Days
               </p>
             </div>
-            <div className='h-full border hidden md:block'>
+            <div className='h-full hidden md:block'>
               <BlueButton
                 content='Add to Cart'
                 onClick={handleAddItemClicked}

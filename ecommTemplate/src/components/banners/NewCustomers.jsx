@@ -26,7 +26,7 @@ const NewCustomers = () => {
         <div className='w-full'>
         </div>
         <div className='w-full flex justify-center items-center'>
-          <div className='w-[180px] h-[60px]'>
+          <div className='w-[180px] h-[60px] shadow-md'>
             <LargeWhiteButton
               content='Shop Now'
             />

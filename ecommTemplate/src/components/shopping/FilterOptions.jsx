@@ -11,7 +11,7 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, starF
 
   return (
     <div 
-        className='bg-white rounded-md p-2 w-[300px]'
+        className='bg-white rounded-md p-2 w-[300px] shadow-md'
       >
         <div className='flex justify-between'>
           <p className='text-[20px]'>

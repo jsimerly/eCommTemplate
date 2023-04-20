@@ -151,6 +151,11 @@ function App() {
             <Route path='/privacy' element={<Privacy/>}/> {/* X */}
             <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}{/* X */}
             <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* X */}
+            <Route path='*' element={<Empty className='h-[600px]' message={
+              <div>
+                Oh dear, it seems that there is nothing here! <br/> <span className='text-[12px]'>(Page Not Found) </span>
+              </div>
+            }/>}/>
           </Routes>
           </ErrorBoundry>
           <div className='flex justify-center items-center'>
