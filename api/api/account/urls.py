@@ -12,6 +12,7 @@ urlpatterns = [
     path('update-user/account/', UpdateAccountView.as_view(), name='update_account'),
     path('update-user/personal/', UpdatePersonalView.as_view(), name='update_personal'),
     path('update-user/preferences/', UpdatePreferencesView.as_view(), name='update_preferences'),
+    path('subscribe-marketing-email/', MarketingEmailSubmissionCreateView.as_view(), name='subscribe-makerting-email'),
 
     path('reset-password/', ResetPasswordView.as_view(), name='reset_password'),
     path('reset-password-validated/', ResetPasswordValidationView.as_view(), name='reset_password_validated'),

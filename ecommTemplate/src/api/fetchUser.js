@@ -115,3 +115,20 @@ export async function fetchResetPassword(email){
         throw error
     }
 }
+
+export async function fetchMarketingEmailSub(email) {
+    try {
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/account/subscribe-marketing-email/`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFTOKEN': getCookie('csrftoken'),
+            },
+            body: JSON.stringify({email: email}),
+        });
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from account.models import MarketingEmailSubmission
 import re
 
 User = get_user_model()
@@ -94,6 +95,11 @@ class UpdatePreferences_Serializer(serializers.ModelSerializer):
 
 class ResetPassword_Serializer(serializers.Serializer):
     email = serializers.EmailField()
+
+class MarketingEmailSubmissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MarketingEmailSubmission
+        fields = ['email']
 
             
        

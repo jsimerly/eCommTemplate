@@ -72,6 +72,7 @@ export async function fetchWrapper(url, options){
         headers: headers,
         credentials: 'include'
     }
+
     const response = await fetch(url, requestOptions);
     return response
 }

@@ -123,6 +123,17 @@ class User(AbstractBaseUser):
     
     def __str__(self):
         return self.email
+    
+class MarketingEmailSubmission(models.Model):
+    date_added = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+    email=models.EmailField(
+        verbose_name='Email',
+        max_length=255,
+        unique=True,
+        null=False
+    )
 
 
 

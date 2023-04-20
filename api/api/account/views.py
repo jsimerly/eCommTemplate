@@ -7,6 +7,7 @@ from uuid import uuid4
 
 from account.verification import send_email_verification, send_password_reset_verification
 from account.serializers import *
+from account.models import MarketingEmailSubmission
 
 # Create your views here.
 
@@ -151,3 +152,19 @@ class ResetPasswordView(APIView):
     
 class ResetPasswordValidationView(APIView):
     pass
+
+class MarketingEmailSubmissionCreateView(APIView):
+    def post(self, request):
+            print(request)
+            serializer = MarketingEmailSubmissionSerializer(data=request.data)
+            if serializer.is_valid():
+                email = serializer.validated_data['email']
+                instance, created = MarketingEmailSubmission.objects.get_or_create(email=email, defaults={'active': True})
+
+                if not created:
+                    instance.active = True
+                    instance.save()
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
