@@ -5,21 +5,22 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
-import { fetchItemFavorited } from '../../api/fetchCart';
-import { addItemsToCart } from '../cardsAndCarousels/addTo';
+import { fetchItemFavorited, fetchItemsToCart } from '../../api/fetchCart';
 import { ShoppingContext } from '../../context';
 import navigateCart from '../../hooks/navigateCart';
 
 const ProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
     const [insured, setInsured] = useState(false)
-    const [mainImg, setMainImg] = useState(mainCardInfo.mainImg)
+    const [mainImg, setMainImg] = useState()
     const [itemFavorited, setFavorited] = useState(false)
     const {setCartSize, handleNotification} = useContext(ShoppingContext)
 
     useEffect(()=>{
-      setMainImg(mainCardInfo.mainImg)
-      setFavorited(mainCardInfo.favorited)
+      if(mainCardInfo){
+        setMainImg(mainCardInfo.mainImg)
+        setFavorited(mainCardInfo.favorited)
+      }
     }, [mainCardInfo])
 
     const handleInsuredClicked = () => {
@@ -42,12 +43,12 @@ const ProductMain = ({mainCardInfo}) => {
     )
 
     const handleAddToCart = async () => {
-      const cartItems = [{
+      const cartItem = {
         slug: mainCardInfo.slug,
         quantity: quant,
         insurancePurchased: insured,
-      }]
-      const response = await addItemsToCart(cartItems)
+      }
+      const response = await fetchItemsToCart([cartItem])
       if (response.ok){
         const resp = await response.json()
         setCartSize(resp['cart_size'])
@@ -63,7 +64,7 @@ const ProductMain = ({mainCardInfo}) => {
           <div className="flex flex-row w-2/3">
             <div className='flex max-h-[642px]'>
               <div className="w-1/5 overflow-hidden hover:overflow-y-auto scrollbar-hide">
-              {mainCardInfo.imgList && mainCardInfo.imgList.map((image, index) => 
+              {mainCardInfo && mainCardInfo.imgList.map((image, index) => 
               { 
                 const image_path = image.image
                 return (
@@ -76,23 +77,29 @@ const ProductMain = ({mainCardInfo}) => {
               })}
               </div>
               <div className="w-4/5 rounded-md mx-6">
-                <img
-                  src={mainImg}
-                  className='bg-white rounded-md aspect-square'
-                />
+                {mainImg &&
+                  <img
+                    src={mainImg}
+                    className='bg-white rounded-md aspect-square'
+                  />
+                }
+
               </div>
             </div>
           </div>
           <div className="w-1/3 flex flex-col items-center text-tertiary p-6">
             <div className='flex flex-row justify-between w-full'>
-              <div className='flex flex-col'>
-                <h1 className='text-[40px] font-bold leading-none'>
-                  {mainCardInfo.name}
-                </h1>
-                <h2 className='text-[28px] '>
-                  {mainCardInfo.brand}
-                </h2>
-              </div>
+              {mainCardInfo && 
+                <div className='flex flex-col'>
+                  <h1 className='text-[40px] font-bold leading-none'>
+                    {mainCardInfo.name}
+                  </h1>
+                  <h2 className='text-[28px] '>
+                    {mainCardInfo.brand}
+                  </h2>
+                </div>
+              }
+
               <div 
                 className='cursor-pointer hover:scale-110'
                 onClick={handleFavoriteClicked}
@@ -106,20 +113,28 @@ const ProductMain = ({mainCardInfo}) => {
 
             </div>
             <div className='flex justify-between items-center w-full mt-6'>
+            {mainCardInfo &&
               <div className='text-center'>
-                <h3 className='text-[36px] leading-none font-bold'>
-                  ${mainCardInfo.price.toFixed(2)}
-                </h3>
+                
+                  <h3 className='text-[36px] leading-none font-bold'>
+                    ${mainCardInfo.price.toFixed(2)}
+                  </h3>
+
+
                 <p className='leading-none'>
                   For {mainCardInfo.days} days
                 </p>
               </div>
-              <div>
-                <Stars rating={mainCardInfo.rating} size='30px'/>
-                <span className='ml-2'>
-                  ({mainCardInfo.nRatings})
-                </span>
-              </div>
+              }
+              {mainCardInfo && 
+                <div>
+                  <Stars rating={mainCardInfo.rating} size='30px'/>
+                  <span className='ml-2'>
+                    ({mainCardInfo.nRatings})
+                  </span>
+                </div>
+              }
+
             </div>
             <div className='w-full mt-6'>
               <div className='flex grow-0 cursor-pointer group items-center'
@@ -135,29 +150,32 @@ const ProductMain = ({mainCardInfo}) => {
                   sx={{fontSize: '35px'}}
                   className='text-primary group-hover:scale-110'
                 />}
-
-                <div className='text-[20px] ml-2 group-hover:underline'>
-                  Insure for <span className='font-bold'> ${mainCardInfo.insurance.toFixed(2)}</span>
+                {mainCardInfo && 
+                  <div className='text-[20px] ml-2 group-hover:underline'>
+                    Insure for <span className='font-bold'> ${mainCardInfo.insurance.toFixed(2)}</span>
+                  </div>
+                }
+              </div>
+            </div>
+            {mainCardInfo && 
+              <div className='w-full flex flex-col justify-start mt-6'>
+                <div>
+                  <h3 className='font-semibold text-[14px]'>
+                    Producer Description
+                  </h3>
+                  <p>
+                    {mainCardInfo.desc}
+                  </p>
+                  <ul className='list-disc pl-10 pt-6'>
+                  {mainCardInfo.bullets.map((bullet, i) => (
+                    <li key={i}>
+                      {bullet}
+                    </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div className='w-full flex flex-col justify-start mt-6'>
-              <div>
-                <h3 className='font-semibold text-[14px]'>
-                  Producer Description
-                </h3>
-                <p>
-                  {mainCardInfo.desc}
-                </p>
-                <ul className='list-disc pl-10 pt-6'>
-                {mainCardInfo.bullets.map((bullet, i) => (
-                  <li key={i}>
-                    {bullet}
-                  </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            }
             <div className='flex flex-row w-full mt-6 p-2'>
               <div className='w-2/5'>
                 <QuantInput

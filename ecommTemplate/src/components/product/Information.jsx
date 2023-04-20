@@ -3,22 +3,25 @@ import ErrorBoundry from "../utils/ErrorBoundry"
 import {Details, ReturnDamage, Reviews, Specs} from './'
 
 const Information = ({secondaryCardInfo}) => {
-
-  const infoDict = {
-    'Details' : <Details 
-                  full_desc={secondaryCardInfo.full_desc}
-                  highlights={secondaryCardInfo.highlights}
-                  msrp={secondaryCardInfo.msrp}
-                  manufactured={secondaryCardInfo.manufactured}
-                  brand={secondaryCardInfo.brand}
-                  categoryRank={secondaryCardInfo.categoryRank}
-                  rank_link={secondaryCardInfo.rank_link}
-                  sku={secondaryCardInfo.sku}
-                />,
-    'Reviews' : <Reviews/>,
-    'Returns & Damages' : <ReturnDamage/>,
-    'Specifications' : <Specs specs={secondaryCardInfo.specs}/>
+  let infoDict = {}
+  if (secondaryCardInfo){
+    infoDict = {
+      'Details' : <Details 
+                    full_desc={secondaryCardInfo.full_desc}
+                    highlights={secondaryCardInfo.highlights}
+                    msrp={secondaryCardInfo.msrp}
+                    manufactured={secondaryCardInfo.manufactured}
+                    brand={secondaryCardInfo.brand}
+                    categoryRank={secondaryCardInfo.categoryRank}
+                    rank_link={secondaryCardInfo.rank_link}
+                    sku={secondaryCardInfo.sku}
+                  />,
+      'Reviews' : <Reviews/>,
+      'Returns & Damages' : <ReturnDamage/>,
+      'Specifications' : <Specs specs={secondaryCardInfo.specs}/>
+    }
   }
+
   
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
@@ -26,13 +29,16 @@ const Information = ({secondaryCardInfo}) => {
         <h1 className="text-[30px] pt-4">
             Product Information
         </h1>
-        <div className="p-6 w-full">
-          <SwitchComp
-              compDict={infoDict}
-              defComp={'Details'}
-              className='!border-none'
-              />
-        </div>
+        {secondaryCardInfo && 
+            <div className="p-6 w-full">
+              <SwitchComp
+                  compDict={infoDict}
+                  defComp={'Details'}
+                  className='!border-none'
+                  />
+            </div>
+        }
+
     </div>
     </ErrorBoundry>
   )

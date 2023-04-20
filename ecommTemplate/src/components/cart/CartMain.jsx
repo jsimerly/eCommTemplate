@@ -2,7 +2,7 @@
 import CartItemCard from './CartItemCard';
 import FreeItemCard from './FreeItemCard';
 
-const CartMain = ({items, freeItems, updateCartItem, updateFreeItem, itemCount, totalCost, deleteCartItem, getInsurance, getCost}) => {
+const CartMain = ({items, freeItems, updateCartItem, updateFreeItem, itemCount, totalCost, deleteCartItem, handleFetchCart, getInsurance, getCost}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
@@ -14,6 +14,7 @@ const CartMain = ({items, freeItems, updateCartItem, updateFreeItem, itemCount, 
                 item={item}
                 updateCartItem={updateCartItem}
                 deleteCartItem={deleteCartItem}
+                handleFetchCart={handleFetchCart}
                 getCost={getCost}
                 getInsurance={getInsurance}
                 key={'cart_item_card_'+i}

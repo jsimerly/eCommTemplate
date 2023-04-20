@@ -31,6 +31,7 @@ const ProductCard = ({item, addExtraFunction}) => {
   )
 
   const handleAddItemClicked = async () =>{
+    
     const response = await fetchItemsToCart([item])
     if (response.ok){
       const resp = await response.json()

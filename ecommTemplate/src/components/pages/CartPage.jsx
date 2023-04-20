@@ -14,9 +14,7 @@ const CartPage = () => {
     const [freeItems, setFreeItems] = useState([])
     const [activePromos, setActivePromos] = useState([])
 
-    useEffect(()=>{
-        window.scrollTo(0,0)
-    },[])
+    window.scrollTo(0,0)
 
     const create_updated_items = (item, items, updateProperties) => {
         const updatedItems = [...items]
@@ -194,6 +192,7 @@ const CartPage = () => {
                                 updateCartItem={updateCartItem}
                                 updateFreeItem={updateFreeItem}
                                 deleteCartItem={deleteCartItem}
+                                handleFetchCart={handleFetchCart}
 
                                 itemCount={countItems(items)}
                                 totalCost={get_total()}

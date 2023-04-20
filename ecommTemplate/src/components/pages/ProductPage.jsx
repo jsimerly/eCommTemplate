@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from 'react';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useLocation } from 'react-router-dom';
 import Information from '../product/Information';
 import ProductMain from '../product/ProductMain';
@@ -11,37 +10,14 @@ import { LinkPath } from '../utils/LinkPath';
 
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState()
-  const [mainCardInfo, setMainCardInfo] = useState({
-    name: '',
-    brand: '',
-    mainImg: '',
-    imgList: [],
-    rating: 3,
-    nRatings: 0,
-    price: 0,
-    insurance: 0,
-    desc: '',
-    bullets: [],
-  })
-  const [secondaryCardInfo, setSecondardCardInfo] = useState({
-    full_desc: '',
-    highlights: [],
-    specs: {},
-    category_rank:1,
-    rankLink:'',
-    msrp: 0,
-    manufactured: '',
-    brand: '',
-    slugId: '',
-    days: 6,
-  })
+  const [mainCardInfo, setMainCardInfo] = useState()
+  const [secondaryCardInfo, setSecondardCardInfo] = useState()
   const [frequentlyBought, setFrequentlyBought] = useState([])
   const [category, setCategory] = useState()
 
   const location = useLocation();
   const segments = location.pathname.split('/');
   const slug = segments[segments.length - 1];
-
 
   const {selectedDateRange} = useContext(ShoppingContext)
 

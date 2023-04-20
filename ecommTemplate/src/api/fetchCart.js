@@ -3,7 +3,7 @@ import { fetchWrapper, getCookie } from "./cookies";
 import { parseDates, datesUrlString } from "./fetchProducts";
 
 
-export async function fetchItemsToCart(items){
+export async function fetchItemsToCart(items, insurancePurchase=false){
     console.log(items)
     const requestOptions = {
         method: 'POST',

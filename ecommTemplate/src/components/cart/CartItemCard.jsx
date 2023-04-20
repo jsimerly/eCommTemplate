@@ -8,7 +8,7 @@ import { QuantInput } from '../utils';
 import { fetchItemDeleteCart, fetchUpdateQuantity } from '../../api/fetchCart';
 
 
-const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCost}) => {
+const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCost, handleFetchCart}) => {
     const {setCartSize} = useContext(ShoppingContext)
     const [isMounted, setIsMounted] = useState(false)
 
@@ -21,7 +21,10 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
       const delayDebounce = setTimeout(
         async () => {
           const response = await fetchUpdateQuantity(item.uuid, item.quantity);
-        }, 2000)
+          if (response.ok){
+            handleFetchCart()
+          }
+        }, 1500)
       return () => clearTimeout(delayDebounce)
     },[item.quantity])
   
@@ -36,9 +39,12 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
     const handleDeleteClicked = async () =>{
       try{
         const response = await fetchItemDeleteCart(item.uuid)
-        const data = await response.json()
-        setCartSize(data['cart_size'])
-        deleteCartItem(item)
+        if (response.ok){
+          const data = await response.json()
+          setCartSize(data['cart_size'])
+          deleteCartItem(item)
+          handleFetchCart()
+        }
       } catch (error){
         throw error
       }

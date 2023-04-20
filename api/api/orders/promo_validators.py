@@ -12,16 +12,16 @@ def over_70_free_wagon(**kwargs):
         total_subcost += subcost
 
     if total_subcost >= 70.00:
-        return True
-    return False
+        return (True, f'Successfully Added!')
+    return (False)
 
 def first_order_20_off(**kwargs):
     user = kwargs.get('user')
 
     if user.is_anonymous:
-        return False
+        return (False)
 
     if user.fullorder_set.first():
-        return False
+        return (False)
     
-    return True
+    return (True, f'Successfully Added!')
