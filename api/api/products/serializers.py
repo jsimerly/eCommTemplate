@@ -36,8 +36,20 @@ class BrandNameForFilter_Seralizer(serializers.ModelSerializer):
     def get_checked(self, obj):
         return True
 
-class IndividualCategory_Serializer(serializers.ModelSerializer):
+class CategoryParent_Serializer(serializers.ModelSerializer):
     parent = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = ['parent']
+
+    def get_parent(self, obj):
+        serializer = CategoryParent_Serializer(obj.parent)
+        return serializer.data
+    
+
+class IndividualCategory_Serializer(serializers.ModelSerializer):
+    parent = CategoryParent_Serializer()
     related_categories = RelatedCategory_Serializer(many=True)
     filter_options = FilterOptionForCategory_Serializer(many=True, read_only=True, source='filteroption_set')
     products = serializers.SerializerMethodField()
@@ -47,16 +59,25 @@ class IndividualCategory_Serializer(serializers.ModelSerializer):
         model = Category
         fields = ['fe_id', 'name', 'desc', 'parent', 'related_categories', 'image', 'filter_options', 'products', 'brands']
     
-    def get_parent(self, obj):
-        serializer = IndividualCategory_Serializer(obj.parent)
-        return serializer.data
+
     
-    @cached_property #using cache to avoid hitting DB twice with expensive product select
+    @cached_property #using cache to avoid hitting DB twice
     def _filtered_products(self):
-        return Product.objects.filter(category=self.instance)
+        all_products = Product.objects.filter(category=self.instance)
+
+        child_categories = Category.objects.filter(parent=self.instance)
+        for cat in child_categories:
+            new_products = Product.objects.filter(category=cat)
+            all_products = all_products | new_products
+
+        return all_products
 
     def get_products(self, obj):
-        return ProductCard_Serializer(self._filtered_products, many=True, context=self.context).data
+        print('------------------------')
+        print(obj)
+        print(self.context) 
+        products = self._filtered_products
+        return ProductCard_Serializer(products, many=True, context=self.context).data
 
     def get_brands(self,obj):
         unique_brands = self._filtered_products.values('brand').distinct()
@@ -66,7 +87,6 @@ class IndividualCategory_Serializer(serializers.ModelSerializer):
     
 class Categories_Serializers(serializers.ModelSerializer):
     subcategories = serializers.SerializerMethodField()
-    parent = IndividualCategory_Serializer()
 
     class Meta:
         model = Category

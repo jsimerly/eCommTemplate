@@ -39,15 +39,6 @@ def getDateContext(request):
         }
 
     return context
-
-class IndividualCategoryView(APIView):
-    serializer_class = IndividualCategory_Serializer
-
-    def get(self, request, fe_id):
-        category = Category.objects.get(fe_id=fe_id)
-        serializer = self.serializer_class(data=category)
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
     
 class CategoriesView(APIView):
     serializer_class = Categories_Serializers
@@ -104,6 +95,7 @@ class ProductCategoryAPIView(APIView):
             **getDateContext(request)
         }
 
+        print(context)
         category_obj = Category.objects.get(fe_id=category)
         category_serializer = IndividualCategory_Serializer(category_obj, context=context)
 
