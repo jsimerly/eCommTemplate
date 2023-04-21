@@ -38,10 +38,9 @@ class BrandNameForFilter_Seralizer(serializers.ModelSerializer):
 
 class CategoryParent_Serializer(serializers.ModelSerializer):
     parent = serializers.SerializerMethodField()
-
     class Meta:
         model = Category
-        fields = ['parent']
+        fields = ['parent', 'name', 'fe_id']
 
     def get_parent(self, obj):
         serializer = CategoryParent_Serializer(obj.parent)

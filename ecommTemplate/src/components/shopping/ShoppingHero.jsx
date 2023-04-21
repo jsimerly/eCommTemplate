@@ -17,7 +17,7 @@ const ShoppingHero = ({categoryInfo}) => {
                         <div className='bg-white w-2/3 rounded-md my-2 p-10 justify-start flex flex-col items-start'>
                             <div className='flex flex-col items-start'>
                                 <div className='text-[12px] flex'>
-                                    <LinkPath category={categoryInfo}/>                     
+                                    <LinkPath category={categoryInfo.parent}/>                     
                                 </div>
                                 <h1 className='font-bold text-[60px] leading-none'>
                                     {categoryInfo.name}
