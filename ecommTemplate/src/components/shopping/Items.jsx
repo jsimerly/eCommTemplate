@@ -23,7 +23,7 @@ const Items = ({products, sortBy}) => {
     <div
         className='rounded-md w-full justify-center'
     >
-        <div className="flex flex-wrap w-full min-h-[300px]">
+        <div className="flex flex-wrap  w-full min-h-[300px]">
             {sortedProducts && sortedProducts.length === 0 ?
                 <Empty/>
                 :

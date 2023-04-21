@@ -150,7 +150,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
       return false
     }
 
-    if (average_rating < starFilter[0] || average_rating > starFilter[1]){
+    if (average_rating + .5 < starFilter[0] || average_rating > starFilter[1]){
       return false
     }
 

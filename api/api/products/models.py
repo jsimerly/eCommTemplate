@@ -43,7 +43,7 @@ class Category(models.Model):
 
     #Set the max number of related categories to 6    
     def clean(self):
-        if self.related_categories.count() > 6:
+        if self.pk and self.related_categories.count() > 6:
             raise ValidationError("A maximum of 6 related categories is allowed.")
 
     def save(self, *args, **kwargs):
@@ -128,12 +128,19 @@ class Product(models.Model):
         self.frequently_bought_with.add(product)
 
     def clean(self):
-        for filter_tag in self.filter_tags.all():
-            if self.category not in filter_tag.filter_option.categories.all():
-                raise ValidationError("FilterTag's FilterOption category must match the product's category.")
+        if self.pk:
+            for filter_tag in self.filter_tags.all():
+                if self.category not in filter_tag.filter_option.categories.all():
+                    raise ValidationError("FilterTag's FilterOption category must match the product's category.")
             
     def save(self, *args, **kwargs):
         self.full_clean()
+        if self.pk is None:
+            super().save(*args, **kwargs)
+            self.search_vector = SearchVector('name', 'keywords')
+            super().save(update_fields=["search_vector"])
+            return
+        
         self.search_vector = SearchVector('name', 'keywords')
         super().save(*args, **kwargs)
 
