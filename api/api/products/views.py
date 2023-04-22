@@ -162,9 +162,20 @@ class ProductReviewsView(APIView):
         except Product.DoesNotExist:
             return Response({'detail': 'Product not found'}, status=404)
 
-        reviews = product.reviews.all()
+        reviews = product.reviews.filter(initial_review=True, comment_included=True)
+        print(reviews)
         serializer = ProductReview_Serializer(reviews, many=True)
+        
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class ReviewReportedView(APIView):
+    def post(self, request):
+        pass
+
+class CreateReview(APIView):
+    def post(self, request):
+        pass
+
     
 class ProductGroupingView(APIView):
     def get(self, request, group_name):

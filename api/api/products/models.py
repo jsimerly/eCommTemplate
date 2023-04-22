@@ -230,10 +230,14 @@ class ProductReview(models.Model):
     rating = models.PositiveIntegerField(choices=RATING_CHOICES)
     recommended = models.BooleanField(default=True)
 
-    header = models.CharField(max_length=30)
-    body = models.TextField()
+    comment_included = models.BooleanField(default=False)
+    header = models.CharField(max_length=30, null=True)
+    body = models.TextField(blank=True)
 
+    initial_review = models.BooleanField(default=False)
     reported = models.BooleanField(default=False)
+    report_viewed = models.BooleanField(default=False)
+
 
     def __str__(self):
         return  self.user.first_name + "'s Review of " + self.product.name + " - " + self.date_created.strftime('%m-%d-%Y')

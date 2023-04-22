@@ -62,20 +62,23 @@ class IndividualCategory_Serializer(serializers.ModelSerializer):
     
     @cached_property #using cache to avoid hitting DB twice
     def _filtered_products(self):
-        all_products = Product.objects.filter(category=self.instance)
+        def get_products(cat):
+            products = Product.objects.filter(category=cat)
+            child_categories = Category.objects.filter(parent=cat)
 
-        child_categories = Category.objects.filter(parent=self.instance)
-        for cat in child_categories:
-            new_products = Product.objects.filter(category=cat)
-            all_products = all_products | new_products
+            for child_cat in child_categories:
+                products |= get_products(child_cat)
 
+            return products
+
+        all_products = get_products(self.instance)
         return all_products
 
     def get_products(self, obj):
         print('------------------------')
         print(obj)
-        print(self.context) 
         products = self._filtered_products
+        print(products)
         return ProductCard_Serializer(products, many=True, context=self.context).data
 
     def get_brands(self,obj):

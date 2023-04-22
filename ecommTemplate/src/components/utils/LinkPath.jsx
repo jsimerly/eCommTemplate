@@ -2,7 +2,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import navigateShopping from '../../hooks/navigateShopping';
 
 export const LinkPath = ({category}) => {
-    console.log(category)
     const navigate = navigateShopping()
 
     const createOnClickHandler = (cat) => {

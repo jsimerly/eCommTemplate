@@ -11,7 +11,8 @@ import { useLocation } from "react-router-dom";
 import { fetchProductReviewsBySlug } from "../../api/fetchProducts";
 import { WhiteButton } from "../utils";
 import { ReviewCard } from "./InfoContent";
-import { BlueButton } from "../utils";
+import { BlueButton, Empty } from "../utils";
+
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([])
@@ -22,7 +23,7 @@ const Reviews = () => {
 
   useEffect(()=> {
     fetchProductReviewsBySlug(slug, setReviews)
-  }, [])
+  }, [slug])
 
   //Filter
   const filterOptions = [
@@ -48,7 +49,7 @@ const Reviews = () => {
     
     return (
       <div className="flex ml-2 cursor-pointer">
-        <div>
+        <div className="text-primary">
           {checked ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
         </div>
         <p className="ml-2 pr-4">
@@ -196,13 +197,15 @@ const Reviews = () => {
         </div>
       </div>
       <div>
-        {reviews.map((review, i) => (
+        {reviews.length === 0 ? 
+        <Empty/>
+        :
+        reviews.map((review, i) => (
           <ReviewCard
             key={'review_'+i}
             review={review}
           />
         ))}
-
       </div>
       <div className="w-full flex justify-center p-4">
         <div>

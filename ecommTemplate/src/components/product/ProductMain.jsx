@@ -72,7 +72,7 @@ const ProductMain = ({mainCardInfo}) => {
                       key={index}
                       src={image_path}
                       onClick={() => setMainImg(image_path)}
-                      className='bg-white rounded-md mb-4 cursor-pointer'
+                      className='bg-white rounded-md mb-4 cursor-pointer aspect-square shadow-sm'
                   />)
               })}
               </div>
@@ -80,7 +80,7 @@ const ProductMain = ({mainCardInfo}) => {
                 {mainImg &&
                   <img
                     src={mainImg}
-                    className='bg-white rounded-md aspect-square'
+                    className='bg-white rounded-md aspect-square shadow-sm'
                   />
                 }
 
