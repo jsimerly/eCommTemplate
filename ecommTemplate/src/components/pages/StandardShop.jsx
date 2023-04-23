@@ -34,7 +34,7 @@ const StandardShop = () => {
     }
     window.scrollTo(0,0)
     fetchCategoryInfo()
-  },[selectedCategory])
+  },[selectedCategory, selectedDateRange])
 
   return (
     <div>
