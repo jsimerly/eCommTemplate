@@ -4,7 +4,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Stars } from '../../utils';
 
 const ReviewCard = ({review}) => {
-
   return (
     <div className='w-full border border-tertiary rounded-md p-2 my-2'>
         <div className="flex flex-row justify-between items-center">
@@ -13,7 +12,7 @@ const ReviewCard = ({review}) => {
                     {review.header}
                 </h3>
                 <p className='text-[18px]'>
-                    {review.user.first_name} {review.user.last_name}.
+                    {review.name}
                     {review.verified_purchaser ? 
                     <span className='ml-4 font-semibold text-[14px] text-primary'>Verified Purchaser</span> : ""}
                 </p>

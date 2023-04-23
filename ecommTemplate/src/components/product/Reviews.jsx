@@ -7,15 +7,15 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useLocation } from "react-router-dom";
 
-
 import { fetchProductReviewsBySlug } from "../../api/fetchProducts";
 import { WhiteButton } from "../utils";
 import { ReviewCard } from "./InfoContent";
-import { BlueButton, Empty } from "../utils";
+import { Empty } from "../utils";
+import LeaveReview from "./LeaveReview";
 
-
-const Reviews = () => {
+const Reviews = ({product}) => {
   const [reviews, setReviews] = useState([])
+  const [leaveReviewOpen, setLeaveReviewOpen] = useState(false)
 
   const location = useLocation();
   const segments = location.pathname.split('/');
@@ -60,8 +60,6 @@ const Reviews = () => {
   }
 
   const areListsEqual = (deepCopy, stateCopy) =>{
-    console.log(deepCopy)
-    console.log(stateCopy)
     for (let i=0; i < deepCopy.length; i++){
       const dict1 = deepCopy[i]
       const dict2 = stateCopy[i]
@@ -207,12 +205,19 @@ const Reviews = () => {
           />
         ))}
       </div>
-      <div className="w-full flex justify-center p-4">
-        <div>
-          <BlueButton
-            content='Leave a Review'
+      {leaveReviewOpen && 
+        <div className={` w-full flex flex-col justify-center items-center p-4`}>
+          <LeaveReview
+            product={product}
+            setLeaveReviewOpen={setLeaveReviewOpen}
           />
         </div>
+      }
+      <div 
+        className="underline cursor-pointer text-center"
+        onClick={() => setLeaveReviewOpen(!leaveReviewOpen)}
+      >
+        {leaveReviewOpen ? 'Close Review' : 'Leave a Review'}
       </div>
     </div>
   )

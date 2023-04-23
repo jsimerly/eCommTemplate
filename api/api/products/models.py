@@ -195,8 +195,8 @@ class ProductMInfo(models.Model):
 
     #Main Card
     def validate_max_desc(text):
-        if len(text) > 300:
-            raise ValueError('The max length for main_desc is 200 characters.')
+        if len(text) > 1000:
+            raise ValueError('The max length for main_desc is 1000 characters.')
 
     main_desc = models.TextField(validators=[validate_max_desc])
     bullets = ArrayField(models.CharField(max_length=40), default=list)
@@ -233,6 +233,7 @@ class ProductReview(models.Model):
     comment_included = models.BooleanField(default=False)
     header = models.CharField(max_length=30, null=True)
     body = models.TextField(blank=True)
+    anonymous = models.BooleanField(default=False)
 
     initial_review = models.BooleanField(default=False)
     reported = models.BooleanField(default=False)

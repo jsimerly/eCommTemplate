@@ -5,7 +5,6 @@ import ProductMain from '../product/ProductMain';
 import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
 import { ShoppingContext } from '../../context';
-
 import { LinkPath } from '../utils/LinkPath';
 
 const ProductPage = () => {
@@ -52,6 +51,7 @@ const ProductPage = () => {
       })
 
       setSecondardCardInfo({
+        product: productInfo.product,
         full_desc: productInfo.prod_desc,
         highlights: productInfo.highlights,
         specs: productInfo.specs,

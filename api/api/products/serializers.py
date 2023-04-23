@@ -75,10 +75,7 @@ class IndividualCategory_Serializer(serializers.ModelSerializer):
         return all_products
 
     def get_products(self, obj):
-        print('------------------------')
-        print(obj)
         products = self._filtered_products
-        print(products)
         return ProductCard_Serializer(products, many=True, context=self.context).data
 
     def get_brands(self,obj):
@@ -148,7 +145,7 @@ class Product_Serializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     main_image = ProductImage_Serializer()
     images = ProductImage_Serializer(many=True)
-    category = Categories_Serializers()
+    category = CategoryParent_Serializer()
     frequently_bought_with = ProductCard_Serializer(many=True)
     total_cost = serializers.SerializerMethodField()
     insurance_total_cost = serializers.SerializerMethodField()
@@ -255,40 +252,38 @@ class ProductMInfo_Serializer(serializers.ModelSerializer):
         return instance
     
 class UserName_Serialzier(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ['uuid', 'first_name', 'last_name']
+        fields = ['name']
 
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        last_name = data['last_name']
-        if last_name:
-            data['last_name'] = last_name[0]
-        return data
+    def get_name(self, obj):
+        first_name = obj.first_name
+        last_name_initial = f'{obj.last_name[0]}.' if obj.last_name else ''
+        return 
 
 class ProductReview_Serializer(serializers.ModelSerializer):
-    user = UserName_Serialzier()
+    name = serializers.SerializerMethodField()
 
     class Meta:
         model = ProductReview
-        fields = ['uuid', 'user', 'verified_purchaser', 'date_created', 'rating', 'recommended', 'header', 'body']
+        fields = ['uuid', 'name', 'verified_purchaser', 'date_created', 'rating', 'recommended', 'header', 'body']
 
-    def create(self, validated_data):
-        return ProductReview.objects.create(**validated_data)
+    def get_name(self, obj):
+        if obj.anonymous:
+            return 'Anonymous'
+        
+        user = obj.user
+        first_name = user.first_name
+        last_name_initial = f'{user.last_name[0]}.' if user.last_name else ''
+        return f"{first_name} {last_name_initial}"
     
-    def update(self, instance, validated_data):
-        instance.verified_purchaser = validated_data.get('verified_purchaser', instance.verified_purchaser)
-        instance.rating = validated_data.get('rating', instance.rating)
-        instance.recommended = validated_data.get('recommended', instance.recommended)
 
-        instance.header = validated_data.get('header', instance.header)
-        instance.body = validated_data.get('body', instance.body)
+class CreateReview_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductReview
+        fields = ['product', 'user', 'verified_purchaser', 'rating', 'recommended', 'comment_included', 'header', 'body', 'anonymous',]
 
-        instance.reported = validated_data.get('reported', instance.reported)
-
-        instance.save()
-        return instance
-    
 
 class Stock_Serializer(serializers.ModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())

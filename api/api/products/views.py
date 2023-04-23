@@ -6,13 +6,14 @@ from django.contrib.postgres.search import SearchVector
 from customer.models import BrowseHistory
 from datetime import datetime
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 import math
 import random
 
 
 from .models import Product, Category, ProductGrouping, Brand
 
-from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer, ProductGrouping_Serializer, BrandNameForFilter_Seralizer
+from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer, ProductGrouping_Serializer, BrandNameForFilter_Seralizer, CreateReview_Serializer
 
 def getDateContext(request):
     date_changed_str = request.GET.get('dateChange')
@@ -163,7 +164,6 @@ class ProductReviewsView(APIView):
             return Response({'detail': 'Product not found'}, status=404)
 
         reviews = product.reviews.filter(initial_review=True, comment_included=True)
-        print(reviews)
         serializer = ProductReview_Serializer(reviews, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -172,9 +172,22 @@ class ReviewReportedView(APIView):
     def post(self, request):
         pass
 
-class CreateReview(APIView):
+class CreateReviewView(APIView):
     def post(self, request):
-        pass
+        product_slug = request.data.get('product_slug')
+        product = get_object_or_404(Product, slug=product_slug)
+
+        data = request.data.copy()
+        data['user'] = request.user.id
+        data['product'] = product.id
+
+        serializer = CreateReview_Serializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
 class ProductGroupingView(APIView):

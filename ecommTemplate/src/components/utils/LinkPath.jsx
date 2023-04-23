@@ -23,7 +23,7 @@ export const LinkPath = ({category}) => {
     
         while (currCat && currCat.name !== ''){
           parents.push(
-            <div className='flex flex-row items-center'>
+            <div className='flex flex-row items-center' key={currCat.name+'_key'}>
               <ChevronRightIcon sx={{fontSize: 20}}/>
               <a
                 onClick={createOnClickHandler(currCat)}

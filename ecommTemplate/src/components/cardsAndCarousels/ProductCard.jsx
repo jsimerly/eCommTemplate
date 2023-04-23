@@ -65,7 +65,7 @@ const ProductCard = ({item, addExtraFunction}) => {
         <>
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer'
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square'
             onClick={navigate}
             />
           <div 

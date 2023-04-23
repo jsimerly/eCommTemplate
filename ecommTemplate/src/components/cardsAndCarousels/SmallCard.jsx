@@ -45,7 +45,7 @@ const SmallCard = ({item, addExtraFunction}) => {
     <div className="bg-white m-1 p-2 flex flex-col rounded-md shadow-md">
       <div className="w-[150px] h-[150px] mb-2 cursor-pointer">
         <img
-          className="bg-white object-scale-down rounded-md"
+          className="bg-white object-scale-down rounded-md aspect-square"
           src={item.main_image.image}
           onClick={navigate}
           />

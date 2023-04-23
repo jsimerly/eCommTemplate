@@ -1,10 +1,7 @@
-import navigateProduct from '../../hooks/navigateProduct';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { useEffect, useState } from 'react';
-import { calculate_product_cost, create_full_image_path } from '../../assets/util';
 import { useNavigate } from 'react-router-dom';
-import { el } from 'date-fns/locale';
+
 
 const FreqBoughtCard= ({item, handleCheckClicked, checked}) => {
 

@@ -16,7 +16,9 @@ const Information = ({secondaryCardInfo}) => {
                     rank_link={secondaryCardInfo.rank_link}
                     sku={secondaryCardInfo.sku}
                   />,
-      'Reviews' : <Reviews/>,
+      'Reviews' : <Reviews
+                    product={secondaryCardInfo.product}
+                  />,
       'Returns & Damages' : <ReturnDamage/>,
       'Specifications' : <Specs specs={secondaryCardInfo.specs}/>
     }
