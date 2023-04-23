@@ -189,7 +189,6 @@ const ProductMain = ({mainCardInfo}) => {
                   onClick={handleAddToCart}
                 />
               </div>
-              {/*when adding to cart alert them to the location and date range*/}
             </div>
           </div>
         </div>

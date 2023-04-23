@@ -32,13 +32,13 @@ const Information = ({secondaryCardInfo}) => {
             Product Information
         </h1>
         {secondaryCardInfo && 
-            <div className="p-6 w-full">
-              <SwitchComp
-                  compDict={infoDict}
-                  defComp={'Details'}
-                  className='!border-none'
-                  />
-            </div>
+          <div className="p-6 w-full">
+            <SwitchComp
+                compDict={infoDict}
+                defComp={'Details'}
+                className='!border-none'
+                />
+          </div>
         }
 
     </div>
