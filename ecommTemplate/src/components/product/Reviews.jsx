@@ -111,8 +111,28 @@ const Reviews = ({product}) => {
     'Rating - Low to High',
   ]
 
+  const sortReviews = (reviews, sortBy) => {
+    const reviewsCopy = [...reviews];
+    
+    if (sortBy === 'Rating - Low to High') {
+      return reviewsCopy.sort(
+        (a, b) => parseFloat(a.rating) - parseFloat(b.rating)
+      );
+    } else if (sortBy === 'Rating - High to Low') {
+      return reviewsCopy.sort(
+        (a, b) => parseFloat(b.rating) - parseFloat(a.rating)
+      );
+    } else {
+      return reviewsCopy.sort(
+        (a, b) => new Date(b.date_created) - new Date(a.date_created)
+      );
+    }
+  };
+
   const [sortOpen, setSortOpen] = useState(false)
   const [sortBy, setSortBy] = useState('Most Recent')
+
+  const sortedReviews = sortReviews(filteredReviews, sortBy)
 
   const sortNode = useClickOutside(() => {
     setSortOpen(false);
@@ -163,7 +183,7 @@ const Reviews = ({product}) => {
                   onClick={() => handleStarFilterClicked(starN)}
                 >
                   {checked ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
-                  <Stars rating={starN} size={25}/>
+                  <Stars rating={starN} size={25}/> ({starN})
                 </li>
               )
             })}
@@ -208,10 +228,10 @@ const Reviews = ({product}) => {
         </div>
       </div>
       <div>
-        {filteredReviews.length === 0 ? 
+        {sortReviews.length === 0 ? 
         <Empty/>
         :
-        filteredReviews.map((review, i) => (
+        sortedReviews.map((review, i) => (
           <ReviewCard
             key={'review_'+i}
             review={review}

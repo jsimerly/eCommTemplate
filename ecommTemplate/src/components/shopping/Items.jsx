@@ -2,7 +2,7 @@ import { ProductCard } from "."
 import Empty from "../utils/Empty"
 
 const sortProducts = (products, sortBy) => {
-    const productsCopy = [...products];
+    const productsCopy = [...products]
   
     if (sortBy === "Price - Low to High") {
       return productsCopy.sort(
