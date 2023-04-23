@@ -10,90 +10,99 @@ import { useLocation } from "react-router-dom";
 import { fetchProductReviewsBySlug } from "../../api/fetchProducts";
 import { WhiteButton } from "../utils";
 import { ReviewCard } from "./InfoContent";
-import { Empty } from "../utils";
+import { Empty, Stars } from "../utils";
 import LeaveReview from "./LeaveReview";
 
 const Reviews = ({product}) => {
-  const [reviews, setReviews] = useState([])
-  const [leaveReviewOpen, setLeaveReviewOpen] = useState(false)
-
   const location = useLocation();
   const segments = location.pathname.split('/');
   const slug = segments[segments.length - 1];
 
-  useEffect(()=> {
-    fetchProductReviewsBySlug(slug, setReviews)
+  const [reviews, setReviews] = useState([])
+  const [leaveReviewOpen, setLeaveReviewOpen] = useState(false)
+  const [filteredReviews, setFilteredReviews] = useState([])
+  const [filterStars, setFilterStars] = useState(
+    {
+      1: true,
+      2: true,
+      3: true,
+      4: true,
+      5: true,
+    })
+  const [verifiedOnlyFilter, setVerifiedOnlyFilter] = useState(false)
+  const [filterActive, setFilterActive] = useState(false)
+
+  const areFiltersEqual = () => {
+    const allCheckedTrue = Object.values(filterStars).every((checked) => checked);
+    return allCheckedTrue & !verifiedOnlyFilter
+  };
+
+  const handleResetFilters = () => {
+    setFilterStars(
+      {
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+      })
+    setVerifiedOnlyFilter(false)
+  }
+
+  useEffect(() => {
+    const isActive = areFiltersEqual()
+    setFilterActive(!isActive)
+  },[filterStars, verifiedOnlyFilter])
+ 
+
+  useEffect(() => {
+    const getProductReview = async () => {
+      const response = await fetchProductReviewsBySlug(slug)
+      if (response.ok){
+        const resp = await response.json()
+        setReviews(resp)
+      }
+    }
+    getProductReview()
   }, [slug])
 
-  //Filter
-  const filterOptions = [
-    {'1 Star':  true },
-    {'2 Stars':  true },
-    {'3 Stars':  true },
-    {'4 Stars':  true },
-    {'5 Stars': true },
-    {'Verified Purchaser' : false}
-  ]
-
-  const filterOptions_copy = JSON.parse(JSON.stringify(filterOptions))
-  const [filters, setFilters] = useState(JSON.parse(JSON.stringify(filterOptions)))
 
   const [filterOpen, setFilterOpen] = useState(false)
-  const [filterApplied, setFilterApplied] = useState(false)
 
-  let filterNode = useClickOutside(()=> {
+  const filterNode = useClickOutside(()=> {
     setFilterOpen(false)
   })
 
-  const CheckBox = ({name, checked}) => {
-    
-    return (
-      <div className="flex ml-2 cursor-pointer">
-        <div className="text-primary">
-          {checked ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
-        </div>
-        <p className="ml-2 pr-4">
-          {name}
-        </p>
-      </div>
-    )
+  const handleVerfiedPurchaseClicked = () => {
+    setVerifiedOnlyFilter((verified) => !verified)
   }
 
-  const areListsEqual = (deepCopy, stateCopy) =>{
-    for (let i=0; i < deepCopy.length; i++){
-      const dict1 = deepCopy[i]
-      const dict2 = stateCopy[i]
+  const handleStarFilterClicked = (starN) => {
+    setFilterStars((filter) => {
+      const updatedFilter = {
+        ...filter, // make a copy of the existing state
+        [starN]: !filter[starN],
+      };
+      return updatedFilter;
+    });
+  };
 
-      for (const key in dict1){
-        if (dict1[key] != dict2[key]){
-          return false
-        }
-      }
+  const shouldDisplayReview = (review) => {
+    const {rating, verified_purchaser,} = review
+    if (!filterStars[rating]) {
+      return false;
+    }
+    if (verifiedOnlyFilter){
+      return verified_purchaser
     }
     return true
   }
 
-  const checkForFilterApplied = () => {
-    const bool = areListsEqual(filterOptions_copy, filters)
-    setFilterApplied(!bool)
-  }
+  useEffect(() => {
+    const newFilteredReviews = reviews.filter(shouldDisplayReview)
+    setFilteredReviews([...newFilteredReviews])
+  },[reviews, filterStars, verifiedOnlyFilter])
 
-  const handleCheckboxClicked = (title, checked) => {
-    let new_list = filters
-    filters.map((filterOption, i) => {
-      const filter = Object.keys(filterOption)[0]
-      if (title==filter){
-        filterOption[filter] = !filterOption[filter]
-        setFilters([...new_list])
-      }
-    })
-    checkForFilterApplied()
-  }
-
-  const handleClearClick = () => {
-    setFilters([...filterOptions_copy])
-    setFilterApplied(false)
-  }
 
   //Sort
   const sortByOptions = [
@@ -134,8 +143,8 @@ const Reviews = ({product}) => {
               className='!text-tertiary'
             />
             <button 
-              className={`${filterApplied ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
-              onClick={handleClearClick}
+              className={`${filterActive ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
+              onClick={handleResetFilters}
             >
               <DeleteForeverIcon 
                 className='group-hover:scale-125'
@@ -145,23 +154,27 @@ const Reviews = ({product}) => {
           <div 
             className={`${filterOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
           >
-            <ul>
-              {filters.map((filter, i) => {
-                const title = Object.keys(filter)[0]
-                const checked = filter[title]
-                return(
-                  <li 
-                  key={i}
-                  className='hover:underline cursor-pointer'
-                  onClick={() => {handleCheckboxClicked(title, checked)}}
-                  >
-                    <CheckBox
-                      name={title}
-                      checked={checked}
-                    />
-                  </li>
-                )})}
-            </ul>
+          <ul className="flex flex-col space-y-1">
+            {Object.entries(filterStars).map(([starN, checked]) => {
+              return(
+                <li
+                  key={'filter_star_'+starN}
+                  className="text-primary cursor-pointer"
+                  onClick={() => handleStarFilterClicked(starN)}
+                >
+                  {checked ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
+                  <Stars rating={starN} size={25}/>
+                </li>
+              )
+            })}
+            <li 
+              className="cursor-pointer"
+              onClick={handleVerfiedPurchaseClicked}
+            >
+              {verifiedOnlyFilter ? <CheckBoxIcon className="text-primary"/> : <CheckBoxOutlineBlankIcon className="text-primary"/>}
+              <span className="ml-1">Verified Purchasers Only</span>
+            </li>
+          </ul>
           </div>
         </div>
         <div ref={sortNode}>
@@ -195,10 +208,10 @@ const Reviews = ({product}) => {
         </div>
       </div>
       <div>
-        {reviews.length === 0 ? 
+        {filteredReviews.length === 0 ? 
         <Empty/>
         :
-        reviews.map((review, i) => (
+        filteredReviews.map((review, i) => (
           <ReviewCard
             key={'review_'+i}
             review={review}

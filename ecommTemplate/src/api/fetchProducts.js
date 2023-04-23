@@ -50,8 +50,7 @@ export async function fetchFullProductBySlug(slug, setterFunc, startDate, endDat
 export async function fetchProductReviewsBySlug(slug, setterFunc){
   try{
     const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/products/${slug}/reviews/`)
-    const reviewList = await response.json()
-    setterFunc(reviewList)
+    return response
   } catch (error) {
     throw error
   }

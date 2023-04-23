@@ -250,17 +250,7 @@ class ProductMInfo_Serializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
-    
-class UserName_Serialzier(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
-    class Meta:
-        model = User
-        fields = ['name']
 
-    def get_name(self, obj):
-        first_name = obj.first_name
-        last_name_initial = f'{obj.last_name[0]}.' if obj.last_name else ''
-        return 
 
 class ProductReview_Serializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
