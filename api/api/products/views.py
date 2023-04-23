@@ -11,7 +11,7 @@ import math
 import random
 
 
-from .models import Product, Category, ProductGrouping, Brand
+from .models import Product, Category, ProductGrouping, Brand, ProductReview
 
 from .serializers import Product_Serializer, ProductMInfo_Serializer, ProductCard_Serializer, ProductReview_Serializer, Categories_Serializers, IndividualCategory_Serializer, ProductGrouping_Serializer, BrandNameForFilter_Seralizer, CreateReview_Serializer
 
@@ -170,7 +170,12 @@ class ProductReviewsView(APIView):
     
 class ReviewReportedView(APIView):
     def post(self, request):
-        pass
+        report_uuid = request.data.get('uuid')
+        review = ProductReview.objects.get(uuid=report_uuid)
+        review.reported=True
+        review.save()
+        
+        return Response(status=status.HTTP_200_OK)
 
 class CreateReviewView(APIView):
     def post(self, request):

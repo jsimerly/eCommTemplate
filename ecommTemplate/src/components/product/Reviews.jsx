@@ -70,7 +70,6 @@ const Reviews = ({product}) => {
     getProductReview()
   }, [slug])
 
-
   const [filterOpen, setFilterOpen] = useState(false)
 
   const filterNode = useClickOutside(()=> {
@@ -161,6 +160,7 @@ const Reviews = ({product}) => {
       navigate('/sign-up')
     }
   }
+
 
   return (
     <div className="w-full">

@@ -134,13 +134,31 @@ export async function fetchCreateReview(productSlug, rating, recommend, leavingC
       body: fullComment,
       anonymous: anonymous,
     }),
-}
+  }
   try {
     const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/create-review/`, 
       requestOptions
     )
     return response
   } catch (error) {
-    throw (error)
+    throw error
+  }
+}
+
+export async function fetchReportReview(uuid){
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFTOKEN' : getCookie('csrftoken'),
+    },
+    body: JSON.stringify({uuid: uuid}),
+  }
+  
+  try{ 
+    const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/report-review`, requestOptions)
+    return response
+  } catch (error) {
+    throw error
   }
 }

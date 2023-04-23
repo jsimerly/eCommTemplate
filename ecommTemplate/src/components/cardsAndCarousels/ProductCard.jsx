@@ -42,7 +42,7 @@ const ProductCard = ({item, addExtraFunction}) => {
       }
 
       if (!inCart){ 
-        handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
+        handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>, false)
       }
     } else {
       handleNotification(`We're currently experiencing issues and were unable to add ${item.name} to your cart.`)

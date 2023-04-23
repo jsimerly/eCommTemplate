@@ -1,9 +1,23 @@
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { fetchReportReview } from '../../../api/fetchProducts';
+import { ShoppingContext } from '../../../context';
+import { useContext } from 'react';
 
 import { Stars } from '../../utils';
 
 const ReviewCard = ({review}) => {
+    const {handleNotification} = useContext(ShoppingContext)
+
+    const handleReportReviewClicked = async () =>{
+        const response = await fetchReportReview(review.uuid)
+        if (response.ok){
+            handleNotification('This report has been successfully report and our team will review it shortly.')
+        } else {
+            handleNotification('There was an error when attempting to report this review.', null ,true)
+        }
+    }
+
   return (
     <div className='w-full border border-tertiary rounded-md p-2 my-2'>
         <div className="flex flex-row justify-between items-center">
@@ -35,7 +49,10 @@ const ReviewCard = ({review}) => {
             {review.body}
         </div>
         <div className='px-4 text-[14px]'>
-            <a className='underline cursor-pointer'> Report Review </a>
+            <a 
+                className='underline cursor-pointer'
+                onClick={handleReportReviewClicked}
+            > Report Review </a>
         </div>
     </div>
   )
