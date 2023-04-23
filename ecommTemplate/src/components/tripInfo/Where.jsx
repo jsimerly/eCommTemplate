@@ -15,7 +15,7 @@ const Where = () => {
  
     const dropdown = () => (
         <div 
-            className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 mx-4 rounded-md p-2 ${open ? '' : 'hidden'} shadow-md z-20 border border-primary sm:border-none overflow-y-auto `}
+            className={`sm:absolute bg-white flex w-full flex-col top-20 right-0 mx-4 rounded-md p-2 ${open ? '' : 'hidden'} shadow-md z-20 border border-primary sm:border-none overflow-y-auto `}
             style={{ maxHeight: `80vh` }}
         >
             <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>

@@ -163,7 +163,7 @@ def get_upload_path_prod(instance, filename):
     return f"products/{instance.product.brand}/{instance.product.slug}/{filename}"
 
 class ProductImage(models.Model):
-    uuid = models.UUIDField(default=uuid4, unique=True)
+    uuid = models.UUIDField(default=uuid4, unique=True, editable=False)
     product = models.ForeignKey(
         Product, 
         on_delete=models.CASCADE,

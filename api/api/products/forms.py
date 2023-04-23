@@ -16,3 +16,5 @@ class ProductAdminForm(forms.ModelForm):
             for filter_tag in filter_tags.all():
                 if category not in filter_tag.filter_option.categories.all():
                     self.add_error('filter_tags', "FilterTag's FilterOption category must match the product's category.")
+
+

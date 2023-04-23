@@ -3,11 +3,11 @@ import { LinkPath } from '../utils/LinkPath';
 
 const ShoppingHero = ({categoryInfo}) => {  
   return (
-    <div className='w-full flex flex-col relative'>
+    <div className='w-full flex flex-col relative bg-[#a4d4f5] h-[400px]'>
         {categoryInfo && (
             <img
                 src={categoryInfo.image}
-                className='w-full'
+                className='w-full h-full object-cover'
             />
         )}
         <div className="absolute h-full w-full">
@@ -24,7 +24,7 @@ const ShoppingHero = ({categoryInfo}) => {
                                 </h1>
                             </div>
 
-                            <p className='text-[20px] mt-4'>
+                            <p className='text-[20px] mt-4 sm:block hidden'>
                                 {categoryInfo.desc}
                             </p>
                         </div>
