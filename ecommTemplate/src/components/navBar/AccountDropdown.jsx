@@ -3,7 +3,7 @@ import { BlueButton, WhiteButton } from '../utils/buttons';
 import { useNavigate } from 'react-router-dom';
 import { fetchLoginUser, fetchUserInformation,  handleLogout} from '../../api/fetchUser';
 import { useContext } from 'react';
-import { ShoppingContext } from '../../context';
+import { ShoppingContext, AuthContext } from '../../context';
 import { useEffect, useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ErrorBoundry from '../utils/ErrorBoundry';
@@ -19,8 +19,6 @@ const LoggedInComp = ({userInfo}) => {
     const handleOrdersClicked = () => {
         navigate('/find-order')
         handleNotification("You don't appear to have any orders, try searching for an order you may have made before you created your account.")
-
-
     }
 
     const handleFavoritesClicked = () => {
@@ -113,7 +111,7 @@ const UnauthedComp = () => {
             <h3 className='w-full font-bold hover:underline'>
                 Sign-In or Register
             </h3>
-            <form className='flex flex-col gap-1 w-full' onSubmit={handleSubmit}>
+            <form className='flex flex-col gap-1 w-full' onSubmit={handleSubmit} id='signInButtonNav'>
                 <input 
                     className='w-full border border-primary rounded-md pl-2 outline-primary p-1'
                     placeholder='Email or Phone Number'
@@ -150,6 +148,7 @@ const UnauthedComp = () => {
 
 
 const AccountDropdown = ({open}) => {
+    const {login, logout, isLoggedIn} = useContext(AuthContext)
     const [userInfo, setUserInfo] = useState()
 
     useEffect(() =>{
@@ -157,9 +156,11 @@ const AccountDropdown = ({open}) => {
             const response = await fetchUserInformation()
             if (response.ok){
                 const resp = await response.json()
+                login()
                 setUserInfo(resp)
                 return 
             } 
+            logout()
             setUserInfo(null)
         }
         fetchUser()
@@ -167,7 +168,7 @@ const AccountDropdown = ({open}) => {
 
     return (
         <div className={`${open ?  '' : 'hidden'} absolute top-[76px] -left-20 z-10 bg-white shadow-md rounded-md w-[280px] text-tertiary px-4 py-2`}>
-            {userInfo ? 
+            {isLoggedIn ? 
                 <LoggedInComp userInfo={userInfo}/> 
                 : 
                 <UnauthedComp />

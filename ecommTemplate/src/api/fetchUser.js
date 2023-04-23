@@ -75,7 +75,6 @@ export async function fetchUserInformation(){
 export function handleLogout(){
     deleteCookie('access_token');
     deleteCookie('refresh_token')
-
     window.location.reload()
 }
 

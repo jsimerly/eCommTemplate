@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import useClickOutside from '../../hooks/useClickOutside';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TuneIcon from '@mui/icons-material/Tune';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { fetchProductReviewsBySlug } from "../../api/fetchProducts";
+import { AuthContext } from '../../context';
 import { WhiteButton } from "../utils";
 import { ReviewCard } from "./InfoContent";
 import { Empty, Stars } from "../utils";
@@ -17,6 +18,9 @@ const Reviews = ({product}) => {
   const location = useLocation();
   const segments = location.pathname.split('/');
   const slug = segments[segments.length - 1];
+
+  const {isLoggedIn} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const [reviews, setReviews] = useState([])
   const [leaveReviewOpen, setLeaveReviewOpen] = useState(false)
@@ -146,6 +150,17 @@ const Reviews = ({product}) => {
     setFilterOpen((filterOpen) => !filterOpen)
   }
 
+  const handleLeaveReviewClicked = () => {
+    if (leaveReviewOpen){
+      setLeaveReviewOpen(false)
+      return
+    }
+    if (isLoggedIn){
+      setLeaveReviewOpen(true)
+    } else {
+      navigate('/sign-up')
+    }
+  }
 
   return (
     <div className="w-full">
@@ -228,7 +243,7 @@ const Reviews = ({product}) => {
         </div>
       </div>
       <div>
-        {sortReviews.length === 0 ? 
+        {filteredReviews.length === 0 ? 
         <Empty/>
         :
         sortedReviews.map((review, i) => (
@@ -248,7 +263,7 @@ const Reviews = ({product}) => {
       }
       <div 
         className="underline cursor-pointer text-center"
-        onClick={() => setLeaveReviewOpen(!leaveReviewOpen)}
+        onClick={handleLeaveReviewClicked}
       >
         {leaveReviewOpen ? 'Close Review' : 'Leave a Review'}
       </div>
