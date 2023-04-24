@@ -1,6 +1,6 @@
 
 
-const FormTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
+const FormTemplate = ({node, open, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
     
   return (
     <div className='flex flex-col h-full w-full justify-center items-center' ref={node}>
@@ -14,9 +14,11 @@ const FormTemplate = ({node, openFunc, selectedData, icon: IconComponent, placeh
                 {selectedData == '' ? placeholder : selectedData}
             </div>
         </label>
-        <div className="z-50 fixed top-[15%] sm:static w-full justify-center items-center flex">
-          {dropdown()}
-        </div>
+        {open &&
+          <div className="z-50 fixed top-[15%] sm:static w-full justify-center items-center flex">
+            {dropdown}
+          </div>
+        }
     </div>
   )
 }

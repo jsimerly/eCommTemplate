@@ -8,7 +8,6 @@ import navigateSearch from '../hooks/navigateSearch';
 import { BlueButton } from './utils';
 import ErrorBoundry from './utils/ErrorBoundry';
 
-
 const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
 
     const {selectedDateRange, selectedDestination, selectedCategory, } = useContext(ShoppingContext)
@@ -28,7 +27,7 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
 
 
     let handleShopping= navigateShopping()
-    let handleSearch = navigateSearch()   
+    let handleSearch = navigateSearch()  
     
     const handleGoClick = () =>{
         if (searchParamActive){
@@ -43,7 +42,6 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
     <div 
     className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
     >
-
         <div className='w-1/4 h-[40px] flex'>
             <Where/>
         </div>

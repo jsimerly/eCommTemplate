@@ -63,7 +63,6 @@ const LandingPage = ({searchInput, setSearchInput, searchParamActive, setSearchP
             if (newArrival_response.ok){
                 const newArrival_resp = await newArrival_response.json()
                 setNewArrivals(newArrival_resp)
-                console.log(newArrival_resp)
             }
             if (mostPopular_response.ok){
                 const mostPopular_resp = await mostPopular_response.json()
