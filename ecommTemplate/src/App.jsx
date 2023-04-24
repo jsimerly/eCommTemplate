@@ -18,6 +18,7 @@ import { fetchCartSize } from './api/fetchCart';
 import NotificationBar from './components/navBar/NotificationBar';
 import ErrorBoundry from './components/utils/ErrorBoundry';
 import Empty from './components/utils/Empty';
+import MobileSearch from './components/MobileSearch';
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')
@@ -115,6 +116,12 @@ function App() {
             searchParamActive={searchParamActive}
             setSearchParamActive={setSearchParamActive}
             cartSize={cartSize}
+          />
+          <MobileSearch
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              searchParamActive={searchParamActive}
+              setSearchParamActive={setSearchParamActive}
           />
           <NotificationBar
             message={notificationMessage}

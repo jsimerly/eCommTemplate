@@ -15,7 +15,7 @@ import { fetchProductGrouping } from '../../api/fetchProducts';
 
 
 import { ShoppingContext } from '../../context';
-import MobileSearch from '../landingPage/MobileSearch';
+import MobileSearch from '../MobileSearch';
 
 function scrollN(){
     if (window.innerWidth < 680) {
@@ -43,7 +43,7 @@ const Carousel = ({head, data}) => (
     />
 )
 
-const LandingPage = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
+const LandingPage = () => {
     const [mostPopular, setMostPopular] = useState()
     const [trending, setTrending] = useState()
     const [newArrivals, setNewArrivals] = useState()
@@ -83,12 +83,6 @@ const LandingPage = ({searchInput, setSearchInput, searchParamActive, setSearchP
         <Hero/>
         <div className={`${styles.flexCenter} sm:mx-2`}>
             <div className={`${styles.boxWidth}`}>
-                <MobileSearch
-                    searchInput={searchInput}
-                    setSearchInput={setSearchInput}
-                    searchParamActive={searchParamActive}
-                    setSearchParamActive={setSearchParamActive}
-                />
                 <HowItWorks/>
                 <div className='hidden sm:block my-16'>
                     <NewCustomers/>
