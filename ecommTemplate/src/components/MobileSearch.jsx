@@ -44,7 +44,6 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
     setActivePopup('what')
   }
 
-    console.log(selectedCategory)
   const SlideUp = () => {
     return(
       <div className="h-[400px]">

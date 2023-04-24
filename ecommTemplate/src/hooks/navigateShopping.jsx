@@ -8,7 +8,7 @@ const navigateShopping = () => {
 
     const navigate = useNavigate();
 
-    function handleNav(category, destination, startDate, endDate, dateChange){
+    function handleNav(category){
         const cat = category || selectedCategory
 
         if (selectedCategory !== cat){

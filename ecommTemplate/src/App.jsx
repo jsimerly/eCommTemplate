@@ -38,9 +38,15 @@ function getDateRange(){
   )
 }
 
-function getDestination(){
-  const sessionDest = sessionStorage.getItem('destination')
-  return sessionDest ? JSON.parse(sessionDest) : null
+function getDestination() {
+  const sessionDest = sessionStorage.getItem('destination');
+  try {
+    const dest = sessionDest ? JSON.parse(sessionDest) : null;
+    return dest;
+  } catch (error) {
+    console.error('Error parsing destination:', error);
+    return null;
+  }
 }
 
 function getCategory(){
