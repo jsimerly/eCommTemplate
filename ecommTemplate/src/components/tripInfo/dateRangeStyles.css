@@ -1,0 +1,38 @@
+@media (max-width: 639px) {
+    .rdrCalendarWrapper {
+      width: 100%;
+    }
+  
+    .rdrDateDisplayWrapper {
+      width: 100%;
+    }
+  
+    .rdrMonthAndYearWrapper {
+      width: 100%;
+    }
+  
+    .rdrNextPrevButton {
+      width: 100%;
+    }
+  
+    .rdrMonths {
+      width: 100%;
+    }
+  
+    .rdrMonth {
+      width: 100%;
+    }
+  
+    .rdrWeekDays {
+      width: 100%;
+    }
+  
+    .rdrWeekDay {
+      width: 100%;
+    }
+  
+    .rdrDays {
+      width: 100%;
+    }
+  }
+  

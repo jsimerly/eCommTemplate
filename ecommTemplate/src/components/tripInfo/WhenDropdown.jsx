@@ -1,6 +1,7 @@
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import './dateRangeStyles.css'
 import {useEffect, useState, useContext } from "react";
 import { ShoppingContext } from "../../context";
 
@@ -29,20 +30,19 @@ const WhenDropdown = ({setOpen}) => {
     
   return (
     <div 
-    className={`sm:absolute z-10 top-16 sm:border-none border border-primary rounded-md shadow-md`}
-    style={{height: '80hv'}}>
-    <DateRange
-        ranges={[dateRangeHolder]}
-        showMonthAndYearPickers={false}
-        onChange={handleDateSelection}
-        minDate={new Date()}
-        direction='horizontal'
-        startDatePlaceholder='Beginning'
-        endDatePlaceholder='Finale'
-        className={`rounded-md shadow-md flex`}
-        onRangeFocusChange={handleRangeChange}
-    />
-</div>
+    className={`sm:absolute z-10 top-16 sm:border-none sm:rounded-md sm:shadow-md`}
+    >
+        <DateRange
+            ranges={[dateRangeHolder]}
+            showMonthAndYearPickers={false}
+            onChange={handleDateSelection}
+            minDate={new Date()}
+            startDatePlaceholder='Beginning'
+            endDatePlaceholder='Finale'
+            className={`sm:rounded-md sm:shadow-md`}
+            onRangeFocusChange={handleRangeChange}
+        />
+    </div>
   )
 }
 

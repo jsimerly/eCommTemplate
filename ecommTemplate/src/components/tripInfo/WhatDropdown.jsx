@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
-const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, setOpen}) => {
+const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, setOpen, mobile=false}) => {
   const {setSelectedCategory} = useContext(ShoppingContext)
   const [allCategories, setAllCategories] = useState()
   const [openCats, setOpenCats] = useState([])
@@ -26,7 +26,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
     const inputRef = useRef(null);
 
     useEffect(() => {
-        if (open && inputRef.current) {
+        if (open && inputRef.current && !mobile) {
           inputRef.current.focus();
         }
       }, [open]);
@@ -48,8 +48,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
 
   return (
     <div 
-        className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 mx-4 rounded-md p-2 ${open ? '' : 'hidden'} shadow-md z-20 border border-primary sm:border-none overflow-y-auto `}
-        style={{ maxHeight: `80vh` }}
+        className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 ${open ? '' : 'hidden'} sm:shadow-md z-20 overflow-y-auto`}
     >
         <div className="relative">
             <form>

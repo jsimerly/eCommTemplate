@@ -118,10 +118,11 @@ function App() {
             cartSize={cartSize}
           />
           <MobileSearch
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-              searchParamActive={searchParamActive}
-              setSearchParamActive={setSearchParamActive}
+            immediateSearch={immediateSearch}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            searchParamActive={searchParamActive}
+            setSearchParamActive={setSearchParamActive}
           />
           <NotificationBar
             message={notificationMessage}

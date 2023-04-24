@@ -3,7 +3,10 @@
 const FormTemplate = ({node, open, openFunc, selectedData, icon: IconComponent, placeholder, dropdown}) => {
     
   return (
-    <div className='flex flex-col h-full w-full justify-center items-center' ref={node}>
+    <div 
+      className='flex flex-col h-full w-full justify-center items-center' 
+      ref={node}
+    >
         <label className="cursor-pointer text-tertiaryTone-200 focus-within:text-tertiary flex items-center w-full h-full">
             <IconComponent className={`w-8 h-8 absolute scale-125 ml-2 transform ${selectedData == '' ? 'text-tertiaryTone-300' : 'text-tertiary'}`}
             onClick={()=> openFunc((openBool) => !openBool)}

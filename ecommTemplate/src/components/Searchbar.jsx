@@ -56,9 +56,7 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
                 setSearchParamActive={setSearchParamActive}
             />
         </div>
-        {immediateSearch ? 
-            null
-            :
+        {!immediateSearch &&
             <div className='flex justify-center itmes-center'>
                 <BlueButton
                     onClick={handleGoClick}

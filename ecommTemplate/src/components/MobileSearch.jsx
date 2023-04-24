@@ -1,4 +1,4 @@
-
+import { WhereDropdown, WhenDropdown, WhatDropdown } from './tripInfo';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
@@ -10,10 +10,11 @@ import { useState, useContext } from "react";
 import { ShoppingContext } from "../context";
 import useClickOutside from "../hooks/useClickOutside";
 
-const MobileSearch = ({searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
+const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
   const {selectedCategory, selectedDateRange, selectedDestination} = useContext(ShoppingContext)
 
   const [showSlideUp, setShowSlideUp] = useState(false)
+  const [activePopup, setActivePopup] = useState(null)
 
   let node = useClickOutside(()=> setShowSlideUp(false))
 
@@ -29,21 +30,36 @@ const MobileSearch = ({searchInput, setSearchInput, searchParamActive, setSearch
   }
 
   const handleLocationClicked = () => {
-    setShowSlideUp((showSlide) => !showSlide)
+    setShowSlideUp(true)
+    setActivePopup('where')
   }
 
   const handleCalendarClicked = () => {
-    setShowSlideUp((showSlide) => !showSlide)
+    setShowSlideUp(true)
+    setActivePopup('when')
   }
 
   const handleCategoriesClicked = () => {
-    setShowSlideUp((showSlide) => !showSlide)
+    setShowSlideUp(true)
+    setActivePopup('what')
   }
 
+    console.log(selectedCategory)
   const SlideUp = () => {
     return(
       <div className="h-[400px]">
-        POP UP TIME
+        {activePopup === "where" && <WhereDropdown setOpen={setShowSlideUp}/>}
+        {activePopup === "when" && <WhenDropdown setOpen={setShowSlideUp}/>}
+        {activePopup === "what" && (
+          <WhatDropdown
+            open={showSlideUp}
+            setOpen={setShowSlideUp}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            setSearchParamActive={setSearchParamActive}
+            mobile={true}
+          />
+        )}
       </div>
     )
   }
@@ -58,32 +74,34 @@ const MobileSearch = ({searchInput, setSearchInput, searchParamActive, setSearch
         <div className="text-tertiary w-full border p-4">
           <div className="flex flex-row justify-between space-x-3">
             <div 
-              className={`flex justify-center items-center`}
+              className={`flex justify-center items-center ${selectedDestination ? 'text-tertiary' : 'text-tertiaryTone-300'}`}
               onClick={handleLocationClicked}
             >
               <LocationOnIcon sx={{fontSize: 40}}/>
             </div>
             <div 
-              className="flex justify-center items-center"
+              className={`flex justify-center items-center ${selectedDateRange?.first ? 'text-tertiary' : 'text-tertiaryTone-300'}`}
               onClick={handleCalendarClicked}
             >
               <CalendarMonthIcon sx={{fontSize: 40}}/>
             </div>
             <div 
-              className="flex flex-row items-center w-1/2"
+              className={`flex flex-row items-center w-1/2 ${selectedCategory ? 'text-tertiary' : 'text-tertiaryTone-300'}`}
               onClick={handleCategoriesClicked}
             >
               <BeachAccessIcon sx={{fontSize: 40}}/> 
               <h3 className="ml-2 text-[16px] font-bold truncate">
-                Select a Category
+                {selectedCategory ? selectedCategory.name : 'Select a Category'}
               </h3>
             </div>
-            <div>
-              <BlueButton 
-                content={<SearchIcon sx={{fontSize: 30}}/>}
-                onClick={handleGoClick}
-              />
-            </div>
+            {!immediateSearch &&
+              <div>
+                <BlueButton 
+                  content={<SearchIcon sx={{fontSize: 30}}/>}
+                  onClick={handleGoClick}
+                />
+              </div>
+            }
           </div>
         </div>
         <SlideUp/>
