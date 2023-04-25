@@ -1,4 +1,3 @@
-import { WhereDropdown, WhenDropdown, WhatDropdown } from '../../searchbar';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
@@ -9,6 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState, useContext } from "react";
 import { ShoppingContext } from "../../../context";
 import useClickOutside from "../../../hooks/useClickOutside";
+import SlideUp from './SlideUp';
 
 const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
   const {selectedCategory, selectedDateRange, selectedDestination} = useContext(ShoppingContext)
@@ -44,25 +44,7 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
     setActivePopup('what')
   }
 
-  const SlideUp = () => {
-    return(
-      <div className="h-[400px]">
-        {activePopup === "where" && <WhereDropdown setOpen={setShowSlideUp}/>}
-        {activePopup === "when" && <WhenDropdown setOpen={setShowSlideUp}/>}
-        {activePopup === "what" && (
-          <WhatDropdown
-            open={showSlideUp}
-            setOpen={setShowSlideUp}
-            searchInput={searchInput}
-            setSearchInput={setSearchInput}
-            setSearchParamActive={setSearchParamActive}
-            mobile={true}
-          />
-        )}
-      </div>
-    )
-  }
-  
+
   return (
     <div className="relative">
       <div 
@@ -103,7 +85,14 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
             }
           </div>
         </div>
-        <SlideUp/>
+        <SlideUp
+          open={showSlideUp}
+          setOpen={setShowSlideUp}
+          activePopup={activePopup}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          setSearchParamActive={setSearchParamActive}
+        />
       </div>
     </div>
   )

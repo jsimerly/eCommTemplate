@@ -30,7 +30,7 @@ const WhenDropdown = ({setOpen}) => {
     
   return (
     <div 
-    className={`sm:absolute z-10 top-16 sm:border-none sm:rounded-md sm:shadow-md`}
+    className={`w-full sm:absolute z-10 top-16 sm:rounded-md sm:shadow-md`}
     >
         <DateRange
             ranges={[dateRangeHolder]}

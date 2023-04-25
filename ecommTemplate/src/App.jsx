@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Footer from './components/Footer'
 import LandingPage from './components/pages/LandingPage'
@@ -58,8 +58,8 @@ function App() {
 
   const [selectedDestination, setSelectedDestination] = useState(getDestination())
   const [selectedDateRange, setSelectedDateRange] = useState(getDateRange())
-
   const [selectedCategory, setSelectedCategory] = useState(getCategory())
+
   const [searchInput, setSearchInput] = useState('')
   const [searchParamActive, setSearchParamActive] = useState(false)
 

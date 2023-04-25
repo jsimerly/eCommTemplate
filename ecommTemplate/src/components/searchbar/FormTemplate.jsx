@@ -18,9 +18,15 @@ const FormTemplate = ({node, open, openFunc, selectedData, icon: IconComponent, 
             </div>
         </label>
         {open &&
-          <div className="z-50 fixed top-[15%] sm:static w-full justify-center items-center flex">
+        <>
+          <div className="z-50 fixed top-[15%] hidden sm:flex w-full justify-center items-center">
             {dropdown}
           </div>
+          <div className={`z-50 max-h-[400px] fixed bottom-0 left-0 border-t border-primary sm:static w-full justify-center items-center flex sm:hidden
+          `}>
+            {dropdown}
+          </div>
+        </>
         }
     </div>
   )
