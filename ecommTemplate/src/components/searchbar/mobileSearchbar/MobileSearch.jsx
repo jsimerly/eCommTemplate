@@ -1,14 +1,14 @@
-import { WhereDropdown, WhenDropdown, WhatDropdown } from './tripInfo';
+import { WhereDropdown, WhenDropdown, WhatDropdown } from '../../searchbar';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import { BlueButton } from "./utils"
-import navigateShopping from '../hooks/navigateShopping';
-import navigateSearch from "../hooks/navigateSearch";
+import { BlueButton } from "../../utils"
+import navigateShopping from '../../../hooks/navigateShopping';
+import navigateSearch from "../../../hooks/navigateSearch";
 import SearchIcon from '@mui/icons-material/Search';
 import { useState, useContext } from "react";
-import { ShoppingContext } from "../context";
-import useClickOutside from "../hooks/useClickOutside";
+import { ShoppingContext } from "../../../context";
+import useClickOutside from "../../../hooks/useClickOutside";
 
 const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
   const {selectedCategory, selectedDateRange, selectedDestination} = useContext(ShoppingContext)

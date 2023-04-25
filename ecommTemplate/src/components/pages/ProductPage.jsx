@@ -60,7 +60,6 @@ const ProductPage = () => {
         msrp: productInfo.add_info_msrp,
         manufactured: productInfo.add_info_manu,
         brand: productInfo.product.brand.full_name,
-        specs:productInfo.specs,
         sku:productInfo.product.slug
       })
       setFrequentlyBought(productInfo.product.frequently_bought_with)

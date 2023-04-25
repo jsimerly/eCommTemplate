@@ -1,12 +1,14 @@
 import { useState, useContext, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 
-import {ShoppingContext} from '../context';
-import navigateShopping from '../hooks/navigateShopping';
-import { What, Where, When } from './tripInfo';
-import navigateSearch from '../hooks/navigateSearch';
-import { BlueButton } from './utils';
-import ErrorBoundry from './utils/ErrorBoundry';
+import {ShoppingContext} from '../../../context';
+import navigateShopping from '../../../hooks/navigateShopping';
+import What from '../What';
+import When from '../When';
+import Where from '../Where';
+import navigateSearch from '../../../hooks/navigateSearch';
+import { BlueButton } from '../../utils';
+import ErrorBoundry from '../../utils/ErrorBoundry';
 
 const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive}) => {
 

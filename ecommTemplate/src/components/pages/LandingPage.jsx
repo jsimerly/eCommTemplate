@@ -12,10 +12,7 @@ import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useContext, useEffect, useState } from 'react';
 import { ProductCard } from '../shopping';
 import { fetchProductGrouping } from '../../api/fetchProducts';
-
-
 import { ShoppingContext } from '../../context';
-import MobileSearch from '../MobileSearch';
 
 function scrollN(){
     if (window.innerWidth < 680) {

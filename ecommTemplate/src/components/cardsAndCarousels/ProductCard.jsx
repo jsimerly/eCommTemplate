@@ -122,6 +122,7 @@ const ProductCard = ({item, addExtraFunction}) => {
               <BlueButton
                 className='!p-1'
                 content={<AddIcon/>}
+                onClick={handleAddItemClicked}
                 />
             </div>
           </div>

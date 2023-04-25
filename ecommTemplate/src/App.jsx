@@ -18,7 +18,7 @@ import { fetchCartSize } from './api/fetchCart';
 import NotificationBar from './components/navBar/NotificationBar';
 import ErrorBoundry from './components/utils/ErrorBoundry';
 import Empty from './components/utils/Empty';
-import MobileSearch from './components/MobileSearch';
+import MobileSearch from './components/searchbar/mobileSearchbar/MobileSearch';
 
 function getDateRange(){
   const sessionDateRange = sessionStorage.getItem('date_range')

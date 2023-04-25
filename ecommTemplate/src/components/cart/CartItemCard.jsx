@@ -56,16 +56,18 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
   
     return (
       <div className="flex border border-tertiary rounded-md mb-1">
-        <img 
-          onClick={navigate}
-          src={item.item.main_image.image} 
-          className='h-[160px] w-[160px] rounded-md cursor-pointer'
-        />
-        <div className='p-3 w-full flex flex-col justify-between'>
+        <div className='flex justify-center items-center'>
+          <img 
+            onClick={navigate}
+            src={item.item.main_image.image} 
+            className='h-[100px] w-[100px] sm:h-[160px] sm:w-[160px] rounded-md aspect-square cursor-pointer'
+          />
+        </div>
+        <div className='p-3 w-full flex flex-col justify-between flex-1'>
           <div className='flex flex-col justify-start'>
             <div className='flex grow-0'>
               <h2 
-                className='text-[30px] leading-none cursor-pointer hover:underline'
+                className='text-[20px] sm:text-[30px] leading-none cursor-pointer hover:underline'
                 onClick={navigate}
                 >
                   {item.item.name}
@@ -99,7 +101,7 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
               In Stock
             </div>
           }
-          <div className='w-[60px] h-[40px]'>
+          <div className='w-[60px] h-[40px] hidden sm:block'>
             <QuantInput
               quant={item.quantity}
               setQuant={handleQuantChanged}
@@ -107,16 +109,23 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
               buttonSize='16px'
             />
           </div>
+          <div className='sm:hidden'>
+            <button 
+              className='grow-0 p-1 border border-primary rounded-md' inputMode='numeric'
+            >
+              Qty: {item.quantity}
+            </button>
+          </div>
         </div>
         <div className='flex flex-col justify-between p-2'>
-            <div className='flex justify-end'>
-              <CloseIcon 
-                className='cursor-pointer'
-                onClick={handleDeleteClicked}
-              />
-            </div>
+          <div className='flex justify-end'>
+            <CloseIcon 
+              className='cursor-pointer'
+              onClick={handleDeleteClicked}
+            />
+          </div>
           <div className='flex flex-col leading-none'>
-            <span className='font-bold text-[24px]'> ${getCost(item).toFixed(2)}</span>
+            <span className='font-bold text-[20px] sm:text-[24px]'> ${getCost(item).toFixed(2)}</span>
           </div>
       </div>
     </div>

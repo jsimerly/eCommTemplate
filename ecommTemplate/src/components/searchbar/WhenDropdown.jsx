@@ -1,7 +1,7 @@
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import './dateRangeStyles.css'
+import './mobileSearchbar/dateRangeStyles.css'
 import {useEffect, useState, useContext } from "react";
 import { ShoppingContext } from "../../context";
 

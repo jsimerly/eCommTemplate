@@ -1,7 +1,7 @@
 import useDropdown from '../hooks/useDropdown';
 
 import { main_blue } from '/src/assets/images/blueElf'
-import Searchbar from './Searchbar';
+import Searchbar from './searchbar/desktop/Searchbar';
 import styles from '../styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PersonIcon from '@mui/icons-material/Person';

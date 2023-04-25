@@ -54,7 +54,7 @@ const Favorites = ({getCost, selectedDateRange, handleFetchCart}) => {
 
   return (
     <div className='mt-2'>
-      <h2 className='text-[30px] font-bold '>
+      <h2 className='sm:pl-0 pl-6 text-[30px] font-bold '>
         Favorites
       </h2>
       <div className='py-6 px-6'>
