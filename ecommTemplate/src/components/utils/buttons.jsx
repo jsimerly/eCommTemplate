@@ -6,7 +6,7 @@ export const BlueButton = ({className , onClick, content}) => {
 
   return (
     <button 
-        className={`${className} text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer`}
+        className={`${className} text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
         onClick={handleClick}
     >
         {content}
@@ -17,7 +17,7 @@ export const BlueButton = ({className , onClick, content}) => {
 export const WhiteButton = ({className, onClick, content}) => {
   return (
     <BlueButton
-      className={`${className} border border-primary !bg-white !text-primary`}
+      className={`${className} border border-primary !bg-white !text-primary outline-none`}
       onClick={onClick}
       content={content}
     />

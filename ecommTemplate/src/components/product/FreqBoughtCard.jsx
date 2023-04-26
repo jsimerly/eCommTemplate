@@ -7,19 +7,23 @@ const FreqBoughtCard= ({item, handleCheckClicked, checked}) => {
 
   let navigate = useNavigate()
 
+  const navigateToProduct = () => {
+    navigate(`/p/${item.slug}`)
+  }
+
   return (
 
     <div className='w-[150px] h-[260px] sm:h-[320px] sm:w-[240px] rounded-md bg-tertiaryTone-100 p-2 sm:pt-4 sm:px-4 flex flex-col m-2 shadow-md'>
       <img 
         src={item.main_image.image} 
         className='bg-white object-scale-down rounded-md hover:cursor-pointer'
-        onClick={()=> navigate(`/p/${item.slug}`)}
+        onClick={navigateToProduct}
       />
       <div className='mt-2 text-tertiary flex flex-col grow'>
         <div className='flex flex-col'>
             <h3 
                 className='font-bold text-[16px] sm:text-[18px] sm:truncate hover:cursor-pointer hover:underline leading-none' 
-                onClick={navigate}
+                onClick={navigateToProduct}
             >
                 {item.name}
             </h3>

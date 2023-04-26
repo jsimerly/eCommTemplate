@@ -20,12 +20,12 @@ const ReviewCard = ({review}) => {
 
   return (
     <div className='w-full border border-tertiary rounded-md p-2 my-2'>
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-center">
             <div className="flex flex-col px-6 justify-center">
                 <h3 className="text-[24px] font-semibold">
                     {review.header}
                 </h3>
-                <p className='text-[18px]'>
+                <p className='text-[18px] flex flex-row sm:justify-start justify-center items-center'>
                     {review.name}
                     {review.verified_purchaser ? 
                     <span className='ml-4 font-semibold text-[14px] text-primary'>Verified Purchaser</span> : ""}

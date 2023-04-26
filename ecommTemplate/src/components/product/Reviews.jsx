@@ -189,7 +189,7 @@ const Reviews = ({product}) => {
           <div 
             className={`${filterOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
           >
-          <ul className="flex flex-col space-y-1">
+          <ul className="flex flex-col space-y-2 sm:space-y-1 ">
             {Object.entries(filterStars).map(([starN, checked]) => {
               return(
                 <li
@@ -212,13 +212,15 @@ const Reviews = ({product}) => {
           </ul>
           </div>
         </div>
-        <div ref={sortNode}>
+        <div ref={sortNode}
+            className='relative'
+        >
           <div className='h-[42px] group'>
                 <WhiteButton
                   onClick={handleSortByClicked}
                   content={
                     <div className='flex flex-row justify-between'>
-                      Sort By: {sortBy}
+                      Sort By: <span className="hidden sm:block">{sortBy}</span>
                       <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-110'/>
                     </div>
                   }
@@ -226,9 +228,9 @@ const Reviews = ({product}) => {
                 />
               </div>
           <div 
-            className={`${sortOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
+            className={`${sortOpen ? '' : 'hidden'} -left-[60px] sm:right-0 absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
           >
-            <ul>
+            <ul className="space-y-2 sm:space-y-0">
               {sortByOptions.map((option, i) => (
                 <li 
                   key={i}

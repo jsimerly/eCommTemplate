@@ -11,12 +11,12 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
 
     const HeaderButton = ({type, index}) => (
         <button className={`justify-center flex py-3 sm:py-0 border border-primary rounded-md sm:border-none ${classProps(view===type)}`} key={'switch_comp_obj_' + index}>
-            <button
+            <div
                 className={`hover:underline`}
                 onClick={()=> setView(type)}
             >
                 {type}
-            </button>
+            </div>
         </button>
     )
 
@@ -27,6 +27,7 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
                     {Object.keys(compDict).map((key, index) => (
                         <HeaderButton
                             type={key}
+                            key={index}
                             index={index}
                         />
                     ))}

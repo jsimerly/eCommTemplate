@@ -77,14 +77,14 @@ const LeaveReview = ({product, setLeaveReviewOpen}) => {
         <h3 className="text-[26px] font-bold underline mb-4">
             Review for {product.name}
         </h3>
-        <div className='flex flex-row w-full justify-center'>
-          <div className='w-1/3'>
+        <div className='flex flex-col sm:flex-row w-full justify-center'>
+          <div className='sm:w-1/3'>
               <img
                 src={product.main_image.image}
                 className='aspect-square'
               />
           </div>
-          <div className='w-2/3 px-6 text-[24px]'>
+          <div className='sm:w-2/3 sm:px-6 text-[24px]'>
             <div className='inline-flex flex-col'>
               <div className='flex flex-col'>
                 <h4>Rating</h4>

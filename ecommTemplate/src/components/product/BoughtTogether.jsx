@@ -77,14 +77,14 @@ const BoughtTogether = ({frequentlyBought}) => {
   }
 
   return (
-    <div className='my-6 bg-white rounded-md pb-6 px-16 text-tertiary justify-center flex flex-col items-center'>
+    <div className='my-6 bg-white rounded-md pb-6 px-3 sm:px-16 text-tertiary justify-center flex flex-col items-center'>
         <h1 className="text-[30px] py-4">
             Frequently Bought Together
         </h1>
-        <div className='flex flex-row'>
+        <div className='flex flex-row flex-wrap'>
           {frequentlyBought && frequentlyBought.map((item, i) => {
             return(
-              <div key={"productPair_"+i} className='flex flex-row justify-center items-center'>
+              <div key={"productPair_"+i} className='flex flex-row flex-wrap biorjustify-center items-center'>
                 <FreqBoughtCard
                   item={item}
                   handleCheckClicked={() => handleCheckboxClick(item)}
