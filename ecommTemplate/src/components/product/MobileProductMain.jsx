@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
-
+import 'swiper/swiper-bundle.min.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination } from 'swiper/core';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
@@ -9,16 +11,35 @@ import { fetchItemFavorited, fetchItemsToCart } from '../../api/fetchCart';
 import { ShoppingContext } from '../../context';
 import navigateCart from '../../hooks/navigateCart';
 
+SwiperCore.use([Pagination]);
+
+const ImageSlider = ({ mainCardInfo }) => {
+    return (
+      <div className="w-full p-3 rounded-md">
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          className="bg-white rounded-md aspect-square shadow-sm"
+        >
+          {mainCardInfo && mainCardInfo.imgList.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img src={image.image} className="w-full h-full object-cover" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    );
+  };
+
 const MobileProductMain = ({mainCardInfo}) => {
     const [quant, setQuant] = useState(1)
     const [insured, setInsured] = useState(false)
-    const [mainImg, setMainImg] = useState()
     const [itemFavorited, setFavorited] = useState(false)
     const {setCartSize, handleNotification} = useContext(ShoppingContext)
 
     useEffect(()=>{
       if(mainCardInfo){
-        setMainImg(mainCardInfo.mainImg)
         setFavorited(mainCardInfo.favorited)
       }
     }, [mainCardInfo])
@@ -84,28 +105,7 @@ const MobileProductMain = ({mainCardInfo}) => {
                 </div>
             </h1>
             <div className='flex max-h-[642px]'>
-              {/* <div className="w-1/5 overflow-hidden hover:overflow-y-auto scrollbar-hide">
-              {mainCardInfo && mainCardInfo.imgList.map((image, index) => 
-              { 
-                const image_path = image.image
-                return (
-                  <img
-                      key={index}
-                      src={image_path}
-                      onClick={() => setMainImg(image_path)}
-                      className='bg-white rounded-md mb-4 cursor-pointer aspect-square shadow-sm'
-                  />)
-              })}
-              </div> */}
-              <div className="w-full rounded-md mx-6">
-                {mainImg &&
-                  <img
-                    src={mainImg}
-                    className='bg-white rounded-md aspect-square shadow-sm'
-                  />
-                }
-
-              </div>
+                <ImageSlider mainCardInfo={mainCardInfo}/>
             </div>
           </div>
           <div className="w-full flex flex-col items-center text-tertiary p-6">
