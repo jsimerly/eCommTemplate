@@ -39,7 +39,7 @@ export const LinkPath = ({category}) => {
       }
 
     return(
-        <div className='flex flex-row items-center'>
+        <div className='flex flex-row items-center w-full justify-center sm:justify-start'>
             <div className='flex flex-row items-center'>
                 <a href="/" className='hover:underline cursor-pointer'>
                     Home

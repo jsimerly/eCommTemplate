@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-
 export const SwitchComp = ({className, compDict, defComp,}) => {
     const [view, setView] = useState(defComp)
 

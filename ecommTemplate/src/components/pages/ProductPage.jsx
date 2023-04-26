@@ -6,6 +6,7 @@ import { BoughtTogether, KeepShopping } from '../product';
 import { fetchFullProductBySlug } from '../../api/fetchProducts';
 import { ShoppingContext } from '../../context';
 import { LinkPath } from '../utils/LinkPath';
+import MobileProductMain from '../product/MobileProductMain';
 
 const ProductPage = () => {
   const [productInfo, setProductInfo] = useState()
@@ -70,11 +71,16 @@ const ProductPage = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="max-w-[1280px] w-full">
-        <div className='my-4 text-[12px] text-tertiary flex flex-row items-center'>
+        <div className='mt-2 sm:mt-4 sm:mb-4 text-[12px] text-tertiary flex flex-row items-center w-full'>
           <LinkPath category={category}/>
         </div>
-        <div className='mt-20 mb-24'>
+        <div className='hidden sm:block mt-20 mb-24'>
           <ProductMain
+            mainCardInfo={mainCardInfo}
+          />
+        </div>
+        <div className='sm:hidden'>
+          <MobileProductMain
             mainCardInfo={mainCardInfo}
           />
         </div>
