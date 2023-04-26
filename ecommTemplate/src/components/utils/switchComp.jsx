@@ -1,37 +1,37 @@
 import { useState } from "react"
-
 export const SwitchComp = ({className, compDict, defComp,}) => {
     const [view, setView] = useState(defComp)
 
     const classProps = (selected) => {
         if (selected==true){
-            return 'underline font-semibold text-primary'
+            return 'sm:underline font-semibold text-white bg-primary sm:bg-white sm:text-primary'
         }
         return ''
     }
 
-    const HeaderButton = ({type}) => (
-        <button
-            className={`${classProps(view===type)} hover:underline`}
-            onClick={()=> setView(type)}
-        >
-            {type}
+    const HeaderButton = ({type, index}) => (
+        <button className={`justify-center flex py-3 sm:py-0 border border-primary rounded-md sm:border-none ${classProps(view===type)}`} key={'switch_comp_obj_' + index}>
+            <button
+                className={`hover:underline`}
+                onClick={()=> setView(type)}
+            >
+                {type}
+            </button>
         </button>
     )
 
     return (
-        <div className={`${className} flex justify-center items-center text-tertiary w-full h-full bg-white rounded-md border border-primary `}>
+        <div className={`${className} flex justify-center text-tertiary w-full h-full bg-white sm:rounded-md sm:border-primary`}>
             <div className='w-full h-full flex flex-col justify-center items-center '>
-                <div className="flex flex-row justify-center p-2 items-center space-x-12 text-[18px] w-full">
+                <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-row justify-center sm:p-2 items-center sm:space-x-12 sm:text-[18px] w-full border">
                     {Object.keys(compDict).map((key, index) => (
-                        <div className="justify-center flex" key={'switch_comp_obj_' + index}>
-                            <HeaderButton
-                                type={key}
-                            />
-                        </div>
+                        <HeaderButton
+                            type={key}
+                            index={index}
+                        />
                     ))}
                 </div>
-                <div className="w-3/4 border border-primary mb-2"/>
+                <div className="w-3/4 sm:border border-primary mb-2"/>
                 <div className="flex justify-center items-center h-full w-full">
                     {compDict[view]}
                 </div>

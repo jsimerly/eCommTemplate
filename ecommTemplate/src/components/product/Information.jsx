@@ -28,11 +28,11 @@ const Information = ({secondaryCardInfo}) => {
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
     <div className="bg-white rounded-md flex flex-col justify-center items-center mt-6 sm:mt-20 text-tertiary">
-        <h1 className="text-[30px] pt-4">
+        <h1 className="text-[24px] sm:text-[30px] pt-4">
             Product Information
         </h1>
         {secondaryCardInfo && 
-          <div className="p-6 w-full">
+          <div className="py-2 px-6 w-full">
             <SwitchComp
                 compDict={infoDict}
                 defComp={'Details'}
