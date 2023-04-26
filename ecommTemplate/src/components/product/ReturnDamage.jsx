@@ -18,7 +18,7 @@ const damagesReturns = {
 
 const ReturnDamage = ({context}) => {
   return (
-    <div className="bg-tertiaryTone-100 p-10 mx-1 flex flex-col justify-center items-center rounded-md">
+    <div className="bg-tertiaryTone-100 sm:p-10 mx-1 flex flex-col justify-center items-center rounded-md">
       <h1 className="mb-6 font-semibold">Damages & Returns Policy</h1>
       <h2>We understand that accidents can happen during the rental period. To ensure a fair and consistent policy, we have outlined the following rental damages and returns policy.
       </h2>
@@ -29,7 +29,7 @@ const ReturnDamage = ({context}) => {
           </h3>
           <ol className="list-decimal">
             {damagesReturns['damages'].map((listItem, i) => (
-              <li>
+              <li key={'damages_li_'+i}>
                 {listItem}
               </li>
             ))}
@@ -41,7 +41,7 @@ const ReturnDamage = ({context}) => {
           </h3>
           <ol className="list-decimal">
             {damagesReturns['returns'].map((listItem, i) => (
-              <li>
+              <li key={'return_li_'+i}>
                 {listItem}
               </li>
             ))}
