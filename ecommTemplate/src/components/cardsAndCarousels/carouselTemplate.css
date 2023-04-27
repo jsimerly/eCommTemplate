@@ -1,0 +1,21 @@
+/* carouselTemplate.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.swiper-container {
+  @apply w-full overflow-hidden;
+}
+
+.custom-swiper {
+  width: auto !important;
+}
+
+.custom-swiper .swiper-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.custom-swiper .swiper-slide {
+  display: flex;
+}

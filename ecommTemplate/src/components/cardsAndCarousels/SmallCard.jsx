@@ -22,7 +22,8 @@ const SmallCard = ({item, addExtraFunction}) => {
     </div>
   )
 
-  const handleAddItemClicked = async () =>{
+  const handleAddItemClicked = async (e) =>{
+    e.stopPropagation();
     const response = await fetchItemsToCart([item])
     if (response.ok){
       const resp = await response.json()
@@ -42,18 +43,19 @@ const SmallCard = ({item, addExtraFunction}) => {
 
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
-    <div className="bg-white m-1 p-2 flex flex-col rounded-md shadow-md">
+    <div 
+      className="bg-white m-1 p-2 flex flex-col rounded-md shadow-md"
+      onClick={navigate}
+    >
       <div className="w-[150px] h-[150px] mb-2 cursor-pointer">
         <img
           className="bg-white object-scale-down rounded-md aspect-square"
           src={item.main_image.image}
-          onClick={navigate}
-          />
+        />
       </div>
       <div 
         className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold"
-        onClick={navigate}
-        >
+      >
         {item.name}
       </div>
       <div className="flex flex-row justify-between">

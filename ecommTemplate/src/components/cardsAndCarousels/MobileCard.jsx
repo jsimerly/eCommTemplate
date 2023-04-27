@@ -12,7 +12,7 @@ import { addToFavorites } from './addTo';
 import navigateCart from '../../hooks/navigateCart';
 import { fetchItemsToCart } from '../../api/fetchCart';
 
-const ProductCard = ({item, addExtraFunction}) => {
+const MobileCard = ({item, addExtraFunction}) => {
   const [itemFavorited, setFavorited] = useState(false)
   const {setCartSize, handleNotification} = useContext(ShoppingContext)
   const location = useLocation();
@@ -62,63 +62,53 @@ const ProductCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-      className='w-[150px] h-[260px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative group shadow-md'
-      onClick={navigate}
+        className='w-full h-[220px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-row mb-4 relative group shadow-md justify-center items-center'
+        onClick={navigate}
     >
       {item.main_image && (
-        <>
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square'
-
-            />
-          <div 
-            className={`absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer ${itemFavorited? 'block' : 'hidden'} group-hover:block`}
-            onClick={handleFavoriteClicked}
-            >
-            {itemFavorited ? 
-              <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
-              :
-              <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
-            }
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'
             
-          </div>
-        </>
+            />
       )}
-      <div className='mt-2 p-2 text-tertiary flex flex-col grow'>
-        <div className='flex flex-col min-h-[60px]'>
-          <h3 
-            className='font-bold text-[16px] md:text-[20px] truncate hover:cursor-pointer hover:underline'
-          >
-           {item.name}
-          </h3>
-          <h4 className='text-[12px] md:text-[18px] tracking-wide'>
-            {item.brand.name}
-          </h4>
-        </div>
-        <div className='hidden md:block'>
-          <div className='flex flex-row mt-2 hover:cursor-pointer'>
-            <Stars rating={item.average_rating}/>
-            <div className='ml-1 md:text-[16px]'>
-             ({item.n_ratings})
+      <div className='mt-2 p-6 text-tertiary flex flex-col grow'>
+        <div className='flex flex-row justify-between w-full'>
+            <div className='flex flex-col min-h-[60px] w-[80%]'>
+            <h3 
+                className='font-bold text-[16px]'
+            >
+            {item.name}
+            </h3>
+            <h4 className='text-[12px] tracking-wide'>
+                {item.brand.name}
+            </h4>
             </div>
+            <div onClick={handleFavoriteClicked} className='flex justify-end items-start'>
+                {itemFavorited ? 
+                <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
+                :
+                <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
+                }
           </div>
         </div>
-        <div className='flex flex-col flex-1 w-full justify-between items-start md:my-4'>
+
+        <div className='flex flex-row mt-2 hover:cursor-pointer'>
+        <Stars rating={item.average_rating}/>
+        <div className='ml-1 text-[16px]'>
+            ({item.n_ratings})
+        </div>
+        </div>
+
+        <div className='flex flex-col flex-1 w-full justify-between items-start my-4'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
-              <div className='font-semibold md:text-[26px] leading-none'>
+              <div className='font-semibold text-[26px] leading-none'>
                 ${item.total_cost.toFixed(2)}
               </div>
               <p className='leading-none text-[12px] text-center'>
                 For {item.days} Days
               </p>
-            </div>
-            <div className='h-full hidden md:block'>
-              <BlueButton
-                content='Add to Cart'
-                onClick={handleAddItemClicked}
-                />
             </div>
             <div className='md:hidden'>
               <BlueButton
@@ -135,4 +125,4 @@ const ProductCard = ({item, addExtraFunction}) => {
   )
 }
 
-export default memo(ProductCard);
+export default memo(MobileCard);

@@ -14,15 +14,6 @@ import { ProductCard } from '../shopping';
 import { fetchProductGrouping } from '../../api/fetchProducts';
 import { ShoppingContext } from '../../context';
 
-function scrollN(){
-    if (window.innerWidth < 680) {
-      return 1
-    } else if (window.innerWidth < 1200) {
-      return 2
-    } else {
-      return 3
-    }
-  }
 
 const header = (text) => (
     <div className='flex justify-center sm:justify-start items-center relative text-[34px] text-center font-bold text-primary p-2'>
@@ -34,9 +25,7 @@ const Carousel = ({head, data}) => (
     <CarouselTemplate
         Card={ProductCard}
         cardData={data}
-        cardW={298}
         header={head}
-        scrollNFunc={scrollN}
     />
 )
 

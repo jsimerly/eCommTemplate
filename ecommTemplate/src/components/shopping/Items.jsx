@@ -1,9 +1,8 @@
-import { ProductCard } from "."
+import ResponsiveCard from "./ResponsiveCard";
 import Empty from "../utils/Empty"
 
 const sortProducts = (products, sortBy) => {
-    const productsCopy = [...products]
-  
+  const productsCopy = [...products]
     if (sortBy === "Price - Low to High") {
       return productsCopy.sort(
         (a, b) => parseFloat(a.total_cost) - parseFloat(b.total_cost)
@@ -23,15 +22,12 @@ const Items = ({products, sortBy}) => {
     <div
         className='rounded-md w-full justify-center'
     >
-        <div className="flex flex-wrap  w-full min-h-[300px]">
+        <div className="flex flex-col sm:flex-row flex-wrap  w-full min-h-[300px]">
             {sortedProducts && sortedProducts.length === 0 ?
                 <Empty/>
                 :
                 sortedProducts.map((item, i) => (
-                    <ProductCard 
-                        key={i}
-                        item={item}
-                    />
+                  <ResponsiveCard key={i} item={item} />
                 ))
             }
         </div>

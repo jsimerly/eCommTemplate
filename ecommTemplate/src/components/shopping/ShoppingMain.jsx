@@ -197,56 +197,58 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
 
   return (
     <div>
-    <div className='flex flex-row justify-between min-h-[80px] w-full'>
-              <div className='flex space-x-10 items-center w-1/5'>
-                <div className='flex space-x-2'>
-                  <WhiteButton 
-                    onClick={handleFilterToggle}
-                    content={
-                      <div>
-                        <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
-                        Filter
-                      </div>
-                    }
-                    className='!text-tertiary'
-                  />
-                  <button 
-                    className={`${filterActive ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
-                    onClick={handleResetFilters}
-                  >
-                    <DeleteForeverIcon 
-                      className='group-hover:scale-125'
-                    />
-                  </button>
+      <div className='flex flex-row justify-between min-h-[80px] w-full'>
+        <div className='flex space-x-10 items-center sm:w-1/5'>
+          <div className='flex space-x-2'>
+            <WhiteButton 
+              onClick={handleFilterToggle}
+              content={
+                <div>
+                  <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
+                  Filter
                 </div>
+              }
+              className='!text-tertiary'
+            />
+            <button 
+              className={`${filterActive ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
+              onClick={handleResetFilters}
+            >
+              <DeleteForeverIcon 
+                className='group-hover:scale-125'
+              />
+            </button>
+          </div>
 
-              </div>
-              {relatedCategories && relatedCategories.length > 0 && (
-                <div className='flex flex-col items-center justify-center flex-1 pb-4'>
-                <h4 className='text-[14px] font-semibold'>
-                  Related Categories
-                </h4>
-                <div className='flex text-[18px] space-x-8 items-center'>
-                  {relatedCategories.map((cat, i) => (
-                    <a
-                      className='hover:underline cursor-pointer text-center' 
-                      key={i}
-                      onClick={()=>{setSelectedCategory(cat)}}
-                    >
-                      {cat.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              )}
-              <div className='flex justify-end items-center w-1/5'>
+          </div>
+          {relatedCategories && relatedCategories.length > 0 && (
+            <div 
+              className='hidden sm:flex flex-col items-center justify-center flex-1 pb-4'
+            >
+              <h4 className='text-[14px] font-semibold'>
+                Related Categories
+              </h4>
+              <div className='flex text-[18px] space-x-8 items-center'>
+              {relatedCategories.map((cat, i) => (
+                <a
+                  className='hover:underline cursor-pointer text-center' 
+                  key={i}
+                  onClick={()=>{setSelectedCategory(cat)}}
+                >
+                  {cat.name}
+                </a>
+              ))}
+            </div>
+          </div>
+          )}
+              <div className='flex justify-end items-center sm:w-1/5'>
                 <div ref={sortNode}>
                   <div className='h-[42px] group'>
                     <WhiteButton
                       onClick={handleSortClick}
                       content={
                         <div className='flex flex-row justify-between'>
-                          Sort By: {sortBy}
+                          Sort By: <span className='hidden sm:block'>{sortBy}</span>
                           <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-110'/>
                         </div>
                       }
