@@ -31,6 +31,7 @@ const ProductCard = ({item, addExtraFunction}) => {
   )
 
   const handleAddItemClicked = async (e) =>{
+    console.log(e)
     e.stopPropagation();
     const response = await fetchItemsToCart([item])
     if (response.ok){
@@ -62,7 +63,7 @@ const ProductCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-      className='w-[150px] h-[260px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative group shadow-md'
+      className='w-[150px] h-[270px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative group shadow-md'
       onClick={navigate}
     >
       {item.main_image && (
@@ -74,7 +75,7 @@ const ProductCard = ({item, addExtraFunction}) => {
             />
           <div 
             className={`absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer ${itemFavorited? 'block' : 'hidden'} group-hover:block`}
-            onClick={handleFavoriteClicked}
+            onClick={(e) => handleFavoriteClicked(e)}
             >
             {itemFavorited ? 
               <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
@@ -115,17 +116,20 @@ const ProductCard = ({item, addExtraFunction}) => {
               </p>
             </div>
             <div className='h-full hidden md:block'>
-              <BlueButton
-                content='Add to Cart'
-                onClick={handleAddItemClicked}
-                />
+              <button 
+                  className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
+                  onClick={handleAddItemClicked}
+              >
+                Add to Cart
+              </button>
             </div>
             <div className='md:hidden'>
-              <BlueButton
-                className='!p-1'
-                content={<AddIcon/>}
-                onClick={handleAddItemClicked}
-                />
+              <button 
+                    className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
+                    onClick={handleAddItemClicked}
+                >
+                  <AddIcon/>
+              </button>
             </div>
           </div>
         </div>
