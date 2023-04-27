@@ -22,7 +22,6 @@ const StandardShop = () => {
     const fetchCategoryInfo = async () => {
       //update to get the right data for the range
       if (selectedCategory){
-        console.log(selectedCategory)
         const response = await fetchCategory(selectedCategory.fe_id, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
         if (response.ok){
           const resp = await response.json()

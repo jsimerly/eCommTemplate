@@ -72,7 +72,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className='mt-12 sm:mt-0 p-2 border-t border-white w-full flex sm:justify-between sm:flex-row flex-col justify-center items-center sm:flex-nowrap'>
+        <div className='mt-12 mb-12 sm:mb-0 sm:mt-0 p-2 border-t border-white w-full flex sm:justify-between sm:flex-row flex-col justify-center items-center sm:flex-nowrap'>
             <div className='flex justify-start items-center order-4 sm:order-1'>
                 <img
                     src={main_white}

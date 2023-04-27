@@ -33,7 +33,7 @@ const SearchPage = () => {
 
   return (
     <div className='flex justify-center items-center text-tertiary'>
-        <div className='max-w-[1280px] w-full'>
+        <div className='max-w-[1280px] w-full px-3 sm:px-0'>
             <h1 className="text-tertiary py-10 text-[30px]">
                 Search Results for "{searchTerms}"
             </h1>

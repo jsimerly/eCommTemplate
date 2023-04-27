@@ -7,7 +7,7 @@ import { fetchItemsToCart } from '../../api/fetchCart';
 import { useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
-import navigateCart from '../../hooks/navigateCart';
+import GoToCart from '../cardsAndCarousels/GoToCart';
 
 
 const BoughtTogether = ({frequentlyBought}) => {
@@ -52,15 +52,6 @@ const BoughtTogether = ({frequentlyBought}) => {
     }
   }, [frequentlyBought])
 
-  const GoToCart = () => (
-    <div 
-      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
-      onClick={navigateCart()}
-    > 
-      View Cart & Check Out
-    </div>
-  )
-
   const handleAddToCartClicked = async () => {
     const response = await fetchItemsToCart(checkedItems)
     if (response.ok){
@@ -90,7 +81,6 @@ const BoughtTogether = ({frequentlyBought}) => {
                   handleCheckClicked={() => handleCheckboxClick(item)}
                   checked={isDictInList(item, checkedItems)}
                 />
-                {frequentlyBought.length-1 == i ? '' : <AddIcon/>}
               </div>
             )
           })}

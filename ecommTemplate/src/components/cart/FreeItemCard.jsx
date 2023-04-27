@@ -8,7 +8,7 @@ const FreeItemCard = ({item, updateFreeItem, getInsurance,}) => {
     }
       
     return (
-      <div className="flex border border-tertiary rounded-md mb-1">
+      <div className="flex border border-tertiary rounded-md mb-1 relative">
         <div className='flex items-center'>
           <img 
             src={item.item.main_image.image} 
@@ -51,11 +51,9 @@ const FreeItemCard = ({item, updateFreeItem, getInsurance,}) => {
             Qty: {item.quantity}
           </div>
         </div>
-        <div className='flex flex-col justify-end p-2'>
-          <div className='flex flex-col leading-none'>
-            <span className='font-bold text-[24px]'> Free </span>
-          </div>
-      </div>
+        <div className='absolute p-2 flex flex-col leading-none bottom-0 right-0'>
+          <span className='font-bold text-[24px]'> Free </span>
+        </div>
     </div>
     )
   }

@@ -9,7 +9,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { LargeBlueButton, QuantInput, Stars } from '../utils';
 import { fetchItemFavorited, fetchItemsToCart } from '../../api/fetchCart';
 import { ShoppingContext } from '../../context';
-import navigateCart from '../../hooks/navigateCart';
+import GoToCart from '../cardsAndCarousels/GoToCart';
 
 SwiperCore.use([Pagination]);
 
@@ -53,15 +53,6 @@ const MobileProductMain = ({mainCardInfo}) => {
       const resp = await response.json()
       setFavorited(resp.favorited)
     }
-
-    const GoToCart = () => (
-      <div 
-        className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
-        onClick={navigateCart()}
-      >
-        View Cart & Check Out
-      </div>
-    )
 
     const handleAddToCart = async () => {
       const cartItem = {

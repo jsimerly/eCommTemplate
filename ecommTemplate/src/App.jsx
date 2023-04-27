@@ -99,7 +99,7 @@ function App() {
 
     const timer = setTimeout(()=> {
       setNotification(false)
-    }, 15000)
+    }, 5000)
 
     return () => clearTimeout(timer);
   }
@@ -143,8 +143,8 @@ function App() {
             <Route exact path='/' element={
               <LandingPage/>}/>
             <Route path='/about-us' element={<AboutUs/>}/> {/* X */}
-            <Route path='/shopping/' element={<StandardShop/>}/> {/* X */}
-            <Route path='/search/' element={<SearchPage/>}/> {/* X */}
+            <Route path='/shopping/' element={<StandardShop/>}/> 
+            <Route path='/search/' element={<SearchPage/>}/>
             <Route path='/p/:slug' element= {<ProductPage/>} 
             /> {/* X */}
             <Route path='/cart' element={<CartPage/>}/> {/* X */}

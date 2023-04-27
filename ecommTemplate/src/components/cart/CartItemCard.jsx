@@ -55,7 +55,7 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
     }
   
     return (
-      <div className="flex border border-tertiary rounded-md mb-1">
+      <div className="flex border border-tertiary rounded-md mb-1 relative">
         <div className='flex justify-center items-center'>
           <img 
             onClick={navigate}
@@ -74,7 +74,7 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
               </h2>
             </div>
             <div className='flex flex-row items-center'>
-              <div className='flex grow-0 cursor-pointer group'
+              <div className='my-2 flex flex-row cursor-pointer group'
                 onClick={handleInsuredClicked}
               >
                 {item.insurance_purchased ? 
@@ -124,7 +124,7 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
               onClick={handleDeleteClicked}
             />
           </div>
-          <div className='flex flex-col leading-none'>
+          <div className='absolute flex flex-col leading-none bottom-0 right-0 p-2'>
             <span className='font-bold text-[20px] sm:text-[24px]'> ${getCost(item).toFixed(2)}</span>
           </div>
       </div>
