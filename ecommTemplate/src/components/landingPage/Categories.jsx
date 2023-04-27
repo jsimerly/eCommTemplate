@@ -10,10 +10,10 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
     }
 
     return(
-        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} w-full md:pt-10`}>
-            <img src={img} className='md:w-3/5 rounded-md shadow-md'/>
+        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} w-full md:pt-10 items-center`}>
+            <img src={img} className='w-3/5 rounded-md shadow-md'/>
             <div className={`md:w-2/5 text-center pb-2 flex flex-col mx-16`}>
-                <div className='h-full flex flex-col justify-center mt-4 md:mt-0 mx-4'>
+                <div className='h-full flex flex-col justify-center mt-4 md:mt-0 sm:mx-4'>
                     <h3 className='font-bold md:text-[40px] text-[30px] text-primary'>
                         {header}
                     </h3>

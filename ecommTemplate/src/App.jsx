@@ -99,7 +99,7 @@ function App() {
 
     const timer = setTimeout(()=> {
       setNotification(false)
-    }, 5000)
+    }, 15000)
 
     return () => clearTimeout(timer);
   }
@@ -141,12 +141,7 @@ function App() {
           <ErrorBoundry fallback={<Empty className='my-[200px]'/>}>
           <Routes>
             <Route exact path='/' element={
-              <LandingPage
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                searchParamActive={searchParamActive}
-                setSearchParamActive={setSearchParamActive}
-              />}/>
+              <LandingPage/>}/>
             <Route path='/about-us' element={<AboutUs/>}/> {/* X */}
             <Route path='/shopping/' element={<StandardShop/>}/> {/* X */}
             <Route path='/search/' element={<SearchPage/>}/> {/* X */}

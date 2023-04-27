@@ -1,7 +1,7 @@
 import { fetchManyCategories } from "../../api/fetchProducts";
 import { ShoppingContext } from "../../context";
 import { useContext, useEffect, useState, useRef } from "react";
-import navigateSearch from "../../hooks/navigateShopping";
+import navigateSearch from "../../hooks/navigateSearch";
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -46,6 +46,11 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
         }
     }
 
+    const handleSearchInput = (e) => {
+        setSearchInput(e.target.value)
+        setSearchParamActive(true)
+    }
+
   return (
     <div 
         className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 ${open ? '' : 'hidden'} sm:shadow-md z-20 overflow-y-auto`}
@@ -57,7 +62,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
                     className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
                     placeholder="Search"
                     value={searchInput}
-                    onChange={(e)=> {setSearchInput(e.target.value); setSearchParamActive(true)}}
+                    onChange={handleSearchInput}
                     onKeyDown={handleKeyDown}
                 />
                 <SearchIcon 

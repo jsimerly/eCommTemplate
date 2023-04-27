@@ -125,7 +125,7 @@ const ProductCard = ({item, addExtraFunction}) => {
             </div>
             <div className='md:hidden'>
               <button 
-                    className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
+                    className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-1 hover:underline cursor-pointer outline-none`}
                     onClick={handleAddItemClicked}
                 >
                   <AddIcon/>

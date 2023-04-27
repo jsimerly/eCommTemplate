@@ -256,13 +256,13 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
                     />
                   </div>
                 <div 
-                  className={`${sortOpen ? '' : 'hidden'} absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
+                  className={`${sortOpen ? '' : 'hidden'} right-3 sm:right-0 absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
                 >
                   <ul>
                     {sortByOptions.map((option, i) => (
                       <li 
                         key={i}
-                        className='hover:underline cursor-pointer'
+                        className='hover:underline cursor-pointer space-y sm:space-y-0'
                         onClick={() => {setSortBy(option); setSortOpen(false)}}
                       >
                         {option}

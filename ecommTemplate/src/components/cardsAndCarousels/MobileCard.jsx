@@ -62,17 +62,16 @@ const MobileCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-        className='w-full h-[220px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-row mb-4 relative group shadow-md justify-center items-center'
+        className='w-full h-[200px] rounded-md bg-white flex flex-row mb-2 relative group shadow-md justify-center items-center'
         onClick={navigate}
     >
       {item.main_image && (
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'
-            
-            />
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'  
+          />
       )}
-      <div className='mt-2 p-6 text-tertiary flex flex-col grow'>
+      <div className='mt-2 px-6 text-tertiary flex flex-col grow'>
         <div className='flex flex-row justify-between w-full'>
             <div className='flex flex-col min-h-[60px] w-[80%]'>
             <h3 
@@ -111,11 +110,12 @@ const MobileCard = ({item, addExtraFunction}) => {
               </p>
             </div>
             <div className='md:hidden'>
-              <BlueButton
-                className='!p-1'
-                content={<AddIcon/>}
+            <button 
+                className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
                 onClick={handleAddItemClicked}
-                />
+            >
+                <AddIcon/>
+            </button>
             </div>
           </div>
         </div>
