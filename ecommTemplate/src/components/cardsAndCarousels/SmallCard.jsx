@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { ShoppingContext } from '../../context';
 import navigateProduct from '../../hooks/navigateProduct';
 import ErrorBoundry from '../utils/ErrorBoundry';
-import navigateCart from '../../hooks/navigateCart';
+import GoToCart from './GoToCart';
 
 const SmallCard = ({item, addExtraFunction}) => {
   const slug = item.slug
@@ -12,15 +12,6 @@ const SmallCard = ({item, addExtraFunction}) => {
   const inCart = location.pathname === '/cart';
 
   let navigate = navigateProduct({slug});
-
-  const GoToCart = () => (
-    <div 
-      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
-      onClick={navigateCart()}
-    >
-      View Cart & Check Out
-    </div>
-  )
 
   const handleAddItemClicked = async (e) =>{
     e.stopPropagation();

@@ -9,8 +9,8 @@ import { ShoppingContext } from '../../context';
 import { useLocation } from 'react-router-dom';
 import ErrorBoundry from '../utils/ErrorBoundry';
 import { addToFavorites } from './addTo';
-import navigateCart from '../../hooks/navigateCart';
 import { fetchItemsToCart } from '../../api/fetchCart';
+import GoToCart from './GoToCart';
 
 const MobileCard = ({item, addExtraFunction}) => {
   const [itemFavorited, setFavorited] = useState(false)
@@ -20,15 +20,6 @@ const MobileCard = ({item, addExtraFunction}) => {
   const slug = item.slug
 
   let navigate = navigateProduct({slug});
-
-  const GoToCart = () => (
-    <div 
-      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
-      onClick={navigateCart()}
-    > 
-      View Cart & Check Out
-    </div>
-  )
 
   const handleAddItemClicked = async (e) =>{
     e.stopPropagation();
