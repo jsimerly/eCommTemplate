@@ -14,14 +14,14 @@ const ContactSupport = () => {
     window.scrollTo(0,0)
   return (
     <div className='flex justify-center text-tertiary'>
-      <div className='max-w-[1280px] w-full flex flex-col items-center'>
-        <h1 className='text-[50px]'> Contact Support </h1>
-        <div className='flex flex-row justify-between w-full h-[540px]'>
+      <div className='max-w-[1280px] w-full flex flex-col items-center px-3'>
+        <h1 className='text-[30px] sm:text-[80px]'> Contact Support </h1>
+        <div className='flex flex-col sm:flex-row justify-between w-full min-h-[540px]'>
           <SwitchComp
             compDict={supportDict}
             defComp='Open a Ticket'
             className='mr-4'
-          />     
+          />  
           <div className="flex flex-col justify-center items-center bg-white p-6 rounded-md border-primary border">
             <h2 className="text-[36px] font-bold text-center leading-none">Customer <br/> Service Team</h2>
             <p className="w-[300px] text-center">Contact Blue Elf on help on order, products, and general inquiries.</p>
@@ -43,7 +43,7 @@ const ContactSupport = () => {
                     <p> 1-800-555-3424</p>
                 </div>
             </div>
-        </div>
+          </div>
         </div>
       </div>
     </div>

@@ -7,15 +7,15 @@ import EmailIcon from '@mui/icons-material/Email';
 const HelpPage = () => {
     window.scrollTo(0,0)
   return (
-    <div className="flex flex-col justify-center items-center py-10">
+    <div className="flex flex-col justify-center items-center py-10 px-3">
     <div className="w-full text-tertiary flex flex-col justify-center items-center">
-        <h1 className="font-bold text-[80px] py-10 px-6">
+        <h1 className="font-bold text-[30px] sm:text-[80px] sm:py-10 px-6">
             Help Center
         </h1>
         <div className="max-w-[1280px] w-full flex flex-col">
             <div className="flex flex-col gap-2 justify-center">
-                <h2 className="text-[30px] font-bold">Support</h2>
-                <div className="w-full grid grid-cols-3 gap-4">
+                <h2 className="text-[18px] sm:text-[30px] font-bold">Support</h2>
+                <div className="w-full flex flex-col space-y-2 sm:grid sm:grid-cols-3 sm:gap-4">
                     {helpButtons.map((card, i)=> (
                         <HelpCard
                             title={card.title}
@@ -27,7 +27,7 @@ const HelpPage = () => {
                     ))}
                 </div>
                 <h2 className="text-[30px] font-bold mt-6">Account</h2>
-                <div className="w-full grid grid-cols-3 gap-4">
+                <div className="w-full flex flex-col space-y-2 sm:grid sm:grid-cols-3 sm:gap-4">
                     {accountButtons.map((card, i)=> (
                         <HelpCard
                             title={card.title}
@@ -41,7 +41,7 @@ const HelpPage = () => {
             </div>
         </div>
     </div>
-    <div className="w-2/3 flex flex-row justify-between items-between gap-2 text-tertiary mt-20">
+    <div className="sm:w-2/3 flex flex-col space-y-10 sm:flex-row sm:justify-between items-between gap-2 text-tertiary mt-20">
         <div className="flex flex-col justify-center items-center">
             <h2 className="text-[36px] font-bold text-center leading-none">Customer <br/> Service Team</h2>
             <p className="w-[300px] text-center">Contact Blue Elf on help on order, products, and general inquiries.</p>

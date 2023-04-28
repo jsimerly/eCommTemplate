@@ -24,8 +24,10 @@ const SmallCard = ({item, addExtraFunction}) => {
         addExtraFunction()
       }
 
-      if (!inCart){ //using === to prevent and undefined/null from getting through
-        handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>)
+      if (!inCart){ 
+        handleNotification(`${item.name} has been added to your cart.`, <GoToCart/>, false)
+      } else {
+        handleNotification(`${item.name} has been added to your cart.`, null, false)
       }
     } else {
       handleNotification(`We're currently experiencing issues and were unable to add ${item.name} to your cart.`)

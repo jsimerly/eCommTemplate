@@ -205,32 +205,32 @@ const AccountInformation = () => {
   return (
     <div className='flex w-full justify-center'>
       <div className='w-[1280px] h-full flex flex-col justify-center items-center text-tertiary'>
-        <h1 className='text-[50px] p-6'>
+        <h1 className='text-[30px] sm:text-[50px] p-6'>
           Your Account
         </h1>
         <div className='w-full bg-white flex flex-row justify-center rounded-md'>
           {/* <div className='w-1/4'>
             This will eventually be a tabs when there are more Account Options
           </div> */}
-          <div className='w-3/4 p-6'>
-            <h2 className="text-[24px] p-2">
+          <div className='sm:w-3/4 p-6'>
+            <h2 className="text-[18px] sm:text-[24px] p-2">
              Manage Your Profile
             </h2>
             <div>
               <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
               <div className="bg-tertiaryTone-100 rounded-md p-6 w-full">
-                <div className='flex flex-row items-center'>
+                <div className='flex flex-row flex-wrap items-center'>
                   {openNames ? 
                     <div className='flex flex-row w-1/2 items-center mt-1'>
                         <input
-                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ${firstNameError? 'border-errorRed' : null}`}
+                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary w-[130px] ${firstNameError? 'border-errorRed' : null}`}
                           placeholder='First Name'
                           value={firstName}
                           onChange={handleFirstNameChange}
                           />
                         <input
-                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ml-2 ${lastNameError? 'border-errorRed' : null}`}
+                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ml-2 w-[130px] ${lastNameError? 'border-errorRed' : null}`}
                           placeholder='Last Name'
                           value={lastName}
                           onChange={handleLastNameChange}
@@ -267,7 +267,7 @@ const AccountInformation = () => {
                 <h2 className="font-bold">Account Information</h2>
                 <div className="ml-4 pt-4">
                   <h3 >Email Address</h3>
-                  <div className="relative w-1/2">
+                  <div className="relative sm:w-1/2">
                     <input
                       className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${emailError? 'border-errorRed' : null }`}
                       placeholder="Email"
@@ -278,7 +278,7 @@ const AccountInformation = () => {
                 </div>
                 <div className="ml-4 py-4">
                   <h3 >Phone Number</h3>
-                  <div className="relative w-1/2">
+                  <div className="relative sm:w-1/2">
                     <PhoneNumberInput
                       value={phone}
                       onChange={handlePhoneNumberChange}
@@ -298,7 +298,7 @@ const AccountInformation = () => {
                 <div className={`${passwordOpen ? null : 'hidden'}`}>
                   <div className="ml-4 pb-4">
                     <h3 >New Password</h3>
-                    <div className="relative w-1/2">
+                    <div className="relative sm:w-1/2">
                       <PasswordInput
                         value={newPassword_1}
                         onChange={handlePassword_1_Change}
@@ -308,7 +308,7 @@ const AccountInformation = () => {
                   </div>
                   <div className="ml-4 pb-4">
                     <h3 >New Password</h3>
-                    <div className="relative w-1/2">
+                    <div className="relative sm:w-1/2">
                       <PasswordInput
                           value={newPassword_2}
                           onChange={handlePassword_2_Change}
@@ -326,7 +326,7 @@ const AccountInformation = () => {
                   </h3>
                 </div>
               <ErrorMessages errorMessages={errorMessages_account}/>
-              <div className="ml-4 w-1/5 mb-2">
+              <div className="ml-4 w-1/2 sm:w-1/5 mb-2">
                   <BlueButton
                     content='Update'
                     onClick={handleAccountUpdateClick}
@@ -340,7 +340,7 @@ const AccountInformation = () => {
               <h2 className="font-bold">Personal Information</h2>
               <div className="ml-4 pt-4">
                 <h3 >Date Of Birth</h3>
-                <div className="relative w-1/2">
+                <div className="relative sm:w-1/2">
                   <DateOfBirthInput
                     value={dob}
                     onChange={handleDobChange}
@@ -351,7 +351,7 @@ const AccountInformation = () => {
               <div className="ml-4 py-4">
                 <h3 >Drivers License ID</h3>
                 <p className="text-[12px]"> We need a Driver License ID to confirm identify for larger purchases.</p>
-                <div className="w-1/2">
+                <div className="sm:w-1/2">
 
                   <input
                     className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${driversLicenseError ? 'border-errorRed' : null}`}
@@ -361,7 +361,7 @@ const AccountInformation = () => {
                     />
                 </div>
                 <ErrorMessages errorMessages={errorMessages_personal}/>
-                <div className="w-1/5 mt-4">
+                <div className="w-1/2 sm:w-1/5 mt-4">
                   <BlueButton
                     content='Update'
                     onClick={handlePersonalUpdateClick}
@@ -403,7 +403,7 @@ const AccountInformation = () => {
                   </div>
                   <p className="pl-2">Recieve regular marketing and discount emails.</p>
                 </div>
-                <div className="w-1/5 mt-4">
+                <div className="w-1/2 sm:w-1/5 mt-4">
                   <BlueButton
                     content='Update'
                     onClick={handlePreferencesUpdateClick}

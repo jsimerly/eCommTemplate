@@ -2,7 +2,7 @@ import { BlueButton } from "../../../utils"
 
 const Email = () => {
   return (
-    <div className='flex flex-col h-full w-3/4 relative z-10'>
+    <div className='flex flex-col h-full sm:w-3/4 relative z-10'>
         <h3 className="py-2">Email Information</h3>
         <div className="flex flex-row justify-between">
             <input className="p-2 border pl-4 border-primary rounded-md w-1/2" placeholder="Email"/>

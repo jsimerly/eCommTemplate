@@ -241,14 +241,14 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
             </div>
           </div>
           )}
-              <div className='flex justify-end items-center sm:w-1/5'>
+              <div className='flex justify-end items-center sm:w-1/5 sm:relative'>
                 <div ref={sortNode}>
                   <div className='h-[42px] group'>
                     <WhiteButton
                       onClick={handleSortClick}
                       content={
                         <div className='flex flex-row justify-between'>
-                          Sort By: <span className='hidden sm:block'>{sortBy}</span>
+                          Sort By: <span className='hidden sm:block ml-1'>{sortBy}</span>
                           <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-110'/>
                         </div>
                       }

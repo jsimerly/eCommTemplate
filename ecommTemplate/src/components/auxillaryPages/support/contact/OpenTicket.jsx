@@ -16,8 +16,8 @@ const OpenTicket = () => {
     const [currentIssue, setCurrentIssue] = useState('Issue Type')
 
   return (
-    <div className="w-3/4 flex flex-col items-center h-full py-6">
-        <div ref={node} className='w-3/4 relative z-10'>
+    <div className="sm:w-3/4 flex flex-col items-center sm:py-6 min-h-[400px]">
+        <div ref={node} className='sm:w-3/4 px-2 relative z-10'>
             <div 
                 className="w-full border border-primary p-2 rounded-md flex flex-row justify-between hover:cursor-pointer"
                 onClick={handleClick}
@@ -25,7 +25,7 @@ const OpenTicket = () => {
                 {currentIssue}
                 <ExpandMore/>
             </div>
-            <div  className={`${open? null : 'hidden'} shadow-md top-10 rounded-md p-3 absolute w-full z-10`}>
+            <div  className={`${open? null : 'hidden'} shadow-md top-12 rounded-md p-3 absolute w-full z-30 bg-white`}>
                 <ul>
                     {issues.map((issue, i) => (
                         <li 
@@ -38,13 +38,13 @@ const OpenTicket = () => {
             </div>
             <h3 className="py-2">Contact Information</h3>
             <div className="flex flex-row justify-between">
-                <input className="p-2 border pl-4 border-primary rounded-md w-1/2" placeholder="Email"/>
-                <input className="p-2 border pl-4 ml-2 border-primary rounded-md w-1/2" placeholder="Phone"/>
+                <input className="p-2 border pl-4 border-primary rounded-md w-1/2 outline-primary" placeholder="Email"/>
+                <input className="p-2 border pl-4 ml-2 border-primary rounded-md w-1/2 outline-primary" placeholder="Phone"/>
             </div>
             <div className="h-full mt-2">
                 <textarea
                         style={{resize:'none'}}
-                        className="w-full h-full border border-primary rounded flex justify-start align-text-top p-2 whitespace-normal"
+                        className="w-full h-full border border-primary rounded flex justify-start align-text-top p-2 whitespace-normal min-h-[200px] outline-primary"
                         placeholder="Please leave whatever feedback you feel is relevant."
                 />
             </div>

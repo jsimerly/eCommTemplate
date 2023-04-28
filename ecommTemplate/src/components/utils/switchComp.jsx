@@ -10,7 +10,7 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
     }
 
     const HeaderButton = ({type, index}) => (
-        <button className={`justify-center flex py-3 sm:py-0 border border-primary rounded-md sm:border-none ${classProps(view===type)}`} key={'switch_comp_obj_' + index}>
+        <button className={`justify-center flex py-2 px-1 sm:py-0 border border-primary rounded-md sm:border-none ${classProps(view===type)} min-w-[120px] sm:min-w-0 flex-1 sm:flex-none`} key={'switch_comp_obj_' + index}>
             <div
                 className={`hover:underline`}
                 onClick={()=> setView(type)}
@@ -21,23 +21,23 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
     )
 
     return (
-        <div className={`${className} flex justify-center text-tertiary w-full h-full bg-white sm:rounded-md sm:border-primary`}>
-            <div className='w-full h-full flex flex-col justify-center items-center '>
-                <div className="grid grid-cols-2 gap-1 sm:flex sm:flex-row justify-center sm:p-2 items-center sm:space-x-12 sm:text-[18px] w-full border">
-                    {Object.keys(compDict).map((key, index) => (
-                        <HeaderButton
-                            type={key}
-                            key={index}
-                            index={index}
-                        />
-                    ))}
-                </div>
-                <div className="w-3/4 sm:border border-primary mb-2"/>
-                <div className="flex justify-center items-center h-full w-full">
-                    {compDict[view]}
-                </div>
+    <div className={`${className} flex justify-center text-tertiary w-full h-full bg-white sm:rounded-md sm:border-primary`}>
+        <div className='w-full h-full flex flex-col justify-center items-center '>
+            <div className="flex flex-row flex-wrap gap-2 justify-center items-center sm:space-x-12 sm:text-[18px] w-full p-2">
+                {Object.keys(compDict).map((key, index) => (
+                    <HeaderButton
+                        type={key}
+                        key={index}
+                        index={index}
+                    />
+                ))}
+            </div>
+            <div className="w-3/4 sm:border border-primary mb-2"/>
+            <div className="flex justify-center items-center h-full w-full">
+                {compDict[view]}
             </div>
         </div>
+    </div>
     )
 }
 

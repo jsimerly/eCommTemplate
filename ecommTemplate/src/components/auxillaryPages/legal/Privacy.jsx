@@ -58,7 +58,7 @@ const Privacy = () => {
   return (
     <div className="flex flex-col p-6 w-full justify-center items-center text-tertiary">
       <h1 className="text-[70px] w-full text-center"> Privacy </h1>
-      <div className="w-2/3">
+      <div className="sm:w-2/3">
         {privacyCopy.map((policy,i) => (
           <div className="my-3">
             <h2 className="text-[20px] py-3">{policy.header}</h2>

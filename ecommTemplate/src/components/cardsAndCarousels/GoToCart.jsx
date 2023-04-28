@@ -2,10 +2,10 @@ import navigateCart from '../../hooks/navigateCart';
 
 const GoToCart = () => (
     <div 
-      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md'
+      className='cursor-pointer hover:underline px-2 py-1 bg-primary text-white rounded-md w-full text-[12px] sm:text-[18px] min-w-[100px] text-center'
       onClick={navigateCart()}
     > 
-      <span className='hidden sm:block text-[12px] sm:text-[18px]'>View Cart &</span> Checkout
+      Go to Cart
     </div>
   )
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Call = () => {
   return (
-    <div className='text-tertiary'>
+    <div className='text-tertiary pb-10'>
         <h1 className='text-[40px] text-center font-bold'> Call: </h1>
         <h2 className='text-[40px]'> 1-800-555-3424 </h2>
         <div>
@@ -17,5 +17,4 @@ const Call = () => {
     </div>
   )
 }
-
 export default Call

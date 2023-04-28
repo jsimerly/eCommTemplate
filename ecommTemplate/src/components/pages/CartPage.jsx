@@ -2,9 +2,7 @@ import { Favorites, CartMain, OrderSummary } from "../cart"
 import { BrowsingHistory} from "../shopping"
 
 import { fetchCart } from '../../api/fetchCart';
-import { useEffect, useState } from 'react';
-
-import { useContext } from "react";
+import { useEffect, useState, useContext } from 'react';
 import { ShoppingContext } from "../../context";
 
 const CartPage = () => {
@@ -14,7 +12,9 @@ const CartPage = () => {
     const [freeItems, setFreeItems] = useState([])
     const [activePromos, setActivePromos] = useState([])
 
-    window.scrollTo(0,0)
+    useEffect(() => {
+        window.scrollTo(0,0)
+    },[])
 
     const create_updated_items = (item, items, updateProperties) => {
         const updatedItems = [...items]

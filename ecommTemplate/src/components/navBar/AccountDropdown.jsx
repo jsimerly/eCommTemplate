@@ -31,8 +31,8 @@ const LoggedInComp = ({userInfo}) => {
 
     return(
         <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
-        <div className='flex flex=row justify-between pt-2'>
-            <div className={`${open ?  '' : 'hidden'} bg-white w-full text-tertiary`}>
+        <div className='bg-white flex flex-row justify-between p-3 shadow-md rounded-md w-full'>
+            <div className={`${open ?  '' : 'hidden'} w-full text-tertiary`}>
                 <h3 className='pb-1 font-bold'>
                     My Account
                 </h3>
@@ -107,7 +107,7 @@ const UnauthedComp = () => {
     }
 
     return (
-        <div className='px-2 space-y-1 flex flex-col justify-center items-center'>
+        <div className='bg-white space-y-1 flex flex-col justify-center items-center w-full p-3 rounded-md shadow-md'>
             <h3 className='w-full font-bold hover:underline'>
                 Sign-In or Register
             </h3>
@@ -167,7 +167,7 @@ const AccountDropdown = ({open}) => {
     },[])
 
     return (
-        <div className={`${open ?  '' : 'hidden'} absolute top-[76px] -left-20 z-10 bg-white shadow-md rounded-md w-[280px] text-tertiary px-4 py-2`}>
+        <div className={`${open ?  '' : 'hidden'} absolute top-[90px] sm:top-[76px] right-3 z-10 w-[280px] text-tertiary`}>
             {isLoggedIn ? 
                 <LoggedInComp userInfo={userInfo}/> 
                 : 

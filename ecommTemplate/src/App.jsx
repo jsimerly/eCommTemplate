@@ -99,7 +99,7 @@ function App() {
 
     const timer = setTimeout(()=> {
       setNotification(false)
-    }, 5000)
+    }, 500000)
 
     return () => clearTimeout(timer);
   }
@@ -147,21 +147,21 @@ function App() {
             <Route path='/search/' element={<SearchPage/>}/>
             <Route path='/p/:slug' element= {<ProductPage/>} 
             /> {/* X */}
-            <Route path='/cart' element={<CartPage/>}/> {/* X */}
-            <Route path='/help' element={<HelpPage/>}/> {/* X */}
-            <Route path='/contact-support' element={<ContactSupport/>}/> {/* X */}
+            <Route path='/cart' element={<CartPage/>}/>
+            <Route path='/help' element={<HelpPage/>}/>
+            <Route path='/contact-support' element={<ContactSupport/>}/>
             <Route path='/FAQ' element={<FAQ/>}/> {/* On Hold until Business Model */} {/* X */}
-            <Route path='/find-order' element={<FindOrder/>}/> {/* X */}
-            <Route path='/feedback' element={<Feedback/>}/> {/* X */}
+            <Route path='/find-order' element={<FindOrder/>}/>
+            <Route path='/feedback' element={<Feedback/>}/>
             <Route path='/partner' element={<Partners/>}/> {/* On Hold until validtation */} {/* X */}
-            <Route path='/sign-up' element={<SignUp/>}/> {/* X */}
-            <Route path='/account-information' element={<AccountInformation/>}/>{/* X */}
-            <Route path='/reset-password' element={<ResetPassword/>}/>{/* X */}
-            <Route path='/blogs' element={<AllBlogsPage/>}/> {/* X */}
-            <Route path='/blogs/:blogId' element={<BlogPage/>}/> {/* X */}
+            <Route path='/sign-up' element={<SignUp/>}/>
+            <Route path='/account-information' element={<AccountInformation/>}/>
+            <Route path='/reset-password' element={<ResetPassword/>}/>
+            <Route path='/blogs' element={<AllBlogsPage/>}/>
+            <Route path='/blogs/:blogId' element={<BlogPage/>}/>
             <Route path='/privacy' element={<Privacy/>}/> {/* X */}
             <Route path='/cookies' element={<Cookies/>}/> {/* On hold until backend*/}{/* X */}
-            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> {/* X */}
+            <Route path='/terms-and-conditions' element={<TermsConditionsPage/>}/> 
             <Route path='*' element={<Empty className='h-[600px]' message={
               <div>
                 Oh dear, it seems that there is nothing here! <br/> <span className='text-[12px]'>(Page Not Found) </span>

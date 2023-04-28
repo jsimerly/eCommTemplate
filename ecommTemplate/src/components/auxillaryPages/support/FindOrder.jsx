@@ -13,9 +13,9 @@ const UpdateOrderPage = () => {
   }
   window.scrollTo(0,0)
   return (
-    <div className='w-full flex flex-col justify-center items-center text-tertiary p-10'>
-      <h1 className='text-[40px] p-3'> Update or Exchange an Order</h1>
-      <div className='p-6 bg-white rounded-md w-[600px] border border-primary'>
+    <div className='w-full flex flex-col justify-center items-center text-tertiary sm:p-10 px-3'>
+      <h1 className='text-[20px] sm:text-[40px] p-3'> Update or Exchange an Order</h1>
+      <div className='p-6 bg-white rounded-md sm:w-[600px] border border-primary'>
         <p>Update order even if you are not registered. Enter the order number and email address or phone number used to place the order.</p>
         <div className='py-3'>
           <h2>Order Number</h2>

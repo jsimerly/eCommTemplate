@@ -91,10 +91,10 @@ const CreateAccount = () => {
     }
 
     return(
-        <div className="w-3/4 flex flex-col justify-center items-center">
+        <div className="p-3 sm:w-3/4 flex flex-col justify-center items-center">
             <h2 className="font-bold text-[30px] text-primary">Experience the Magic of Blue Elf!</h2>
             <h3>Sign up and you’ll be able to manage your account, track orders, save products and get access to special deals. </h3>
-            <div className="flex flex-col justify-center items-center w-2/3 gap-4 py-4">
+            <div className="flex flex-col justify-center items-center sm:w-2/3 gap-4 py-4">
                 <div className="flex flex-row justify-between w-full gap-2">
                     <input
                         className={`w-1/2 border border-primary rounded-md pl-2 outline-primary p-2 ${firstNameError? 'border-errorRed' : null}`}

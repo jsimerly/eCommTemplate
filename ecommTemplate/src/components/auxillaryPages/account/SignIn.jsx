@@ -35,11 +35,11 @@ const SignIn = () => {
     }
 
     return(
-        <div className="w-3/4 h-full flex flex-col justify-center items-center">
+        <div className="sm:w-3/4 h-full flex flex-col justify-center items-center p-3">
             <h2 className="font-bold text-[30px] text-primary">Keep the Magic Going...</h2>
             <h3>Sign up and you’ll be able to manage your account, track orders, save products and get access to special deals. </h3>
             <form 
-                className="flex flex-col justify-center items-center w-2/3 gap-4 py-4"
+                className="flex flex-col justify-center items-center w-full sm:w-2/3 gap-4 py-4"
                 onSubmit={handleSubmit}
             >
                 <div className="flex flex-col w-full gap-4">

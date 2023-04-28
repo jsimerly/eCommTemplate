@@ -35,16 +35,19 @@ const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive
                         setSearchParamActive={setSearchParamActive}
                     />
                 </div>
-                <div className='flex justify-end items-center relative overflow-visible'>
-                    <div className='flex h-[40px] w-[40px] justify-between items-center cursor-pointer'
-                    ref={node}
+                <div className='flex justify-end items-center sm:relative overflow-visible'>
+                    <div 
+                        className='flex h-[40px] w-[40px] justify-between items-center cursor-pointer '
+                        ref={node}
                     >
                         <PersonIcon 
                             className='hover:scale-110'
                             sx={{fontSize: '40px'}}
                             onClick = {handleClickAccount}
                         />
-                        <AccountDropdown open={openAccount}/>
+                        <AccountDropdown 
+                            open={openAccount}
+                        />
                     </div>
                     <div className='flex flex-row cursor-pointer'>
                         <div 
@@ -55,8 +58,8 @@ const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive
                                 className='hover:scale-110 m-3'
                                 sx={{fontSize:'36px'}}
                             />
-                            <div className={`absolute top-1 right-1 leading-none rounded-full flex justify-center items-center text-[12px] text-white bg-primary p-1 ${cartSize === 0 ? 'hidden' : null}`}>
-                                <div className='text-[12px] text-white text-center'>
+                            <div className={`absolute top-0 right-0 leading-none rounded-full flex justify-center items-center text-[12px] text-white bg-primary p-1 ${cartSize === 0 ? 'hidden' : null} min-h-[18px] min-w-[18px]`}>
+                                <div className='text-[10px] text-white text-center'>
                                     {cartSize}
                                 </div>
                             </div>
