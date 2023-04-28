@@ -1,6 +1,5 @@
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
-import { useState } from 'react';
 import { SwitchComp } from '../../utils';
 import {Call, Email, OpenTicket} from './contact'
 

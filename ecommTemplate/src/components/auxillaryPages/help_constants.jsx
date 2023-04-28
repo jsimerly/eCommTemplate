@@ -56,13 +56,13 @@ export const accountButtons = [
         title: 'Change Account Information', 
         desc:"Update account information like your name, number, email, etc.", 
         icon:<ManageAccountsIcon/>, 
-        link:'/'
+        link:'/account-information'
     },
     {
         title: 'Change Password', 
         desc: 'Make updates to your password.', 
         icon:<LockResetIcon/>, 
-        link:'/find-order'
+        link:'/account-information'
     },
     {
         title: 'Update Payment', 
@@ -81,7 +81,7 @@ export const accountButtons = [
         title: 'Preferences', 
         desc: 'Change your account preferences including, cookies, emailing, and prefered communication methods.', 
         icon:<PsychologyIcon/>, 
-        link:'/find-order'
+        link:'/account-information'
     },
 
 

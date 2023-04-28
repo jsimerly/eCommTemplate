@@ -1,7 +1,10 @@
-import { useState } from "react"
+import { useState, useRef, useContext } from "react"
 import useDropdown from "../../../hooks/useDropdown"
 import ExpandMore from "@mui/icons-material/ExpandMore"
 import { BlueButton } from "../../utils"
+import { fetchCreateCustomerFeedback } from "../../../api/fetchCustomer"
+import { ShoppingContext } from '../../../context';
+
 
 const feedbackOptions = [
     'Services',
@@ -13,14 +16,39 @@ const feedbackOptions = [
 const Feedback = () => {
     window.scrollTo(0,0)
     const [open, setOpen, handleClick, node] = useDropdown()
+    const {handleNotification} = useContext(ShoppingContext)
 
     const [feedbackType, setFeedbackType] = useState('')
+    const feedbackInputRef = useRef()
+    
 
     const handleSelection = (option) => {
         setOpen(false);
         setFeedbackType(option)
-        console.log(option)
     }
+
+    const handleSubmit = async () => {
+        const data = {
+          feedback_type: feedbackType,
+          feedback: feedbackInputRef.current.value,
+        };
+    
+        try {
+          const response = await fetchCreateCustomerFeedback(data);
+          if (response.ok) {
+            handleNotification('Feedback submitted successfully!')
+            // clear the feedback input field
+            feedbackInputRef.current.value = '';
+            setFeedbackType('');
+          } else{
+            handleNotification("Failed to submit Feedback, please make sure a type is selected and you're not over the 1000 character count.", null, true)
+          }
+
+        } catch (error) {
+          console.error(error);
+          alert('Failed to submit feedback');
+        }
+      };
 
   return (
     <div className="p-6 flex flex-col items-center text-tertiary w-full">
@@ -53,6 +81,7 @@ const Feedback = () => {
             <h2 className="mt-3">Feedback Message</h2>
             <div className="w-full h-[300px] relative">
                 <textarea
+                    ref={feedbackInputRef}
                     style={{resize:'none'}}
                     className="w-full h-full border border-primary rounded flex justify-start align-text-top p-2 whitespace-normal outline-primary"
                     placeholder="Please leave whatever feedback you feel is relevant."
@@ -60,13 +89,10 @@ const Feedback = () => {
                 <span className="bottom-2 right-2 absolute text-tertiaryTone-300"> (Max Character Count: 1000)</span>
             </div>
             <div className='flex justify-center w-full mt-3'>
-                <BlueButton
-                    content='Submit Feedback'
-                />
+                <BlueButton content="Submit Feedback" onClick={handleSubmit} />
             </div>
         </div>
     </div>
-        
   )
 }
 

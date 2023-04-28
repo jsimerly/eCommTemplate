@@ -32,3 +32,49 @@ class BrowseHistory(models.Model):
     class Meta:
         ordering = ['-timestamp']
 
+class LargeQuoteRequest(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+
+class CustomerFeedback(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    date = models.DateTimeField(auto_now_add=True)
+
+    FEEDBACK_TYPE_CHOICES = [
+        ('Services', 'Services'),
+        ('Products', 'Products'),
+        ('Technology', 'Technology'),
+        ('Other', 'Other')
+    ]
+    
+    feedback_type = models.CharField(choices=FEEDBACK_TYPE_CHOICES, max_length=50)
+    feedback = models.TextField()
+
+class SupportTicket(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    date = models.DateTimeField(auto_now_add=True)
+
+    SUPPORT_TYPE_CHOICES = [
+        ('Service', 'Service'),
+        ('Product', 'Product'),
+        ('Technology', 'Technology'),
+        ('Other', 'Other')
+    ]
+    support_type = models.CharField(choices=SUPPORT_TYPE_CHOICES, max_length=50, default='Other')
+
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+
+class BulkRequest(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    date = models.DateTimeField(auto_now_add=True)
+
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
