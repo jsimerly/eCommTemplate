@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Range } from 'react-range'
-import colors from '../../../constants/design/colors'
-
+import { company } from '../../../constants/company_constants'
 
 const ScaleBar = ({values, setValues, priceExtrema, setDisplayMax, setDisplayMin}) => {
   const [displayValues, setDisplayValues] = useState([0,100])
@@ -37,15 +36,15 @@ const ScaleBar = ({values, setValues, priceExtrema, setDisplayMax, setDisplayMin
                   ref={props.ref}
                   className='rounded-md w-full h-[3px] cursor-pointer'
                   style={{
-                    background: `linear-gradient(to right, ${colors.neutralLight} 0%, ${colors.neutralLight} ${
+                    background: `linear-gradient(to right, ${company.neutral_light} 0%, ${company.neutral_light} ${
                       ((displayValues[0] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
-                    }%, ${colors.primary} ${
+                    }%, ${company.primary_color} ${
                       ((displayValues[0] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
-                    }%, ${colors.primary} ${
+                    }%, ${company.primary_color} ${
                       ((displayValues[1] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
-                    }%, ${colors.neutralLight} ${
+                    }%, ${company.neutral_light} ${
                       ((displayValues[1] - priceExtrema[0]) / (priceExtrema[1] - priceExtrema[0])) * 100
-                    }%, ${colors.neutralLight} 100%)`,
+                    }%, ${company.neutral_light} 100%)`,
                   }}
                 >
                   {children}

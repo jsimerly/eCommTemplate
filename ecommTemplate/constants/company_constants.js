@@ -10,10 +10,10 @@ export const company = {
 
     //Colors
     primary_color: "#4F86C6",
-    primary_light: '',
-    secondary_color: '',
-    secondary_light: '',
-    neutral_dark: '',
-    neutral_light: '',
+    primary_light: "#e4eaf6",
+    secondary_color: "#4F86C6",
+    secondary_light: "#e4eaf6",
+    neutral_dark: "#454d66",
+    neutral_light: "#aeb4c8",
     neutral_off_whtie: "#aeb4c8",
 }
