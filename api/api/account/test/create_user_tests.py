@@ -201,7 +201,7 @@ class UserCreateTests(APITestCase):
         self.assertEqual(User.objects.get().is_email_verified, False)
         self.assertIsNotNone(User.objects.get().verification_token)
         
-        verify_token = uuid4()
+        verify_token = str(uuid4())
 
         verify_url = reverse('email_verification', kwargs={'verification_token': verify_token})
         verify_response = self.client.get(verify_url)

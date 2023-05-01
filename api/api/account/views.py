@@ -28,7 +28,7 @@ class CreateUserView(APIView):
             serializer.save(verification_token = verification_token)
 
             # send_verification(user, request, verification_token) turn on when email server is responding again
-            print('usually send email verification here, currently commented out')
+            #print('usually send email verification here, currently commented out')
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -79,24 +79,19 @@ class UpdateNameView(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class UpdateAccountView(APIView):
     def put(self, request):
-        print(request.data)
         user = request.user
         serializer = UpdateAccount_Serializer(user, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class UpdatePersonalView(APIView):
@@ -106,24 +101,19 @@ class UpdatePersonalView(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class UpdatePreferencesView(APIView):
     def put(self, request):
         user = request.user
-        print(request.data)
         serializer = UpdatePreferences_Serializer(user, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ResetPasswordView(APIView):
@@ -155,7 +145,6 @@ class ResetPasswordValidationView(APIView):
 
 class MarketingEmailSubmissionCreateView(APIView):
     def post(self, request):
-            print(request)
             serializer = MarketingEmailSubmissionSerializer(data=request.data)
             if serializer.is_valid():
                 email = serializer.validated_data['email']

@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
+from django.core.exceptions import ObjectDoesNotExist
 from customer.models import BrowseHistory
 from datetime import datetime
 from django.utils import timezone
@@ -60,7 +61,7 @@ class ProductPageView(APIView):
         try:
             product = Product.objects.get(slug=slug)
         except:
-            return Response({"error": "Product not found."}, status=404)
+            return Response({"error": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
         
         customer = request.customer
         if customer:
@@ -96,7 +97,6 @@ class ProductCategoryAPIView(APIView):
             **getDateContext(request)
         }
 
-        print(context)
         category_obj = Category.objects.get(fe_id=category)
         category_serializer = IndividualCategory_Serializer(category_obj, context=context)
 
@@ -104,11 +104,21 @@ class ProductCategoryAPIView(APIView):
     
 class ProductAPIView(APIView):
     def get(self, request):
+        context = {
+            'request' : request,
+            **getDateContext(request)
+        }
 
         slug = request.GET.get('slug')
-        product = Product.objects.get(slug=slug)
+        if not slug:
+            return Response({'detail': 'Missing slug'}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = Product_Serializer(product)
+        try:
+            product = Product.objects.get(slug=slug)
+        except ObjectDoesNotExist:
+            return Response({'detail': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = Product_Serializer(product, context=context)
 
         is_favorited = product.favorited_items.filter(customer=request.customer).exists()
         

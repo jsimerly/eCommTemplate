@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Where, When } from '../searchbar';
 import { LargeBlueButton } from '../utils';
 import { fetchPromoCode } from '../../api/fetchCart';
+import { payment } from '../../assets/svg/'
 
 const PromoCard = ({promo, handlePromoRemove, }) => {
     const [showDescription, setShowDescription] = useState(false);

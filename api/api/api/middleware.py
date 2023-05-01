@@ -5,6 +5,7 @@ from django.middleware.csrf import get_token
 import jwt
 from api.settings import SECRET_KEY
 from django.contrib.auth import get_user_model
+from uuid import uuid4
 from django.contrib.auth.models import AnonymousUser
 
 User = get_user_model()
@@ -70,6 +71,10 @@ class DeviceCookieMiddleware(MiddlewareMixin):
 
         cookie = request.COOKIES.get('device')
         created = False
+        send_new = False
+        if cookie is None:
+            send_new = True
+            cookie = str(uuid4())
 
         if user.is_authenticated:
             try:
@@ -87,7 +92,7 @@ class DeviceCookieMiddleware(MiddlewareMixin):
 
         response = self.get_response(request)
 
-        if created or cookie == None:
+        if created or send_new:
             self.attach_cookie_to_response(response, customer.device)
 
         return response
