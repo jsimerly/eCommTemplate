@@ -7,6 +7,7 @@ import {
     QualityHero,
     Change,
     BlogBanner,
+    SocialProof
 } from '../landingPage';
 import CarouselTemplate from "../cardsAndCarousels/CarouselTemplate"
 import { useContext, useEffect, useState } from 'react';
@@ -103,6 +104,9 @@ const LandingPage = () => {
                 </div>
                 <div className='my-6 sm:my-16'>
                 <QualityHero/>
+                </div>
+                <div>
+                <SocialProof/>
                 </div>
                 <div className='my-6 hidden sm:block'>
                 <FreeWagon />

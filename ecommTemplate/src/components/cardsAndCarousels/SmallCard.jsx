@@ -37,7 +37,7 @@ const SmallCard = ({item, addExtraFunction}) => {
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
     <div 
-      className="bg-white m-1 p-2 flex flex-col rounded-md shadow-md"
+      className="bg-white m-2 p-2 flex flex-col rounded-md shadow-md hover:shadow-lg cursor-pointer"
       onClick={navigate}
     >
       <div className="w-[150px] h-[150px] mb-2 cursor-pointer">

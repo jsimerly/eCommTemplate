@@ -56,7 +56,7 @@ const ProductCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-      className='w-[150px] h-[270px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative group shadow-md'
+      className='w-[150px] h-[270px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative group hover:shadow-lg shadow-md'
       onClick={navigate}
     >
       {item.main_image && (
