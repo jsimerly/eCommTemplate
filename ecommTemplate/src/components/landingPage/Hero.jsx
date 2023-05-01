@@ -1,4 +1,4 @@
-import { heroMain } from './landingCopy_constant'
+import { heroMain } from '../../../constants/pages/landingCopy_constant'
 import navigateShopping from '../../hooks/navigateShopping'
 import { hero_banner, hero_banner_mobile } from '../../assets/images/banners'
 import { LargeBlueButton} from '../utils'

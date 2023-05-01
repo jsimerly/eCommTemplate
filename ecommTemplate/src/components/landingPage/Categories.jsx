@@ -1,4 +1,4 @@
-import { categories } from './landingCopy_constant'
+import { categories } from '../../../constants/pages/landingCopy_constant'
 import navigateShopping from '../../hooks/navigateShopping'
 import { BlueButton } from '../utils'
 

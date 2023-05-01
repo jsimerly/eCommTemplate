@@ -1,6 +1,6 @@
-import { cool_blog, unicorn_blog, games_blog, kids_blog } from '../../../assets/images/blog'
-import * as fun_beach_games_images from '../../../assets/images/blog/beach games'
-import * as east_coast_places_images from '../../../assets/images/blog/places'
+import { cool_blog, unicorn_blog, games_blog, kids_blog } from '../../src/assets/images/blog'
+import * as fun_beach_games_images from '../../src/assets/images/blog/beach games'
+import * as east_coast_places_images from '../../src/assets/images/blog/places'
 
 export const blogData = {
     'coolest-spots-on-the-east-coast-01042023' : {

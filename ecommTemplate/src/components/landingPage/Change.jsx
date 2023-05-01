@@ -1,4 +1,4 @@
-import { easy } from './landingCopy_constant'
+import { easy } from '../../../constants/pages/landingCopy_constant'
 import HelpCard from '../auxillaryPages/support/HelpCard'
 import ErrorBoundry from '../utils/ErrorBoundry'
 
@@ -7,10 +7,10 @@ const Change = () => {
   return (
     <>
         <h1 className="text-center text-[36px] text-tertiary mb-2">
-            We <span className="text-primary"> Help </span> Make It Easy
+          {easy.header}
         </h1>
         <div className="flex flex-col p-2 space-y-3 sm:space-y-0 sm:flex-row w-full justify-between text-tertiary sm:space-x-3">
-            {easy.map((info, index) => (
+            {easy.cards.map((info, index) => (
                 <HelpCard
                 title={info.title}
                 desc={info.desc}

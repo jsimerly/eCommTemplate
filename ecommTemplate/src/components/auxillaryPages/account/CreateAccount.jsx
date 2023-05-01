@@ -10,6 +10,7 @@ import { DateOfBirthInput, PasswordInput, PhoneNumberInput } from "./Inputs";
 import { useNavigate } from 'react-router-dom';
 
 import { ShoppingContext } from '../../../context';
+import { createAccount } from "../../../../constants/pages/account_constants";
 
 const CreateAccount = () => {
     const navigate = useNavigate()
@@ -92,8 +93,7 @@ const CreateAccount = () => {
 
     return(
         <div className="p-3 sm:w-3/4 flex flex-col justify-center items-center">
-            <h2 className="font-bold text-[30px] text-primary">Experience the Magic of Blue Elf!</h2>
-            <h3>Sign up and you’ll be able to manage your account, track orders, save products and get access to special deals. </h3>
+            {createAccount.header}
             <div className="flex flex-col justify-center items-center sm:w-2/3 gap-4 py-4">
                 <div className="flex flex-row justify-between w-full gap-2">
                     <input
@@ -152,7 +152,7 @@ const CreateAccount = () => {
                         className="text-primary hover:scale-110 cursor-pointer"
                         onClick={handleCheckClick}
                     />}
-                    <p className="text-[12px] ml-2">I wish to receive latest news and exclusive discounts by receiving Blue Elf marketing emails.</p>
+                    {createAccount.marketingCheck}
                 </div>
                 <BlueButton
                     content='Create Account'

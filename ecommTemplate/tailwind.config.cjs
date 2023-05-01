@@ -1,3 +1,5 @@
+// const {company} = require('./constants/company_constants')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./index.html", "./src/**/*.{js,jsx}"],
@@ -8,23 +10,12 @@ module.exports = {
           // https://mdigi.tools/darken-color/#faf3c5 to lighten
           primary: "#4F86C6",
           primaryLight: "#e4eaf6",
-          secondary: "#FAF3C5", 
-          complementary: '#ffa400',
-          secondaryTone: {
-            10:"#fefef9",
-            20:"#fefdf3",
-            30: '#ffffff',//"#fdfbee",
-            40: "#fdfae8",
-            50: "#fcf9e2",
-            60: "#fcf8dc",
-            70: "#fbf7d6",
-            80: "#fbf5d1",
-            90: "#faf4cb",
-            105: "#f8efb0",
-            110: "#f6ea9c",
-            115: "#f5e687",
-            120: "#f3e273",
-          },
+          secondary: "#FAF3C5",
+          secondaryLight: '',
+          neutralDark: '',
+          neutralLight: '',
+          neutralOffWhite: '',
+          
           tertiary: "#454d66",
           tertiaryTone: {
             100:"#f4f5f8",

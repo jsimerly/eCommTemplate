@@ -1,5 +1,5 @@
 import styles from '../styles'
-import { footerInfo, footerSocialIcons } from './footer_constants'
+import { footerInfo, footerSocialIcons } from '../../constants/pages/footer_constants'
 import { BlueButton } from './utils'
 import { main_white } from '/src/assets/images/blueElf'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';

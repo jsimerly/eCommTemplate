@@ -5,7 +5,6 @@ import { BlueButton } from "../../utils"
 import { fetchCreateCustomerFeedback } from "../../../api/fetchCustomer"
 import { ShoppingContext } from '../../../context';
 
-
 const feedbackOptions = [
     'Services',
     'Products',

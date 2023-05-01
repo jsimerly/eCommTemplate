@@ -1,0 +1,2 @@
+export const defaultCategory = {name:'All Categories', fe_id:'0000', parent:null, desc:"Planning your next vacation? Make sure you have everything you need with our selection of rental vacation items. From beach gear to kitchen essentials, we have everything to make your stay comfortable and convenient. All of our rental items are high-quality and well-maintained, so you can enjoy your vacation worry-free."
+}

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import ErrorBoundry from "../../utils/ErrorBoundry"
-import { blogData } from "./blogs_constant"
+import { blogData } from "../../../../constants/pages/blogs_constant"
 
 const Header = ({text}) => (
   <h2 className="text-[24px] font-semibold pt-6">{text}</h2>

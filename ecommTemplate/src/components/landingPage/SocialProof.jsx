@@ -1,4 +1,4 @@
-
+import { socialProof } from "../../../constants/pages/landingCopy_constant"
 
 const SocialCard = ({name, headline, review}) => {
     return (
@@ -12,7 +12,7 @@ const SocialProof = () => {
   return (
     <div>
         <h3>
-            But Don't Take our Word for It
+            {socialProof.header}
         </h3>
         <div>
 

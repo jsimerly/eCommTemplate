@@ -12,7 +12,7 @@ const ShoppingHero = ({categoryInfo}) => {
         )}
         <div className="absolute h-full w-full">
             <div className={`${styles.flexCenter} h-full`}>
-                <div className={`${styles.boxWidth} flex justify-center`}>
+                <div className={`${styles.boxWidth} flex justify-center sm:justify-start`}>
                     {categoryInfo && (
                         <div className='bg-white w-[80%] sm:w-2/3 rounded-md my-2 p-10 sm:justify-start flex flex-col items-start'>
                             <div className='flex flex-col items-start'>

@@ -6,7 +6,6 @@ import LandingPage from './components/pages/LandingPage'
 import StandardShop from './components/pages/StandardShop';
 import CartPage from './components/pages/CartPage';
 import { allDests } from './api/temp'
-import { allCategories } from './components/categorySelect_constants';
 import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
 import Navbar from './components/Navbar';
@@ -110,7 +109,7 @@ function App() {
           {selectedDateRange, setSelectedDateRange, 
             selectedDestination, setSelectedDestination, 
             selectedCategory, setSelectedCategory,
-            allDests, allCategories,
+            allDests,
             cartSize, setCartSize,
             handleNotification
           }}

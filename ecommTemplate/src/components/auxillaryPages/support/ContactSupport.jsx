@@ -2,6 +2,7 @@ import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 import { SwitchComp } from '../../utils';
 import {Call, Email, OpenTicket} from './contact'
+import { company } from '../../../../constants/company_constants';
 
 const supportDict = {
   'Open a Ticket' : <OpenTicket/>,
@@ -23,7 +24,7 @@ const ContactSupport = () => {
           />  
           <div className="flex flex-col justify-center items-center bg-white p-6 rounded-md border-primary border">
             <h2 className="text-[36px] font-bold text-center leading-none">Customer <br/> Service Team</h2>
-            <p className="w-[300px] text-center">Contact Blue Elf on help on order, products, and general inquiries.</p>
+            <p className="w-[300px] text-center">Contact {company.name} on help on order, products, and general inquiries.</p>
             <div className="flex flex-col justify-center items-center mt-6">
                 <h3 className="font-bold text-[18px] ">Hours</h3>
                 <p className="underline">Monday - Friday</p>
@@ -35,11 +36,11 @@ const ContactSupport = () => {
                 <h3 className="font-bold text-[18px] w-full text-center">Conacts</h3>
                 <div className="flex flex-row ">
                     <EmailIcon className="mx-2"/>
-                    <p> support@goBlueElf.com</p>
+                    <p> {company.support_email} </p>
                 </div>
                 <div className='flex flex-row'>
                     <CallIcon className="mx-2"/>
-                    <p> 1-800-555-3424</p>
+                    <p> {company.support_phone_number} </p>
                 </div>
             </div>
           </div>

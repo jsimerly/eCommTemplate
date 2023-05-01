@@ -1,13 +1,14 @@
 
 import CartItemCard from './CartItemCard';
 import FreeItemCard from './FreeItemCard';
+import { cartMain } from '../../../constants/pages/cart_copy';
 import { Empty } from '../utils';
 
 const CartMain = ({items, freeItems, updateCartItem, updateFreeItem, itemCount, totalCost, deleteCartItem, handleFetchCart, getInsurance, getCost}) => {
   return (
     <div className='w-full bg-white rounded-md p-6'>
         <h3 className='pb-3'>
-          Great choices! However, please note that adding an item to your cart doesn't guarantee availability. We recommend checking out now before it's sold out.
+          {cartMain.header}
         </h3>
         {items && items.length > 0 ? (
           items.map((item, i) => (

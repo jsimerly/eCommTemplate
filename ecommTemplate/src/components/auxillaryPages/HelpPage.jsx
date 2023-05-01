@@ -1,11 +1,13 @@
 import HelpCard from "./support/HelpCard"
-import { helpButtons, accountButtons } from "./help_constants"
+import { helpButtons, accountButtons } from "../../../constants/pages/help_constants"
 
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 import { useEffect, useState, useRef, useContext } from "react";
 import { fetchCreateBulkRequest } from "../../api/fetchCustomer";
 import { ShoppingContext } from '../../context';
+
+import { company } from "../../../constants/company_constants";
 
 const HelpPage = () => {
     const [openRequest, setOpenRequest] = useState(false)
@@ -81,7 +83,7 @@ const HelpPage = () => {
     <div className="sm:w-2/3 flex flex-col sm:flex-row sm:justify-between items-between gap-2 text-tertiary mt-20">
         <div className="flex flex-col items-center">
             <h2 className="text-[36px] font-bold text-center leading-none">Customer <br/> Service Team</h2>
-            <p className="w-[300px] text-center">Contact Blue Elf on help on order, products, and general inquiries.</p>
+            <p className="w-[300px] text-center">Contact {company.name} on help on order, products, and general inquiries.</p>
             <div className="flex flex-col justify-center items-center mt-6">
                 <h3 className="font-bold text-[18px] ">Hours</h3>
                 <p className="underline">Monday - Friday</p>
@@ -93,11 +95,11 @@ const HelpPage = () => {
                 <h3 className="font-bold text-[18px] w-full text-center">Conacts</h3>
                 <div className="flex flex-row ">
                     <EmailIcon className="mx-2"/>
-                    <p> support@goBlueElf.com</p>
+                    <p> {company.support_email} </p>
                 </div>
                 <div className='flex flex-row'>
                     <CallIcon className="mx-2"/>
-                    <p> 1-800-555-3424</p>
+                    <p> {company.support_phone_number} </p>
                 </div>
             </div>
         </div>
@@ -107,8 +109,8 @@ const HelpPage = () => {
             <div className="flex flex-col justify-center items-center mt-6">
                 <h3 className="font-bold text-[18px] ">Address</h3>
                 <div className="flex flex-col ">                    
-                    <div>105 S First Colonial Rd</div>
-                    <div>Virgina Beach, VA, 23454</div>
+                    <div>{company.addess_line_1}</div>
+                    <div>{company.address_line_2}</div>
                 </div>
 
             </div>
@@ -120,11 +122,11 @@ const HelpPage = () => {
                 <h3 className="font-bold text-[18px] w-full text-center">Conacts</h3>
                 <div className="flex flex-row ">
                     <EmailIcon className="mx-2"/>
-                    <p> sales@goBlueElf.com</p>
+                    <p> {company.sales_email} </p>
                 </div>
                 <div className='flex flex-row'>
                     <CallIcon className="mx-2"/>
-                    <p> 1-800-555-3429</p>
+                    <p> {company.sales_phone_number} </p>
                 </div>
             </div>
             <div className='mt-6'>

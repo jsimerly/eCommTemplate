@@ -1,5 +1,5 @@
 import { full_line_drawing } from "../../assets/images/banners"
-import { howToInfo } from "./landingCopy_constant"
+import { howToInfo } from "../../../constants/pages/landingCopy_constant"
 
 const StepCard = ({n, title, paragraph, index}) => (
 
