@@ -8,7 +8,7 @@ import CartPage from './components/pages/CartPage';
 import { allDests } from './api/temp'
 import { ShoppingContext } from './context';
 import ProductPage from './components/pages/ProductPage';
-import Navbar from './components/Navbar';
+import Navbar from './components/navBar/Navbar';
 import HelpPage from './components/auxillaryPages/HelpPage'
 import SearchPage from './components/pages/SearchPage'
 import {AllBlogsPage, BlogPage, ContactSupport, FAQ, Privacy, TermsConditionsPage, FindOrder, Feedback, AccountInformation, Partners, Cookies, SignUp, ResetPassword} from './components/auxillaryPages'

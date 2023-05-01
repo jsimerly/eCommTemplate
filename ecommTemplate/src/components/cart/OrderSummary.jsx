@@ -6,7 +6,6 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { payment } from '../../assets/svg'
 import { Where, When } from '../searchbar';
 import { LargeBlueButton } from '../utils';
 import { fetchPromoCode } from '../../api/fetchCart';
