@@ -19,7 +19,7 @@ const ReviewCard = ({review}) => {
     }
 
   return (
-    <div className='w-full border border-tertiary rounded-md p-2 my-2'>
+    <div className='w-full border border-neutralDark rounded-md p-2 my-2'>
         <div className="flex flex-col sm:flex-row justify-between items-center">
             <div className="flex flex-col px-6 justify-center">
                 <h3 className="text-[24px] font-semibold">

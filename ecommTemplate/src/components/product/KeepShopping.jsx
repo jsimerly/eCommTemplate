@@ -26,7 +26,7 @@ const KeepShopping = () => {
   },[selectedDateRange])
 
     const header = ( 
-        <div className="rounded-t-md pt-4 flex justify-center items-center text-tertiary">
+        <div className="rounded-t-md pt-4 flex justify-center items-center text-neutralDark">
             <h2 className="text-[30px] ">
                 Continue Shopping
             </h2>

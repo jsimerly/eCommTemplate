@@ -59,7 +59,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
             <form>
                 <input 
                     ref={inputRef}
-                    className="p-2 rounded-md border border-primary w-full text-tertiary outline-primary"
+                    className="p-2 rounded-md border border-primary w-full text-neutralDark outline-primary"
                     placeholder="Search"
                     value={searchInput}
                     onChange={handleSearchInput}
@@ -71,10 +71,10 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
                 />
             </form>
         </div>
-        <h1 className='w-full text text-tertiary font-bold text-[22px] py-2'>
+        <h1 className='w-full text text-neutralDark font-bold text-[22px] py-2'>
             Categories
         </h1>
-        <div className='sm:flex sm:flex-wrap justify-start text-tertiary'>
+        <div className='sm:flex sm:flex-wrap justify-start text-neutralDark'>
             {allCategories && allCategories.subcategories.map((cat, i) => {
                 return(
                     <div key={i} className='mr-10 flex flex-col flex-1 sm:flex-none mb-3'>
@@ -128,7 +128,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
             })}
         </div>
         <h4 
-            className='w-full text-center underline text-tertiary cursor-pointer hover:scale-105 mt-2'
+            className='w-full text-center underline text-neutralDark cursor-pointer hover:scale-105 mt-2'
             onClick={()=>handleSelect(allCategories)}
         >
             All Categories

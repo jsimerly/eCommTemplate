@@ -21,7 +21,7 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
     )
 
     return (
-    <div className={`${className} flex justify-center text-tertiary w-full h-full bg-white sm:rounded-md sm:border-primary`}>
+    <div className={`${className} flex justify-center text-neutralDark w-full h-full bg-white sm:rounded-md sm:border-primary`}>
         <div className='w-full h-full flex flex-col justify-center items-center '>
             <div className="flex flex-row flex-wrap gap-2 justify-center items-center sm:space-x-12 sm:text-[18px] w-full p-2">
                 {Object.keys(compDict).map((key, index) => (

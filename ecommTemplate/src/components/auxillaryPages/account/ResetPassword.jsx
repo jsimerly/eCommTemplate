@@ -5,7 +5,7 @@ const ResetPassword = () => {
   window.scrollTo(0,0)
   return (
     <div className="flex w-full justify-center p-3">
-      <div className="w-[1280px] h-full flex flex-col justify-center items-center text-tertiary py-10">
+      <div className="w-[1280px] h-full flex flex-col justify-center items-center text-neutralDark py-10">
         <h1 className="text-[30px]">
           Reset Your Password
         </h1>

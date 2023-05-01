@@ -32,7 +32,7 @@ const LoggedInComp = ({userInfo}) => {
     return(
         <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
         <div className='bg-white flex flex-row justify-between p-3 shadow-md rounded-md w-full'>
-            <div className={`${open ?  '' : 'hidden'} w-full text-tertiary`}>
+            <div className={`${open ?  '' : 'hidden'} w-full text-neutralDark`}>
                 <h3 className='pb-1 font-bold'>
                     My Account
                 </h3>
@@ -167,7 +167,7 @@ const AccountDropdown = ({open}) => {
     },[])
 
     return (
-        <div className={`${open ?  '' : 'hidden'} absolute top-[90px] sm:top-[76px] right-3 z-10 w-[280px] text-tertiary`}>
+        <div className={`${open ?  '' : 'hidden'} absolute top-[90px] sm:top-[76px] right-3 z-10 w-[280px] text-neutralDark`}>
             {isLoggedIn ? 
                 <LoggedInComp userInfo={userInfo}/> 
                 : 

@@ -64,7 +64,7 @@ const MobileCard = ({item, addExtraFunction}) => {
             className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'  
           />
       )}
-      <div className='mt-2 px-6 text-tertiary flex flex-col grow'>
+      <div className='mt-2 px-6 text-neutralDark flex flex-col grow'>
         <div className='flex flex-row justify-between w-full'>
             <div className='flex flex-col min-h-[60px] w-[80%]'>
             <h3 

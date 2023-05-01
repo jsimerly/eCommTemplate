@@ -13,7 +13,7 @@ const supportDict = {
 const ContactSupport = () => {
     window.scrollTo(0,0)
   return (
-    <div className='flex justify-center text-tertiary'>
+    <div className='flex justify-center text-neutralDark'>
       <div className='max-w-[1280px] w-full flex flex-col items-center px-3'>
         <h1 className='text-[30px] sm:text-[80px]'> Contact Support </h1>
         <div className='flex flex-col sm:flex-row justify-between w-full min-h-[540px]'>

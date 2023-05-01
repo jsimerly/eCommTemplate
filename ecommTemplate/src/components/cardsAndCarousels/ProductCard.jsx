@@ -79,7 +79,7 @@ const ProductCard = ({item, addExtraFunction}) => {
           </div>
         </>
       )}
-      <div className='mt-2 p-2 text-tertiary flex flex-col grow'>
+      <div className='mt-2 p-2 text-neutralDark flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 
             className='font-bold text-[16px] md:text-[20px] truncate hover:cursor-pointer hover:underline'

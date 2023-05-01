@@ -17,10 +17,10 @@ const WhereDropdown = ({setOpen}) => {
             className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 sm:shadow-md z-20 overflow-y-auto `}
             style={{ maxHeight: `80vh` }}
         >
-            <h1 className='w-full text-center text-tertiary font-bold text-[22px] py-2'>
+            <h1 className='w-full text-center text-neutralDark font-bold text-[22px] py-2'>
                 Locations
             </h1>
-            <div className='flex flex-col sm:flex-row flex-wrap justify-between text-tertiary px-3'>
+            <div className='flex flex-col sm:flex-row flex-wrap justify-between text-neutralDark px-3'>
                 {allDests?.map((dest, i) => {
                     const [open, setOpen] = useState(true)
 

@@ -44,7 +44,7 @@ const StandardShop = () => {
 
   return (
     <div>
-      <div className='text-tertiary'>
+      <div className='text-neutralDark'>
           <ShoppingHero
             categoryInfo={categoryInfo}
           />

@@ -27,7 +27,7 @@ const HowItWorksV2 = () => {
             <h1 className='text-[28px] sm:text-[48px] w-full text-primary text-center px-6 order-1'>
                 {howToInfo.title}
             </h1>
-            <div className='flex flex-col sm:flex-row justify-between w-full text-tertiary order-3 sm:order-2'>
+            <div className='flex flex-col sm:flex-row justify-between w-full text-neutralDark order-3 sm:order-2'>
                 {howToInfo.steps.map((step, index) => {
                     return (
                         <StepCard 

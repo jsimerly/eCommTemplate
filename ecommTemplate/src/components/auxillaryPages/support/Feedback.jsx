@@ -50,7 +50,7 @@ const Feedback = () => {
       };
 
   return (
-    <div className="p-6 flex flex-col items-center text-tertiary w-full">
+    <div className="p-6 flex flex-col items-center text-neutralDark w-full">
         <div className="sm:w-[600px]">
             <h1 className="font-bold text-[20px] sm:text-[40px] w-full text-center">Feedback</h1>
             <p className="w-full">Please leave whatever feedback you may feel is relevant! We read ALL feedback sumbitions and respond to all feedback that is constructive. Thank you for helping to improve how we do business.</p>
@@ -85,7 +85,7 @@ const Feedback = () => {
                     className="w-full h-full border border-primary rounded flex justify-start align-text-top p-2 whitespace-normal outline-primary"
                     placeholder="Please leave whatever feedback you feel is relevant."
                 />
-                <span className="bottom-2 right-2 absolute text-tertiaryTone-300"> (Max Character Count: 1000)</span>
+                <span className="bottom-2 right-2 absolute text-neutralLight"> (Max Character Count: 1000)</span>
             </div>
             <div className='flex justify-center w-full mt-3'>
                 <BlueButton content="Submit Feedback" onClick={handleSubmit} />

@@ -10,7 +10,7 @@ const Empty = ({className, message}) => {
                 <img src={not_found_img} className="object-scale-down"/>    
             </div>
 
-            <p className="text-tertiary text-center text-[18px] font-bold opacity-70 mt-2 w-full ml-6 ">{displayMessage}</p>
+            <p className="text-neutralDark text-center text-[18px] font-bold opacity-70 mt-2 w-full ml-6 ">{displayMessage}</p>
             
         </div>
     </div>

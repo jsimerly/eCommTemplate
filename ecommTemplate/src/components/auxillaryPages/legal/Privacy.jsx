@@ -12,7 +12,7 @@ const policyList = (list) => (
 const Privacy = () => {
   window.scrollTo(0,0)
   return (
-    <div className="flex flex-col p-6 w-full justify-center items-center text-tertiary">
+    <div className="flex flex-col p-6 w-full justify-center items-center text-neutralDark">
       <h1 className="text-[70px] w-full text-center"> Privacy </h1>
       <div className="sm:w-2/3">
         {privacyCopy.map((policy,i) => (

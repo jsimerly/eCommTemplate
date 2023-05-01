@@ -2,7 +2,7 @@ import { company } from "../../../../../constants/company_constants"
 
 const Call = () => {
   return (
-    <div className='text-tertiary pb-10'>
+    <div className='text-neutralDark pb-10'>
         <h1 className='text-[40px] text-center font-bold'> Call: </h1>
         <h2 className='text-[40px]'> {company.support_phone_number} </h2>
         <div>

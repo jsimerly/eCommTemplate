@@ -17,7 +17,7 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
                     <h3 className='font-bold md:text-[40px] text-[30px] text-primary'>
                         {header}
                     </h3>
-                    <div className='text-tertiary text-[18px]'>
+                    <div className='text-neutralDark text-[18px]'>
                         {desc}
                     </div>
                     <div className='flex flex-row justify-center items-center py-6 '>
@@ -37,7 +37,7 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
 const Categories = () => {
   return (
     <div className='flex flex-col w-full justify-center'>
-        <div className='flex justify-center items-center text-[36px] text-center font-bold text-tertiary pb-6 mx-3'>
+        <div className='flex justify-center items-center text-[36px] text-center font-bold text-neutralDark pb-6 mx-3'>
             {categories.title}
         </div>
         <div className='flex flex-col gap-10 md:gap-[300px] md:pb-[100px]'>

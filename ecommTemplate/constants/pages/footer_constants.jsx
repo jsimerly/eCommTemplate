@@ -86,7 +86,7 @@ export const footerSocialIcons = [
 ]
 
 export const footerSubscribe = {
-    title: 'Subscribe',
+    title: 'Stay Connected',
     placeholder: 'Email',
     desc: 'The Blue Elf newsletter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities.'
 }

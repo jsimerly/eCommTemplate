@@ -4,7 +4,7 @@ import { BlogCard } from '../auxillaryPages'
 const BlogBanner = () => {
   return (
     <>
-        <h1 className="text-center text-[36px] text-tertiary mb-2">
+        <h1 className="text-center text-[36px] text-neutralDark mb-2">
             Our Blogs
         </h1>
         <div className="flex flex-col sm:flex-row justify-between gap-6 w-full px-6 sm:px-20">
@@ -28,7 +28,7 @@ const BlogBanner = () => {
             />
         </div>
         <div className="flex justify-center mt-6">
-           <a href='/blogs' className='hover:underline hover:cursor-pointer text-tertiary'> View All Blogs </a>
+           <a href='/blogs' className='hover:underline hover:cursor-pointer text-neutralDark'> View All Blogs </a>
         </div>
     </>
 

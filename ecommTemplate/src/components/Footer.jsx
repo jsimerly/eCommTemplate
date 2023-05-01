@@ -1,5 +1,5 @@
 import styles from '../styles'
-import { footerInfo, footerSocialIcons } from '../../constants/pages/footer_constants'
+import { footerInfo, footerSocialIcons, footerSubscribe } from '../../constants/pages/footer_constants'
 import { BlueButton } from './utils'
 import { main_white } from '/src/assets/images/blueElf'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -47,14 +47,14 @@ const Footer = () => {
                     </ul>
                 </div>
             ))}
-            <div className='bg-white rounded-md pt-0 p-10 sm:relative sm:bottom-6  text-tertiary mt-6 sm:mt-0 shadow-md'>
-                <div className='mt-6 font-semibold mb-2'> Stay Connected </div>
+            <div className='bg-white rounded-md pt-0 p-10 sm:relative sm:bottom-6  text-neutralDark mt-6 sm:mt-0 shadow-md'>
+                <div className='mt-6 font-semibold mb-2'> {footerSubscribe.title} </div>
                 <div className='flex flex-row justify-start items-center mb-2'>
                     <input 
                         value={email || ''}
                         onChange={handleEmailChange}
                         placeholder='Email' 
-                        className='my-2 rounded-l p-2 pl-4 bg-tertiaryTone-100 outline-none'
+                        className='my-2 rounded-l p-2 pl-4 bg-neutralOffWhite outline-none'
                     />
                     <BlueButton
                         className='!rounded-l-none group'
@@ -67,8 +67,8 @@ const Footer = () => {
                         {emailError}
                     </div>
                 }
-                <div className='text-tertiary text-[12px] max-w-[250px]'>
-                    The Blue Elf newsletter is only twice monthly and we send special news letter only discounts. We also update you on new products, deals, and expansion cities. 
+                <div className='text-neutralDark text-[12px] max-w-[250px]'>
+                    {footerSubscribe.desc}
                 </div>
             </div>
         </div>

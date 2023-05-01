@@ -204,7 +204,7 @@ const AccountInformation = () => {
 
   return (
     <div className='flex w-full justify-center'>
-      <div className='w-[1280px] h-full flex flex-col justify-center items-center text-tertiary'>
+      <div className='w-[1280px] h-full flex flex-col justify-center items-center text-neutralDark'>
         <h1 className='text-[30px] sm:text-[50px] p-6'>
           Your Account
         </h1>
@@ -219,18 +219,18 @@ const AccountInformation = () => {
             <div>
               <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
-              <div className="bg-tertiaryTone-100 rounded-md p-6 w-full">
+              <div className="bg-neutralOffWhite rounded-md p-6 w-full">
                 <div className='flex flex-row flex-wrap items-center'>
                   {openNames ? 
                     <div className='flex flex-row w-1/2 items-center mt-1'>
                         <input
-                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary w-[130px] ${firstNameError? 'border-errorRed' : null}`}
+                          className={`p-2 rounded-md border border-neutralDark bg-neutralOffWhite outline-neutralDark w-[130px] ${firstNameError? 'border-errorRed' : null}`}
                           placeholder='First Name'
                           value={firstName}
                           onChange={handleFirstNameChange}
                           />
                         <input
-                          className={`p-2 rounded-md border border-tertiary bg-tertiaryTone-100 outline-tertiary ml-2 w-[130px] ${lastNameError? 'border-errorRed' : null}`}
+                          className={`p-2 rounded-md border border-neutralDark bg-neutralOffWhite outline-neutralDark ml-2 w-[130px] ${lastNameError? 'border-errorRed' : null}`}
                           placeholder='Last Name'
                           value={lastName}
                           onChange={handleLastNameChange}
@@ -263,13 +263,13 @@ const AccountInformation = () => {
               </ErrorBoundry>
 
               <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">  
-              <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
+              <div className="px-6 w-full border border-neutralDark rounded-md my-2 p-2">
                 <h2 className="font-bold">Account Information</h2>
                 <div className="ml-4 pt-4">
                   <h3 >Email Address</h3>
                   <div className="relative sm:w-1/2">
                     <input
-                      className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${emailError? 'border-errorRed' : null }`}
+                      className={`p-2 rounded-md border border-primary w-full text-neutralDark outline-primary ${emailError? 'border-errorRed' : null }`}
                       placeholder="Email"
                       value={email}
                       onChange={handleEmailChange}
@@ -336,7 +336,7 @@ const AccountInformation = () => {
             </ErrorBoundry>
 
             <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
-            <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
+            <div className="px-6 w-full border border-neutralDark rounded-md my-2 p-2">
               <h2 className="font-bold">Personal Information</h2>
               <div className="ml-4 pt-4">
                 <h3 >Date Of Birth</h3>
@@ -354,7 +354,7 @@ const AccountInformation = () => {
                 <div className="sm:w-1/2">
 
                   <input
-                    className={`p-2 rounded-md border border-primary w-full text-tertiary outline-primary ${driversLicenseError ? 'border-errorRed' : null}`}
+                    className={`p-2 rounded-md border border-primary w-full text-neutralDark outline-primary ${driversLicenseError ? 'border-errorRed' : null}`}
                     placeholder="Driver's License ID"
                     value={dln}
                     onChange={handleDlnChange}
@@ -372,7 +372,7 @@ const AccountInformation = () => {
             </ErrorBoundry>
 
             <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something."> 
-            <div className="px-6 w-full border border-tertiary rounded-md my-2 p-2">
+            <div className="px-6 w-full border border-neutralDark rounded-md my-2 p-2">
               <h2 className="font-bold">Preferences</h2>
               <div className="ml-4 py-4">
                 <div className="flex flex-row pb-3">

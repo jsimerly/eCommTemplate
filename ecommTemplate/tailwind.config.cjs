@@ -10,25 +10,13 @@ module.exports = {
           // https://mdigi.tools/darken-color/#faf3c5 to lighten
           primary: "#4F86C6",
           primaryLight: "#e4eaf6",
-          secondary: "#FAF3C5",
-          secondaryLight: '',
-          neutralDark: '',
-          neutralLight: '',
-          neutralOffWhite: '',
           
-          tertiary: "#454d66",
-          tertiaryTone: {
-            100:"#f4f5f8",
-            200:"#d6d9e3",
-            300: "#aeb4c8",
-            400: "#d6d9e3",
-            500: "#373d51",
-            600: "#292e3d",
-            700: "#1b1e28",
-            800: "#0d0f14",
-            900: "#030305",
+          secondary: "#4F86C6",
+          secondaryLight: "#e4eaf6",
 
-          },
+          neutralDark: "#454d66",
+          neutralLight: "#aeb4c8",
+          neutralOffWhite: '#f4f5f8',
 
           errorRed: "#C76C63",
         },

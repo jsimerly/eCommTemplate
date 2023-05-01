@@ -171,11 +171,11 @@ const Reviews = ({product}) => {
               onClick={handleFilterClicked}
               content={
                 <div>
-                  <TuneIcon className='mr-1 text-tertiary group-hover:scale-110'/>
+                  <TuneIcon className='mr-1 text-neutralDark group-hover:scale-110'/>
                   Filter
                 </div>
               }
-              className='!text-tertiary'
+              className='!text-neutralDark'
             />
             <button 
               className={`${filterActive ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
@@ -221,10 +221,10 @@ const Reviews = ({product}) => {
                   content={
                     <div className='flex flex-row justify-between'>
                       Sort By: <span className="hidden sm:block">{sortBy}</span>
-                      <ExpandMoreIcon className='ml-1 text-tertiary group-hover:scale-110'/>
+                      <ExpandMoreIcon className='ml-1 text-neutralDark group-hover:scale-110'/>
                     </div>
                   }
-                  className='!text-tertiary'
+                  className='!text-neutralDark'
                 />
               </div>
           <div 

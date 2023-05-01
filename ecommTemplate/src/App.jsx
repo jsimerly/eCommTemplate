@@ -104,7 +104,7 @@ function App() {
   }
 
   return (
-      <div className='w-full overflow-hidden bg-tertiaryTone-100 relative font-roboto'>
+      <div className='w-full overflow-hidden bg-neutralOffWhite relative font-roboto'>
         <ShoppingContext.Provider value={
           {selectedDateRange, setSelectedDateRange, 
             selectedDestination, setSelectedDestination, 

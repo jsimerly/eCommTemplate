@@ -87,7 +87,7 @@ const ProductMain = ({mainCardInfo}) => {
               </div>
             </div>
           </div>
-          <div className="w-1/3 flex flex-col items-center text-tertiary p-6">
+          <div className="w-1/3 flex flex-col items-center text-neutralDark p-6">
             <div className='flex flex-row justify-between w-full'>
               {mainCardInfo && 
                 <div className='flex flex-col'>

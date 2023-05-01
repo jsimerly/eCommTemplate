@@ -47,7 +47,7 @@ const HelpPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center py-10 px-3">
-    <div className="w-full text-tertiary flex flex-col justify-center items-center">
+    <div className="w-full text-neutralDark flex flex-col justify-center items-center">
         <h1 className="font-bold text-[30px] sm:text-[80px] sm:py-10 px-6">
             Help Center
         </h1>
@@ -80,7 +80,7 @@ const HelpPage = () => {
             </div>
         </div>
     </div>
-    <div className="sm:w-2/3 flex flex-col sm:flex-row sm:justify-between items-between gap-2 text-tertiary mt-20">
+    <div className="sm:w-2/3 flex flex-col sm:flex-row sm:justify-between items-between gap-2 text-neutralDark mt-20">
         <div className="flex flex-col items-center">
             <h2 className="text-[36px] font-bold text-center leading-none">Customer <br/> Service Team</h2>
             <p className="w-[300px] text-center">Contact {company.name} on help on order, products, and general inquiries.</p>

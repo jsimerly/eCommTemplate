@@ -58,7 +58,7 @@ const ScaleBar = ({values, setValues, priceExtrema, setDisplayMax, setDisplayMin
                 className='border-primary border-2 bg-white h-[16px] w-[16px] rounded-full shadow-md relative outline-none'
               >
                 <div 
-                    className='absolute -bottom-5 text-[10px] text-tertiary'
+                    className='absolute -bottom-5 text-[10px] text-neutralDark'
                     style={{
                         transform: "translateX(-50%)",
                         left: "50%",

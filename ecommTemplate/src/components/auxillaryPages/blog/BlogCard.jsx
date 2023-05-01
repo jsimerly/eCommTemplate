@@ -10,7 +10,7 @@ const BlogCard = ({title, date, img, link}) => {
 
     return(
         <div 
-            className="bg-white rounded-md w-full pb-2 sm:my-0 hover:cursor-pointer text-tertiary group"
+            className="bg-white rounded-md w-full pb-2 sm:my-0 hover:cursor-pointer text-neutralDark group"
             onClick={handleClick}
         >
             <img src={img} className='rounded-t-md'/>

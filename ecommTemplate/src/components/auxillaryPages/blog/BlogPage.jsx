@@ -20,7 +20,7 @@ const BlogPage = () => {
   window.scrollTo(0,0)
   return (
     <ErrorBoundry fallback="Oops, Sorry! We seem to be missing something here.">
-    <div className="flex justify-center items-center text-tertiary">
+    <div className="flex justify-center items-center text-neutralDark">
       <div className="max-w-[1280px] w-full flex flex-col items-center p-3 sm:p-6">
         <div className="p-6">
           <h1 className="w-full text-[24px] sm:text-[50px] leading-none font-bold">{blog.title}</h1>

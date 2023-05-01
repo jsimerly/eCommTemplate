@@ -8,6 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import navigateCart from '../hooks/navigateCart';
 import AccountDropdown from './navBar/AccountDropdown'
 import NotificationBar from './navBar/NotificationBar';
+import { company } from '../../constants/company_constants';
 
 const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive, setSearchParamActive, cartSize}) => {
     const [openAccount, setOpenAccount, handleClickAccount, node] = useDropdown(false)
@@ -22,7 +23,7 @@ const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive
                             className='w-[42px] h-[42px] mr-2 cursor-pointer '
                         />
                         <div className='font-londrina hidden sm:hidden md:block cursor-pointer'>
-                            Blue Elf
+                            {company.name}
                         </div>
                     </div>
                 </a>

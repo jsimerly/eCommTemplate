@@ -71,7 +71,7 @@ const ProductPage = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="max-w-[1280px] w-full">
-        <div className='mt-2 sm:mt-4 sm:mb-4 text-[12px] text-tertiary flex flex-row items-center w-full'>
+        <div className='mt-2 sm:mt-4 sm:mb-4 text-[12px] text-neutralDark flex flex-row items-center w-full'>
           <LinkPath category={category}/>
         </div>
         <div className='hidden sm:block mt-20 mb-24'>

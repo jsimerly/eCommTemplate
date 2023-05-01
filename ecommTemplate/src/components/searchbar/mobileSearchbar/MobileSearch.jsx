@@ -52,22 +52,22 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
       className={`fixed -bottom-[400px] left-0 w-full sm:hidden flex flex-col bg-white z-50 border border-primary 
       transition-transform duration-300
       ${showSlideUp ?  '-translate-y-[400px]' : 'transform translate-y-0'}`}>
-        <div className="text-tertiary w-full border p-4">
+        <div className="text-neutralDark w-full border p-4">
           <div className="flex flex-row justify-between space-x-3">
             <div 
-              className={`flex justify-center items-center ${selectedDestination ? 'text-tertiary' : 'text-tertiaryTone-300'}`}
+              className={`flex justify-center items-center ${selectedDestination ? 'text-neutralDark' : 'text-neutralLight'}`}
               onClick={handleLocationClicked}
             >
               <LocationOnIcon sx={{fontSize: 40}}/>
             </div>
             <div 
-              className={`flex justify-center items-center ${selectedDateRange?.first ? 'text-tertiary' : 'text-tertiaryTone-300'}`}
+              className={`flex justify-center items-center ${selectedDateRange?.first ? 'text-neutralDark' : 'text-neutralLight'}`}
               onClick={handleCalendarClicked}
             >
               <CalendarMonthIcon sx={{fontSize: 40}}/>
             </div>
             <div 
-              className={`flex flex-row items-center w-1/2 ${selectedCategory ? 'text-tertiary' : 'text-tertiaryTone-300'}`}
+              className={`flex flex-row items-center w-1/2 ${selectedCategory ? 'text-neutralDark' : 'text-neutralLight'}`}
               onClick={handleCategoriesClicked}
             >
               <BeachAccessIcon sx={{fontSize: 40}}/> 

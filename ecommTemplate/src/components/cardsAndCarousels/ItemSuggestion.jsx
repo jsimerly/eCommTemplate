@@ -6,7 +6,7 @@ import { ShoppingContext } from '../../context';
 import { fetchProductSuggestions } from "../../api/fetchProducts";
 
 const header = (
-<div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-tertiary p-2 mt-8 '>
+<div className='flex justify-center sm:justify-start items-center relative text-[24px] text-center font-bold text-neutralDark p-2 mt-8 '>
   You May be Interested In
 </div>
 )

@@ -48,7 +48,7 @@ const termsCopy = [
 const TermsConditionsPage = () => {
   window.scrollTo(0,0)
   return (
-    <div className="flex flex-col p-6 w-full justify-center items-center text-tertiary">
+    <div className="flex flex-col p-6 w-full justify-center items-center text-neutralDark">
     <h1 className="text-[30px] sm:text-[70px] w-full text-center"> Terms and Conditions </h1>
     <ol className="sm:w-2/3">
       {termsCopy.map((terms,i) => (

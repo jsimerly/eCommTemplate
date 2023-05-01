@@ -74,7 +74,7 @@ const MobileProductMain = ({mainCardInfo}) => {
 
         <div className="flex flex-col">
           <div className="flex flex-col">
-            <h1 className='text-tertiary my-2 ml-6 flex flex-row'>
+            <h1 className='text-neutralDark my-2 ml-6 flex flex-row'>
                 {mainCardInfo && 
                 <div className='flex flex-col w-full'>
                     <h1 className='text-[30px] font-bold leading-none'>
@@ -99,7 +99,7 @@ const MobileProductMain = ({mainCardInfo}) => {
                 <ImageSlider mainCardInfo={mainCardInfo}/>
             </div>
           </div>
-          <div className="w-full flex flex-col items-center text-tertiary p-6">
+          <div className="w-full flex flex-col items-center text-neutralDark p-6">
             <div className='flex flex-row justify-between w-full'>
                 {mainCardInfo &&
                     <div className='text-center'>
