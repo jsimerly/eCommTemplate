@@ -1,7 +1,7 @@
 import CarouselTemplate  from "../cardsAndCarousels/CarouselTemplate"
 
 import { SmallCard} from "../shopping"
-import { fetchAllFavorited, } from '../../api/fetchCart';
+import { fetchSuggestions, } from '../../api/fetchCart';
 
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
@@ -22,7 +22,14 @@ const KeepShopping = () => {
 
   //replace this fetch with KeepShopping endpoint
   useEffect(()=>{
-    fetchAllFavorited(setSuggestions, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+    const getSuggestions = async () => {
+      const response = await fetchSuggestions(selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+      if (response.ok){
+        const resp = await response.json()
+        setSuggestions(resp)
+      }      
+    }
+    getSuggestions()
   },[selectedDateRange])
 
     const header = ( 

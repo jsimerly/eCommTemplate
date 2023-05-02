@@ -254,9 +254,13 @@ class ProductSuggestionView(APIView):
             product_group = ProductGrouping.objects.get(name='most_popular_landing_page')
             suggested_products = list(product_group.products.all())
 
+        print(suggested_products)
         random.shuffle(suggested_products)
+        
+        serializer = ProductCard_Serializer(suggested_products, context=context, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
 
-        return Response(ProductCard_Serializer(suggested_products, context=context, many=True).data, status=status.HTTP_200_OK)
 
 class ProductSearchView(APIView):
     def get(self, request):

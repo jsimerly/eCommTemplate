@@ -4,12 +4,12 @@ import { howToInfo } from "../../../constants/pages/landingCopy_constant"
 const StepCard = ({n, title, paragraph, index}) => (
 
     <div className='flex flex-col sm:items-center mx-4 flex-1'>
-        <div className='flex justify-center sm:justify-end items-center sm:min-h-[80px] mt-3 sm:mt-0  w-full'>
+        <div className='flex justify-center items-center sm:min-h-[80px] mt-3 sm:mt-0  w-full'>
             <div className="flex flex-row">
                 <div className='rounded-full min-w-[42px] min-h-[40px] flex justify-center items-center border-4 border-primary text-[24px] text-primary font-bold'>
                     {n}
                 </div>
-                <h1 className={`${n === 4 ? 'text-start pl-8' : 'text-center'} mx-4 font-bold text-[24px] w-[150px] text-center`}>
+                <h1 className={`${n === 4 ? 'text-start pl-8' : 'text-center'} mx-4 font-bold text-[24px] text-center inline-flex items-center`}>
                     {title}
                 </h1>
             </div>

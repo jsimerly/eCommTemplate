@@ -115,6 +115,17 @@ export async function fetchAllFavorited(setterFunc, startDate, endDate, dateChan
     }
 }
 
+export async function fetchSuggestions(startDate, endDate, dateChange){
+    const [start, end] = parseDates(startDate, endDate)
+
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/products/product-suggestions/?${datesUrlString(start, end, dateChange)}`)
+        return response
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function fetchFavoriteDelete(uuid){
     const requestOptions = {
         method: 'DELETE',

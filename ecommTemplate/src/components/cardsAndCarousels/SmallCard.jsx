@@ -47,7 +47,7 @@ const SmallCard = ({item, addExtraFunction}) => {
         />
       </div>
       <div 
-        className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold"
+        className="mb-2 min-h-[45px] max-w-[150px] text-[14px] hover:underline cursor-pointer font-semibold text-neutralDark"
       >
         {item.name}
       </div>
