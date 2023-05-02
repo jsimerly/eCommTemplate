@@ -156,7 +156,7 @@ class ProductListAPIView(APIView):
 class ProductSearchView(APIView):
     def get(self, request):
         query = request.GET.get('q', '')
-        search_vector = SearchVector('name', 'category', 'tags')
+        search_vector = SearchVector('name', 'category', 'keywords')
 
         search_query = Q(name__icontains=query) | Q(category__icontains=query) | Q(tags__icontains=query)
 
@@ -203,8 +203,7 @@ class CreateReviewView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    
+   
 class ProductGroupingView(APIView):
     def get(self, request, group_name):
         context = {

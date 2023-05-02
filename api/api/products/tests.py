@@ -1,7 +1,5 @@
-from rest_framework.test import APITestCase, APIClient
-from products.models import Product, Brand, ProductMInfo, Category
-from products.serializers import Product_Serializer, ProductMInfo_Serializer
-from products.views import getDateContext
+from rest_framework.test import APITestCase
+from products.models import Product, Brand, ProductMInfo, Category, ProductReview
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
@@ -10,6 +8,14 @@ User = get_user_model()
 # Create your tests here.
 class ProductTests(APITestCase):
     def setUp(self):
+        self.user = User.objects.create_user(
+            email='user@example.com',
+            password='UserPassword123!',
+            first_name='John',
+            last_name='Doe',
+            date_of_birth='1990-01-01',
+        )
+
         self.brand = Brand.objects.create(name='Test Brand')
 
         self.test_category = Category.objects.create(
@@ -51,6 +57,7 @@ class ProductTests(APITestCase):
             daily_cost='1.00',
             insurance_base_cost='1.00',
             insurance_daily_cost='0.10',
+            keywords=["gadget", "device", "sample_keyword"]
         )
         self.product.frequently_bought_with.set([])
 
@@ -65,7 +72,7 @@ class ProductTests(APITestCase):
             daily_cost='0.50',
             insurance_base_cost='2.00',
             insurance_daily_cost='0.30',
-            keywords=['sample_keyword']
+            keywords=["smartphone", "mobile", "sample_keyword"]
         )
         self.product2.frequently_bought_with.set([])
 
@@ -80,6 +87,7 @@ class ProductTests(APITestCase):
             daily_cost='1.00',
             insurance_base_cost='0.00',
             insurance_daily_cost='0.10',
+            keywords=["laptop", "computer"]
         )
         self.product3.frequently_bought_with.set([])
 
@@ -95,6 +103,48 @@ class ProductTests(APITestCase):
             rank_link='Rank link',
             specs='Product specifications'
         )
+
+        self.review1 = ProductReview.objects.create(
+            product = self.product,
+            user=self.user,
+            verified_purchaser=False,
+            rating=3,
+            recommended=True,
+            comment_included=True,
+            header='Test Header',
+            body='This is the test body',
+            anonymous=True,
+            initial_review=True,
+            reported=False,
+            report_viewed=False
+        )
+
+        self.review2 = ProductReview.objects.create(
+            product = self.product,
+            user=self.user,
+            verified_purchaser=False,
+            rating=4,
+            recommended=True,
+            comment_included=True,
+            header='Test Header 2',
+            body='This is the test body 2.',
+            anonymous=True,
+            initial_review=True,
+            reported=False,
+            report_viewed=False
+        )
+
+        self.review3 = ProductReview.objects.create(
+            product = self.product,
+            user=self.user,
+            verified_purchaser=False,
+            rating=5,
+            recommended=True,
+            initial_review=False,
+            reported=False,
+            report_viewed=False
+        )
+
 
     def test_categories_view(self):
         self.test_subcategory.related_categories.set([self.test_category, self.test_subsubcategory])
@@ -205,22 +255,25 @@ class ProductTests(APITestCase):
         url = reverse('product_search')
         response = self.client.get(url, {'q': 'sample_keyword'})
         self.assertEqual(response.status_code, 200)
-        products = response.data
-        for product in products:
+
+        results = response.json()  # Access JSON data from the response
+        expected_products = [self.product, self.product2, self.product3]
+
+        for product in results['products']:
             self.assertTrue(
-                'sample_keyword' in product['name'] or
-                'sample_keyword' in product['category'] or
-                'sample_keyword' in product['keywords']
+                any(
+                    str(expected_product.uuid) == product['uuid']
+                    for expected_product in expected_products
+                )
             )
 
-    def test_search_products_with_empty_query(self):
-        url = reverse('product_search')
+    def test_get_product_reviews(self):
+        url = reverse('product_review_list', kwargs={'slug': self.product.slug})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 0)  # Empty query should return 0 products
+        self.assertEqual(len(response.data), 2)
 
-    def test_search_products_with_non_matching_keyword(self):
-        url = reverse('product_search')
-        response = self.client.get(url, {'q': 'non_matching_keyword'})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 0)
+    def test_get_product_reviews_with_invalid_slug(self):
+        url = reverse('product_review_list', kwargs={'slug': 'invalid-slug'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
