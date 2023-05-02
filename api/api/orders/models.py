@@ -154,16 +154,15 @@ class FullOrder(models.Model):
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
-        null=True,
         related_name='orders'
     )
 
     order_id = models.CharField(max_length=20, default=generate_order_id, unique=True)
 
-    user = models.ForeignKey(User, models.CASCADE, blank=True)
-    is_over_21 = models.BooleanField(default=False)
-    phone_number = models.CharField(max_length=20, null=False)
-    email = models.EmailField(max_length=255, null=False)
+    user = models.ForeignKey(User, models.CASCADE, blank=True, null=True)
+    # is_over_21 = models.BooleanField(default=False)
+    # phone_number = models.CharField(max_length=20, null=False)
+    # email = models.EmailField(max_length=255, null=False)
     drivers_license_id = models.CharField(max_length=30, null=True, blank=True)
 
     date_created = models.DateTimeField(auto_now_add=True)
@@ -173,34 +172,33 @@ class FullOrder(models.Model):
     insurance_total = models.DecimalField(decimal_places=2, max_digits=8)
     tax_total = models.DecimalField(decimal_places=2, max_digits=8)
 
-    promos = models.ForeignKey(
+    promos = models.ManyToManyField(
         Promo, 
-        on_delete=models.CASCADE,
-        related_name='order_promo'
+        related_name='order_promo',
     )
 
     total_cost = models.DecimalField(decimal_places=2, max_digits=8)
 
     are_we_transporting_initial = models.BooleanField(default=True)
-    initial_location = models.ForeignKey(
-        Address, 
-        on_delete=models.PROTECT,
-        related_name='order_initial_location'
-    )
+    # initial_location = models.ForeignKey(
+    #     Address, 
+    #     on_delete=models.PROTECT,
+    #     related_name='order_initial_location'
+    #)
     #Once Locations are added for stores add it as an option here
 
     are_we_transporting_return = models.BooleanField(default=True)
-    return_location = models.ForeignKey(
-        Address, 
-        on_delete=models.PROTECT,
-        related_name='order_return_location'
-    )
+    # return_location = models.ForeignKey(
+    #     Address, 
+    #     on_delete=models.PROTECT,
+    #     related_name='order_return_location'
+    # )
     #Once Locations are added for stores add it as an option here
 
     payment_method = models.CharField(max_length=30)
     is_paid = models.BooleanField(default=False)
 
-    rented_dates = DateRangeField()
+    # rented_dates = DateRangeField()
 
     delivered = models.BooleanField(default=False)
     returned = models.BooleanField(default=False)
@@ -209,12 +207,21 @@ class FullOrder(models.Model):
         pass
 
     def __str__(self):
-        return self.order_id + ' - ' + self.date_created
+        return "Total: " + str(self.total_cost) + "- Order ID: " + self.order_id + " - Date: " + str(self.date_created)
 
 class ItemOrder(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False)
 
-    user = models.ForeignKey(User, models.CASCADE, blank=True)
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+    )
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
@@ -229,11 +236,11 @@ class ItemOrder(models.Model):
         ,
         related_name='item_product'
     )
-    stock = models.ForeignKey(
-        Stock, 
-        on_delete=models.PROTECT,
-        related_name='item_stock'
-    )
+    # stock = models.ForeignKey(
+    #     Stock, 
+    #     on_delete=models.PROTECT,
+    #     related_name='item_stock'
+    # )
 
     base_cost = models.DecimalField(decimal_places=2, max_digits=8)
     daily_cost = models.DecimalField(decimal_places=2, max_digits=8)
@@ -245,25 +252,25 @@ class ItemOrder(models.Model):
     total_cost = models.DecimalField(decimal_places=2, max_digits=8)
 
     is_blueelf_transport_initial = models.BooleanField(default=True)
-    initial_location = models.ForeignKey(
-        Address, 
-        on_delete=models.PROTECT, 
-        related_name='item_initial_location'
-    )
+    # initial_location = models.ForeignKey(
+    #     Address, 
+    #     on_delete=models.PROTECT, 
+    #     related_name='item_initial_location'
+    # )
     #Once Locations are added for stores add it as an option here
 
     is_blueelf_transport_return = models.BooleanField(default=True)
-    return_location = models.ForeignKey(
-        Address, 
-        on_delete=models.PROTECT,
-        related_name='item_return_location'
-    )
+    # return_location = models.ForeignKey(
+    #     Address, 
+    #     on_delete=models.PROTECT,
+    #     related_name='item_return_location'
+    # )
     #Once Locations are added for stores add it as an option here
 
-    rented_dates = DateRangeField()
+    # rented_dates = DateRangeField()
 
     delivered = models.BooleanField(default=False)
     returned = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.product.name + ' - ' + self.uuid
+        return self.product.name + ' - ' + str(self.uuid)

@@ -3,6 +3,7 @@ from orders.views import *
 
 urlpatterns = [
     path('add-items/', CartItemAddView.as_view(), name='add_cart_item'),
+    path('update-insurance-purchased/', CartItemInsuranceUpdatedView.as_view(), name='update_insurnace_purchased'),
     path('update-quantity/', CartItemQuantityUpdateView.as_view(), name='update_quantity'),
     path('items/<uuid:uuid>/', CartItemDeleteView.as_view(), name='delete_cart_item'),
 
@@ -12,5 +13,7 @@ urlpatterns = [
     path('cart-size/', CartSizeView.as_view(), name='cart_size'),
     path('remove-favorite/<uuid:uuid>/', FavoriteItemDeleteView.as_view(), name='remove_favorite'),
     path('all-favorites/', FavoritedItemsView.as_view(), name='all_favorites'),
-    path('promo-validation/<code>/', PromoCodeView.as_view(), name='promo_code_validation')
+    path('promo-validation/<code>/', PromoCodeView.as_view(), name='promo_code_validation'),
+
+    path('checkout/', CheckoutView.as_view(), name='checkout')
 ]

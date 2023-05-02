@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { Where, When } from '../searchbar';
 import { LargeBlueButton } from '../utils';
-import { fetchPromoCode } from '../../api/fetchCart';
+import { fetchCheckoutStarted, fetchPromoCode } from '../../api/fetchCart';
 import { payment } from '../../assets/svg/'
 
 const PromoCard = ({promo, handlePromoRemove, }) => {
@@ -56,7 +56,7 @@ const PromoCard = ({promo, handlePromoRemove, }) => {
     )
 }
 
-const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, deleteFreeItem, activePromos, setActivePromos}) => {
+const OrderSummary = ({subTotal, itemCount, insuranceTotal, deleteFreeItem, activePromos, setActivePromos}) => {
     const {handleNotification} = useContext(ShoppingContext)
     let navigateContinueShopping = navigateShopping('')
 
@@ -94,7 +94,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
     }
 
     const handlePromoAdded = async (code) => {
-        const response = await fetchPromoCode(code, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+        const response = await fetchPromoCode(code, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first, selectedDestination)
         
         if (response.ok){
             const resp = await response.json()        
@@ -178,6 +178,15 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
         subtotal = (subtotal * (1 - percentAfterDiscount)) + flatDiscount
 
         setTotalDiscount(subtotal)
+    }
+
+    const handleCheckoutClicked = async () => {
+        const response = await fetchCheckoutStarted(null, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first,selectedDestination)
+        if (response.ok) {
+            console.log('good')
+        } else {
+
+        }
     }
     
 
@@ -284,6 +293,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, setFreeItems, delete
         <div className='w-full flex justify-center items-center mt-4'>
             <LargeBlueButton
                 content='Checkout'
+                onClick={handleCheckoutClicked}
             />
         </div>
         <div className='flex justify-center'>

@@ -41,6 +41,25 @@ export async function fetchUpdateQuantity(uuid, quantity){
     }
 }
 
+export async function fetchUpdateInsurance(uuid, insurancePurchased){
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFTOKEN' : getCookie('csrftoken'),
+        },
+        body: JSON.stringify({uuid: uuid, insurance_purchased: insurancePurchased})
+    }
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/update-insurance-purchased/`,
+            requestOptions
+        )
+        return response
+    } catch (error){
+        throw (error)
+    }
+}
+
 export async function fetchItemDeleteCart(uuid){
     const requestOptions = {
         method: 'DELETE',
@@ -143,6 +162,29 @@ export async function fetchPromoCode(code, startDate, endDate, dateChange){
         const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/promo-validation/${code}/?${datesUrlString(start, end, dateChange)}`)
         return response
     } catch (error) {
+        throw (error)
+    }
+}
+
+
+export async function fetchCheckoutStarted(codes, startDate, endDate, dateChange, location){
+    const [start, end] = parseDates(startDate, endDate)
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFTOKEN' : getCookie('csrftoken'),
+        },
+        body: JSON.stringify(location, codes),
+    }
+
+    try{
+        const response = await fetchWrapper(`${SERVER_ADDRESS}/api/orders/checkout/?${datesUrlString(start, end, dateChange)}`,
+            requestOptions
+        )
+        return response
+    } catch (error){
         throw (error)
     }
 }

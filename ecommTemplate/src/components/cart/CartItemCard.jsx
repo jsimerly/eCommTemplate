@@ -5,7 +5,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingContext } from '../../context';
 import { QuantInput } from '../utils';
-import { fetchItemDeleteCart, fetchUpdateQuantity } from '../../api/fetchCart';
+import { fetchItemDeleteCart, fetchUpdateQuantity, fetchUpdateInsurance } from '../../api/fetchCart';
 import navigateProduct from '../../hooks/navigateProduct';
 
 
@@ -22,21 +22,31 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
         return
       }
       
+      //this is so if they're clicking up a bunch of time in a row it does not send too many requests
       const delayDebounce = setTimeout(
         async () => {
           const response = await fetchUpdateQuantity(item.uuid, item.quantity);
           if (response.ok){
             handleFetchCart()
           }
-        }, 1500)
+        }, 300)
       return () => clearTimeout(delayDebounce)
     },[item.quantity])
-  
+
     const handleQuantChanged = (quantValue) => {
       updateCartItem(item, {quantity: quantValue})
     }
 
     const handleInsuredClicked = () => {
+      const updateInsurance = async () => {
+        const response = await fetchUpdateInsurance(item.uuid, !item.insurance_purchased)
+        if (response.ok){
+
+        } else {
+          //send and error and set it back
+        }
+      }
+      updateInsurance()
       updateCartItem(item, {insurance_purchased: !item.insurance_purchased})
     }
   

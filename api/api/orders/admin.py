@@ -10,4 +10,3 @@ admin.site.register(ItemFavorited)
 admin.site.register(FullOrder)
 admin.site.register(ItemOrder)
 admin.site.register(FreeItemPromo)
-
