@@ -129,7 +129,7 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, deleteFreeItem, acti
             newActives.splice(existingIndex, 1)
             setActivePromos([...newActives])
         } else {
-            handleNotification('We had an issue removing your promotion. Please refresh the page.')
+            handleNotification('We had an issue removing your promotion. Please refresh the page.', null, error=true)
         }
     }
 
@@ -183,9 +183,10 @@ const OrderSummary = ({subTotal, itemCount, insuranceTotal, deleteFreeItem, acti
     const handleCheckoutClicked = async () => {
         const response = await fetchCheckoutStarted(null, selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first,selectedDestination)
         if (response.ok) {
-            console.log('good')
+            console.log('here')
+            handleNotification("We are currently having internal server issues, please visit us again in 24 hours.", null, true)
         } else {
-
+            handleNotification('We had an checking you out. Please refresh the page.', null, true)
         }
     }
     

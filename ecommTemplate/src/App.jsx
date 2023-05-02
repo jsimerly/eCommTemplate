@@ -98,7 +98,7 @@ function App() {
 
     const timer = setTimeout(()=> {
       setNotification(false)
-    }, 500000)
+    }, 5000)
 
     return () => clearTimeout(timer);
   }
