@@ -21,23 +21,25 @@ const KeepShopping = () => {
   const [suggestions, setSuggestions] = useState([])
 
   //replace this fetch with KeepShopping endpoint
+  const getSuggestions = async () => {
+    const response = await fetchSuggestions(selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
+    if (response.ok){
+      const resp = await response.json()
+      setSuggestions(resp)
+    }      
+  }
+
   useEffect(()=>{
-    const getSuggestions = async () => {
-      const response = await fetchSuggestions(selectedDateRange.startDate, selectedDateRange.endDate, selectedDateRange.first)
-      if (response.ok){
-        const resp = await response.json()
-        setSuggestions(resp)
-      }      
-    }
     getSuggestions()
   },[selectedDateRange])
 
-    const header = ( 
-        <div className="rounded-t-md pt-4 flex justify-center items-center text-neutralDark">
-            <h2 className="text-[30px] ">
-                Continue Shopping
-            </h2>
-        </div>
+
+  const header = ( 
+      <div className="rounded-t-md pt-4 flex justify-center items-center text-neutralDark">
+          <h2 className="text-[30px] ">
+              Continue Shopping
+          </h2>
+      </div>
     )
   return (
     <CarouselTemplate
