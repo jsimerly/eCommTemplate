@@ -39,13 +39,13 @@ async function refreshAccessToken(refreshToken) {
       },
       body: JSON.stringify({ refresh: refreshToken })
     });
-  
+
     if (!response.ok) {
       throw new Error('Failed to refresh access token');
     }
   
     const data = await response.json();
-    setCookie('access_token', data.access,  60);
+    setCookie('access_token', data.access, 60);
     return data.access;
 }  
 

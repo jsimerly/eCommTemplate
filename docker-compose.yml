@@ -1,42 +1,25 @@
-version: '3'
+version: '3.8'
 
 services:
-  backend:
+  web:
     build:
-      context: ./api
-    command: gunicorn api.wsgi --bind 0.0.0.0:8000
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     depends_on:
       - db
-    env_file:
-      - .env
-  frontend:
-    build:
-      context: ./frontend
-    volumes:
-      - react_build:/frontend/build
-  nginx:
-    image: nginx:latest
-    ports:
-      - 80:8080
-    volumes:
-      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
-      - react_build:/var/www/react
-    depends_on:
-      - backend
-      - frontend
-  db:
-    image: postgres
-    volumes:
-      - db-data:/var/lib/postgresql/data/
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432"
+      - DATABASE_URL=postgres://user:password@db:5432/dbname
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Test123!
+      - POSTGRES_DB=BlueElf
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  react_build:
-  db-data:
+  postgres_data:

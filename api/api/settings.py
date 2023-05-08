@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)@=aj%e%8pgad%unrcyrh6olk-c(8xh(7*c##tlii7c26n)pz*'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = os.environ['DEBUG'] == 'True'
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 
 # Application definition
@@ -146,14 +148,13 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = 'account.User'
 
 DATABASES = {
-
-    'default' : {
-        'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'BlueElf',
-        'USER' : 'postgres',
-        'PASSWORD' : 'Test123!',
-        'HOST' : 'localhost',
-        'PORT' : '',
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
     }
 }
 
@@ -162,10 +163,9 @@ SITE_ID = 1
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-EMAIL_FROM_USER = 'sih.sportsbook@gmail.com'
-EMAIL_HOST_USER = 'sih.sportsbook@gmail.com'
-EMAIL_HOST_PASSWORD = 'hbggjwbaazkmvkcu'
-
-EMAIL_USE_TLS=True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT=587
+EMAIL_FROM_USER = os.environ['EMAIL_FROM_USER']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_USE_TLS = os.environ['EMAIL_USE_TLS'] == 'True'
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_PORT = int(os.environ['EMAIL_PORT'])
