@@ -1,25 +1,32 @@
 version: '3.8'
 
 services:
-  web:
+  api:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./api
+      dockerfile: ./Dockerfile
     ports:
       - "8000:8000"
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgres://user:password@db:5432/dbname
+    env_file:
+      - ./api/api/.env
 
   db:
     image: postgres:13
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Test123!
-      - POSTGRES_DB=BlueElf
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
 
 volumes:
   postgres_data:
