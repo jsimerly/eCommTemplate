@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     #Libs
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
 
     #Apps
     'account',
@@ -55,21 +56,29 @@ INSTALLED_APPS = [
 ]
 
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8080",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1",
+    "http://127.0.0.1",
+]
+CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'api.middleware.SessionCookieMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'api.middleware.CorsMiddleware',
     'api.middleware.DeviceCookieMiddleware', 
     
     'django.middleware.csrf.CsrfViewMiddleware',
     'api.middleware.CsrfCookieMiddleware',
+    'api.middleware.RequestLoggingMiddleware',
 ]
 
 

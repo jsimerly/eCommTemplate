@@ -7,8 +7,29 @@ from api.settings import SECRET_KEY
 from django.contrib.auth import get_user_model
 from uuid import uuid4
 from django.contrib.auth.models import AnonymousUser
+from api.settings import ALLOWED_HOSTS
 
 User = get_user_model()
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+class RequestLoggingMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        # print('address: ' + request.META.get('REMOTE_ADDR'))
+        # print('user agent: ' + request.META.get('HTTP_USER_AGENT'))
+        bearer_token = None
+        auth_header = request.META.get('HTTP_AUTHORIZATION')
+        if auth_header and auth_header.startswith('Bearer '):
+            bearer_token = auth_header[len('Bearer '):]
+        print('bearer: ' + str(bearer_token))
+
+        return response
 
 class CsrfCookieMiddleware:
     def __init__(self, get_response):
@@ -36,7 +57,7 @@ class CorsMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        allowed_origins = ["http://127.0.0.1", "http://127.0.0.1:5173"]
+        allowed_origins = ALLOWED_HOSTS
         
         if (request.method == "OPTIONS" and "HTTP_ACCESS_CONTROL_REQUEST_METHOD" in request.META):
             response = http.HttpResponse()

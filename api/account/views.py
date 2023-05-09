@@ -65,6 +65,8 @@ class EmailVerificationView(APIView):
 class UserInformationView(APIView):
     serializer_class = UserInformation_Serializer
     def get(self, request):
+        remote_address = request.META.get('REMOTE_ADDR')
+        print(f"Request came from: {remote_address}")
         if request.user.is_authenticated:
             serializer = self.serializer_class(request.user)
 
