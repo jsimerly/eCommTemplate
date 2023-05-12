@@ -87,9 +87,11 @@ const ProductPage = () => {
         <Information
           secondaryCardInfo={secondaryCardInfo}
         />
-        <BoughtTogether
-          frequentlyBought={frequentlyBought}
-        />
+        {frequentlyBought.length > 1 && 
+          <BoughtTogether
+            frequentlyBought={frequentlyBought}
+          />
+        }
         <KeepShopping/>
       </div>
     </div>

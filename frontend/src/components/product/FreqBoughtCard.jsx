@@ -16,7 +16,7 @@ const FreqBoughtCard= ({item, handleCheckClicked, checked}) => {
     <div className='w-[150px] h-[260px] sm:h-[320px] sm:w-[240px] rounded-md bg-neutralOffWhite p-2 sm:pt-4 sm:px-4 flex flex-col m-2 shadow-md'>
       <img 
         src={item.main_image.image} 
-        className='bg-white object-scale-down rounded-md hover:cursor-pointer'
+        className='bg-white object-scale-down rounded-md hover:cursor-pointer p-3'
         onClick={navigateToProduct}
       />
       <div className='mt-2 text-neutralDark flex flex-col grow'>

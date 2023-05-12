@@ -80,7 +80,7 @@ const ProductMain = ({mainCardInfo}) => {
                 {mainImg &&
                   <img
                     src={mainImg}
-                    className='bg-white rounded-md aspect-square shadow-sm'
+                    className='bg-white rounded-md aspect-square shadow-sm p-6'
                   />
                 }
 

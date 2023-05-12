@@ -9,8 +9,9 @@ services:
       context: ./api
       dockerfile: ./Dockerfile
     command: gunicorn api.wsgi:application --bind 0.0.0.0:8000
-    ports:
-      - "8000:8000"
+    #leaving this port open as it's needed for the frontend django defaults such as the admin page
+    # ports:
+    #   - "8000:8000"
     depends_on:
       - db
     env_file:
@@ -26,7 +27,7 @@ services:
       context: ./frontend
       dockerfile: ./Dockerfile
     volumes:
-      - frontend_build:/frontend/build/dist
+      - frontend_build:/frontend/dist
     networks:
       - ecomm_network
 

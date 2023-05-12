@@ -1,6 +1,5 @@
 import { FreqBoughtCard } from './'
 import { useEffect, useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
 import { BlueButton } from '../utils';
 import { isDictInList } from '../utils'
 import { fetchItemsToCart } from '../../api/fetchCart';
@@ -89,7 +88,7 @@ const BoughtTogether = ({frequentlyBought}) => {
           <div className='flex flex-row'>
             <p>Subtotal: </p>
             <div className='flex flex-col items-center justify-start ml-1'>
-              <p ><span className='font-semibold text-[18px]'> ${totalCost.toFixed(2)}</span> (4 items)</p>
+              <p ><span className='font-semibold text-[18px]'> ${totalCost.toFixed(2)}</span> ({frequentlyBought.length} items)</p>
               <p className='leading-none text-[12px]'>For {days} Days</p>
             </div>
           </div>

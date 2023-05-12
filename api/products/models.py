@@ -113,7 +113,7 @@ class Product(models.Model):
         related_name='product_as_main'
     )
 
-    frequently_bought_with = models.ManyToManyField('self')
+    frequently_bought_with = models.ManyToManyField('self', blank=True)
 
     #Search
     keywords = models.TextField(blank=True, null=True)
