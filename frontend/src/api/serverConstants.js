@@ -1,1 +1,1 @@
-export const SERVER_ADDRESS = '3.145.50.187'
+export const SERVER_ADDRESS = '3.16.250.50'
