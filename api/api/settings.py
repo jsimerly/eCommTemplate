@@ -58,7 +58,11 @@ INSTALLED_APPS = [
 ]
 
 
-CORS_ALLOWED_ORIGINS = os.environ['ALLOWED_HOSTS'].split(',')
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8080",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1",
+]
 CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
@@ -75,7 +79,7 @@ MIDDLEWARE = [
     
     'django.middleware.csrf.CsrfViewMiddleware',
     'api.middleware.CsrfCookieMiddleware',
-    'api.middleware.RequestLoggingMiddleware',
+    # 'api.middleware.RequestLoggingMiddleware',
 ]
 
 

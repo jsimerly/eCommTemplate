@@ -22,7 +22,7 @@ export const heroMain = {
 }
 
 export const howToInfo = {
-    title: "How To Make Vacation Easy",
+    title: "4 Easy Steps",
     steps: [
         {
             title: "Tell Us Where",
