@@ -66,7 +66,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://rentblueelf.com',
     'https://rentblueelf.com',
     "http://www.rentblueelf.com",
-    "hhtps://www.rentblueelf.com",
+    "https://www.rentblueelf.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
