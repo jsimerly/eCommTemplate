@@ -1,1 +1,1 @@
-export const SERVER_ADDRESS =    'http://3.16.250.50' // 'http://127.0.0.1' //
+export const SERVER_ADDRESS =    'https://3.16.250.50' // 'http://127.0.0.1' //
