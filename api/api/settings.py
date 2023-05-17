@@ -64,7 +64,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     'http://3.16.250.50',
     'http://rentblueelf.com',
-    "http://www.rentblueelf.com"
+    'https://rentblueelf.com',
+    "http://www.rentblueelf.com",
+    "hhtps://www.rentblueelf.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
