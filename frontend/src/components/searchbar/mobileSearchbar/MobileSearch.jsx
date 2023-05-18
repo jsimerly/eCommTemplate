@@ -51,7 +51,7 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
       ref={node}
       className={`fixed -bottom-[330px] left-0 w-full sm:hidden flex flex-col bg-white z-50
       transition-transform duration-300
-      ${showSlideUp ?  '-translate-y-[300px]' : 'transform translate-y-0'}`}>
+      ${showSlideUp ?  '-translate-y-[330px]' : 'transform translate-y-0'}`}>
         <div className="text-neutralDark w-full px-4 py-2">
           <div className="flex flex-row justify-between">
             <div 
