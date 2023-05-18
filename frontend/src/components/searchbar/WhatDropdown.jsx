@@ -53,7 +53,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
 
   return (
     <div 
-        className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 ${open ? '' : 'hidden'} sm:shadow-md z-20 overflow-y-auto`}
+        className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 ${open ? '' : 'hidden'} sm:shadow-md z-20 overflow-y-auto h-full md:h-auto`}
     >
         <div className="relative">
             <form>

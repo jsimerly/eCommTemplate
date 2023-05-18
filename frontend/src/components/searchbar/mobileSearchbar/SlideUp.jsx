@@ -4,7 +4,7 @@ import WhatDropdown from "../WhatDropdown"
 
 const SlideUp = ({open, setOpen, activePopup, searchInput, setSearchInput, setSearchParamActive}) => {
     return(
-      <div className="h-[400px] sm:hidden">
+      <div className="h-[330px] sm:hidden border-t justify-center">
         {activePopup === "where" && <WhereDropdown setOpen={setOpen}/>}
         {activePopup === "when" && <WhenDropdown setOpen={setOpen}/>}
         {activePopup === "what" && (
