@@ -88,6 +88,7 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://www.rentblueelf.com']
+CRSF_COOKIE_DOMAIN = 'www.rentblueelf.com'
 
 ROOT_URLCONF = 'api.urls'
 
