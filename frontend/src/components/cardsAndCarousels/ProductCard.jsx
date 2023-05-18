@@ -56,7 +56,7 @@ const ProductCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-      className='w-[150px] h-[270px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative group hover:shadow-lg shadow-md'
+      className='w-[150px] h-[270px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative sm:group hover:shadow-lg shadow-md cursor-pointer'
       onClick={navigate}
     >
       {item.main_image && (
@@ -65,7 +65,7 @@ const ProductCard = ({item, addExtraFunction}) => {
             src={item.main_image.image} 
             className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square'
 
-            />
+          />
           <div 
             className={`absolute right-0 mr-6 mt-4 hover:scale-110 cursor-pointer ${itemFavorited? 'block' : 'hidden'} group-hover:block`}
             onClick={(e) => handleFavoriteClicked(e)}
@@ -82,7 +82,7 @@ const ProductCard = ({item, addExtraFunction}) => {
       <div className='mt-2 p-2 text-neutralDark flex flex-col grow'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 
-            className='font-bold text-[16px] md:text-[20px] truncate hover:cursor-pointer hover:underline'
+            className='font-bold text-[14px] md:text-[20px] md:truncate hover:cursor-pointer hover:underline'
           >
            {item.name}
           </h3>
@@ -91,12 +91,18 @@ const ProductCard = ({item, addExtraFunction}) => {
           </h4>
         </div>
         <div className='hidden md:block'>
+          {item.n_ratings != 0 ?
           <div className='flex flex-row mt-2 hover:cursor-pointer'>
             <Stars rating={item.average_rating}/>
             <div className='ml-1 md:text-[16px]'>
-             ({item.n_ratings})
+            ({item.n_ratings})
             </div>
           </div>
+          :
+           <div className='h-[30px]'>
+           </div>
+          }
+
         </div>
         <div className='flex flex-col flex-1 w-full justify-between items-start md:my-4'>
           <div className='flex justify-between w-full items-center h-[50px]'>

@@ -42,7 +42,7 @@ const HowItWorksV2 = () => {
                         )
                     })}
             </div>
-            <div className='w-full flex justify-center my-6 order-2 sm:order-3'>
+            <div className='w-full flex justify-center my-6 order-2 md:order-3'>
                 <img src={full_line_drawing}/>
             </div>
         </div>
