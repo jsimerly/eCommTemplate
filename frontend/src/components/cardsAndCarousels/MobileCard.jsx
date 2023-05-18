@@ -55,16 +55,16 @@ const MobileCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-        className='w-full h-[200px] rounded-md bg-white flex flex-row mb-2 relative group shadow-md justify-center items-center'
+        className='w-full h-[200px] rounded-md bg-white flex flex-row mb-2 relative group shadow-md justify-center items-center p-2'
         onClick={navigate}
     >
       {item.main_image && (
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'  
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'
           />
       )}
-      <div className='mt-2 px-6 text-neutralDark flex flex-col grow'>
+      <div className='pb-2 py-6 px-2 text-neutralDark flex flex-col items-start justify-between h-full w-full'>
         <div className='flex flex-row justify-between w-full'>
             <div className='flex flex-col min-h-[60px] w-[80%]'>
             <h3 
@@ -84,15 +84,15 @@ const MobileCard = ({item, addExtraFunction}) => {
                 }
           </div>
         </div>
-
+        { item.n_ratings !== 0 &&
         <div className='flex flex-row mt-2 hover:cursor-pointer'>
-        <Stars rating={item.average_rating}/>
-        <div className='ml-1 text-[16px]'>
-            ({item.n_ratings})
+          <Stars rating={item.average_rating}/>
+          <div className='ml-1 text-[16px]'>
+              ({item.n_ratings})
+          </div>
         </div>
-        </div>
-
-        <div className='flex flex-col flex-1 w-full justify-between items-start my-4'>
+        }
+        <div className='flex flex-col w-full justify-between items-start'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
               <div className='font-semibold text-[26px] leading-none'>

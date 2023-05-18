@@ -79,7 +79,7 @@ const ProductPage = () => {
             mainCardInfo={mainCardInfo}
           />
         </div>
-        <div className='sm:hidden'>
+        <div className='sm:hidden mt-4'>
           <MobileProductMain
             mainCardInfo={mainCardInfo}
           />

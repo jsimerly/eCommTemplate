@@ -32,7 +32,7 @@ const Information = ({secondaryCardInfo}) => {
             Product Information
         </h1>
         {secondaryCardInfo && 
-          <div className="py-2 px-6 w-full">
+          <div className="p-2 sm:px-6 w-full">
             <SwitchComp
                 compDict={infoDict}
                 defComp={'Details'}

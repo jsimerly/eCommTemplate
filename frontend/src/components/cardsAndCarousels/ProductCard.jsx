@@ -56,7 +56,7 @@ const ProductCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-      className='w-[150px] h-[270px] md:h-[486px] md:min-w-[300px] rounded-md bg-white p-2 md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative sm:group hover:shadow-lg shadow-md cursor-pointer'
+      className='w-[160px] h-[285px] md:h-[486px] md:min-w-[300px] rounded-md bg-white md:pt-2 md:px-2 flex flex-col mx-2 mb-4 relative sm:group hover:shadow-lg shadow-md cursor-pointer'
       onClick={navigate}
     >
       {item.main_image && (
@@ -92,7 +92,7 @@ const ProductCard = ({item, addExtraFunction}) => {
         </div>
         <div className='hidden md:block'>
           {item.n_ratings != 0 ?
-          <div className='flex flex-row mt-2 hover:cursor-pointer'>
+          <div className='flex flex-row pt-2 hover:cursor-pointer'>
             <Stars rating={item.average_rating}/>
             <div className='ml-1 md:text-[16px]'>
             ({item.n_ratings})

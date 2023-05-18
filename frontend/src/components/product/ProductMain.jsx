@@ -126,7 +126,7 @@ const ProductMain = ({mainCardInfo}) => {
                 </p>
               </div>
               }
-              {mainCardInfo && 
+              {mainCardInfo && mainCardInfo.nRatings !== 0 &&
                 <div>
                   <Stars rating={mainCardInfo.rating} size='30px'/>
                   <span className='ml-2'>
