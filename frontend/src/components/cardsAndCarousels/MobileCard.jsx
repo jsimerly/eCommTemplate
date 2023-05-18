@@ -66,15 +66,15 @@ const MobileCard = ({item, addExtraFunction}) => {
       )}
       <div className='px-2 text-neutralDark flex flex-col items-start justify-between w-full h-full'>
         <div className='flex flex-row justify-between w-full'>
-            <div className='flex flex-col min-h-[60px] w-[80%]'>
-            <h3 
-                className='font-bold text-[16px]'
-            >
-            {item.name}
-            </h3>
-            <h4 className='text-[12px] tracking-wide'>
-                {item.brand.name}
-            </h4>
+            <div className='flex flex-col justify-end min-h-[60px] w-[80%]'>
+              <h3 
+                  className='font-bold text-[16px] line-clamp-2'
+              >
+              {item.name}
+              </h3>
+              <h4 className='text-[12px] tracking-wide'>
+                  {item.brand.name}
+              </h4>
             </div>
             <div onClick={handleFavoriteClicked} className='flex justify-end items-start'>
                 {itemFavorited ? 
@@ -84,8 +84,8 @@ const MobileCard = ({item, addExtraFunction}) => {
                 }
           </div>
         </div>
-        { item.n_ratings !== 1 &&
-        <div className='flex flex-row mt-2 hover:cursor-pointer'>
+        { item.n_ratings !== 0 &&
+        <div className='flex flex-row hover:cursor-pointer'>
           <Stars rating={item.average_rating}/>
           <div className='ml-1 text-[16px]'>
               ({item.n_ratings})
@@ -95,7 +95,7 @@ const MobileCard = ({item, addExtraFunction}) => {
         <div className='flex flex-col w-full justify-between items-start'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
-              <div className='font-semibold text-[26px] leading-none'>
+              <div className='text-[26px] leading-none'>
                 ${item.total_cost.toFixed(2)}
               </div>
               <p className='leading-none text-[12px] text-center'>
