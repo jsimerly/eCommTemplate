@@ -10,10 +10,14 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
     }
 
     const HeaderButton = ({type, index}) => (
-        <button className={`justify-center flex py-2 px-1 sm:py-0 border border-primary rounded-md sm:border-none ${classProps(view===type)} min-w-[120px] sm:min-w-0 flex-1 sm:flex-none`} key={'switch_comp_obj_' + index}>
+        <button 
+            className={`justify-center flex py-2 px-1 sm:py-0 border border-primary rounded-md sm:border-none ${classProps(view===type)} min-w-[160px] sm:min-w-0 sm:flex-none flex-1`} 
+            key={'switch_comp_obj_' + index}
+            onClick={()=> setView(type)}
+        >
             <div
                 className={`hover:underline`}
-                onClick={()=> setView(type)}
+                
             >
                 {type}
             </div>
@@ -23,7 +27,7 @@ export const SwitchComp = ({className, compDict, defComp,}) => {
     return (
     <div className={`${className} flex justify-center text-neutralDark w-full h-full bg-white sm:rounded-md sm:border-primary`}>
         <div className='w-full h-full flex flex-col justify-center items-center '>
-            <div className="flex flex-row flex-wrap gap-2 justify-center items-center sm:space-x-12 sm:text-[18px] w-full p-2">
+            <div className="flex flex-row flex-1 flex-wrap gap-2 justify-center items-center sm:space-x-12 sm:text-[18px] w-full p-2">
                 {Object.keys(compDict).map((key, index) => (
                     <HeaderButton
                         type={key}
