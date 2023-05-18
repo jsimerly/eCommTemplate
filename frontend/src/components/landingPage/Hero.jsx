@@ -20,12 +20,12 @@ const Hero = () => {
         onLoad={handleImageLoad}
       />
       <div className={`bg-neutralOffWhite ${loaded? 'hidden' : null}`}></div>
-      <div className='absolute flex flex-1 justify-center items-center sm:h-4/5 sm:w-1/2 h-[90%] mx-6 sm:mx-0 bg-white sm:rounded-r-lg sm:rounded-l-none rounded-md shadow-md sm:min-w-[650px]'>
-        <div className='flex flex-col justify-center items-center text-primary p-6'>
-          <h1 className='text-[36px] sm:text-[70px] font-bold py-6 px-0 sm:px-6 leading-none text-center'>
+      <div className='absolute flex justify-end items-center sm:h-[75%] sm:w-1/2 h-[90%] mx-6 sm:mx-0 bg-white sm:rounded-r-lg sm:rounded-l-none rounded-md sm:min-w-[650px]'>
+        <div className='flex flex-col justify-center items-center sm:items-start text-primary sm:w-[550px] p-6 md:mr-[100px] gap-8'>
+          <h1 className='text-[30px] sm:text-[50px] font-bold px-0 leading-8 sm:leading-none text-center sm:text-start'>
             {heroMain.title}
           </h1>
-          <p className='px-10 sm:text-[30px] leading-6 sm:leading-10 sm:px-6 pb-6 text-neutralDark text-center max-w-[450px]'>
+          <p className='sm:text-[20px] leading-6 sm:leading-8 text-neutralDark text-center sm:text-start max-w-[450px]'>
             {heroMain.desc}
           </p>
           <div className='sm:w-1/3'>

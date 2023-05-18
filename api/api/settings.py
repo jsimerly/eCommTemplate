@@ -87,9 +87,7 @@ MIDDLEWARE = [
     # 'api.middleware.RequestLoggingMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['www.rentblueelf.com', 'https://*.rentblueelf.com', 'https://www.rentblueelf.com']
-CSRF_COOKIE_DOMAIN = 'www.rentblueelf.com'
-
+CSRF_TRUSTED_ORIGINS = ['https://www.rentblueelf.com']
 
 ROOT_URLCONF = 'api.urls'
 

@@ -17,7 +17,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 
 export const heroMain = {
     title: 'Vacation Made Easy',
-    desc: "Rent vacation products to be dropped off and picked up.",
+    desc: "Blue Elf provides vacation products for rent to be dropped off and picked up.",
     cta: "Shop Now"
 }
 
