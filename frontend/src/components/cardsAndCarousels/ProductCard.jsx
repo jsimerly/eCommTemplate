@@ -79,10 +79,10 @@ const ProductCard = ({item, addExtraFunction}) => {
           </div>
         </>
       )}
-      <div className='mt-2 p-2 text-neutralDark flex flex-col grow'>
+      <div className='text-neutralDark flex flex-col h-full p-2'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 
-            className='font-bold text-[14px] md:text-[20px] md:truncate hover:cursor-pointer hover:underline'
+            className='font-bold text-[16px] md:text-[20px] md:truncate hover:cursor-pointer hover:underline line-clamp-2'
           >
            {item.name}
           </h3>
@@ -102,15 +102,14 @@ const ProductCard = ({item, addExtraFunction}) => {
            <div className='h-[30px]'>
            </div>
           }
-
         </div>
-        <div className='flex flex-col flex-1 w-full justify-between items-start md:my-4'>
+        <div className='flex flex-col flex-1 w-full justify-end items-start'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
               <div className='font-semibold md:text-[26px] leading-none'>
                 ${item.total_cost.toFixed(2)}
               </div>
-              <p className='leading-none text-[12px] text-center'>
+              <p className='leading-none text-[10px] sm:text-[12px] text-center'>
                 For {item.days} Days
               </p>
             </div>
