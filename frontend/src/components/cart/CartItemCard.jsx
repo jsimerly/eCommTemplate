@@ -2,7 +2,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { ShoppingContext } from '../../context';
 import { QuantInput } from '../utils';
 import { fetchItemDeleteCart, fetchUpdateQuantity, fetchUpdateInsurance } from '../../api/fetchCart';
@@ -12,6 +12,20 @@ import navigateProduct from '../../hooks/navigateProduct';
 const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCost, handleFetchCart}) => {
     const {setCartSize} = useContext(ShoppingContext)
     const [isMounted, setIsMounted] = useState(false)
+
+    const [quantHolder, setQuantHolder] = useState(1)
+    const [isQuantFocused, setIsQuantFocused] = useState(false);
+    const quantInputRef = useRef()
+
+    useEffect(() => {
+      setQuantHolder(item.quantity)
+    }, [item])
+
+    useEffect(() => {
+      if (isQuantFocused) {
+        quantInputRef.current.focus();
+      }
+    }, [isQuantFocused]);
 
     const slug = item.item.slug
     let navigate = navigateProduct({slug})
@@ -34,7 +48,16 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
     },[item.quantity])
 
     const handleQuantChanged = (quantValue) => {
+        updateCartItem(item, {quantity: quantValue})
+    }
+
+    const handleQuantMobileBlur = (quantValue) => {
+      setIsQuantFocused(false);
       updateCartItem(item, {quantity: quantValue})
+    }
+
+    const handleQuantMobileChanged = (quantValue) => {
+      setQuantHolder(quantValue)
     }
 
     const handleInsuredClicked = () => {
@@ -111,20 +134,40 @@ const CartItemCard = ({item, updateCartItem, deleteCartItem, getInsurance, getCo
               In Stock
             </div>
           }
-          <div className='w-[60px] h-[40px] hidden sm:block'>
+          {/* <div className='w-[60px] h-[40px] hidden sm:block'>
             <QuantInput
               quant={item.quantity}
               setQuant={handleQuantChanged}
               className='!text-[16px] !p-1'
               buttonSize='16px'
             />
-          </div>
-          <div className='sm:hidden'>
-            <button 
-              className='grow-0 p-1 border border-primary rounded-md' inputMode='numeric'
-            >
-              Qty: {item.quantity}
-            </button>
+          </div> */}
+          <div className=''>
+            {isQuantFocused ? 
+              <input
+                ref={quantInputRef}
+                type='number'
+                className='p-1 outline-none border border-primary rounded-md flex max-w-[50px] text-center'
+                inputMode='numeric'
+                onChange={(e)=>handleQuantMobileChanged(e.target.value)}
+                value={quantHolder}
+                onFocus={()=>setIsQuantFocused(true)}
+                onBlur={(e)=>handleQuantMobileBlur(e.target.value)}
+                placeholder='Qty'
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    quantInputRef.current.blur();
+                  }
+                }}
+              />
+              :
+              <button 
+                className='grow-0 py-1 px-2 border border-primary rounded-md' 
+                onClick={()=>setIsQuantFocused(true)}
+              >
+                Qty: {item.quantity}
+              </button>          
+            }
           </div>
         </div>
         <div className='flex flex-col justify-between p-2'>
