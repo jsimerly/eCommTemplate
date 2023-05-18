@@ -63,7 +63,7 @@ const Favorites = ({getCost, selectedDateRange, handleFetchCart}) => {
         <div className='flex flex-wrap justify-start items-center'>
           {favorites.length === 0 ? 
           <div className='flex w-full justify-center p-4'>
-              <Empty/>
+              <Empty message={'You do not have anything favorited.'}/>
           </div>
           :
           favorites.map((item, i) => (

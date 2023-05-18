@@ -56,7 +56,7 @@ const CartPage = () => {
         const startDate = selectedDateRange.startDate
         const endDate = selectedDateRange.endDate
         const dateChange = selectedDateRange.first
-
+        
         fetchCart(setCart, startDate, endDate, dateChange)
 
     }

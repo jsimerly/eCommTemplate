@@ -7,7 +7,7 @@ import ErrorBoundry from '../utils/ErrorBoundry';
 import { useRef, useEffect } from 'react';
 import "./carouselTemplate.css";
 
-const CarouselTemplate = ({ Card, cardData, header }) => {
+const CarouselTemplate = ({ Card, cardData, header, addExtraFunction }) => {
   const swiperRef = useRef(null)
   useEffect(() => {
     if (swiperRef.current){
@@ -34,7 +34,7 @@ const CarouselTemplate = ({ Card, cardData, header }) => {
               {cardData.map((data, index) => (
                 <SwiperSlide key={index} className='inline-flex w-auto'>
                   <div className='inline-flex w-auto'>
-                    <Card item={data} />
+                    <Card item={data} addExrtaFunction={addExtraFunction}/>
                   </div>
                 </SwiperSlide>
               ))}
