@@ -20,7 +20,7 @@ const CarouselTemplate = ({ Card, cardData, header }) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
       <div className="flex flex-col">
         {header}
-        <div className="overflow-hidden flex flex-row relative p-4 sm:rounded-md">
+        <div className="overflow-hidden flex flex-row relative py-4 sm:rounded-md">
           {cardData.length === 0 ? (
             <Empty />
           ) : (

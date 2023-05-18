@@ -11,8 +11,8 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
 
     return(
         <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} w-full md:pt-10 items-center`}>
-            <img src={img} className='w-3/5 rounded-md shadow-md'/>
-            <div className={`md:w-2/5 text-center pb-2 flex flex-col mx-16`}>
+            <img src={img} className='w-[92%] sm:w-3/5 rounded-md sm:shadow-md'/>
+            <div className={`md:w-2/5 text-center pb-2 flex flex-col sm:mx-16`}>
                 <div className='h-full flex flex-col justify-center mt-4 md:mt-0 sm:mx-4'>
                     <h3 className='font-bold md:text-[40px] text-[30px] text-primary'>
                         {header}
@@ -21,7 +21,7 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
                         {desc}
                     </div>
                     <div className='flex flex-row justify-center items-center py-6 '>
-                        <div className='w-1/2 shadow-md'>
+                        <div className='shadow-md min-w-[120px]'>
                             <BlueButton
                                 content={cta1}
                                 onClick={handleCatClicked}
@@ -37,7 +37,7 @@ const CatCard = ({header, img, desc, cta1, nav, reverse}) => {
 const Categories = () => {
   return (
     <div className='flex flex-col w-full justify-center'>
-        <div className='flex justify-center items-center text-[36px] text-center font-bold text-neutralDark pb-6 mx-3'>
+        <div className='flex justify-center items-center text-[26px] sm:text-[36px] text-center font-bold text-neutralDark pb-6 mx-3'>
             {categories.title}
         </div>
         <div className='flex flex-col gap-10 md:gap-[300px] md:pb-[100px]'>

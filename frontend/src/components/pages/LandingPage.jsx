@@ -17,7 +17,7 @@ import { ShoppingContext } from '../../context';
 
 
 const header = (text) => (
-    <div className='flex justify-center sm:justify-start items-center relative text-[34px] text-center font-bold text-primary p-2'>
+    <div className='flex justify-center sm:justify-start items-center relative text-[34px] text-center font-bold text-neutralDark p-2'>
         {text}
     </div>
 )

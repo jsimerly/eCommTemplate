@@ -20,9 +20,9 @@ const Hero = () => {
         onLoad={handleImageLoad}
       />
       <div className={`bg-neutralOffWhite ${loaded? 'hidden' : null}`}></div>
-      <div className='absolute flex justify-end items-center sm:h-[75%] sm:w-1/2 h-[90%] mx-6 sm:mx-0 bg-white sm:rounded-r-lg sm:rounded-l-none rounded-md sm:min-w-[650px]'>
-        <div className='flex flex-col justify-center items-center sm:items-start text-primary sm:w-[550px] p-6 md:mr-[100px] gap-8'>
-          <h1 className='text-[30px] sm:text-[50px] font-bold px-0 leading-8 sm:leading-none text-center sm:text-start'>
+      <div className='absolute flex justify-center md:justify-end items-center sm:h-[75%] sm:w-1/2 h-[90%] mx-6 sm:mx-0 bg-white sm:rounded-r-lg sm:rounded-l-none rounded-md sm:min-w-[650px]'>
+        <div className='flex flex-col justify-center items-center md:items-start text-primary md:w-[550px] p-6 md:mr-[100px] gap-8'>
+          <h1 className='text-[30px] sm:text-[55px] font-bold px-0 leading-8 sm:leading-none text-center sm:text-start'>
             {heroMain.title}
           </h1>
           <p className='sm:text-[20px] leading-6 sm:leading-8 text-neutralDark text-center sm:text-start max-w-[450px]'>
