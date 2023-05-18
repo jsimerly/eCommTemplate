@@ -14,7 +14,7 @@ const StepCard = ({n, title, paragraph, index}) => (
                 </h1>
             </div>
         </div>
-        <p className='text-center mt-0 sm:mt-4'>
+        <p className='text-center p-2 sm:p-4'>
             {paragraph}
         </p>
     </div>
