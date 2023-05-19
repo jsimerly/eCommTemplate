@@ -44,6 +44,19 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
     setActivePopup('what')
   }
 
+  let displayData = ''
+
+  if (searchParamActive){
+    displayData = searchInput
+  } else if (selectedCategory) {
+    displayData = selectedCategory.name
+  } else {
+    displayData = ''
+  }
+
+
+
+
 
   return (
     <div className="relative">
@@ -52,31 +65,51 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
       className={`fixed -bottom-[330px] left-0 w-full sm:hidden flex flex-col bg-white z-50
       transition-transform duration-300
       ${showSlideUp ?  '-translate-y-[330px]' : 'transform translate-y-0'}`}>
-        <div className="text-neutralDark w-full px-4 py-2">
-          <div className="flex flex-row justify-between">
-            <div 
-              className={`flex justify-center items-center ${selectedDestination ? 'text-neutralDark' : 'text-neutralLight'}`}
-              onClick={handleLocationClicked}
-            >
-              <LocationOnIcon sx={{fontSize: 40}}/>
-            </div>
-            <div 
-              className={`flex justify-center items-center ${selectedDateRange?.first ? 'text-neutralDark' : 'text-neutralLight'}`}
-              onClick={handleCalendarClicked}
-            >
-              <CalendarMonthIcon sx={{fontSize: 40}}/>
-            </div>
-            <div 
-              className={`flex flex-row items-center w-1/2 ${selectedCategory ? 'text-neutralDark' : 'text-neutralLight'}`}
-              onClick={handleCategoriesClicked}
-            >
-              <BeachAccessIcon sx={{fontSize: 40}}/> 
-              <h3 className="ml-2 text-[16px] font-bold truncate">
-                {selectedCategory ? selectedCategory.name : 'Select a Category'}
-              </h3>
+        <div className="text-neutralDark w-full border-t pr-2">
+          <div className="flex flex-row">
+            <div className='flex flex-row w-full'>
+              <div 
+                className={`flex flex-col justify-center items-center w-[20%] pt-2 pb-1  ${ selectedDestination ? 'text-neutralDark' : 'text-neutralLight'}
+                ${ showSlideUp && activePopup === 'where' ? 'border-primary' : 'border-white'} border-t-2
+                `}
+                onClick={handleLocationClicked}
+              >
+                <LocationOnIcon sx={{fontSize: 30}}/>
+                <span className='text-[10px]'>
+                  Where
+                </span>
+              </div>
+              <div 
+                className={`flex flex-col justify-center items-center w-[20%] pt-2 pb-1 ${ selectedDateRange?.first ? 'text-neutralDark' : 'text-neutralLight'}
+                ${ showSlideUp && activePopup === 'when' ? 'border-primary' : 'border-white'} border-t-2`}
+                onClick={handleCalendarClicked}
+              >
+                <CalendarMonthIcon sx={{fontSize: 30}}/>
+                <span className='text-[10px]'>
+                  When
+                </span>
+              </div>
+              <div 
+                className={` flex flex-row items-center w-[60%] pt-2 pb-1 
+                ${ displayData ? 'text-neutralDark' : 'text-neutralLight'}
+                ${ showSlideUp && activePopup === 'what' ? 'border-primary' : 'border-white'} border-t-2
+                border`}
+                onClick={handleCategoriesClicked}
+              >
+                <div className='w-[10%]'></div>
+                <div className='flex flex-col items-center'>
+                  <BeachAccessIcon sx={{fontSize: 30}}/> 
+                  <span className='ml-1 text-[10px]'>
+                    What
+                  </span>
+                </div>
+                <h3 className="ml-4 text-[14px] font w-[70%] line-clamp-2">
+                  {displayData ? displayData : 'Select a Category'}
+                </h3>
+              </div>
             </div>
             {!immediateSearch &&
-              <div>
+              <div className='ml-2 pt-2 pb-1'>
                 <BlueButton 
                   content={<SearchIcon sx={{fontSize: 30}}/>}
                   onClick={handleGoClick}
