@@ -140,7 +140,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
 
   //Filter User
   const shouldDisplayProduct = (product) => {
-    const {total_cost, average_rating, filter_tags, brand} = product
+    const {total_cost, average_rating, filter_tags, brand, n_ratings} = product
 
     if (priceFilter[0] !== null && total_cost < priceFilter[0]){
       return false
@@ -149,9 +149,12 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
       return false
     }
 
-    if (average_rating + .5 < starFilter[0] || average_rating > starFilter[1]){
-      return false
+    if (n_ratings > 0) {
+      if (average_rating + .5 < starFilter[0] || average_rating > starFilter[1]){
+        return false
+      }
     }
+
 
     for (let i = 0; i < brandFilter.length; i++){
       const individualBrandFilter = brandFilter[i]

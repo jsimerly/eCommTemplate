@@ -103,7 +103,7 @@ const ProductCard = ({item, addExtraFunction}) => {
            </div>
           }
         </div>
-        <div className='flex flex-col flex-1 w-full justify-end items-start'>
+        <div className='flex flex-col flex-1 w-full justify-end items-start pb-1'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
               <div className='font-semibold md:text-[26px] leading-none'>
