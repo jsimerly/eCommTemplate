@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react'
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { Items }  from '.';
 import FilterOptions from './FilterOptions';
@@ -251,27 +252,40 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
                       onClick={handleSortClick}
                       content={
                         <div className='flex flex-row justify-between'>
-                          Sort By: <span className='hidden sm:block ml-1'>{sortBy}</span>
+                          Sort By<span className='hidden sm:block'>: {sortBy}
                           <ExpandMoreIcon className='ml-1 text-neutralDark group-hover:scale-110'/>
+                          </span>
                         </div>
                       }
                       className='!text-neutralDark'
                     />
                   </div>
                 <div 
-                  className={`${sortOpen ? '' : 'hidden'} right-3 sm:right-0 absolute z-10 p-2 bg-white rounded-md shadow-md mt-1`}
+                  className={`${sortOpen ? '' : 'hidden'} fixed sm:absolute z-20 p-2 bg-white rounded-md shadow-md w-full left-0 bottom-[60px] sm:-bottom-[90px] min-h-[400px] sm:min-h-0`}
                 >
-                  <ul>
-                    {sortByOptions.map((option, i) => (
-                      <li 
-                        key={i}
-                        className='hover:underline cursor-pointer space-y sm:space-y-0'
-                        onClick={() => {setSortBy(option); setSortOpen(false)}}
-                      >
-                        {option}
-                      </li>
-                    ))}
-                  </ul>
+                  <div>
+                    <div className='sm:hidden w-full flex flex-row justify-between'>
+                      <h3>
+                        Sort By
+                      </h3>
+                      <button>
+                        <CloseIcon
+                          onClick={() => setSortOpen(false)}
+                        />
+                      </button>
+                    </div>
+                    <ul>
+                      {sortByOptions.map((option, i) => (
+                        <li 
+                          key={i}
+                          className='hover:underline cursor-pointer space-y-2 sm:space-y-0 text-[20px]'
+                          onClick={() => {setSortBy(option); setSortOpen(false)}}
+                        >
+                          {option}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
