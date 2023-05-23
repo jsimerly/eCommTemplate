@@ -55,13 +55,13 @@ const MobileCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-        className='w-full h-[165px] rounded-md bg-white flex flex-row mb-2 relative group shadow-md justify-center items-center p-2'
+        className='w-full h-[195px] rounded-md bg-white flex flex-row mb-2 relative group shadow-md justify-center items-center p-2'
         onClick={navigate}
     >
       {item.main_image && (
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square w-2/5'
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square max-w-[40%] h-[100%]'
           />
       )}
       <div className='px-2 text-neutralDark flex flex-col items-start justify-between w-full h-full'>

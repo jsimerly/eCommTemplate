@@ -261,7 +261,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
                     />
                   </div>
                 <div 
-                  className={`${sortOpen ? '' : 'hidden'} fixed sm:absolute z-20 p-2 bg-white rounded-md shadow-md w-full left-0 bottom-[60px] sm:-bottom-[90px] min-h-[400px] sm:min-h-0`}
+                  className={`${sortOpen ? '' : 'hidden'} fixed sm:absolute z-20 p-2 bg-white rounded-md shadow-md w-full left-0 bottom-[60px] sm:-bottom-[70px] min-h-[400px] sm:min-h-0`}
                 >
                   <div>
                     <div className='sm:hidden w-full flex flex-row justify-between'>
@@ -278,7 +278,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
                       {sortByOptions.map((option, i) => (
                         <li 
                           key={i}
-                          className='hover:underline cursor-pointer space-y-2 sm:space-y-0 text-[20px]'
+                          className='hover:underline cursor-pointer space-y-2 sm:space-y-0 text-[20px] sm:text-[16px]'
                           onClick={() => {setSortBy(option); setSortOpen(false)}}
                         >
                           {option}

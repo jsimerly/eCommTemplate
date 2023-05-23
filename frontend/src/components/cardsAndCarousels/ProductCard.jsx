@@ -56,14 +56,14 @@ const ProductCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-      className='w-[160px] h-[285px] md:h-[486px] md:min-w-[300px] rounded-md bg-white md:pt-2 md:px-2 flex flex-col mr-2 mb-2 relative sm:group hover:shadow-lg shadow-md cursor-pointer'
+      className='w-[160px] h-[285px] sm:h-[486px] sm:min-w-[300px] rounded-md bg-white sm:pt-2 sm:px-2 flex flex-col mr-2 mb-2 relative sm:group hover:shadow-lg shadow-md cursor-pointer'
       onClick={navigate}
     >
       {item.main_image && (
         <>
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square p-1'
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square'
 
           />
           <div 
@@ -82,19 +82,19 @@ const ProductCard = ({item, addExtraFunction}) => {
       <div className='text-neutralDark flex flex-col h-full p-2'>
         <div className='flex flex-col min-h-[60px]'>
           <h3 
-            className='font-bold text-[16px] md:text-[20px] md:truncate hover:cursor-pointer hover:underline line-clamp-2'
+            className='font-bold text-[16px] hover:cursor-pointer hover:underline line-clamp-2'
           >
            {item.name}
           </h3>
-          <h4 className='text-[12px] md:text-[18px] tracking-wide'>
+          <h4 className='text-[12px]  tracking-wide'>
             {item.brand.name}
           </h4>
         </div>
-        <div className='hidden md:block'>
+        <div className='hidden sm:block'>
           {item.n_ratings != 0 ?
           <div className='flex flex-row pt-2 hover:cursor-pointer'>
             <Stars rating={item.average_rating}/>
-            <div className='ml-1 md:text-[16px]'>
+            <div className='ml-1 '>
             ({item.n_ratings})
             </div>
           </div>
@@ -113,7 +113,7 @@ const ProductCard = ({item, addExtraFunction}) => {
                 For {item.days} Days
               </p>
             </div>
-            <div className='h-full hidden md:block'>
+            <div className='h-full hidden sm:block'>
               <button 
                   className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
                   onClick={handleAddItemClicked}
@@ -121,7 +121,7 @@ const ProductCard = ({item, addExtraFunction}) => {
                 Add to Cart
               </button>
             </div>
-            <div className='md:hidden'>
+            <div className='sm:hidden'>
               <button 
                     className={`text-[16px] w-full h-full bg-primary text-white rounded-md p-1 hover:underline cursor-pointer outline-none`}
                     onClick={handleAddItemClicked}

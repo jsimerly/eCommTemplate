@@ -5,7 +5,7 @@ import useWindowSize from '../../hooks/useWindowSize';
 
 const ResponsiveCard = ({ item }) => {
   const { width } = useWindowSize();
-  const isMobile = width < 640; 
+  const isMobile = width < 760; 
 
   const CardComponent = isMobile ? MobileCard : ProductCard;
   return <CardComponent item={item}/>;

@@ -19,19 +19,17 @@ const sortProducts = (products, sortBy) => {
 const Items = ({products, sortBy}) => {
     const sortedProducts = sortProducts(products, sortBy)
    return (
-    <div
-        className='rounded-md w-full justify-center'
-    >
-        <div className="flex flex-col sm:flex-row flex-wrap  w-full min-h-[300px]">
-            {sortedProducts && sortedProducts.length === 0 ?
-                <Empty/>
-                :
-                sortedProducts.map((item, i) => (
-                  <ResponsiveCard key={i} item={item} />
-                ))
-            }
-        </div>
-    </div>
+
+      <div className="flex flex-col sm:flex-row flex-wrap  w-full min-h-[300px] justify-center">
+          {sortedProducts && sortedProducts.length === 0 ?
+              <Empty/>
+              :
+              sortedProducts.map((item, i) => (
+                <ResponsiveCard key={i} item={item} />
+              ))
+          }
+      </div>
+
   )
 }
 
