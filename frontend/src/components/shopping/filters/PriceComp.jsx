@@ -97,7 +97,7 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
                             onChange={(e)=> handleInputChangeMin(e)}
                             className='p-2 outline-primary border border-primary rounded-md text-center w-full'
                             placeholder='Min'
-                            type='numeric'
+                            inputMode='numeric'
                         />
                         <span className='absolute left-2 top-1/2 transform -translate-y-1/2'>$</span>
                     </div>
@@ -110,7 +110,7 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
                             onChange={(e)=> handleInputChangeMax(e)}
                             className='p-2 outline-primary border border-primary rounded-md text-center relative w-full'
                             placeholder='Max'
-                            type='numeric'
+                            inputMode='numeric'
                         />
                         <span className='absolute left-2 top-1/2 transform -translate-y-1/2'>$</span>
                     </div>
