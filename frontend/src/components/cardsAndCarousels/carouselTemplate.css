@@ -3,6 +3,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
 .swiper-container {
   @apply w-full overflow-hidden;
 }
@@ -18,4 +19,14 @@
 
 .custom-swiper .swiper-slide {
   display: flex;
+}
+
+.custom-swiper .swiper-button-prev,
+.custom-swiper .swiper-button-next {
+  color: #4F86C6; /* Change the color as desired */
+}
+
+.custom-swiper .swiper-button-prev:hover,
+.custom-swiper .swiper-button-next:hover {
+  transform: scale(1.1); /* Apply scale of 110% on hover */
 }

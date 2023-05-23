@@ -42,7 +42,7 @@ const SmallCard = ({item, addExtraFunction}) => {
     >
       <div className="w-[150px] h-[150px] mb-2 cursor-pointer">
         <img
-          className="bg-white object-scale-down rounded-md aspect-square"
+          className="bg-white object-scale-down rounded-md aspect-square p-1ghi"
           src={item.main_image.image}
         />
       </div>
