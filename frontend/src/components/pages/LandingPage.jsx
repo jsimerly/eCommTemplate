@@ -74,24 +74,24 @@ const LandingPage = () => {
                 <div className='hidden sm:block my-16'>
                     <NewCustomers/>
                 </div>
-                <div>
-                {mostPopular &&
-                    <Carousel
-                        head={header(mostPopular.display_name)}
-                        data={mostPopular.products}
-                    />
-                }
-                {trending &&
-                    <Carousel
-                        head={header(trending.display_name)}
-                        data={trending.products}
-                    />
-                }
+                <div className='px-2 sm:px-0'>
+                    {mostPopular &&
+                        <Carousel
+                            head={header(mostPopular.display_name)}
+                            data={mostPopular.products}
+                        />
+                    }
+                    {trending &&
+                        <Carousel
+                            head={header(trending.display_name)}
+                            data={trending.products}
+                        />
+                    }
                 </div>
                 <div className='my-6 sm:my-16'>
                 <Categories/>
                 </div>
-                <div className='sm:my-6'>
+                <div className='sm:my-6 px-2 sm:px-0'>
                 {newArrivals &&
                     <Carousel
                         head={header(newArrivals.display_name)}
