@@ -51,7 +51,7 @@ const StandardShop = () => {
         <div className={`${styles.flexCenter}`}>
           <div className={`${styles.boxWidth}`}>
             <div className={`flex justify-between items-center w-full sm:mt-4`}>
-              <div className='w-full px-3 sm:px-0'>
+              <div className='w-full px-2 sm:px-3 '>
                 <ShoppingMain
                   products={products}
                   relatedCategories={relatedCategories}
