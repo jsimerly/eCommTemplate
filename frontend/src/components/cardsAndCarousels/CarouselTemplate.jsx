@@ -57,7 +57,7 @@ const CarouselTemplate = ({ Card, cardData, header, addExtraFunction }) => {
             >
               {cardData.map((data, index) => (
                 <SwiperSlide key={index} className='inline-flex w-auto'>
-                  <div className='inline-flex w-auto'>
+                  <div className='inline-flex w-auto mr-2'>
                     <Card item={data} addExrtaFunction={addExtraFunction}/>
                   </div>
                 </SwiperSlide>

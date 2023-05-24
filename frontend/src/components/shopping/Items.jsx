@@ -19,8 +19,8 @@ const sortProducts = (products, sortBy) => {
 const Items = ({products, sortBy}) => {
     const sortedProducts = sortProducts(products, sortBy)
    return (
-
-      <div className="flex flex-col sm:flex-row flex-wrap  w-full min-h-[300px] justify-center">
+    <div className="flex w-full justify-center shrink">
+      <div className="flex sm:flex-row flex-wrap flex-start max-w-[1236px] min-h-[300px] gap-3 shrink">
           {sortedProducts && sortedProducts.length === 0 ?
               <Empty/>
               :
@@ -29,7 +29,7 @@ const Items = ({products, sortBy}) => {
               ))
           }
       </div>
-
+    </div>
   )
 }
 
