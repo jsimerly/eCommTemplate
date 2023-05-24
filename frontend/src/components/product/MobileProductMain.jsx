@@ -95,7 +95,7 @@ const MobileProductMain = ({mainCardInfo}) => {
                     }
                 </div>
             </h1>
-            <div className='flex max-h-[642px]'>
+            <div className='flex'>
                 <ImageSlider mainCardInfo={mainCardInfo}/>
             </div>
           </div>
@@ -116,7 +116,7 @@ const MobileProductMain = ({mainCardInfo}) => {
                 }
                 {mainCardInfo && mainCardInfo.nRatings !== 0 &&
                     <div>
-                    <Stars rating={mainCardInfo.rating} size='30px'/>
+                      <Stars rating={mainCardInfo.rating} size='30px'/>
                     <span className='ml-2'>
                         ({mainCardInfo.nRatings})
                     </span>
@@ -145,7 +145,7 @@ const MobileProductMain = ({mainCardInfo}) => {
               </div>
             </div>
             {mainCardInfo && 
-              <div className='w-full flex flex-col justify-start mt-3'>
+              <div className='w-full flex flex-col justify-start mt-3 sm:'>
                 <div>
                   <h3 className='font-semibold text-[14px]'>
                     Producer Description

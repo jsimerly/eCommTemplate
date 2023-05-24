@@ -27,7 +27,7 @@ const Information = ({secondaryCardInfo}) => {
   
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
-    <div className="bg-white rounded-md flex flex-col justify-center items-center mt-6 sm:mt-20 text-neutralDark">
+    <div className="bg-white rounded-md flex flex-col justify-center items-center mt-6 md:mt-20 text-neutralDark md:mx-2">
         <h1 className="text-[24px] sm:text-[30px] pt-4">
             Product Information
         </h1>

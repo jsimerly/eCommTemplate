@@ -38,13 +38,15 @@ const ItemSuggestion = () => {
   },[selectedDateRange])
 
   return (
-    <CarouselTemplate
-      Card={SmallCard}
-      cardData={suggestions}
-      cardW={156}
-      header={header}
-      scrollNFunc={scrollN}
-    />
+    <div className="p-2">
+      <CarouselTemplate
+        Card={SmallCard}
+        cardData={suggestions}
+        cardW={156}
+        header={header}
+        scrollNFunc={scrollN}
+      />
+    </div>
   )
 }
 

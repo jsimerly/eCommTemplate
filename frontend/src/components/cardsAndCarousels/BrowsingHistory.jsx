@@ -32,13 +32,15 @@ const BrowsingHistory = ({addExtraFunction}) => {
 
   //replace this fetch with BrowsingHistory endpoint
   return (
-    <CarouselTemplate
-      Card={SmallCard}
-      addExtraFunction={addExtraFunction}
-      cardData={browsingHistory}
-      header={header}
-      scrollNFunc={scrollN}
-    />
+    <div className="p-2">
+      <CarouselTemplate
+        Card={SmallCard}
+        addExtraFunction={addExtraFunction}
+        cardData={browsingHistory}
+        header={header}
+        scrollNFunc={scrollN}
+      />
+    </div>
   )
 }
 

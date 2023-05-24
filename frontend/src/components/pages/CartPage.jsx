@@ -165,13 +165,13 @@ const CartPage = () => {
     
   return (
     <div className='flex justify-center items-center text-neutralDark'>
-        <div className='max-w-[1280px] w-full'>
+        <div className='max-w-[1280px] w-full px-2'>
             <div className='flex flex-col w-full'>
                 <div className="flex flex-row">
                 </div>
-                <div className="flex flex-col sm:flex-row mt-3">
-                    <div className="sm:w-3/5">
-                        <div className='mb-2 pl-6 sm:pl-0'>
+                <div className="flex flex-col ms:flex-row mt-3">
+                    <div className="ms:w-3/5">
+                        <div className='mb-2 pl-6 ms:pl-0'>
                             <h1 className="text-[40px] font-bold leading-none pt-1">
                                 Cart
                             </h1>
@@ -197,7 +197,7 @@ const CartPage = () => {
                             />
                         </div>
                     </div>
-                    <div className='sm:w-2/5 sm:ml-3'>
+                    <div className='ms:w-2/5 ms:ml-3'>
                         <div className="flex justify-start items-end mt-6">
                             <div className="pl-3 sm:pl-6">
                                 <h1 className="text-[30px] font-bold">

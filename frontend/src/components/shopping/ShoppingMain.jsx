@@ -5,7 +5,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { Items }  from '.';
+import { ItemsV2 }  from '.';
+import { Items } from '.';
 import FilterOptions from './FilterOptions';
 import useDropdown from '../../hooks/useDropdown';
 import { ShoppingContext } from '../../context';
