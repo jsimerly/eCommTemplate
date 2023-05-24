@@ -36,7 +36,6 @@ const BrowsingHistory = ({addExtraFunction}) => {
       Card={SmallCard}
       addExtraFunction={addExtraFunction}
       cardData={browsingHistory}
-      cardW={156}
       header={header}
       scrollNFunc={scrollN}
     />

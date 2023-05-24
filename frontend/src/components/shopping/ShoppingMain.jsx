@@ -245,9 +245,9 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
             </div>
           </div>
           )}
-              <div className='flex justify-end items-center sm:w-1/5 sm:relative'>
+              <div className='flex justify-end items-center sm:minw-1/5 sm:relative'>
                 <div ref={sortNode}>
-                  <div className='h-[42px] group'>
+                  <div className='h-[42px] group sm:min-w-[100px]'>
                     <WhiteButton
                       onClick={handleSortClick}
                       content={
