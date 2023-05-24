@@ -47,13 +47,6 @@ export const categories = {
     title: 'Spend Your Vacation How You Want',
     cats: [
         {
-            header: 'You Can Have it All',
-            desc:"Whether you're surfing in style or laying out in the sun, we've got what you need.",
-            cta1: 'Shop Paddleboards',
-            nav:{name:'Other Boards', fe_id:'0709'},
-            img: layingOut,
-        },
-        {
             header: 'Game On',
             desc : 'Trying to stay active or just want to make things competitive on your get away?',
             cta1: 'Shop Games',
@@ -66,7 +59,14 @@ export const categories = {
             cta1: 'Shop Kids',
             nav:{name:'Kids', fe_id:'0500'},
             img: withKids
-        }
+        },        
+        {
+            header: 'You Can Have it All',
+            desc:"Whether you're surfing in style or laying out in the sun, we've got what you need.",
+            cta1: 'Shop Paddleboards',
+            nav:{name:'Other Boards', fe_id:'0709'},
+            img: layingOut,
+        },
 
     ]
 }

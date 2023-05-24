@@ -40,7 +40,7 @@ const Categories = () => {
         <div className='flex justify-center items-center text-[26px] sm:text-[36px] text-center font-bold text-neutralDark pb-6 mx-3'>
             {categories.title}
         </div>
-        <div className='flex flex-col gap-10 md:gap-[300px] md:pb-[100px]'>
+        <div className='flex flex-col gap-10 md:gap-[200px] md:pb-[100px]'>
             {categories.cats.map((cat, index) => {
                 const reverse = index % 2 === 1
                 return (
