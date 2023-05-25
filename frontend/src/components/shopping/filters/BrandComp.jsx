@@ -46,7 +46,7 @@ const BrandComp = ({brands, handleBrandCheckClicked}) => {
                     </div>
                 )
             })}
-            <div className='pl-1'>
+            <div className='pl-1 pt-2'>
                 {remainingBrandsLen > 0 && !showAll &&
                     <button
                         className='underline'

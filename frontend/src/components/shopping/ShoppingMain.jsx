@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext, useRef } from 'react'
 
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -14,6 +14,20 @@ import { WhiteButton } from '../utils';
 import AllCategories from './AllCategories';
 
 const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  //need to just create a util at this point...
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth)
+    } 
+    window.addEventListener('resize', handleWindowResize)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  },[])
+
   //Filter Setters
   const [priceFilter, setPriceFilter] = useState([null,null])
   const [priceExtrema, setPriceExtrma] = useState([0,100])
@@ -23,11 +37,30 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   const [brandFilter, setBrandFilter] = useState([])
 
   const [original_filterData, setOriginalFilterData] = useState([])
-  const [openFilter, setOpenFilter, handleFilterClick, filterButtonNode] = useDropdown()
+
   const [filterActive, setFilterActive] = useState(false)
   const [filters, setFilters] = useState([])
 
   const [filteredProducts, setFilteredProducts] = useState([])
+
+  //Filter Open and Close
+  const [openFilter, setOpenFilter] = useState()
+  let filterNode = useRef()
+  useEffect(() => {
+    if (windowWidth < 768) {
+      let filterHandler = (e) => {
+        if (!filterNode.current?.contains(e.target)) {
+          setOpenFilter(false);
+        }
+      }
+  
+      document.addEventListener('mousedown', filterHandler);
+
+      return () => {
+        document.removeEventListener('mousedown', filterHandler);
+      }
+    }
+  });
 
   const areFiltersEqual = () => {
     if (starFilter[0] !== 1 || starFilter[1] !== 5){
@@ -59,6 +92,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
 
   const handleCloseFilter = () => {
     setOpenFilter(false)
+    console.log('closeFilter')
   }
 
   const handleResetFilters = () => {
@@ -201,9 +235,9 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
     <div>
       <div className='flex flex-row justify-between min-h-[80px] w-full'>
         <div className='flex space-x-10 items-center sm:w-1/5'>
-          <div className='flex space-x-2' ref={filterButtonNode}>
+          <div className='flex space-x-2'>
             <WhiteButton 
-              onClick={handleFilterClick}
+              onClick={()=>{setOpenFilter(openFilter => !openFilter); console.log('whitebutton')}}
               content={
                 <div>
                   <TuneIcon className='mr-1 text-neutralDark group-hover:scale-110'/>
@@ -292,7 +326,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
             <div className='flex flex-row w-full'>
                       {/* put hide back when */}
               <div className={`mr-0 sm:mr-2  ms:min-w-[300px]`}>
-                <div className={`${openFilter ? '' : 'hidden'} mb-6`}>
+                <div className={`${openFilter ? '' : 'hidden'} mb-6 `} ref={filterNode}>
                   <FilterOptions
                     filters={filters}
                     handleCloseFilter={handleCloseFilter}
