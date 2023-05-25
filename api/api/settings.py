@@ -78,8 +78,8 @@ MIDDLEWARE = [
     # 'api.middleware.RequestLoggingMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://www.rentblueelf.com']
-CRSF_COOKIE_DOMAIN = 'www.rentblueelf.com'
+CSRF_TRUSTED_ORIGINS = os.environ['CSRF_TRUSTED_ORIGINS'].split(',')
+CRSF_COOKIE_DOMAIN = os.environ['CRSF_COOKIE_DOMAIN']
 
 ROOT_URLCONF = 'api.urls'
 
