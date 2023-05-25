@@ -5,12 +5,7 @@ const useOpenAndClose = (defaultOpen) => {
 
     const handleOnClick = () => {
         setOpen(open => !open)
-        // console.log('here')
     }
-
-    useEffect(() => {
-        console.log(open)
-    },[open])
 
     return [open, setOpen, handleOnClick]
 }
