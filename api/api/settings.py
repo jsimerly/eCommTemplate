@@ -169,7 +169,7 @@ DATABASES = {
 SITE_ID = 1
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'https://www.rentblueelf.com/media/'
+MEDIA_URL = os.environ['MEDIA_URL']
 
 EMAIL_FROM_USER = os.environ['EMAIL_FROM_USER']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
