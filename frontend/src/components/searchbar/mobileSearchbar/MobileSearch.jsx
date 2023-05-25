@@ -62,7 +62,7 @@ const MobileSearch = ({immediateSearch, searchInput, setSearchInput, searchParam
     <div className="relative">
       <div 
       ref={node}
-      className={`fixed -bottom-[330px] left-0 w-full sm:hidden flex flex-col bg-white z-50
+      className={`fixed -bottom-[330px] left-0 w-full ss:hidden flex flex-col bg-white z-50
       transition-transform duration-300
       ${showSlideUp ?  '-translate-y-[330px]' : 'transform translate-y-0'}`}>
         <div className="text-neutralDark w-full border-t pr-2">

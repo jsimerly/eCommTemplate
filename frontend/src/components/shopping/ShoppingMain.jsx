@@ -23,7 +23,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   const [brandFilter, setBrandFilter] = useState([])
 
   const [original_filterData, setOriginalFilterData] = useState([])
-  const [openFilter, setOpenFilter] = useState(false)
+  const [openFilter, setOpenFilter, handleFilterClick, filterButtonNode] = useDropdown()
   const [filterActive, setFilterActive] = useState(false)
   const [filters, setFilters] = useState([])
 
@@ -59,10 +59,6 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
 
   const handleCloseFilter = () => {
     setOpenFilter(false)
-  }
-
-  const handleFilterToggle = () => {
-    setOpenFilter(!openFilter)
   }
 
   const handleResetFilters = () => {
@@ -205,9 +201,9 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
     <div>
       <div className='flex flex-row justify-between min-h-[80px] w-full'>
         <div className='flex space-x-10 items-center sm:w-1/5'>
-          <div className='flex space-x-2'>
+          <div className='flex space-x-2' ref={filterButtonNode}>
             <WhiteButton 
-              onClick={handleFilterToggle}
+              onClick={handleFilterClick}
               content={
                 <div>
                   <TuneIcon className='mr-1 text-neutralDark group-hover:scale-110'/>

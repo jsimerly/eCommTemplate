@@ -42,15 +42,15 @@ const Searchbar = ({immediateSearch, searchInput, setSearchInput, searchParamAct
   return (
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
     <div 
-    className='flex-1 flex flex-col sm:flex-row items-center justify-center relative'
+    className='flex-1 flex flex-row items-center justify-center relative'
     >
-        <div className='w-1/4 h-[40px] flex'>
+        <div className='md:w-1/4 h-[40px]'>
             <Where/>
         </div>
-        <div className='w-1/4 h-[40px] flex'>
+        <div className='md:w-1/4 h-[40px]'>
             <When/> 
         </div>
-        <div className='w-1/4 h-[40px] flex'>
+        <div className='md:w-1/4 h-[40px]'>
             <What
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}

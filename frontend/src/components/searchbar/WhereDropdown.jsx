@@ -14,13 +14,13 @@ const WhereDropdown = ({setOpen}) => {
 
   return (
     <div 
-        className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 sm:shadow-md z-20 overflow-y-auto h-full md:h-auto`}
+        className={`ss:absolute bg-white flex w-full flex-col top-16 right-0 ss:rounded-md p-2 ss:shadow-md z-20 overflow-y-auto h-full ss:h-auto`}
         style={{ maxHeight: `80vh` }}
     >
         <h1 className='w-full text-center text-neutralDark font-bold text-[22px] py-2'>
             Locations
         </h1>
-        <div className='flex flex-col sm:flex-row flex-wrap justify-between text-neutralDark px-3'>
+        <div className='flex flex-col ss:flex-row flex-wrap justify-between text-neutralDark px-3'>
             {allDests?.map((dest, i) => {
                 const [open, setOpen] = useState(true)
 
@@ -33,7 +33,7 @@ const WhereDropdown = ({setOpen}) => {
                             {open ?
                                 <button
                                     key={'button_less_'+i} 
-                                    className="sm:hidden"
+                                    className="ss:hidden"
                                     onClick={() => setOpen(false)}
                                 >
                                     <ExpandLessIcon/>
@@ -41,7 +41,7 @@ const WhereDropdown = ({setOpen}) => {
                                 :
                                 <button 
                                     key={'button_more_'+i} 
-                                    className="sm:hidden"
+                                    className="ss:hidden"
                                     onClick={() => setOpen(true)}
                                 >
                                     <ExpandMoreIcon/>

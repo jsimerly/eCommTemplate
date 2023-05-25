@@ -30,7 +30,7 @@ const WhenDropdown = ({setOpen}) => {
     
   return (
     <div 
-    className={`w-full sm:w-auto sm:absolute z-10 top-16 sm:rounded-md sm:shadow-md justify-center flex `}
+    className={`w-full ss:w-auto ss:absolute z-10 top-16 ss:rounded-md ss:shadow-md justify-center flex `}
     >
         <DateRange
             ranges={[dateRangeHolder]}
@@ -39,7 +39,7 @@ const WhenDropdown = ({setOpen}) => {
             minDate={new Date()}
             startDatePlaceholder='Beginning'
             endDatePlaceholder='Finale'
-            className={`sm:rounded-md sm:shadow-md`}
+            className={`ss:rounded-md ss:shadow-md`}
             onRangeFocusChange={handleRangeChange}
         />
     </div>

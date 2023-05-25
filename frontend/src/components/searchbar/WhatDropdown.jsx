@@ -53,7 +53,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
 
   return (
     <div 
-        className={`sm:absolute bg-white flex w-full flex-col top-16 right-0 sm:rounded-md p-2 ${open ? '' : 'hidden'} sm:shadow-md z-20 overflow-y-auto  h-full sm:h-auto rel pb-6 sm:pb-2`}
+        className={`ss:absolute bg-white flex w-full flex-col top-16 right-0 ss:rounded-md p-2 ${open ? '' : 'hidden'} ss:shadow-md z-20 overflow-y-auto  h-full ss:h-auto rel pb-6 ss:pb-2`}
     >
         <div className="relative">
             <form>
@@ -74,10 +74,10 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
         <h1 className='w-full text text-neutralDark font-bold text-[22px] py-2'>
             Categories
         </h1>
-        <div className='sm:flex sm:flex-wrap justify-start text-neutralDark'>
+        <div className='ss:flex ss:flex-wrap justify-start text-neutralDark'>
             {allCategories && allCategories.subcategories.map((cat, i) => {
                 return(
-                    <div key={i} className='mr-10 flex flex-col flex-1 sm:flex-none mb-3'>
+                    <div key={i} className='mr-10 flex flex-col flex-1 ss:flex-none mb-3'>
                         <div className="flex flex-row justify-between">
                             <h3 
                                 className='font-bold text-[18px] px-2 cursor-pointer hover:underline'
@@ -88,7 +88,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
                             {openCats[i] ?
                                 <button
                                     key={'button_less_'+i} 
-                                    className="sm:hidden"
+                                    className="ss:hidden"
                                     onClick={() => {
                                       const newOpenCats = [...openCats];
                                       newOpenCats[i] = false;
@@ -100,7 +100,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
                                 :
                                 <button 
                                     key={'button_more_'+i} 
-                                    className="sm:hidden"
+                                    className="ss:hidden"
                                     onClick={() => {
                                       const newOpenCats = [...openCats];
                                       newOpenCats[i] = true;
@@ -112,7 +112,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
                             }
 
                         </div>   
-                        <ul className={`${openCats ? null : 'hidden sm:block'}`}>
+                        <ul className={`${openCats ? null : 'hidden ss:block'}`}>
                             {cat.subcategories?.map((subCat, i) => (
                                 <li 
                                     key={i}
@@ -128,7 +128,7 @@ const WhatDropdown = ({searchInput, setSearchInput, setSearchParamActive, open, 
             })}
         </div>
         <h4 
-            className='fixed sm:static bottom-3 w-full text-center underline text-neutralDark cursor-pointer hover:scale-105 mt-2'
+            className='fixed ss:static bottom-3 w-full text-center underline text-neutralDark cursor-pointer hover:scale-105 mt-2'
             onClick={()=>handleSelect(allCategories)}
         >
             All Categories

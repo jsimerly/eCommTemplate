@@ -22,12 +22,12 @@ const Navbar = ({immediateSearch, searchInput, setSearchInput, searchParamActive
                             src={main_primary}
                             className='w-[42px] h-[42px] mr-2 cursor-pointer '
                         />
-                        <div className='font-londrina hidden sm:hidden md:block cursor-pointer'>
+                        <div className='font-londrina hidden md:block cursor-pointer'>
                             {company.name}
                         </div>
                     </div>
                 </a>
-                <div className='flex-1 justify-start items-center w-full hidden sm:block'>
+                <div className='flex-1 justify-start items-center w-full hidden ss:block'>
                     <Searchbar
                         immediateSearch={immediateSearch}
                         searchInput={searchInput}
