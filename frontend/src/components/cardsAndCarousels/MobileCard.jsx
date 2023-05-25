@@ -55,50 +55,51 @@ const MobileCard = ({item, addExtraFunction}) => {
     <ErrorBoundry fallback="Oops, Sorry! We appear to be missing something.">
 
     <div 
-        className='w-full h-[195px] rounded-md bg-white flex flex-row mb-2 relative group shadow-md justify-center items-center p-2'
+        className='w-full h-[195px] sm:h-[260px] ms:h-[360px] rounded-md bg-white flex flex-row relative group shadow-md justify-center items-center p-2 cursor-pointer'
         onClick={navigate}
     >
       {item.main_image && (
           <img 
             src={item.main_image.image} 
-            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square max-w-[40%] h-[100%]'
+            className='bg-white object-scale-down rounded-md hover:cursor-pointer aspect-square max-w-[50%] h-[100%]'
           />
       )}
-      <div className='px-2 text-neutralDark flex flex-col items-start justify-between w-full h-full'>
+      <div className='p-2 px-4 text-neutralDark flex flex-col items-start justify-between w-full h-full'>
         <div className='flex flex-row justify-between w-full'>
             <div className='flex flex-col justify-end min-h-[60px] w-[80%]'>
               <h3 
-                  className='font-bold text-[16px] line-clamp-2'
+                  className='font-bold text-[16px] md:text-[28px] line-clamp-2'
               >
               {item.name}
               </h3>
-              <h4 className='text-[12px] tracking-wide'>
+              <h4 className='text-[12px] md:text-[22px] tracking-wide leading-none'>
                   {item.brand.name}
               </h4>
+              { item.n_ratings !== 0 &&
+                <div className='flex flex-row hover:cursor-pointer pt-4'>
+                  <Stars rating={item.average_rating}/>
+                  <div className='ml-1 text-[16px]'>
+                      ({item.n_ratings})
+                  </div>
+                </div>
+              }
             </div>
             <div onClick={handleFavoriteClicked} className='flex justify-end items-start'>
                 {itemFavorited ? 
-                <FavoriteIcon className={`text-primary`} sx={{fontSize: 30}}/>
+                <FavoriteIcon className={`text-primary`} sx={{fontSize: 35}}/>
                 :
-                <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 30}}/>
+                <FavoriteBorderIcon className={`text-primary`} sx={{fontSize: 35}}/>
                 }
           </div>
         </div>
-        { item.n_ratings !== 0 &&
-        <div className='flex flex-row hover:cursor-pointer'>
-          <Stars rating={item.average_rating}/>
-          <div className='ml-1 text-[16px]'>
-              ({item.n_ratings})
-          </div>
-        </div>
-        }
+
         <div className='flex flex-col w-full justify-between items-start'>
           <div className='flex justify-between w-full items-center h-[50px]'>
             <div className='flex flex-col h-full justify-center'>
-              <div className='text-[26px] leading-none'>
+              <div className='text-[26px] md:text-[36px] md:font-bold leading-none'>
                 ${item.total_cost.toFixed(2)}
               </div>
-              <p className='leading-none text-[12px] text-center'>
+              <p className='leading-none text-[12px] md:text-[16px] text-center'>
                 For {item.days} Days
               </p>
             </div>
@@ -109,6 +110,14 @@ const MobileCard = ({item, addExtraFunction}) => {
             >
                 <AddIcon/>
             </button>
+            </div>
+            <div className='hidden md:block'>
+              <button 
+                  className={`text-[18px] w-full h-full bg-primary text-white rounded-md p-2 hover:underline cursor-pointer outline-none`}
+                  onClick={handleAddItemClicked}
+              >
+                  Add to Cart
+              </button>
             </div>
           </div>
         </div>

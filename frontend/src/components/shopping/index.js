@@ -5,5 +5,6 @@ import ItemSuggestion from "../cardsAndCarousels/ItemSuggestion";
 import SmallCard from "../cardsAndCarousels/SmallCard";
 import ShoppingMain from "./ShoppingMain";
 import ItemsV2 from "./ItemsV2";
+import AllCategories from "./AllCategories";
 
-export {Items, ProductCard, BrowsingHistory, ItemSuggestion,  SmallCard, ShoppingMain, ItemsV2,}
+export {Items, ProductCard, BrowsingHistory, ItemSuggestion,  SmallCard, ShoppingMain, ItemsV2, AllCategories}

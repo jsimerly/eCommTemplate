@@ -1,4 +1,3 @@
-import ResponsiveCard from "./ResponsiveCard";
 import MobileCard from "../cardsAndCarousels/MobileCard";
 import Empty from "../utils/Empty"
 
@@ -21,7 +20,7 @@ const ItemsV2 = ({products, sortBy}) => {
     const sortedProducts = sortProducts(products, sortBy)
    return (
     <div className="flex w-full justify-center shrink">
-      <div className="flex sm:flex-row flex-wrap flex-start max-w-[1236px] min-h-[300px] gap-3 shrink">
+      <div className="flex flex-col gap-3 w-full">
           {sortedProducts && sortedProducts.length === 0 ?
               <Empty/>
               :

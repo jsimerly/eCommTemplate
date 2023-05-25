@@ -11,6 +11,7 @@ import FilterOptions from './FilterOptions';
 import useDropdown from '../../hooks/useDropdown';
 import { ShoppingContext } from '../../context';
 import { WhiteButton } from '../utils';
+import AllCategories from './AllCategories';
 
 const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   //Filter Setters
@@ -294,25 +295,30 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
             </div>
             <div className='flex flex-row w-full'>
                       {/* put hide back when */}
-              <div className={`mr-0 sm:mr-2 ${openFilter ? '' : 'hidden'}`}>
-                <FilterOptions
-                  filters={filters}
-                  handleCloseFilter={handleCloseFilter}
-                  handleCheckboxClicked={handleCheckboxClicked}
+              <div className={`mr-0 sm:mr-2  ms:min-w-[300px]`}>
+                <div className={`${openFilter ? '' : 'hidden'} mb-6`}>
+                  <FilterOptions
+                    filters={filters}
+                    handleCloseFilter={handleCloseFilter}
+                    handleCheckboxClicked={handleCheckboxClicked}
 
-                  starFilter={starFilter}
-                  setStarFilter={setStarFilter}
+                    starFilter={starFilter}
+                    setStarFilter={setStarFilter}
 
-                  priceFilter={priceFilter}
-                  setPriceFilter={setPriceFilter}
-                  priceExtrema={priceExtrema}
+                    priceFilter={priceFilter}
+                    setPriceFilter={setPriceFilter}
+                    priceExtrema={priceExtrema}
 
-                  brandFilter={brandFilter}
-                  handleBrandCheckClicked={handleBrandCheckClicked}
+                    brandFilter={brandFilter}
+                    handleBrandCheckClicked={handleBrandCheckClicked}
+                  />
+                </div>
+                <AllCategories
+
                 />
               </div>
               <div className='flex flex-1 w-full'>
-                <Items
+                <ItemsV2
                   products={filteredProducts}
                   sortBy={sortBy}
                 />

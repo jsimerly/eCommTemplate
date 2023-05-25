@@ -7,6 +7,7 @@ import {useState} from 'react';
 
 const OptionComp = ({option, option_index, handleCheckboxClicked}) => {
     const [open, setOpen] = useState(true)
+
     return(
         <div className=''>
             <div 

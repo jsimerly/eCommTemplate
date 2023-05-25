@@ -10,7 +10,9 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
     const [displayMax, setDisplayMax] = useState(null)
 
     const setValidFilters = () => {
+
         const newPriceFilter = [...priceFilter]
+        
         const newMin = displayMin ? parseFloat(displayMin) : null;
         const newMax = displayMax ? parseFloat(displayMax) : null;
 
@@ -26,7 +28,7 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
             newPriceFilter[1] = newMax
         }
 
-        if (newMin > newMax){
+        if (newMin > newMax && newMax !== null){
             newPriceFilter[1] = newMin        
         }
         
@@ -44,11 +46,20 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
     }
 
     useEffect(()=>{
+        if (priceFilter[0] === null && priceFilter[1] === null){
+            setDisplayMin(null)
+            setDisplayMax(null)
+            return
+        }
+    },[priceFilter])
+
+    useEffect(()=>{
+
         let timer = setTimeout(() => setValidFilters(), 1500)
         return ()=> {
             clearTimeout(timer)
         }
-    }, [ displayMin ,displayMax, priceExtrema])
+    }, [displayMin, displayMax, priceExtrema])
 
     const money_regex = /^[0-9]\d*(?:\.\d{0,2})?$/;
     const handleInputChangeMin = (e) => {
@@ -58,7 +69,6 @@ const PriceComp = ({priceFilter, setPriceFilter, priceExtrema}) => {
 
         }
     }
-
     const handleInputChangeMax = (e) => {
         const value = e.target.value
         if (value === '' || money_regex.test(value)){

@@ -2,11 +2,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const BrandComp = ({brands, handleBrandCheckClicked}) => {
     const [open, setOpen] = useState(true)
+    const [showAll, setShowAll] = useState(false)
+
+    const displayedBrands = showAll ? brands : brands.slice(0,6)
+    const remainingBrandsLen = brands.length - displayedBrands.length
+    
   return (
     <div className=''>
         <div 
@@ -23,7 +28,7 @@ const BrandComp = ({brands, handleBrandCheckClicked}) => {
             }
         </div>
         <div className={`${open? null : 'hidden'}`}>
-            {brands.length !== 0 && brands.map((brand, i) => {
+            {displayedBrands.length !== 0 && displayedBrands.map((brand, i) => {
                 return (
                     <div
                         className='flex flex-row items-center justify-start hover:underline cursor-pointer'
@@ -41,6 +46,24 @@ const BrandComp = ({brands, handleBrandCheckClicked}) => {
                     </div>
                 )
             })}
+            <div className='pl-1'>
+                {remainingBrandsLen > 0 && !showAll &&
+                    <button
+                        className='underline'
+                        onClick={()=>setShowAll(true)}
+                    >
+                        Show {remainingBrandsLen} More...
+                    </button>
+                }
+                {remainingBrandsLen == 0 && showAll &&
+                    <button
+                        className='underline'
+                        onClick={()=>setShowAll(false)}
+                    >
+                        Show Less...
+                    </button>    
+                }
+           </div>
         </div>
     </div>
   )
