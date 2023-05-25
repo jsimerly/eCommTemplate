@@ -4,6 +4,7 @@ import RatingComp from './filters/RatingComp';
 import PriceComp from './filters/PriceComp';
 import OptionComp from './filters/OptionsComp';
 import BrandComp from './filters/BrandComp';
+import RatingCompMobile from './RatingCompMobile';
 
 
 
@@ -37,6 +38,10 @@ const FilterOptions = ({filters, handleCheckboxClicked, handleCloseFilter, starF
             )
         })}
         <RatingComp
+          starFilter={starFilter}
+          setStarFilter={setStarFilter}
+        />
+        <RatingCompMobile
           starFilter={starFilter}
           setStarFilter={setStarFilter}
         />

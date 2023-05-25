@@ -46,10 +46,11 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
   //Filter Open and Close
   const [openFilter, setOpenFilter] = useState()
   let filterNode = useRef()
+  let clearFilterNode = useRef()
   useEffect(() => {
     if (windowWidth < 768) {
       let filterHandler = (e) => {
-        if (!filterNode.current?.contains(e.target)) {
+        if (!filterNode.current?.contains(e.target) && !clearFilterNode.current?.contains(e.target)) {
           setOpenFilter(false);
         }
       }
@@ -249,6 +250,7 @@ const ShoppingMain = ({filterData, relatedCategories, products, brands}) => {
             <button 
               className={`${filterActive ? '' : 'hidden'} text-white bg-primary rounded-md h-full p-2 shadow-md group min-h-[42px] min-w-[42px]`}
               onClick={handleResetFilters}
+              ref={clearFilterNode}
             >
               <DeleteForeverIcon 
                 className='group-hover:scale-125'

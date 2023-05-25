@@ -78,6 +78,7 @@ const RatingComp = ({starFilter, setStarFilter}) => {
     return (
         <div
             onMouseLeave={handleLeaveFully}
+             className='hidden sm:block'
         >
             <div 
                 className='flex flex-row justify-between items-center hover:underline cursor-pointer'
@@ -93,7 +94,7 @@ const RatingComp = ({starFilter, setStarFilter}) => {
                 }
             </div>
             <div 
-                className={`${open? null : 'hidden'} inline-flex text-primary py-3 sm:py-0`}
+                className={`${open? null : 'hidden'} inline-flex text-primary`}
                 onMouseLeave={handleLeaveFully}
             >
                 {stars.map((_, index) => {
