@@ -7,7 +7,7 @@ const BlogBanner = () => {
         <h1 className="text-center text-[36px] text-neutralDark mb-2">
             Our Blogs
         </h1>
-        <div className="flex flex-col sm:flex-row justify-between gap-6 w-full px-6 sm:px-20">
+        <div className="flex flex-col sm:flex-row justify-between gap-6 w-full ms:px-6">
             <BlogCard 
                 img={games_blog} 
                 title={'10 Fun Beach Games'}
